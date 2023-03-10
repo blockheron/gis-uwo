@@ -39,8 +39,6 @@ public class Login extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        LoginPanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 0, 0));
-
         bg.setIcon(new ImageIcon(new ImageIcon(getClass().getResource("/org/western/assets/bg.jpg")).getImage().getScaledInstance(600, 400, Image.SCALE_SMOOTH)));
         LoginPanel.add(bg);
 

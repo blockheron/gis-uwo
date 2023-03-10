@@ -38,10 +38,7 @@
   <SubComponents>
     <Container class="javax.swing.JPanel" name="LoginPanel">
 
-      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignFlowLayout">
-        <Property name="horizontalGap" type="int" value="0"/>
-        <Property name="verticalGap" type="int" value="0"/>
-      </Layout>
+      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignFlowLayout"/>
       <SubComponents>
         <Component class="javax.swing.JLabel" name="bg">
           <Properties>
