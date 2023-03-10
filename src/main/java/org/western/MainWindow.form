@@ -47,13 +47,6 @@
               <Component id="Frame" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="0" pref="206" max="32767" attributes="0"/>
           </Group>
-          <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="664" max="-2" attributes="0"/>
-                  <Component id="searchBox" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="678" max="32767" attributes="0"/>
-              </Group>
-          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -62,26 +55,10 @@
               <Component id="Frame" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="0" pref="11" max="32767" attributes="0"/>
           </Group>
-          <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="444" max="-2" attributes="0"/>
-                  <Component id="searchBox" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="444" max="32767" attributes="0"/>
-              </Group>
-          </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JTextField" name="searchBox">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Search"/>
-        <Property name="name" type="java.lang.String" value="" noResource="true"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchBoxActionPerformed"/>
-      </Events>
-    </Component>
     <Container class="javax.swing.JPanel" name="Frame">
       <Properties>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -92,15 +69,34 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="1200" max="32767" attributes="0"/>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace pref="1130" max="32767" attributes="0"/>
+                  <Component id="searchBox" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="900" max="32767" attributes="0"/>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="searchBox" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="871" max="32767" attributes="0"/>
+              </Group>
           </Group>
         </DimensionLayout>
       </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JTextField" name="searchBox">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Search"/>
+            <Property name="name" type="java.lang.String" value="" noResource="true"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchBoxActionPerformed"/>
+          </Events>
+        </Component>
+      </SubComponents>
     </Container>
   </SubComponents>
 </Form>
