@@ -7,6 +7,7 @@ package org.western;
 import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.util.EventListener;
 
 /**
  *
@@ -33,18 +34,42 @@ public class MainWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        layerPanel = new javax.swing.JLayeredPane();
         Frame = new javax.swing.JPanel();
+        searchPanel = new javax.swing.JPanel();
         searchBox = new javax.swing.JTextField();
+        onSearch = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1200, 900));
+        setBackground(new java.awt.Color(255, 255, 255));
+        setPreferredSize(new java.awt.Dimension(1200, 800));
 
-        Frame.setPreferredSize(new java.awt.Dimension(1200, 900));
+        layerPanel.setPreferredSize(new java.awt.Dimension(1200, 800));
+        layerPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Frame.setPreferredSize(new java.awt.Dimension(1200, 800));
+
+        javax.swing.GroupLayout FrameLayout = new javax.swing.GroupLayout(Frame);
+        Frame.setLayout(FrameLayout);
+        FrameLayout.setHorizontalGroup(
+            FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1200, Short.MAX_VALUE)
+        );
+        FrameLayout.setVerticalGroup(
+            FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 800, Short.MAX_VALUE)
+        );
+
+        layerPanel.add(Frame, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        searchPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        searchPanel.setPreferredSize(new java.awt.Dimension(200, 40));
 
         searchBox.setText("Search");
+        searchBox.setInheritsPopupMenu(true);
         searchBox.setName(""); // NOI18N
         searchBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -52,22 +77,37 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout FrameLayout = new javax.swing.GroupLayout(Frame);
-        Frame.setLayout(FrameLayout);
-        FrameLayout.setHorizontalGroup(
-            FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FrameLayout.createSequentialGroup()
-                .addContainerGap(1130, Short.MAX_VALUE)
-                .addComponent(searchBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        onSearch.setLabel("");
+        onSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                onSearchActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout searchPanelLayout = new javax.swing.GroupLayout(searchPanel);
+        searchPanel.setLayout(searchPanelLayout);
+        searchPanelLayout.setHorizontalGroup(
+            searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(searchPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(searchBox, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(onSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
-        FrameLayout.setVerticalGroup(
-            FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(FrameLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(searchBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(871, Short.MAX_VALUE))
+        searchPanelLayout.setVerticalGroup(
+            searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(searchPanelLayout.createSequentialGroup()
+                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(searchBox, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(onSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
+
+        layerPanel.setLayer(searchPanel, javax.swing.JLayeredPane.POPUP_LAYER);
+        layerPanel.add(searchPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 0, -1, -1));
+
+        getContentPane().add(layerPanel, java.awt.BorderLayout.CENTER);
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -77,27 +117,16 @@ public class MainWindow extends javax.swing.JFrame {
 
         setJMenuBar(jMenuBar1);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(Frame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 206, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(Frame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 11, Short.MAX_VALUE))
-        );
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void searchBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_searchBoxActionPerformed
+
+    private void onSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onSearchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_onSearchActionPerformed
 
     /**
      * @param args the command line arguments
@@ -143,37 +172,21 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void initSearchBox() {
         searchBox.setText("Search");
-        searchBox.setForeground(Color.GRAY);
-        searchBox.addFocusListener(new FocusListener() {
-            @Override
-            public void focusGained(FocusEvent e) {
-                if (searchBox.getText().equals("Search")) {
-                    searchBox.setText("");
-                    searchBox.setForeground(Color.BLACK);
-                }
-            }
-
-            @Override
-            public void focusLost(FocusEvent e) {
-                if (searchBox.getText().isEmpty()) {
-                    searchBox.setForeground(Color.GRAY);
-                    searchBox.setText("Search");
-                }
-            }
-        });
+        searchBox.setBackground(Color.white);
     }
 
     private void renderFrame() {
         Canvas c = new Canvas("/org/western/assets/mc-demo.png", this.getWidth(), this.getHeight());
         Frame.add(c);
     }
-    
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Frame;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JLayeredPane layerPanel;
+    private javax.swing.JButton onSearch;
     private javax.swing.JTextField searchBox;
+    private javax.swing.JPanel searchPanel;
     // End of variables declaration//GEN-END:variables
 }

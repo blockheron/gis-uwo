@@ -8,7 +8,7 @@ import java.awt.event.MouseMotionAdapter;
 import java.awt.image.BufferedImage;
 import java.util.Objects;
 
-// Modified and add mouse press event listener to make initial location correct
+// Modified and added mouse press event listener to make initial location correct
 // Adapted from http://www.java2s.com/Code/Java/2D-Graphics-GUI/Imagewithmousedragandmoveevent.htm
 
 class Canvas extends JPanel {
