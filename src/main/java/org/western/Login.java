@@ -4,7 +4,8 @@
  */
 package org.western;
 
-import org.kordamp.ikonli.fluentui.FluentUiRegularAL;
+import org.kordamp.ikonli.remixicon.RemixiconAL;
+import org.kordamp.ikonli.remixicon.RemixiconMZ;
 import org.kordamp.ikonli.swing.FontIcon;
 
 import javax.swing.*;
@@ -101,7 +102,7 @@ public class Login extends javax.swing.JFrame {
     }
 
     private void prepareIcon() {
-        FontIcon icon = FontIcon.of(FluentUiRegularAL.APPS_24, 24, Color.BLACK);
+        FontIcon icon = FontIcon.of(RemixiconMZ.MACBOOK_LINE, 24, Color.BLACK);
         JLabel label = new JLabel(icon);
         LoginPanel.add(label);
     }

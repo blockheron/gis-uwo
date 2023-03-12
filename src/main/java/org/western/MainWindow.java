@@ -5,9 +5,13 @@
 package org.western;
 
 import java.awt.*;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
+import java.awt.event.*;
 import java.util.EventListener;
+import org.kordamp.ikonli.remixicon.RemixiconMZ;
+import org.kordamp.ikonli.swing.FontIcon;
+
+import javax.swing.*;
+import javax.swing.border.Border;
 
 /**
  *
@@ -23,6 +27,7 @@ public class MainWindow extends javax.swing.JFrame {
         initMainWindow();
         initSearchBox();
         renderFrame();
+        prepareIcon();
     }
 
     /**
@@ -45,11 +50,11 @@ public class MainWindow extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
-        setPreferredSize(new java.awt.Dimension(1200, 800));
 
         layerPanel.setPreferredSize(new java.awt.Dimension(1200, 800));
         layerPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        Frame.setForeground(new java.awt.Color(130, 130, 130));
         Frame.setPreferredSize(new java.awt.Dimension(1200, 800));
 
         javax.swing.GroupLayout FrameLayout = new javax.swing.GroupLayout(Frame);
@@ -65,7 +70,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         layerPanel.add(Frame, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        searchPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        searchPanel.setForeground(new java.awt.Color(13, 17, 23));
         searchPanel.setPreferredSize(new java.awt.Dimension(200, 40));
 
         searchBox.setText("Search");
@@ -77,7 +82,7 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
-        onSearch.setLabel("");
+        onSearch.setBorder(null);
         onSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 onSearchActionPerformed(evt);
@@ -90,18 +95,18 @@ public class MainWindow extends javax.swing.JFrame {
             searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(searchPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(searchBox, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
+                .addComponent(searchBox, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(onSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(12, 12, 12))
         );
         searchPanelLayout.setVerticalGroup(
             searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(searchPanelLayout.createSequentialGroup()
+                .addGap(0, 8, Short.MAX_VALUE)
                 .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(searchBox, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(onSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(searchBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(onSearch, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         layerPanel.setLayer(searchPanel, javax.swing.JLayeredPane.POPUP_LAYER);
@@ -162,7 +167,13 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
     }
-    
+
+    /**
+     * Initialize main window
+     * Relocate window to center of screen
+     * Set window size
+     * Set window background color
+     */
     private void initMainWindow() {
         Point center = GraphicsEnvironment.getLocalGraphicsEnvironment().getCenterPoint();
         this.setLocation(center.x - this.getWidth() / 2, center.y - this.getHeight() / 2);
@@ -170,14 +181,75 @@ public class MainWindow extends javax.swing.JFrame {
         this.setBackground(Color.WHITE);
     }
 
+    /**
+     * Initialize search box
+     * Set search box to transparent
+     * Set placeholder of search box
+     * Create hover effect for search button
+     */
     private void initSearchBox() {
-        searchBox.setText("Search");
-        searchBox.setBackground(Color.white);
+        searchPanel.setOpaque(false); // make searchPanel transparent
+        searchBox.setText("Search"); // set default text of searchBox
+        // add inner padding at both sides of searchBox
+        searchBox.setForeground(Color.decode("#999999")); // set default color of searchBox
+        searchBox.setBorder(BorderFactory.createLineBorder(Color.decode("#eaeaea")));
+        searchBox.addFocusListener(new FocusAdapter() { // add placeholder effect to searchBox
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (searchBox.getText().equals("Search")) {
+                    searchBox.setText("");
+                    searchBox.setForeground(Color.decode("#000000"));
+                    searchBox.setBorder(BorderFactory.createLineBorder(Color.decode("#666666")));
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (searchBox.getText().isEmpty()) {
+                    searchBox.setText("Search");
+                    searchBox.setForeground(Color.decode("#999999"));
+                    searchBox.setBorder(BorderFactory.createLineBorder(Color.decode("#E0E0E0")));
+                }
+            }
+        });
+
+
+        onSearch.setBackground(Color.WHITE); // set background color of onSearch button
+        onSearch.setBorder(BorderFactory.createEmptyBorder()); // remove border of onSearch button
+        onSearch.setContentAreaFilled(false); // remove background of onSearch button
+        onSearch.setOpaque(true); // make onSearch button opaque
+        onSearch.setCursor(new Cursor(Cursor.HAND_CURSOR)); // set cursor to hand cursor
+
+        // add hover effect to onSearch button
+        onSearch.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                onSearch.setBackground(Color.decode("#F5F5F5"));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                onSearch.setBackground(Color.WHITE);
+            }
+        });
+
     }
 
+    /**
+     * Render frame
+     */
     private void renderFrame() {
         Canvas c = new Canvas("/org/western/assets/mc-demo.png", this.getWidth(), this.getHeight());
         Frame.add(c);
+        Frame.setFocusable(true);
+    }
+
+    /**
+     * Prepare icon for onSearch button
+     */
+    private void prepareIcon() {
+        FontIcon searchIcon = FontIcon.of(RemixiconMZ.SEARCH_LINE, 20, Color.decode("#828282"));
+        onSearch.setIcon(searchIcon);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Frame;

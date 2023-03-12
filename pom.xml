@@ -22,11 +22,6 @@
         </dependency>
         <dependency>
             <groupId>org.kordamp.ikonli</groupId>
-            <artifactId>ikonli-fluentui-pack</artifactId>
-            <version>12.3.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.kordamp.ikonli</groupId>
             <artifactId>ikonli-remixicon-pack</artifactId>
             <version>12.3.1</version>
         </dependency>
