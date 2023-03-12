@@ -188,18 +188,20 @@ public class MainWindow extends javax.swing.JFrame {
      * Create hover effect for search button
      */
     private void initSearchBox() {
+        int padding = 10;
+        // https://stackoverflow.com/questions/10274750/java-swing-setting-margins-on-textarea-with-line-border
+        Border defaultBorder = BorderFactory.createLineBorder(Color.decode("#eaeaea")), focusBorder = BorderFactory.createLineBorder(Color.decode("#666666")); // create line border of searchBox
         searchPanel.setOpaque(false); // make searchPanel transparent
         searchBox.setText("Search"); // set default text of searchBox
-        // add inner padding at both sides of searchBox
         searchBox.setForeground(Color.decode("#999999")); // set default color of searchBox
-        searchBox.setBorder(BorderFactory.createLineBorder(Color.decode("#eaeaea")));
+        searchBox.setBorder(BorderFactory.createCompoundBorder(defaultBorder, BorderFactory.createEmptyBorder(0, padding, 0, padding))); // set inset padding of searchBox
         searchBox.addFocusListener(new FocusAdapter() { // add placeholder effect to searchBox
             @Override
             public void focusGained(FocusEvent e) {
                 if (searchBox.getText().equals("Search")) {
                     searchBox.setText("");
                     searchBox.setForeground(Color.decode("#000000"));
-                    searchBox.setBorder(BorderFactory.createLineBorder(Color.decode("#666666")));
+                    searchBox.setBorder(BorderFactory.createCompoundBorder(focusBorder, BorderFactory.createEmptyBorder(0, padding, 0, padding))); // set inset padding of searchBox
                 }
             }
 
@@ -208,7 +210,7 @@ public class MainWindow extends javax.swing.JFrame {
                 if (searchBox.getText().isEmpty()) {
                     searchBox.setText("Search");
                     searchBox.setForeground(Color.decode("#999999"));
-                    searchBox.setBorder(BorderFactory.createLineBorder(Color.decode("#E0E0E0")));
+                    searchBox.setBorder(BorderFactory.createCompoundBorder(defaultBorder, BorderFactory.createEmptyBorder(0, padding, 0, padding))); // set inset padding of searchBox
                 }
             }
         });
