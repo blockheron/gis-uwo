@@ -1,10 +1,17 @@
 package org.western;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.Objects;
 
 
 public class User {
-    enum role {ADMIN, USER}
+    enum role {
+        @SerializedName("admin")
+        ADMIN,
+        @SerializedName("user")
+        USER
+    }
     private int id;
     private String username;
     private String password;
