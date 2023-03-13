@@ -1,0 +1,53 @@
+@options
+@packages
+-classpath
+'/Users/m/.m2/repository/org/kordamp/ikonli/ikonli-swing/12.3.1/ikonli-swing-12.3.1.jar:/Users/m/.m2/repository/org/kordamp/ikonli/ikonli-core/12.3.1/ikonli-core-12.3.1.jar:/Users/m/.m2/repository/org/kordamp/ikonli/ikonli-fluentui-pack/12.3.1/ikonli-fluentui-pack-12.3.1.jar:/Users/m/.m2/repository/org/kordamp/ikonli/ikonli-remixicon-pack/12.3.1/ikonli-remixicon-pack-12.3.1.jar:/Users/m/.m2/repository/unknown/binary/AbsoluteLayout/SNAPSHOT/AbsoluteLayout-SNAPSHOT.jar'
+-encoding
+'UTF-8'
+-protected
+-source
+'19'
+-sourcepath
+'/Users/m/Documents/uwo/CS/2212/java/group22/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2023. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'/Users/m/Documents/uwo/CS/2212/java/group22/target/site/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'western-view 1.0-SNAPSHOT API'
+-use
+-version
+-windowtitle
+'western-view 1.0-SNAPSHOT API'
+org.western
+/Users/m/.m2/repository/org/kordamp/ikonli/ikonli-swing/12.3.1/ikonli-swing-12.3.1.jar = 1674017601897
+/Users/m/.m2/repository/org/kordamp/ikonli/ikonli-core/12.3.1/ikonli-core-12.3.1.jar = 1674017601979
+/Users/m/.m2/repository/org/kordamp/ikonli/ikonli-fluentui-pack/12.3.1/ikonli-fluentui-pack-12.3.1.jar = 1674017602166
+/Users/m/.m2/repository/org/kordamp/ikonli/ikonli-remixicon-pack/12.3.1/ikonli-remixicon-pack-12.3.1.jar = 1678408103965
+/Users/m/.m2/repository/unknown/binary/AbsoluteLayout/SNAPSHOT/AbsoluteLayout-SNAPSHOT.jar = 1678424329809
+/Users/m/Documents/uwo/CS/2212/java/group22/src/main/java = 1678421735000
+/Users/m/Documents/uwo/CS/2212/java/group22/target/site/apidocs/tag-search-index.js = 1678425621148
+/Users/m/Documents/uwo/CS/2212/java/group22/target/site/apidocs/overview-tree.html = 1678425621142
+/Users/m/Documents/uwo/CS/2212/java/group22/target/site/apidocs/module-search-index.js = 1678425621147
+/Users/m/Documents/uwo/CS/2212/java/group22/target/site/apidocs/index.html = 1678425621152
+/Users/m/Documents/uwo/CS/2212/java/group22/target/site/apidocs/package-search-index.js = 1678425621147
+/Users/m/Documents/uwo/CS/2212/java/group22/target/site/apidocs/jquery-ui.overrides.css = 1678425621158
+/Users/m/Documents/uwo/CS/2212/java/group22/target/site/apidocs/serialized-form.html = 1678425621127
+/Users/m/Documents/uwo/CS/2212/java/group22/target/site/apidocs/index-all.html = 1678425621151
+/Users/m/Documents/uwo/CS/2212/java/group22/target/site/apidocs/allpackages-index.html = 1678425621147
+/Users/m/Documents/uwo/CS/2212/java/group22/target/site/apidocs/member-search-index.js = 1678425621147
+/Users/m/Documents/uwo/CS/2212/java/group22/target/site/apidocs/copy.svg = 1678425621155
+/Users/m/Documents/uwo/CS/2212/java/group22/target/site/apidocs/script.js = 1678425621155
+/Users/m/Documents/uwo/CS/2212/java/group22/target/site/apidocs/stylesheet.css = 1678425621155
+/Users/m/Documents/uwo/CS/2212/java/group22/target/site/apidocs/search-page.js = 1678425621156
+/Users/m/Documents/uwo/CS/2212/java/group22/target/site/apidocs/help-doc.html = 1678425621153
+/Users/m/Documents/uwo/CS/2212/java/group22/target/site/apidocs/element-list = 1678425621117
+/Users/m/Documents/uwo/CS/2212/java/group22/target/site/apidocs/search.html = 1678425621152
+/Users/m/Documents/uwo/CS/2212/java/group22/target/site/apidocs/allclasses-index.html = 1678425621146
+/Users/m/Documents/uwo/CS/2212/java/group22/target/site/apidocs/type-search-index.js = 1678425621147
+/Users/m/Documents/uwo/CS/2212/java/group22/target/site/apidocs/search.js = 1678425621156
