@@ -13,6 +13,8 @@ import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.Objects;
 
 /**
@@ -47,11 +49,15 @@ public class Login extends javax.swing.JFrame {
         logo = new javax.swing.JLabel();
         title = new javax.swing.JLabel();
         formPanel = new javax.swing.JPanel();
+        honeyPot = new javax.swing.JTextField();
         userText = new javax.swing.JLabel();
         user = new javax.swing.JTextField();
         passwordText = new javax.swing.JLabel();
         passwd = new javax.swing.JPasswordField();
-        jPanel1 = new javax.swing.JPanel();
+        submitPanel = new javax.swing.JPanel();
+        onLogin = new javax.swing.JButton();
+        condition = new javax.swing.JLabel();
+        guestLogin = new javax.swing.JButton();
         mask = new javax.swing.JPanel();
         maskBg = new javax.swing.JLabel();
 
@@ -92,6 +98,17 @@ public class Login extends javax.swing.JFrame {
         formPanel.setOpaque(false);
         formPanel.setPreferredSize(new java.awt.Dimension(300, 140));
 
+        honeyPot.setBackground(new Color(0, 0, 0, 0 ));
+        honeyPot.setForeground(new Color(0,0,0,200));
+        honeyPot.setBorder(null);
+        honeyPot.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        honeyPot.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                honeyPotActionPerformed(evt);
+            }
+        });
+        formPanel.add(honeyPot);
+
         userText.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         userText.setForeground(new java.awt.Color(17, 51, 85));
         userText.setText("Username");
@@ -127,21 +144,38 @@ public class Login extends javax.swing.JFrame {
 
         loginPanel.add(formPanel);
 
-        jPanel1.setOpaque(false);
-        jPanel1.setPreferredSize(new java.awt.Dimension(260, 100));
+        submitPanel.setOpaque(false);
+        submitPanel.setPreferredSize(new java.awt.Dimension(280, 40));
+        submitPanel.setLayout(new java.awt.GridBagLayout());
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 260, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
+        onLogin.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        onLogin.setText("Login");
+        onLogin.setBorder(null);
+        onLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                onLoginActionPerformed(evt);
+            }
+        });
+        submitPanel.add(onLogin, new java.awt.GridBagConstraints());
 
-        loginPanel.add(jPanel1);
+        condition.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        condition.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        condition.setText("or");
+        condition.setPreferredSize(new java.awt.Dimension(72, 20));
+        submitPanel.add(condition, new java.awt.GridBagConstraints());
+
+        guestLogin.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        guestLogin.setText("Continue as guest");
+        guestLogin.setBorder(null);
+        guestLogin.setIgnoreRepaint(true);
+        guestLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guestLoginActionPerformed(evt);
+            }
+        });
+        submitPanel.add(guestLogin, new java.awt.GridBagConstraints());
+
+        loginPanel.add(submitPanel);
 
         loginLayer.setLayer(loginPanel, javax.swing.JLayeredPane.POPUP_LAYER);
         loginLayer.add(loginPanel);
@@ -206,6 +240,18 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_passwdActionPerformed
 
+    private void onLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onLoginActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_onLoginActionPerformed
+
+    private void guestLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guestLoginActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_guestLoginActionPerformed
+
+    private void honeyPotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_honeyPotActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_honeyPotActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -244,11 +290,23 @@ public class Login extends javax.swing.JFrame {
     private void initLoginPanel() {
         int padding = 10;
         Point center = GraphicsEnvironment.getLocalGraphicsEnvironment().getCenterPoint();
-        Border defaultBorder = BorderFactory.createLineBorder(Color.decode("#eaeaea")), // create default line border for searchBox
-                focusBorder = BorderFactory.createLineBorder(Color.decode("#666666")); // create focused line border for searchBox
+        Border defaultBorder = BorderFactory.createLineBorder(Color.decode("#eaeaea")), // create default line border
+                focusBorder = BorderFactory.createLineBorder(Color.decode("#666666")), // create focused line border
+                underlineBorder = BorderFactory.createMatteBorder(0, 0, 1, 0, Color.decode("#2470cc")), // create underline border
+                underlineFocusBorder = BorderFactory.createMatteBorder(0, 0, 1, 0, Color.decode("#666666")); // create underline focused border
         this.setLocation(center.x - this.getWidth() / 2, center.y - this.getHeight() / 2);
         this.setResizable(false);
         this.setBackground(Color.WHITE);
+        onLogin.setBackground(Color.decode("#4e2683")); // set background color of onLogin button
+        onLogin.setForeground(Color.WHITE); // set text color of onLogin button
+        onLogin.setBorder(BorderFactory.createEmptyBorder()); // remove border of onLogin button
+        onLogin.setContentAreaFilled(false); // remove background of onLogin button
+        onLogin.setOpaque(true); // make onLogin button opaque
+        onLogin.setCursor(new Cursor(Cursor.HAND_CURSOR)); // set cursor to hand cursor
+        guestLogin.setForeground(Color.decode("#2470cc")); // set text color of guestLogin button
+        guestLogin.setBorder(BorderFactory.createEmptyBorder()); // remove border of guestLogin button
+        guestLogin.setContentAreaFilled(false); // remove background of guestLogin button
+        guestLogin.setOpaque(false); // make guestLogin button opaque
         user.setForeground(Color.decode("#666666"));
         user.setBorder(
                 BorderFactory.createCompoundBorder(
@@ -260,6 +318,26 @@ public class Login extends javax.swing.JFrame {
                         defaultBorder, BorderFactory.createEmptyBorder(padding, padding, padding, padding)
                 )
         );
+        onLogin.setBorder(
+                BorderFactory.createCompoundBorder(
+                        defaultBorder, BorderFactory.createEmptyBorder(padding, 2 * padding, padding, 2 * padding)
+                )
+        );
+        guestLogin.setBorder(underlineBorder);
+
+        // add hover effect to onSearch button
+        onLogin.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                // change background color gradually
+                onLogin.setBackground(Color.decode("#7b5da2"));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                onLogin.setBackground(Color.decode("#4e2683"));
+            }
+        });
         user.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
@@ -296,8 +374,7 @@ public class Login extends javax.swing.JFrame {
                                 focusBorder, BorderFactory.createEmptyBorder(padding, padding, padding, padding)
                         )
                 );
-                if(new String(passwd.getPassword()).equals("password"))
-                {
+                if (new String(passwd.getPassword()).equals("password")) {
                     passwd.setText("");
                 }
             }
@@ -330,6 +407,20 @@ public class Login extends javax.swing.JFrame {
                 }
             }
         });
+        // add underline effect to guestLogin button
+        guestLogin.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                guestLogin.setForeground(Color.decode("#666666"));
+                guestLogin.setBorder(underlineFocusBorder);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                guestLogin.setForeground(Color.decode("#2470cc"));
+                guestLogin.setBorder(underlineBorder);
+            }
+        });
     }
 
     private void prepareIcon() {
@@ -348,8 +439,10 @@ public class Login extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel bg;
     private javax.swing.JPanel bgPanel;
+    private javax.swing.JLabel condition;
     private javax.swing.JPanel formPanel;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton guestLogin;
+    private javax.swing.JTextField honeyPot;
     private javax.swing.JLayeredPane layerPanel;
     private javax.swing.JLayeredPane loginLayer;
     private javax.swing.JPanel loginPanel;
@@ -357,8 +450,10 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPanel logoPanel;
     private javax.swing.JPanel mask;
     private javax.swing.JLabel maskBg;
+    private javax.swing.JButton onLogin;
     private javax.swing.JPasswordField passwd;
     private javax.swing.JLabel passwordText;
+    private javax.swing.JPanel submitPanel;
     private javax.swing.JLabel title;
     private javax.swing.JTextField user;
     private javax.swing.JLabel userText;
