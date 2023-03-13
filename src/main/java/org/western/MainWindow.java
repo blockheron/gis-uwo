@@ -10,7 +10,6 @@ import org.kordamp.ikonli.swing.FontIcon;
 
 import javax.swing.*;
 import javax.swing.border.Border;
-import javax.swing.plaf.basic.BasicComboBoxUI;
 import java.awt.*;
 import java.awt.event.*;
 
@@ -66,12 +65,12 @@ public class MainWindow extends javax.swing.JFrame {
         javax.swing.GroupLayout FrameLayout = new javax.swing.GroupLayout(Frame);
         Frame.setLayout(FrameLayout);
         FrameLayout.setHorizontalGroup(
-            FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1200, Short.MAX_VALUE)
+                FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 1200, Short.MAX_VALUE)
         );
         FrameLayout.setVerticalGroup(
-            FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
+                FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 800, Short.MAX_VALUE)
         );
 
         layerPanel.add(Frame, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -107,7 +106,7 @@ public class MainWindow extends javax.swing.JFrame {
         filterText.setText("Filter by: ");
         filterPanel.add(filterText);
 
-        selectBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        selectBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Item 1", "Item 2", "Item 3", "Item 4"}));
         selectBox.setAutoscrolls(true);
         selectBox.setBorder(null);
         selectBox.setMinimumSize(new java.awt.Dimension(80, 23));
@@ -123,25 +122,25 @@ public class MainWindow extends javax.swing.JFrame {
         javax.swing.GroupLayout searchPanelLayout = new javax.swing.GroupLayout(searchPanel);
         searchPanel.setLayout(searchPanelLayout);
         searchPanelLayout.setHorizontalGroup(
-            searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(searchPanelLayout.createSequentialGroup()
-                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(searchPanelLayout.createSequentialGroup()
-                        .addComponent(searchBox, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(onSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(dropDownPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(searchPanelLayout.createSequentialGroup()
+                                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(searchPanelLayout.createSequentialGroup()
+                                                .addComponent(searchBox, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(onSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(dropDownPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         searchPanelLayout.setVerticalGroup(
-            searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(searchPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(onSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(searchBox, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(dropDownPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(searchPanelLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(onSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(searchBox, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(dropDownPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         layerPanel.setLayer(searchPanel, javax.swing.JLayeredPane.POPUP_LAYER);
@@ -225,12 +224,17 @@ public class MainWindow extends javax.swing.JFrame {
     private void initSearchBox() {
         int padding = 10;
         // https://stackoverflow.com/questions/10274750/java-swing-setting-margins-on-textarea-with-line-border
-        Border defaultBorder = BorderFactory.createLineBorder(Color.decode("#eaeaea")), focusBorder = BorderFactory.createLineBorder(Color.decode("#666666")); // create line border of searchBox
+        Border defaultBorder = BorderFactory.createLineBorder(Color.decode("#eaeaea")), // create default line border for searchBox
+                focusBorder = BorderFactory.createLineBorder(Color.decode("#666666")); // create focused line border for searchBox
         searchPanel.setOpaque(false); // make searchPanel transparent
         dropDownPanel.setVisible(false); // hide dropDownPanel
         searchBox.setText("Search"); // set default text of searchBox
         searchBox.setForeground(Color.decode("#999999")); // set default color of searchBox
-        searchBox.setBorder(BorderFactory.createCompoundBorder(defaultBorder, BorderFactory.createEmptyBorder(0, padding, 0, padding))); // set inset padding of searchBox
+        searchBox.setBorder(
+                BorderFactory.createCompoundBorder(
+                        defaultBorder, BorderFactory.createEmptyBorder(0, padding, 0, padding)
+                )
+        ); // set inset padding of searchBox
         selectBox.setBackground(Color.decode("#ffffff")); // set background color of searchBox
         selectBox.setForeground(Color.decode("#999999")); // set default color of searchBox
 
@@ -249,7 +253,11 @@ public class MainWindow extends javax.swing.JFrame {
                 if (searchBox.getText().equals("Search")) {
                     searchBox.setText("");
                     searchBox.setForeground(Color.decode("#000000"));
-                    searchBox.setBorder(BorderFactory.createCompoundBorder(focusBorder, BorderFactory.createEmptyBorder(0, padding, 0, padding))); // set inset padding of searchBox
+                    searchBox.setBorder(
+                            BorderFactory.createCompoundBorder(
+                                    focusBorder, BorderFactory.createEmptyBorder(0, padding, 0, padding)
+                            )
+                    ); // set inset padding of searchBox
                 }
             }
 
@@ -258,7 +266,11 @@ public class MainWindow extends javax.swing.JFrame {
                 if (searchBox.getText().isEmpty()) {
                     searchBox.setText("Search");
                     searchBox.setForeground(Color.decode("#999999"));
-                    searchBox.setBorder(BorderFactory.createCompoundBorder(defaultBorder, BorderFactory.createEmptyBorder(0, padding, 0, padding))); // set inset padding of searchBox
+                    searchBox.setBorder(
+                            BorderFactory.createCompoundBorder(
+                                    defaultBorder, BorderFactory.createEmptyBorder(0, padding, 0, padding)
+                            )
+                    ); // set inset padding of searchBox
                 }
             }
         });
