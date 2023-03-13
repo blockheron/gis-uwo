@@ -4,17 +4,18 @@
  */
 package org.western;
 
-import java.awt.*;
-import java.awt.event.*;
-import java.util.EventListener;
 import org.kordamp.ikonli.remixicon.RemixiconMZ;
 import org.kordamp.ikonli.swing.FontIcon;
 
 import javax.swing.*;
 import javax.swing.border.Border;
+import java.awt.*;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 /**
- *
  * @author m
  */
 public class MainWindow extends javax.swing.JFrame {
@@ -44,6 +45,12 @@ public class MainWindow extends javax.swing.JFrame {
         searchPanel = new javax.swing.JPanel();
         searchBox = new javax.swing.JTextField();
         onSearch = new javax.swing.JButton();
+        dropDownPanel = new javax.swing.JPanel();
+        filterPanel = new javax.swing.JPanel();
+        filterIcon = new javax.swing.JLabel();
+        filterText = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        resultPanel = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -71,7 +78,7 @@ public class MainWindow extends javax.swing.JFrame {
         layerPanel.add(Frame, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         searchPanel.setForeground(new java.awt.Color(13, 17, 23));
-        searchPanel.setPreferredSize(new java.awt.Dimension(200, 40));
+        searchPanel.setPreferredSize(new java.awt.Dimension(280, 40));
 
         searchBox.setText("Search");
         searchBox.setInheritsPopupMenu(true);
@@ -89,28 +96,87 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
+        dropDownPanel.setBackground(new java.awt.Color(255, 255, 255));
+        dropDownPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        filterPanel.setPreferredSize(new java.awt.Dimension(128, 32));
+        filterPanel.setLayout(new java.awt.GridLayout());
+
+        filterIcon.setText("jLabel1");
+        filterPanel.add(filterIcon);
+
+        filterText.setText("Filter by: ");
+        filterPanel.add(filterText);
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setMinimumSize(new java.awt.Dimension(80, 23));
+        jComboBox1.setPreferredSize(new java.awt.Dimension(80, 23));
+        filterPanel.add(jComboBox1);
+
+        javax.swing.GroupLayout resultPanelLayout = new javax.swing.GroupLayout(resultPanel);
+        resultPanel.setLayout(resultPanelLayout);
+        resultPanelLayout.setHorizontalGroup(
+            resultPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        resultPanelLayout.setVerticalGroup(
+            resultPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 143, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout dropDownPanelLayout = new javax.swing.GroupLayout(dropDownPanel);
+        dropDownPanel.setLayout(dropDownPanelLayout);
+        dropDownPanelLayout.setHorizontalGroup(
+            dropDownPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dropDownPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(resultPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(dropDownPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(dropDownPanelLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(filterPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 182, Short.MAX_VALUE)
+                    .addContainerGap()))
+        );
+        dropDownPanelLayout.setVerticalGroup(
+            dropDownPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dropDownPanelLayout.createSequentialGroup()
+                .addContainerGap(83, Short.MAX_VALUE)
+                .addComponent(resultPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(dropDownPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(dropDownPanelLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(filterPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(198, Short.MAX_VALUE)))
+        );
+
         javax.swing.GroupLayout searchPanelLayout = new javax.swing.GroupLayout(searchPanel);
         searchPanel.setLayout(searchPanelLayout);
         searchPanelLayout.setHorizontalGroup(
             searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(searchPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(searchBox, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(onSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12))
+                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(searchPanelLayout.createSequentialGroup()
+                        .addComponent(searchBox, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(onSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dropDownPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         searchPanelLayout.setVerticalGroup(
             searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(searchPanelLayout.createSequentialGroup()
-                .addGap(0, 8, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(searchBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(onSearch, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(onSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(searchBox, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(dropDownPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         layerPanel.setLayer(searchPanel, javax.swing.JLayeredPane.POPUP_LAYER);
-        layerPanel.add(searchPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 0, -1, -1));
+        layerPanel.add(searchPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 0, -1, 280));
 
         getContentPane().add(layerPanel, java.awt.BorderLayout.CENTER);
 
@@ -140,7 +206,7 @@ public class MainWindow extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -253,13 +319,20 @@ public class MainWindow extends javax.swing.JFrame {
         FontIcon searchIcon = FontIcon.of(RemixiconMZ.SEARCH_LINE, 20, Color.decode("#828282"));
         onSearch.setIcon(searchIcon);
     }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Frame;
+    private javax.swing.JPanel dropDownPanel;
+    private javax.swing.JLabel filterIcon;
+    private javax.swing.JPanel filterPanel;
+    private javax.swing.JLabel filterText;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JLayeredPane layerPanel;
     private javax.swing.JButton onSearch;
+    private javax.swing.JPanel resultPanel;
     private javax.swing.JTextField searchBox;
     private javax.swing.JPanel searchPanel;
     // End of variables declaration//GEN-END:variables
