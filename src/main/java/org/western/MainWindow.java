@@ -4,6 +4,7 @@
  */
 package org.western;
 
+import org.kordamp.ikonli.remixicon.RemixiconAL;
 import org.kordamp.ikonli.remixicon.RemixiconMZ;
 import org.kordamp.ikonli.swing.FontIcon;
 
@@ -14,6 +15,8 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author m
@@ -98,11 +101,11 @@ public class MainWindow extends javax.swing.JFrame {
 
         dropDownPanel.setBackground(new java.awt.Color(255, 255, 255));
         dropDownPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        dropDownPanel.setPreferredSize(new java.awt.Dimension(280, 40));
+        dropDownPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        filterPanel.setPreferredSize(new java.awt.Dimension(128, 32));
-        filterPanel.setLayout(new java.awt.GridLayout());
-
-        filterIcon.setText("jLabel1");
+        filterPanel.setBackground(new java.awt.Color(255, 255, 255));
+        filterPanel.setPreferredSize(new java.awt.Dimension(280, 40));
         filterPanel.add(filterIcon);
 
         filterText.setText("Filter by: ");
@@ -110,8 +113,11 @@ public class MainWindow extends javax.swing.JFrame {
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBox1.setMinimumSize(new java.awt.Dimension(80, 23));
-        jComboBox1.setPreferredSize(new java.awt.Dimension(80, 23));
+        jComboBox1.setPreferredSize(new java.awt.Dimension(180, 32));
         filterPanel.add(jComboBox1);
+
+        dropDownPanel.add(filterPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 2, 276, 40));
+        filterPanel.getAccessibleContext().setAccessibleName("");
 
         javax.swing.GroupLayout resultPanelLayout = new javax.swing.GroupLayout(resultPanel);
         resultPanel.setLayout(resultPanelLayout);
@@ -121,35 +127,10 @@ public class MainWindow extends javax.swing.JFrame {
         );
         resultPanelLayout.setVerticalGroup(
             resultPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 143, Short.MAX_VALUE)
+            .addGap(0, 190, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout dropDownPanelLayout = new javax.swing.GroupLayout(dropDownPanel);
-        dropDownPanel.setLayout(dropDownPanelLayout);
-        dropDownPanelLayout.setHorizontalGroup(
-            dropDownPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(dropDownPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(resultPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(dropDownPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(dropDownPanelLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(filterPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 182, Short.MAX_VALUE)
-                    .addContainerGap()))
-        );
-        dropDownPanelLayout.setVerticalGroup(
-            dropDownPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dropDownPanelLayout.createSequentialGroup()
-                .addContainerGap(83, Short.MAX_VALUE)
-                .addComponent(resultPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addGroup(dropDownPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(dropDownPanelLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(filterPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(198, Short.MAX_VALUE)))
-        );
+        dropDownPanel.add(resultPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 44, 276, 190));
 
         javax.swing.GroupLayout searchPanelLayout = new javax.swing.GroupLayout(searchPanel);
         searchPanel.setLayout(searchPanelLayout);
@@ -158,11 +139,11 @@ public class MainWindow extends javax.swing.JFrame {
             .addGroup(searchPanelLayout.createSequentialGroup()
                 .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(searchPanelLayout.createSequentialGroup()
-                        .addComponent(searchBox, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
+                        .addComponent(searchBox, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(onSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(dropDownPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                    .addComponent(dropDownPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         searchPanelLayout.setVerticalGroup(
             searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -258,12 +239,14 @@ public class MainWindow extends javax.swing.JFrame {
         // https://stackoverflow.com/questions/10274750/java-swing-setting-margins-on-textarea-with-line-border
         Border defaultBorder = BorderFactory.createLineBorder(Color.decode("#eaeaea")), focusBorder = BorderFactory.createLineBorder(Color.decode("#666666")); // create line border of searchBox
         searchPanel.setOpaque(false); // make searchPanel transparent
+        dropDownPanel.setVisible(false); // hide dropDownPanel
         searchBox.setText("Search"); // set default text of searchBox
         searchBox.setForeground(Color.decode("#999999")); // set default color of searchBox
         searchBox.setBorder(BorderFactory.createCompoundBorder(defaultBorder, BorderFactory.createEmptyBorder(0, padding, 0, padding))); // set inset padding of searchBox
         searchBox.addFocusListener(new FocusAdapter() { // add placeholder effect to searchBox
             @Override
             public void focusGained(FocusEvent e) {
+                dropDownPanel.setVisible(true); // show dropDownPanel when searchBox is focused
                 if (searchBox.getText().equals("Search")) {
                     searchBox.setText("");
                     searchBox.setForeground(Color.decode("#000000"));
@@ -300,7 +283,6 @@ public class MainWindow extends javax.swing.JFrame {
                 onSearch.setBackground(Color.WHITE);
             }
         });
-
     }
 
     /**
@@ -316,8 +298,11 @@ public class MainWindow extends javax.swing.JFrame {
      * Prepare icon for onSearch button
      */
     private void prepareIcon() {
-        FontIcon searchIcon = FontIcon.of(RemixiconMZ.SEARCH_LINE, 20, Color.decode("#828282"));
+        // Load icon from font library (currently using RemixIcon)
+        FontIcon searchIcon = FontIcon.of(RemixiconMZ.SEARCH_LINE, 20, Color.decode("#828282")),
+                filterIcon = FontIcon.of(RemixiconAL.FILTER_2_LINE, 20, Color.decode("#828282"));
         onSearch.setIcon(searchIcon);
+        this.filterIcon.setIcon(filterIcon);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
