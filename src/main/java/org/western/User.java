@@ -11,8 +11,6 @@ public class User {
 
     private role roleName;
 
-
-
     private static int ascId = 0;
 
     public User(String username, String password, String type) {

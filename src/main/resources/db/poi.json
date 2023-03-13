@@ -1,15 +1,16 @@
 {
+  "status": 200,
+  "lastModified": "2016-03-01T00:00:00.000Z",
+  "count": 1,
   "data": [
     {
-      "id": 0,
-      "name": "system",
+      "id": 1,
+      "name": "Middlesex College",
       "description": "default poi",
-      "user": "system",
+      "user": [0],
       "building": "Middlesex College",
-      "room": "110",
-      "bounds": [100, 100, 100, 100]
+      "layer": "building",
+      "bounds": [[100, 100], [200, 100], [100, 200], [200, 200]]
     }
-  ],
-  "count": 1,
-  "ok": 1
+  ]
 }
