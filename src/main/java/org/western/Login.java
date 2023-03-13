@@ -9,10 +9,13 @@ import org.kordamp.ikonli.remixicon.RemixiconMZ;
 import org.kordamp.ikonli.swing.FontIcon;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.util.Objects;
 
 /**
- *
  * @author m
  */
 public class Login extends javax.swing.JFrame {
@@ -42,13 +45,17 @@ public class Login extends javax.swing.JFrame {
         loginPanel = new javax.swing.JPanel();
         logoPanel = new javax.swing.JPanel();
         logo = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        title = new javax.swing.JLabel();
+        formPanel = new javax.swing.JPanel();
+        userText = new javax.swing.JLabel();
+        user = new javax.swing.JTextField();
+        passwordText = new javax.swing.JLabel();
+        passwd = new javax.swing.JPasswordField();
+        jPanel1 = new javax.swing.JPanel();
         mask = new javax.swing.JPanel();
         maskBg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(600, 400));
 
         layerPanel.setPreferredSize(new java.awt.Dimension(600, 400));
 
@@ -66,35 +73,75 @@ public class Login extends javax.swing.JFrame {
         loginPanel.setPreferredSize(new java.awt.Dimension(300, 400));
 
         logoPanel.setOpaque(false);
+        logoPanel.setLayout(new java.awt.BorderLayout());
 
-        logo.setPreferredSize(new java.awt.Dimension(300, 17));
-
-        javax.swing.GroupLayout logoPanelLayout = new javax.swing.GroupLayout(logoPanel);
-        logoPanel.setLayout(logoPanelLayout);
-        logoPanelLayout.setHorizontalGroup(
-            logoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 312, Short.MAX_VALUE)
-            .addGroup(logoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, logoPanelLayout.createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-        );
-        logoPanelLayout.setVerticalGroup(
-            logoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 157, Short.MAX_VALUE)
-            .addGroup(logoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(logo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE))
-        );
+        logo.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        logo.setAlignmentX(0.5F);
+        logo.setPreferredSize(new java.awt.Dimension(260, 80));
+        logoPanel.add(logo, java.awt.BorderLayout.CENTER);
 
         loginPanel.add(logoPanel);
 
-        jLabel1.setText("Campus Map Viewer");
-        jLabel1.setPreferredSize(new java.awt.Dimension(300, 17));
-        loginPanel.add(jLabel1);
+        title.setFont(new java.awt.Font("New York", 0, 24)); // NOI18N
+        title.setForeground(new java.awt.Color(78, 38, 131));
+        title.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        title.setText("Campus Map Viewer");
+        title.setPreferredSize(new java.awt.Dimension(300, 40));
+        loginPanel.add(title);
 
-        jTextField3.setText("jTextField3");
-        loginPanel.add(jTextField3);
+        formPanel.setOpaque(false);
+        formPanel.setPreferredSize(new java.awt.Dimension(300, 140));
+
+        userText.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        userText.setForeground(new java.awt.Color(17, 51, 85));
+        userText.setText("Username");
+        userText.setToolTipText("");
+        userText.setPreferredSize(new java.awt.Dimension(260, 20));
+        formPanel.add(userText);
+
+        user.setColumns(22);
+        user.setText("Enter your username");
+        user.setBorder(null);
+        user.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                userActionPerformed(evt);
+            }
+        });
+        formPanel.add(user);
+
+        passwordText.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        passwordText.setForeground(new java.awt.Color(17, 51, 85));
+        passwordText.setText("Password");
+        passwordText.setPreferredSize(new java.awt.Dimension(260, 20));
+        formPanel.add(passwordText);
+
+        passwd.setColumns(22);
+        passwd.setText("password");
+        passwd.setBorder(null);
+        passwd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passwdActionPerformed(evt);
+            }
+        });
+        formPanel.add(passwd);
+
+        loginPanel.add(formPanel);
+
+        jPanel1.setOpaque(false);
+        jPanel1.setPreferredSize(new java.awt.Dimension(260, 100));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 260, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        loginPanel.add(jPanel1);
 
         loginLayer.setLayer(loginPanel, javax.swing.JLayeredPane.POPUP_LAYER);
         loginLayer.add(loginPanel);
@@ -102,7 +149,7 @@ public class Login extends javax.swing.JFrame {
         mask.setOpaque(false);
         mask.setLayout(new java.awt.BorderLayout());
 
-        maskBg.setIcon(new ImageIcon(new ImageIcon(getClass().getResource("/org/western/assets/masked_bg.png")).getImage().getScaledInstance(300, 370, Image.SCALE_SMOOTH)));
+        maskBg.setIcon(new ImageIcon(new ImageIcon(getClass().getResource("/org/western/assets/masked_bg.png")).getImage().getScaledInstance(300, 400, Image.SCALE_SMOOTH)));
         maskBg.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         maskBg.setMaximumSize(new java.awt.Dimension(300, 400));
         maskBg.setMinimumSize(new java.awt.Dimension(300, 400));
@@ -151,6 +198,14 @@ public class Login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_userActionPerformed
+
+    private void passwdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passwdActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -158,7 +213,7 @@ public class Login extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -187,13 +242,104 @@ public class Login extends javax.swing.JFrame {
     }
 
     private void initLoginPanel() {
+        int padding = 10;
         Point center = GraphicsEnvironment.getLocalGraphicsEnvironment().getCenterPoint();
+        Border defaultBorder = BorderFactory.createLineBorder(Color.decode("#eaeaea")), // create default line border for searchBox
+                focusBorder = BorderFactory.createLineBorder(Color.decode("#666666")); // create focused line border for searchBox
         this.setLocation(center.x - this.getWidth() / 2, center.y - this.getHeight() / 2);
         this.setResizable(false);
         this.setBackground(Color.WHITE);
+        user.setForeground(Color.decode("#666666"));
+        user.setBorder(
+                BorderFactory.createCompoundBorder(
+                        defaultBorder, BorderFactory.createEmptyBorder(padding, padding, padding, padding)
+                )
+        );
+        passwd.setBorder(
+                BorderFactory.createCompoundBorder(
+                        defaultBorder, BorderFactory.createEmptyBorder(padding, padding, padding, padding)
+                )
+        );
+        user.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                user.setForeground(Color.decode("#000000"));
+                user.setBorder(
+                        BorderFactory.createCompoundBorder(
+                                focusBorder, BorderFactory.createEmptyBorder(padding, padding, padding, padding)
+                        )
+                );
+                if (user.getText().equals("Enter your username")) {
+                    user.setText("");
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                user.setForeground(Color.decode("#666666"));
+                user.setBorder(
+                        BorderFactory.createCompoundBorder(
+                                defaultBorder, BorderFactory.createEmptyBorder(padding, padding, padding, padding)
+                        )
+                );
+                if (user.getText().equals("")) {
+                    user.setText("Enter your username");
+                }
+            }
+        });
+        passwd.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                passwd.setForeground(Color.decode("#000000"));
+                passwd.setBorder(
+                        BorderFactory.createCompoundBorder(
+                                focusBorder, BorderFactory.createEmptyBorder(padding, padding, padding, padding)
+                        )
+                );
+                if(new String(passwd.getPassword()).equals("password"))
+                {
+                    passwd.setText("");
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                String username = "", password = "";
+                passwd.setForeground(Color.decode("#666666"));
+                passwd.setBorder(
+                        BorderFactory.createCompoundBorder(
+                                defaultBorder, BorderFactory.createEmptyBorder(padding, padding, padding, padding)
+                        )
+                );
+                password = new String(passwd.getPassword());
+                if (password.equals("")) {
+                    passwd.setText("password");
+
+                }
+                // check password strength
+                if (password.length() > 10 && password.matches("^(?=.*[A-Za-z])(?=.*\\d).+$")) {
+                    FontIcon passwordIcon = (FontIcon) passwordText.getIcon();
+                    passwordIcon.setIconColor(Color.decode("#30d158"));
+                    passwordText.setIcon(passwordIcon);
+                    passwordText.setForeground(Color.decode("#30d158"));
+                } else {
+                    FontIcon passwordIcon = (FontIcon) passwordText.getIcon();
+                    passwordIcon.setIconColor(Color.decode("#666666"));
+                    passwordText.setIcon(passwordIcon);
+                    passwordText.setForeground(Color.decode("#666666"));
+                }
+            }
+        });
     }
 
     private void prepareIcon() {
+        ImageIcon l = new ImageIcon(Objects.requireNonNull(getClass().getResource("/org/western/assets/logo.png")));
+        FontIcon u = FontIcon.of(RemixiconMZ.USER_3_LINE, 20, Color.decode("#113355")),
+                p = FontIcon.of(RemixiconAL.LOCK_PASSWORD_LINE, 20, Color.decode("#113355"));
+        l = new ImageIcon(l.getImage().getScaledInstance(260, 260 * l.getIconHeight() / l.getIconWidth(), Image.SCALE_SMOOTH));
+        logo.setIcon(l);
+        userText.setIcon(u);
+        passwordText.setIcon(p);
 //        FontIcon icon = FontIcon.of(RemixiconMZ.MACBOOK_LINE, 24, Color.BLACK);
 //        JLabel label = new JLabel(icon);
 //        bgPanel.add(label);
@@ -202,8 +348,8 @@ public class Login extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel bg;
     private javax.swing.JPanel bgPanel;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JPanel formPanel;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLayeredPane layerPanel;
     private javax.swing.JLayeredPane loginLayer;
     private javax.swing.JPanel loginPanel;
@@ -211,5 +357,10 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPanel logoPanel;
     private javax.swing.JPanel mask;
     private javax.swing.JLabel maskBg;
+    private javax.swing.JPasswordField passwd;
+    private javax.swing.JLabel passwordText;
+    private javax.swing.JLabel title;
+    private javax.swing.JTextField user;
+    private javax.swing.JLabel userText;
     // End of variables declaration//GEN-END:variables
 }
