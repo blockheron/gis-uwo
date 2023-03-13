@@ -13,6 +13,13 @@ public class User {
 
     private static int ascId = 0;
 
+    public User() {
+        this.id = ascId++;
+        this.username = "";
+        this.password = "";
+        this.roleName = role.USER;
+    }
+
     public User(String username, String password, String type) {
         this.id = ascId++;
         this.username = username;
