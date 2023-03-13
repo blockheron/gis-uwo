@@ -30,6 +30,7 @@ public class JsonDB {
                     data = g.toJsonTree(p).getAsJsonObject(); // convert to json object
                 }
             } catch (Exception e) {
+                j = new JsonParser().parse("{\"status\": 404, \"message\": \"Not Found\"}").getAsJsonObject(); // not found
                 e.printStackTrace();
             }
         } else {

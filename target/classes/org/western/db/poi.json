@@ -10,7 +10,7 @@
       "user": [0],
       "building": "Middlesex College",
       "layer": "building",
-      "bounds": [[100, 100], [200, 100], [100, 200], [200, 200]]
+      "coordinates": [[100, 100], [200, 100], [100, 200], [200, 200]]
     }
   ]
 }
