@@ -22,7 +22,7 @@ public class JsonDB {
                             data = g.toJsonTree(u).getAsJsonObject(); // convert to json object
                         }
                     } else {
-                        j = new JsonParser().parse("{\"status\": 500, \"message\": \"Internal Error\"}").getAsJsonObject(); // internal error
+                        data = new JsonParser().parse("{\"status\": 500, \"message\": \"Internal Error\"}").getAsJsonObject(); // internal error
                         System.out.println("Internal Error");
                     }
                 } else {
@@ -30,11 +30,11 @@ public class JsonDB {
                     data = g.toJsonTree(p).getAsJsonObject(); // convert to json object
                 }
             } catch (Exception e) {
-                j = new JsonParser().parse("{\"status\": 404, \"message\": \"Not Found\"}").getAsJsonObject(); // not found
+                data = new JsonParser().parse("{\"status\": 404, \"message\": \"Not Found\"}").getAsJsonObject(); // not found
                 e.printStackTrace();
             }
         } else {
-            j = new JsonParser().parse("{\"status\": 400, \"message\": \"Invalid field\"}").getAsJsonObject();
+            data = new JsonParser().parse("{\"status\": 400, \"message\": \"Invalid field\"}").getAsJsonObject();
             System.out.println("Invalid field");
         }
     }
