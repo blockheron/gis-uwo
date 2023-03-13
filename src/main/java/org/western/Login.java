@@ -35,24 +35,116 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        LoginPanel = new javax.swing.JPanel();
+        layerPanel = new javax.swing.JLayeredPane();
+        bgPanel = new javax.swing.JPanel();
         bg = new javax.swing.JLabel();
+        loginLayer = new javax.swing.JLayeredPane();
+        loginPanel = new javax.swing.JPanel();
+        logoPanel = new javax.swing.JPanel();
+        logo = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jTextField3 = new javax.swing.JTextField();
+        mask = new javax.swing.JPanel();
+        maskBg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(600, 400));
+
+        layerPanel.setPreferredSize(new java.awt.Dimension(600, 400));
+
+        bgPanel.setPreferredSize(new java.awt.Dimension(0, 0));
+        bgPanel.setLayout(new java.awt.BorderLayout());
 
         bg.setIcon(new ImageIcon(new ImageIcon(getClass().getResource("/org/western/assets/bg.jpg")).getImage().getScaledInstance(600, 400, Image.SCALE_SMOOTH)));
-        LoginPanel.add(bg);
+        bgPanel.add(bg, java.awt.BorderLayout.CENTER);
+
+        loginLayer.setPreferredSize(new java.awt.Dimension(300, 400));
+        loginLayer.setLayout(new javax.swing.OverlayLayout(loginLayer));
+
+        loginPanel.setBackground(new java.awt.Color(255, 255, 255));
+        loginPanel.setOpaque(false);
+        loginPanel.setPreferredSize(new java.awt.Dimension(300, 400));
+
+        logoPanel.setOpaque(false);
+
+        logo.setPreferredSize(new java.awt.Dimension(300, 17));
+
+        javax.swing.GroupLayout logoPanelLayout = new javax.swing.GroupLayout(logoPanel);
+        logoPanel.setLayout(logoPanelLayout);
+        logoPanelLayout.setHorizontalGroup(
+            logoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 312, Short.MAX_VALUE)
+            .addGroup(logoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, logoPanelLayout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
+        logoPanelLayout.setVerticalGroup(
+            logoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 157, Short.MAX_VALUE)
+            .addGroup(logoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(logo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE))
+        );
+
+        loginPanel.add(logoPanel);
+
+        jLabel1.setText("Campus Map Viewer");
+        jLabel1.setPreferredSize(new java.awt.Dimension(300, 17));
+        loginPanel.add(jLabel1);
+
+        jTextField3.setText("jTextField3");
+        loginPanel.add(jTextField3);
+
+        loginLayer.setLayer(loginPanel, javax.swing.JLayeredPane.POPUP_LAYER);
+        loginLayer.add(loginPanel);
+
+        mask.setOpaque(false);
+        mask.setLayout(new java.awt.BorderLayout());
+
+        maskBg.setIcon(new ImageIcon(new ImageIcon(getClass().getResource("/org/western/assets/masked_bg.png")).getImage().getScaledInstance(300, 370, Image.SCALE_SMOOTH)));
+        maskBg.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        maskBg.setMaximumSize(new java.awt.Dimension(300, 400));
+        maskBg.setMinimumSize(new java.awt.Dimension(300, 400));
+        maskBg.setPreferredSize(new java.awt.Dimension(300, 400));
+        mask.add(maskBg, java.awt.BorderLayout.CENTER);
+
+        loginLayer.add(mask);
+
+        layerPanel.setLayer(bgPanel, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        layerPanel.setLayer(loginLayer, javax.swing.JLayeredPane.POPUP_LAYER);
+
+        javax.swing.GroupLayout layerPanelLayout = new javax.swing.GroupLayout(layerPanel);
+        layerPanel.setLayout(layerPanelLayout);
+        layerPanelLayout.setHorizontalGroup(
+            layerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(bgPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
+            .addGroup(layerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layerPanelLayout.createSequentialGroup()
+                    .addGap(0, 300, Short.MAX_VALUE)
+                    .addComponent(loginLayer, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
+        layerPanelLayout.setVerticalGroup(
+            layerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(bgPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .addGroup(layerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(loginLayer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(LoginPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(layerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(LoginPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(layerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -102,13 +194,22 @@ public class Login extends javax.swing.JFrame {
     }
 
     private void prepareIcon() {
-        FontIcon icon = FontIcon.of(RemixiconMZ.MACBOOK_LINE, 24, Color.BLACK);
-        JLabel label = new JLabel(icon);
-        LoginPanel.add(label);
+//        FontIcon icon = FontIcon.of(RemixiconMZ.MACBOOK_LINE, 24, Color.BLACK);
+//        JLabel label = new JLabel(icon);
+//        bgPanel.add(label);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel LoginPanel;
     private javax.swing.JLabel bg;
+    private javax.swing.JPanel bgPanel;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JLayeredPane layerPanel;
+    private javax.swing.JLayeredPane loginLayer;
+    private javax.swing.JPanel loginPanel;
+    private javax.swing.JLabel logo;
+    private javax.swing.JPanel logoPanel;
+    private javax.swing.JPanel mask;
+    private javax.swing.JLabel maskBg;
     // End of variables declaration//GEN-END:variables
 }

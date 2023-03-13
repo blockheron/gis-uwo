@@ -10,13 +10,9 @@ import org.kordamp.ikonli.swing.FontIcon;
 
 import javax.swing.*;
 import javax.swing.border.Border;
+import javax.swing.plaf.basic.BasicComboBoxUI;
 import java.awt.*;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.awt.event.*;
 
 /**
  * @author m
@@ -52,7 +48,7 @@ public class MainWindow extends javax.swing.JFrame {
         filterPanel = new javax.swing.JPanel();
         filterIcon = new javax.swing.JLabel();
         filterText = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        selectBox = new javax.swing.JComboBox<>();
         resultPanel = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -111,25 +107,17 @@ public class MainWindow extends javax.swing.JFrame {
         filterText.setText("Filter by: ");
         filterPanel.add(filterText);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.setMinimumSize(new java.awt.Dimension(80, 23));
-        jComboBox1.setPreferredSize(new java.awt.Dimension(180, 32));
-        filterPanel.add(jComboBox1);
+        selectBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        selectBox.setAutoscrolls(true);
+        selectBox.setBorder(null);
+        selectBox.setMinimumSize(new java.awt.Dimension(80, 23));
+        selectBox.setPreferredSize(new java.awt.Dimension(180, 32));
+        filterPanel.add(selectBox);
 
         dropDownPanel.add(filterPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 2, 276, 40));
         filterPanel.getAccessibleContext().setAccessibleName("");
 
-        javax.swing.GroupLayout resultPanelLayout = new javax.swing.GroupLayout(resultPanel);
-        resultPanel.setLayout(resultPanelLayout);
-        resultPanelLayout.setHorizontalGroup(
-            resultPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        resultPanelLayout.setVerticalGroup(
-            resultPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 190, Short.MAX_VALUE)
-        );
-
+        resultPanel.setBackground(new java.awt.Color(245, 245, 247));
         dropDownPanel.add(resultPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 44, 276, 190));
 
         javax.swing.GroupLayout searchPanelLayout = new javax.swing.GroupLayout(searchPanel);
@@ -157,7 +145,7 @@ public class MainWindow extends javax.swing.JFrame {
         );
 
         layerPanel.setLayer(searchPanel, javax.swing.JLayeredPane.POPUP_LAYER);
-        layerPanel.add(searchPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 0, -1, 280));
+        layerPanel.add(searchPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(915, 0, -1, 280));
 
         getContentPane().add(layerPanel, java.awt.BorderLayout.CENTER);
 
@@ -243,6 +231,17 @@ public class MainWindow extends javax.swing.JFrame {
         searchBox.setText("Search"); // set default text of searchBox
         searchBox.setForeground(Color.decode("#999999")); // set default color of searchBox
         searchBox.setBorder(BorderFactory.createCompoundBorder(defaultBorder, BorderFactory.createEmptyBorder(0, padding, 0, padding))); // set inset padding of searchBox
+        selectBox.setBackground(Color.decode("#ffffff")); // set background color of searchBox
+        selectBox.setForeground(Color.decode("#999999")); // set default color of searchBox
+
+        searchBox.addKeyListener(new KeyAdapter() { // add key listener to searchBox
+            @Override
+            public void keyReleased(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    handleSearch();
+                }
+            }
+        });
         searchBox.addFocusListener(new FocusAdapter() { // add placeholder effect to searchBox
             @Override
             public void focusGained(FocusEvent e) {
@@ -263,8 +262,6 @@ public class MainWindow extends javax.swing.JFrame {
                 }
             }
         });
-
-
         onSearch.setBackground(Color.WHITE); // set background color of onSearch button
         onSearch.setBorder(BorderFactory.createEmptyBorder()); // remove border of onSearch button
         onSearch.setContentAreaFilled(false); // remove background of onSearch button
@@ -305,13 +302,23 @@ public class MainWindow extends javax.swing.JFrame {
         this.filterIcon.setIcon(filterIcon);
     }
 
+    private int handleSearch() {
+        String query = searchBox.getText();
+        if (query.isEmpty() || query.equals("Search")) {
+            System.out.println("Empty query");
+            return 1;
+        }
+        String filter = selectBox.getSelectedItem().toString();
+        System.out.println(query + " " + filter);
+        return 0;
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Frame;
     private javax.swing.JPanel dropDownPanel;
     private javax.swing.JLabel filterIcon;
     private javax.swing.JPanel filterPanel;
     private javax.swing.JLabel filterText;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
@@ -320,5 +327,6 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel resultPanel;
     private javax.swing.JTextField searchBox;
     private javax.swing.JPanel searchPanel;
+    private javax.swing.JComboBox<String> selectBox;
     // End of variables declaration//GEN-END:variables
 }
