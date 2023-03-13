@@ -16,14 +16,13 @@ public class JsonDB {
                 if(field.equals("user"))
                 {
                     i = j.get("data").getAsJsonObject().get(value).getAsInt();
-                    if(i < j.get("count").getAsInt()) {
+                    if(i < j.get("count").getAsInt()) { // check if user exists
                         try (FileReader r = new FileReader(getClass().getResource("/org/western/db/" + i + ".json").getFile())) { // new file reader
                             User u = g.fromJson(r, User.class); // convert to json element
                             data = g.toJsonTree(u).getAsJsonObject(); // convert to json object
                         }
                     } else {
                         data = new JsonParser().parse("{\"status\": 500, \"message\": \"Internal Error\"}").getAsJsonObject(); // internal error
-                        System.out.println("Internal Error");
                     }
                 } else {
                     POI p = g.fromJson(f, POI.class); // convert to json element
@@ -34,8 +33,7 @@ public class JsonDB {
                 e.printStackTrace();
             }
         } else {
-            data = new JsonParser().parse("{\"status\": 400, \"message\": \"Invalid field\"}").getAsJsonObject();
-            System.out.println("Invalid field");
+            data = new JsonParser().parse("{\"status\": 400, \"message\": \"Invalid field\"}").getAsJsonObject(); // invalid field
         }
     }
     public JsonObject getData() {
