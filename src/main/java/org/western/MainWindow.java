@@ -57,7 +57,6 @@ public class MainWindow extends javax.swing.JFrame {
         setBackground(new java.awt.Color(255, 255, 255));
 
         layerPanel.setPreferredSize(new java.awt.Dimension(1200, 800));
-        layerPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Frame.setForeground(new java.awt.Color(130, 130, 130));
         Frame.setPreferredSize(new java.awt.Dimension(1200, 800));
@@ -65,15 +64,13 @@ public class MainWindow extends javax.swing.JFrame {
         javax.swing.GroupLayout FrameLayout = new javax.swing.GroupLayout(Frame);
         Frame.setLayout(FrameLayout);
         FrameLayout.setHorizontalGroup(
-                FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 1200, Short.MAX_VALUE)
+            FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1200, Short.MAX_VALUE)
         );
         FrameLayout.setVerticalGroup(
-                FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 800, Short.MAX_VALUE)
+            FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 800, Short.MAX_VALUE)
         );
-
-        layerPanel.add(Frame, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         searchPanel.setForeground(new java.awt.Color(13, 17, 23));
         searchPanel.setPreferredSize(new java.awt.Dimension(280, 40));
@@ -97,7 +94,6 @@ public class MainWindow extends javax.swing.JFrame {
         dropDownPanel.setBackground(new java.awt.Color(255, 255, 255));
         dropDownPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         dropDownPanel.setPreferredSize(new java.awt.Dimension(280, 40));
-        dropDownPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         filterPanel.setBackground(new java.awt.Color(255, 255, 255));
         filterPanel.setPreferredSize(new java.awt.Dimension(280, 40));
@@ -106,45 +102,73 @@ public class MainWindow extends javax.swing.JFrame {
         filterText.setText("Filter by: ");
         filterPanel.add(filterText);
 
-        selectBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Item 1", "Item 2", "Item 3", "Item 4"}));
+        selectBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         selectBox.setAutoscrolls(true);
         selectBox.setBorder(null);
         selectBox.setMinimumSize(new java.awt.Dimension(80, 23));
         selectBox.setPreferredSize(new java.awt.Dimension(180, 32));
         filterPanel.add(selectBox);
 
-        dropDownPanel.add(filterPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 2, 276, 40));
-        filterPanel.getAccessibleContext().setAccessibleName("");
-
         resultPanel.setBackground(new java.awt.Color(245, 245, 247));
-        dropDownPanel.add(resultPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 44, 276, 190));
+
+        javax.swing.GroupLayout dropDownPanelLayout = new javax.swing.GroupLayout(dropDownPanel);
+        dropDownPanel.setLayout(dropDownPanelLayout);
+        dropDownPanelLayout.setHorizontalGroup(
+            dropDownPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(filterPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(resultPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        dropDownPanelLayout.setVerticalGroup(
+            dropDownPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dropDownPanelLayout.createSequentialGroup()
+                .addComponent(filterPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2)
+                .addComponent(resultPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        filterPanel.getAccessibleContext().setAccessibleName("");
 
         javax.swing.GroupLayout searchPanelLayout = new javax.swing.GroupLayout(searchPanel);
         searchPanel.setLayout(searchPanelLayout);
         searchPanelLayout.setHorizontalGroup(
-                searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(searchPanelLayout.createSequentialGroup()
-                                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(searchPanelLayout.createSequentialGroup()
-                                                .addComponent(searchBox, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(onSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(dropDownPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(searchPanelLayout.createSequentialGroup()
+                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(searchPanelLayout.createSequentialGroup()
+                        .addComponent(searchBox, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(onSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dropDownPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         searchPanelLayout.setVerticalGroup(
-                searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(searchPanelLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(onSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(searchBox, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(dropDownPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(searchPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(onSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(searchBox, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(dropDownPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE))
         );
 
+        layerPanel.setLayer(Frame, javax.swing.JLayeredPane.DEFAULT_LAYER);
         layerPanel.setLayer(searchPanel, javax.swing.JLayeredPane.POPUP_LAYER);
-        layerPanel.add(searchPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(915, 0, -1, 280));
+
+        javax.swing.GroupLayout layerPanelLayout = new javax.swing.GroupLayout(layerPanel);
+        layerPanel.setLayout(layerPanelLayout);
+        layerPanelLayout.setHorizontalGroup(
+            layerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(Frame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layerPanelLayout.createSequentialGroup()
+                .addGap(915, 915, 915)
+                .addComponent(searchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        layerPanelLayout.setVerticalGroup(
+            layerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(Frame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(searchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
 
         getContentPane().add(layerPanel, java.awt.BorderLayout.CENTER);
 

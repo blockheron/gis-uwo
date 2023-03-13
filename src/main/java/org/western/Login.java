@@ -431,9 +431,6 @@ public class Login extends javax.swing.JFrame {
         logo.setIcon(l);
         userText.setIcon(u);
         passwordText.setIcon(p);
-//        FontIcon icon = FontIcon.of(RemixiconMZ.MACBOOK_LINE, 24, Color.BLACK);
-//        JLabel label = new JLabel(icon);
-//        bgPanel.add(label);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
