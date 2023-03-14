@@ -4,6 +4,7 @@
  */
 package org.western;
 
+import com.google.gson.JsonObject;
 import org.kordamp.ikonli.remixicon.RemixiconAL;
 import org.kordamp.ikonli.remixicon.RemixiconMZ;
 import org.kordamp.ikonli.swing.FontIcon;
@@ -11,11 +12,16 @@ import org.kordamp.ikonli.swing.FontIcon;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Objects;
+
+import static java.security.MessageDigest.getInstance;
+import com.google.common.io.BaseEncoding;
+
 
 /**
  * @author m
@@ -241,7 +247,7 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_passwdActionPerformed
 
     private void onLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onLoginActionPerformed
-        // TODO add your handling code here:
+        handleLogin(user.getText(), new String(passwd.getPassword()));
     }//GEN-LAST:event_onLoginActionPerformed
 
     private void guestLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guestLoginActionPerformed
@@ -431,6 +437,52 @@ public class Login extends javax.swing.JFrame {
         logo.setIcon(l);
         userText.setIcon(u);
         passwordText.setIcon(p);
+    }
+    private int handleLogin(String username, String password) {
+        byte[] b; // byte array of password
+        String h; // hash of password
+        JsonObject user;
+        JDialog prompt = new JDialog(); // pop up dialog
+        prompt.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        prompt.setModal(true);
+        prompt.setSize(300, 200);
+        prompt.setLocationRelativeTo(null);
+        prompt.setLayout(new BorderLayout());
+        if(!honeyPot.getText().isEmpty() || username.isEmpty() || password.isEmpty()) {
+            return -1;
+        }
+        user = new JsonDB("user", username).getData();
+        if(user.get("status") != null && user.get("status").getAsInt() != 200) {
+            // pop up error message
+            prompt.setTitle("Error");
+            prompt.add(new JLabel("Username or password does not match"), BorderLayout.CENTER);
+            prompt.setVisible(true);
+            return -2;
+        }
+        b = password.getBytes(StandardCharsets.UTF_8);
+        try {
+            b = getInstance("MD5").digest(b);
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+        // https://stackoverflow.com/questions/9655181/how-to-convert-a-byte-array-to-a-hex-string-in-java
+        h = BaseEncoding.base16().lowerCase().encode(b);
+        if(user.get("password").getAsString().equals(h)) { // check hash password
+            prompt.setTitle("Success");
+            prompt.add(new JLabel("Login successful"), BorderLayout.CENTER);
+            prompt.setVisible(true);
+            // check if user is admin
+            if(user.get("roleName").getAsString().equals("admin")) {
+                return 0;
+            }
+            return 1;
+        } else {
+            // pop up error message
+            prompt.setTitle("Error");
+            prompt.add(new JLabel("Username or password does not match"), BorderLayout.CENTER);
+            prompt.setVisible(true);
+            return -2;
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
