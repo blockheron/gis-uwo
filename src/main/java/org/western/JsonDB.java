@@ -16,21 +16,25 @@ public class JsonDB {
                 j = JsonParser.parseReader(f).getAsJsonObject(); // parse json file
                 if(field.equals("user"))
                 {
-                    i = j.get("data").getAsJsonObject().get(value).getAsInt();
-                    if(i < j.get("count").getAsInt()) { // check if user exists
-                        try (FileReader r = new FileReader(Objects.requireNonNull(getClass().getResource("/org/western/db/" + i + ".json")).getFile())) { // new file reader
-                            User u = g.fromJson(r, User.class); // convert to json element
-                            data = g.toJsonTree(u).getAsJsonObject(); // convert to json object
+                    if(j.get("data") != null && j.get("data").getAsJsonObject().get(value) != null) {
+                        i = j.get("data").getAsJsonObject().get(value).getAsInt();
+                        if(i < j.get("count").getAsInt()) { // check if user exists
+                            try (FileReader r = new FileReader(Objects.requireNonNull(getClass().getResource("/org/western/db/" + i + ".json")).getFile())) { // new file reader
+                                User u = g.fromJson(r, User.class); // convert to json element
+                                data = g.toJsonTree(u).getAsJsonObject(); // convert to json object
+                            }
+                        } else {
+                            data = JsonParser.parseString("{\"status\": 500, \"message\": \"Internal Error\"}").getAsJsonObject(); // internal error
                         }
                     } else {
-                        data = JsonParser.parseString("{\"status\": 500, \"message\": \"Internal Error\"}").getAsJsonObject(); // internal error
+                        data = JsonParser.parseString("{\"status\": 404, \"message\": \"Not Found\"}").getAsJsonObject(); // not found
                     }
                 } else {
                     POI p = g.fromJson(f, POI.class); // convert to json element
                     data = g.toJsonTree(p).getAsJsonObject(); // convert to json object
                 }
             } catch (Exception e) {
-                data = JsonParser.parseString("{\"status\": 404, \"message\": \"Not Found\"}").getAsJsonObject(); // not found
+                data = JsonParser.parseString("{\"status\": 204, \"message\": \"No Content\"}").getAsJsonObject(); // not found
                 e.printStackTrace();
             }
         } else {
