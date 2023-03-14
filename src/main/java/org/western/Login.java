@@ -73,8 +73,6 @@ public class Login extends javax.swing.JFrame {
 
         bgPanel.setPreferredSize(new java.awt.Dimension(0, 0));
         bgPanel.setLayout(new java.awt.BorderLayout());
-
-        bg.setIcon(new ImageIcon(new ImageIcon(getClass().getResource("/org/western/assets/bg.jpg")).getImage().getScaledInstance(600, 400, Image.SCALE_SMOOTH)));
         bgPanel.add(bg, java.awt.BorderLayout.CENTER);
 
         loginLayer.setPreferredSize(new java.awt.Dimension(300, 400));
@@ -104,8 +102,8 @@ public class Login extends javax.swing.JFrame {
         formPanel.setOpaque(false);
         formPanel.setPreferredSize(new java.awt.Dimension(300, 140));
 
-        honeyPot.setBackground(new Color(0, 0, 0, 0));
-        honeyPot.setForeground(new Color(0, 0, 0, 200));
+        honeyPot.setBackground(new Color(0, 0, 0, 0 ));
+        honeyPot.setForeground(new Color(0,0,0,200));
         honeyPot.setBorder(null);
         honeyPot.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         honeyPot.addActionListener(new java.awt.event.ActionListener() {
@@ -189,7 +187,6 @@ public class Login extends javax.swing.JFrame {
         mask.setOpaque(false);
         mask.setLayout(new java.awt.BorderLayout());
 
-        maskBg.setIcon(new ImageIcon(new ImageIcon(getClass().getResource("/org/western/assets/masked_bg.png")).getImage().getScaledInstance(300, 400, Image.SCALE_SMOOTH)));
         maskBg.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         maskBg.setMaximumSize(new java.awt.Dimension(300, 400));
         maskBg.setMinimumSize(new java.awt.Dimension(300, 400));
@@ -204,35 +201,35 @@ public class Login extends javax.swing.JFrame {
         javax.swing.GroupLayout layerPanelLayout = new javax.swing.GroupLayout(layerPanel);
         layerPanel.setLayout(layerPanelLayout);
         layerPanelLayout.setHorizontalGroup(
-                layerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(bgPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
-                        .addGroup(layerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layerPanelLayout.createSequentialGroup()
-                                        .addGap(0, 300, Short.MAX_VALUE)
-                                        .addComponent(loginLayer, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            layerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(bgPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
+            .addGroup(layerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layerPanelLayout.createSequentialGroup()
+                    .addGap(0, 300, Short.MAX_VALUE)
+                    .addComponent(loginLayer, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         layerPanelLayout.setVerticalGroup(
-                layerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(bgPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
-                        .addGroup(layerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(loginLayer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            layerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(bgPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .addGroup(layerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(loginLayer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(layerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(layerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(layerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(layerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -430,13 +427,29 @@ public class Login extends javax.swing.JFrame {
     }
 
     private void prepareIcon() {
-        ImageIcon l = new ImageIcon(Objects.requireNonNull(getClass().getResource("/org/western/assets/logo.png")));
-        FontIcon u = FontIcon.of(RemixiconMZ.USER_3_LINE, 20, Color.decode("#113355")),
-                p = FontIcon.of(RemixiconAL.LOCK_PASSWORD_LINE, 20, Color.decode("#113355"));
-        l = new ImageIcon(l.getImage().getScaledInstance(260, 260 * l.getIconHeight() / l.getIconWidth(), Image.SCALE_SMOOTH));
-        logo.setIcon(l);
-        userText.setIcon(u);
-        passwordText.setIcon(p);
+        try {
+            // set images as icons
+            ImageIcon b = new ImageIcon(Objects.requireNonNull(getClass().getResource("/org/western/assets/bg.jpg"))),
+                    m = new ImageIcon(Objects.requireNonNull(getClass().getResource("/org/western/assets/masked_bg.png"))),
+                    l = new ImageIcon(Objects.requireNonNull(getClass().getResource("/org/western/assets/logo.png")));
+            FontIcon u = FontIcon.of(RemixiconMZ.USER_3_LINE, 20, Color.decode("#113355")),
+                    p = FontIcon.of(RemixiconAL.LOCK_PASSWORD_LINE, 20, Color.decode("#113355"));
+            b = new ImageIcon(b.getImage().getScaledInstance(600, 400, Image.SCALE_SMOOTH));
+            l = new ImageIcon(l.getImage().getScaledInstance(260, 260 * l.getIconHeight() / l.getIconWidth(), Image.SCALE_SMOOTH));
+            m = new ImageIcon(m.getImage().getScaledInstance(300, 400, Image.SCALE_SMOOTH));
+            bg.setIcon(b);
+            maskBg.setIcon(m);
+            logo.setIcon(l);
+            userText.setIcon(u);
+            passwordText.setIcon(p);
+        } catch (Exception e) {
+            // placeholder when icons load failed
+            bg.setBackground(Color.decode("#e8d4ff"));
+            maskBg.setBackground(new Color(255, 255, 255, .4f));
+            logo.setText("Western Logo");
+            logo.setFont(new Font("New York", 0, 24)); // NOI18N
+            logo.setForeground(new Color(78, 38, 131));
+        }
     }
     private int handleLogin(String username, String password) {
         byte[] b; // byte array of password
