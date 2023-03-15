@@ -468,7 +468,7 @@ public class Login extends javax.swing.JFrame {
         if(user.get("status") != null && user.get("status").getAsInt() != 200) {
             // pop up error message
             prompt.setTitle("Error");
-            prompt.add(new JLabel("Username or password does not match"), BorderLayout.CENTER);
+            prompt.add(new JLabel("Incorrect username or password."), BorderLayout.CENTER);
             prompt.setVisible(true);
             return -2;
         }
@@ -482,7 +482,7 @@ public class Login extends javax.swing.JFrame {
         h = BaseEncoding.base16().lowerCase().encode(b);
         if(user.get("password").getAsString().equals(h)) { // check hash password
             prompt.setTitle("Success");
-            prompt.add(new JLabel("Login successful"), BorderLayout.CENTER);
+            prompt.add(new JLabel("Login successful."), BorderLayout.CENTER);
             prompt.setVisible(true);
             // check if user is admin
             if(user.get("roleName").getAsString().equals("admin")) {
@@ -492,7 +492,7 @@ public class Login extends javax.swing.JFrame {
         } else {
             // pop up error message
             prompt.setTitle("Error");
-            prompt.add(new JLabel("Username or password does not match"), BorderLayout.CENTER);
+            prompt.add(new JLabel("Incorrect username or password."), BorderLayout.CENTER);
             prompt.setVisible(true);
             return -2;
         }
