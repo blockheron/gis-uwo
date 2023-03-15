@@ -445,7 +445,7 @@ public class Login extends javax.swing.JFrame {
         } catch (Exception e) {
             // placeholder when icons load failed
             bg.setBackground(Color.decode("#e8d4ff"));
-            maskBg.setBackground(new Color(255, 255, 255, .4f));
+            maskBg.setBackground(Color.decode("#ffffff"));
             logo.setText("Western Logo");
             logo.setFont(new Font("New York", 0, 24)); // NOI18N
             logo.setForeground(new Color(78, 38, 131));
