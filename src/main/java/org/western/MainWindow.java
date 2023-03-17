@@ -27,6 +27,7 @@ public class MainWindow extends javax.swing.JFrame {
         initSearchBox();
         renderFrame();
         prepareIcon();
+        renderRooms();
     }
 
     /**
@@ -336,6 +337,24 @@ public class MainWindow extends javax.swing.JFrame {
                 filterIcon = FontIcon.of(RemixiconAL.FILTER_2_LINE, 20, Color.decode("#828282"));
         onSearch.setIcon(searchIcon);
         this.filterIcon.setIcon(filterIcon);
+    }
+    
+    private void renderRooms() {
+        
+        Polygon room1shape = new Polygon();
+        room1shape.addPoint(375,50);
+        room1shape.addPoint(800,100);
+        room1shape.addPoint(800,200);
+        System.out.println(room1shape);
+        
+        int[] xpoints = {500, 800, 800};
+        int[] ypoints = {50, 100, 200};
+        int npoints = 3;
+        
+        //Room room1 = new Room(new Polygon(xpoints, ypoints, npoints));
+        Room room1 = new Room(room1shape);
+        layerPanel.add(room1, JLayeredPane.PALETTE_LAYER);
+        
     }
 
     private int handleSearch() {
