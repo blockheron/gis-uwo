@@ -43,3 +43,4 @@ bin/
 
 # Visual Studio Code
 .vscode/
+/target/
