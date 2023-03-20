@@ -17,11 +17,22 @@ import java.awt.event.*;
  * @author m
  */
 public class MainWindow extends javax.swing.JFrame {
+    private int session = -1;
 
     /**
      * Creates new form MainWindow
      */
     public MainWindow() {
+        initComponents();
+        initMainWindow();
+        initSearchBox();
+        renderFrame();
+        prepareIcon();
+    }
+
+
+    public MainWindow(int session) {
+        this.session = session;
         initComponents();
         initMainWindow();
         initSearchBox();
@@ -325,6 +336,7 @@ public class MainWindow extends javax.swing.JFrame {
         Canvas c = new Canvas("/org/western/assets/mc-demo.png", this.getWidth(), this.getHeight());
         Frame.add(c);
         Frame.setFocusable(true);
+        System.out.println("User: " + session + " logged in");
     }
 
     /**
