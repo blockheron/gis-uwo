@@ -16,7 +16,7 @@ import java.awt.event.*;
 /**
  * @author m
  */
-public class MainWindow extends javax.swing.JFrame {
+public class MainWindow extends javax.swing.JFrame{
 
     /**
      * Creates new form MainWindow
@@ -27,6 +27,7 @@ public class MainWindow extends javax.swing.JFrame {
         initSearchBox();
         renderFrame();
         prepareIcon();
+        initLayers();
     }
 
     /**
@@ -40,6 +41,8 @@ public class MainWindow extends javax.swing.JFrame {
 
         layerPanel = new javax.swing.JLayeredPane();
         Frame = new javax.swing.JPanel();
+        layersDisplayList = new javax.swing.JPanel();
+        layersButton = new java.awt.Button();
         searchPanel = new javax.swing.JPanel();
         searchBox = new javax.swing.JTextField();
         onSearch = new javax.swing.JButton();
@@ -49,6 +52,13 @@ public class MainWindow extends javax.swing.JFrame {
         filterText = new javax.swing.JLabel();
         selectBox = new javax.swing.JComboBox<>();
         resultPanel = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        jRadioButton2 = new javax.swing.JRadioButton();
+        jRadioButton3 = new javax.swing.JRadioButton();
+        favToggle1 = new javax.swing.JToggleButton();
+        favToggle2 = new javax.swing.JToggleButton();
+        favToggle3 = new javax.swing.JToggleButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -61,15 +71,50 @@ public class MainWindow extends javax.swing.JFrame {
         Frame.setForeground(new java.awt.Color(130, 130, 130));
         Frame.setPreferredSize(new java.awt.Dimension(1200, 800));
 
+        layersDisplayList.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout layersDisplayListLayout = new javax.swing.GroupLayout(layersDisplayList);
+        layersDisplayList.setLayout(layersDisplayListLayout);
+        layersDisplayListLayout.setHorizontalGroup(
+            layersDisplayListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        layersDisplayListLayout.setVerticalGroup(
+            layersDisplayListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 224, Short.MAX_VALUE)
+        );
+
+        layersButton.setBackground(new java.awt.Color(255, 255, 255));
+        layersButton.setLabel("Layers");
+        layersButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                layersButtonMouseClicked(evt);
+            }
+        });
+        layersButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                layersButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout FrameLayout = new javax.swing.GroupLayout(Frame);
         Frame.setLayout(FrameLayout);
         FrameLayout.setHorizontalGroup(
             FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1200, Short.MAX_VALUE)
+            .addGroup(FrameLayout.createSequentialGroup()
+                .addGap(948, 948, 948)
+                .addGroup(FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(layersDisplayList, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(layersButton, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)))
         );
         FrameLayout.setVerticalGroup(
             FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
+            .addGroup(FrameLayout.createSequentialGroup()
+                .addContainerGap(380, Short.MAX_VALUE)
+                .addComponent(layersButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(1, 1, 1)
+                .addComponent(layersDisplayList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(171, 171, 171))
         );
 
         searchPanel.setForeground(new java.awt.Color(13, 17, 23));
@@ -107,9 +152,61 @@ public class MainWindow extends javax.swing.JFrame {
         selectBox.setBorder(null);
         selectBox.setMinimumSize(new java.awt.Dimension(80, 23));
         selectBox.setPreferredSize(new java.awt.Dimension(180, 32));
+        selectBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selectBoxActionPerformed(evt);
+            }
+        });
         filterPanel.add(selectBox);
 
         resultPanel.setBackground(new java.awt.Color(245, 245, 247));
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setMinimumSize(new java.awt.Dimension(280, 180));
+        jPanel1.setPreferredSize(new java.awt.Dimension(280, 180));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jRadioButton1.setText("POI 1");
+        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, -1, -1));
+
+        jRadioButton2.setText("POI 2");
+        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, -1, -1));
+
+        jRadioButton3.setText("POI 3");
+        jPanel1.add(jRadioButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, -1, -1));
+
+        favToggle1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                favToggle1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(favToggle1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 20, 30, 30));
+
+        favToggle2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                favToggle2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(favToggle2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 60, 30, 30));
+
+        favToggle3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                favToggle3ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(favToggle3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 100, 30, 30));
+
+        resultPanel.add(jPanel1);
 
         javax.swing.GroupLayout dropDownPanelLayout = new javax.swing.GroupLayout(dropDownPanel);
         dropDownPanel.setLayout(dropDownPanelLayout);
@@ -159,15 +256,21 @@ public class MainWindow extends javax.swing.JFrame {
         layerPanel.setLayout(layerPanelLayout);
         layerPanelLayout.setHorizontalGroup(
             layerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Frame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(layerPanelLayout.createSequentialGroup()
-                .addGap(915, 915, 915)
-                .addComponent(searchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Frame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layerPanelLayout.createSequentialGroup()
+                        .addGap(915, 915, 915)
+                        .addComponent(searchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         layerPanelLayout.setVerticalGroup(
             layerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Frame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(searchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layerPanelLayout.createSequentialGroup()
+                .addGroup(layerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Frame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(searchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         getContentPane().add(layerPanel, java.awt.BorderLayout.CENTER);
@@ -183,6 +286,7 @@ public class MainWindow extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    // 
     private void searchBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_searchBoxActionPerformed
@@ -190,6 +294,62 @@ public class MainWindow extends javax.swing.JFrame {
     private void onSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onSearchActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_onSearchActionPerformed
+
+    private void selectBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_selectBoxActionPerformed
+
+    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton1ActionPerformed
+
+ 
+     
+    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+        
+    }//GEN-LAST:event_jRadioButton2ActionPerformed
+
+    private void favToggle1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_favToggle1ActionPerformed
+        // Toggle between filled star and star outline
+        if (favToggle1.isSelected()){
+            FontIcon favouriteIcon = FontIcon.of(RemixiconMZ.STAR_FILL, 20, Color.decode("#828282"));
+            favToggle1.setIcon(favouriteIcon); 
+        } else {
+            FontIcon favouriteIcon = FontIcon.of(RemixiconMZ.STAR_LINE, 20, Color.decode("#828282"));
+            favToggle1.setIcon(favouriteIcon); 
+        }
+    }//GEN-LAST:event_favToggle1ActionPerformed
+
+    private void favToggle2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_favToggle2ActionPerformed
+        // Toggle between filled star and star outline
+        if (favToggle2.isSelected()){
+            FontIcon favouriteIcon = FontIcon.of(RemixiconMZ.STAR_FILL, 20, Color.decode("#828282"));
+            favToggle2.setIcon(favouriteIcon); 
+        } else {
+            FontIcon favouriteIcon = FontIcon.of(RemixiconMZ.STAR_LINE, 20, Color.decode("#828282"));
+            favToggle2.setIcon(favouriteIcon); 
+        }
+    }//GEN-LAST:event_favToggle2ActionPerformed
+
+    private void favToggle3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_favToggle3ActionPerformed
+        // Toggle between filled star and star outline
+        if (favToggle3.isSelected()){
+            FontIcon favouriteIcon = FontIcon.of(RemixiconMZ.STAR_FILL, 20, Color.decode("#828282"));
+            favToggle3.setIcon(favouriteIcon); 
+        } else {
+            FontIcon favouriteIcon = FontIcon.of(RemixiconMZ.STAR_LINE, 20, Color.decode("#828282"));
+            favToggle3.setIcon(favouriteIcon); 
+        }
+    }//GEN-LAST:event_favToggle3ActionPerformed
+
+    private void layersButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_layersButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_layersButtonActionPerformed
+
+    private void layersButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_layersButtonMouseClicked
+        // Move when clicked
+        layersButton.setLocation(layersButton.getLocation().x, layersButton.getY()-20);
+    }//GEN-LAST:event_layersButtonMouseClicked
 
     /**
      * @param args the command line arguments
@@ -284,7 +444,7 @@ public class MainWindow extends javax.swing.JFrame {
                     ); // set inset padding of searchBox
                 }
             }
-
+            
             @Override
             public void focusLost(FocusEvent e) {
                 if (searchBox.getText().isEmpty()) {
@@ -327,7 +487,9 @@ public class MainWindow extends javax.swing.JFrame {
         Frame.setFocusable(true);
     }
 
+
     /**
+     * 
      * Prepare icon for onSearch button
      */
     private void prepareIcon() {
@@ -336,7 +498,13 @@ public class MainWindow extends javax.swing.JFrame {
                 filterIcon = FontIcon.of(RemixiconAL.FILTER_2_LINE, 20, Color.decode("#828282"));
         onSearch.setIcon(searchIcon);
         this.filterIcon.setIcon(filterIcon);
+        // Load favourite icon
+        FontIcon favouriteIcon = FontIcon.of(RemixiconMZ.STAR_LINE, 20, Color.decode("#828282"));
+        favToggle1.setIcon(favouriteIcon); 
+        favToggle2.setIcon(favouriteIcon);
+        favToggle3.setIcon(favouriteIcon); 
     }
+    
 
     private int handleSearch() {
         String query = searchBox.getText();
@@ -352,17 +520,32 @@ public class MainWindow extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Frame;
     private javax.swing.JPanel dropDownPanel;
+    private javax.swing.JToggleButton favToggle1;
+    private javax.swing.JToggleButton favToggle2;
+    private javax.swing.JToggleButton favToggle3;
     private javax.swing.JLabel filterIcon;
     private javax.swing.JPanel filterPanel;
     private javax.swing.JLabel filterText;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JLayeredPane layerPanel;
+    private java.awt.Button layersButton;
+    private javax.swing.JPanel layersDisplayList;
     private javax.swing.JButton onSearch;
     private javax.swing.JPanel resultPanel;
     private javax.swing.JTextField searchBox;
     private javax.swing.JPanel searchPanel;
     private javax.swing.JComboBox<String> selectBox;
     // End of variables declaration//GEN-END:variables
+
+    private void initLayers(){
+        layersDisplayList.setOpaque(false); // make searchPanel transparent
+        // Keep x position same, change y position
+        layersButton.setLocation(layersButton.getX(), ((layersButton.getLocation().y)+layersDisplayList.getHeight()));// Reposition layer button
+    }
 }
