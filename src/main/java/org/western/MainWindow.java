@@ -18,6 +18,10 @@ import java.awt.event.*;
  */
 public class MainWindow extends javax.swing.JFrame {
 
+    private int x, y, initialX, initialY, deltaX, deltaY;
+    Room room1;
+    Room room2;
+    
     /**
      * Creates new form MainWindow
      */
@@ -238,6 +242,12 @@ public class MainWindow extends javax.swing.JFrame {
         this.setLocation(center.x - this.getWidth() / 2, center.y - this.getHeight() / 2);
         this.setResizable(false);
         this.setBackground(Color.WHITE);
+        
+        layerPanel.addMouseListener(new MouseHandler());
+        layerPanel.addMouseMotionListener(new MouseMotionHandler());
+        
+        layerPanel.setSize(this.getSize());
+        //layerPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 500));
     }
 
     /**
@@ -323,8 +333,8 @@ public class MainWindow extends javax.swing.JFrame {
      * Render frame
      */
     private void renderFrame() {
-        Canvas c = new Canvas("/org/western/assets/mc-demo.png", this.getWidth(), this.getHeight());
-        Frame.add(c);
+        canvas = new Canvas("/org/western/assets/mc-demo.png", this.getWidth(), this.getHeight());
+        Frame.add(canvas);
         Frame.setFocusable(true);
     }
 
@@ -341,20 +351,26 @@ public class MainWindow extends javax.swing.JFrame {
     
     private void renderRooms() {
         
-        Polygon room1shape = new Polygon();
-        room1shape.addPoint(375,50);
-        room1shape.addPoint(800,100);
-        room1shape.addPoint(800,200);
-        System.out.println(room1shape);
-        
-        int[] xpoints = {500, 800, 800};
+        int[] xpoints = {300, 500, 500};
         int[] ypoints = {50, 100, 200};
         int npoints = 3;
         
-        //Room room1 = new Room(new Polygon(xpoints, ypoints, npoints));
-        Room room1 = new Room(room1shape);
-        layerPanel.add(room1, JLayeredPane.PALETTE_LAYER);
+        Polygon room1Shape = new Polygon(xpoints, ypoints, npoints);
         
+        room1 = new Room(room1Shape, this);
+        layerPanel.add(room1, JLayeredPane.PALETTE_LAYER);
+        room1.setSize(layerPanel.getSize());
+        
+        int[] xpoints2 = {100, 200, 300};
+        int[] ypoints2 = {100, 200, 250};
+        int npoints2 = 3;
+        
+        Polygon room2Shape = new Polygon(xpoints2, ypoints2, npoints2);
+        
+        room2 = new Room(room2Shape, this);
+        layerPanel.add(room2, JLayeredPane.PALETTE_LAYER);
+        room2.setSize(layerPanel.getSize());
+             
     }
 
     private int handleSearch() {
@@ -367,7 +383,55 @@ public class MainWindow extends javax.swing.JFrame {
         System.out.println(query + " " + filter);
         return 0;
     }
+    
+    class MouseHandler extends MouseAdapter {
+        public void mousePressed(MouseEvent e) {
+            initialX = e.getX();
+            initialY = e.getY();
+        }
+        
+        public void mouseEntered(MouseEvent e) {
+            //e = new MouseEvent(e.getComponent(), e.getID(), e.getWhen(), e.getModifiersEx(), e.getX()-getX(), e.getY()-getY(), e.getClickCount(), e.isPopupTrigger());
+            room1.mouseEntered(e);
+            room2.mouseEntered(e);
+        }
+        
+        public void mouseExited(MouseEvent e) {
+            //e = new MouseEvent(e.getComponent(), e.getID(), e.getWhen(), e.getModifiersEx(), e.getX()-getX(), e.getY()-getY(), e.getClickCount(), e.isPopupTrigger());
+            room1.mouseExited(e);
+            room2.mouseExited(e);
+        }
+    }
 
+    class MouseMotionHandler extends MouseMotionAdapter {
+        public void mouseMoved(MouseEvent e) {
+            //System.out.println(e.getX() + ", " + e.getY());
+            room1.mouseMoved(e);
+            room2.mouseMoved(e);
+        }
+        
+        public void mouseDragged(MouseEvent e) {
+            int currentX = e.getX();
+            int currentY = e.getY();
+            int deltaX = currentX - initialX;
+            int deltaY = currentY - initialY;
+
+            x += deltaX;
+            y += deltaY;
+            
+            canvas.translate(deltaX, deltaY);
+            room1.translate(deltaX, deltaY);
+            room2.translate(deltaX, deltaY);
+            
+
+            initialX = currentX;
+            initialY = currentY;
+
+            repaint();
+        }
+    }
+
+    private Canvas canvas;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Frame;
     private javax.swing.JPanel dropDownPanel;

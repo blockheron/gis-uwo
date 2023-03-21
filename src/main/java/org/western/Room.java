@@ -23,25 +23,19 @@ public class Room extends JComponent
     private Color color;
     private Color activeColor;
     private boolean active = false;
+    MainWindow main;
     
-    public Room(Polygon shape, Color color)
+    public Room(Polygon shape, MainWindow main) 
     {
         
-        this(shape);
-        this.color = color;        
-        
-    }
-    
-    public Room(Polygon shape) 
-    {
-        
+        this.main = main;
         this.shape = shape;
         setOpaque(false);
         
         //mouse handlers
-        MouseHandler mouseHandler = new MouseHandler();
-        addMouseListener(mouseHandler);
-        addMouseMotionListener(mouseHandler);
+        //MouseHandler mouseHandler = new MouseHandler();
+        //addMouseListener(mouseHandler);
+        //addMouseMotionListener(mouseHandler);
         //
         
         //get the bounding rectangle of the polygon
@@ -57,74 +51,102 @@ public class Room extends JComponent
         
     }
     
-    public void paint(Graphics g)
+    public void translate (int x, int y) {
+        setLocation(getX()+x, getY()+y);
+    }
+    
+    public void paintComponent(Graphics g)
     {
         Graphics2D g2D = (Graphics2D) g;
         
         if (!active) g2D.setColor(color);
         else g2D.setColor(activeColor);
         g2D.fillPolygon(shape);
-        g2D.setColor(Color.BLACK);
-        g2D.drawRect(bounds.x, bounds.y, bounds.width, bounds.height);
+        
+        //System.out.println(this.getX() + ", " + this.getY());
+        
+        //g2D.setColor(Color.BLACK);
+        //g2D.drawRect(bounds.x, bounds.y, bounds.width, bounds.height);
         
     }
     
-    class MouseHandler implements MouseMotionListener, MouseListener {
-        public void mouseMoved(MouseEvent e) {
-            //check if the mouse is even in the bounding box
-            if (!bounds.contains(e.getX(), e.getY())) {
-                if (active) {
-                   active = false;
-                   repaint();
-                }
-            return;
-            }
-            //
-            
-            //check if the mouse is within the polygon
-            boolean contained = shape.contains(e.getX(), e.getY());
-            
-            //switch whether the button is hovered over accordingly
-            if (contained && !active){
-                active = true;
-                repaint();
-            }
-            else if (!contained && active) {
-                active = false;
-                repaint();
-            }
-            //
-            
-        }
-
-        public void mouseDragged(MouseEvent e) {
-
+    
+   /*
+    *
+    * offsets the shape of the room before drawing it;
+    *
+    */
+    private Polygon offset(Polygon shape)
+    {
+        
+        int[] newXPoints = new int[shape.npoints];
+        int[] newYPoints = new int[shape.npoints];
+        
+        for(int i = 0; i < shape.npoints; ++i) {
+            newXPoints[i] = shape.xpoints[i] + this.getX();
+            newYPoints[i] = shape.ypoints[i] + this.getY();
         }
         
-        public void mousePressed(MouseEvent e) {
-            //if active...
-        }
-
-        public void mouseReleased(MouseEvent e) {
-
-        }
-        
-        public void mouseEntered(MouseEvent e) {
-            mouseMoved(e); //covers edge cases where the mouse enters the bounds and the polygon
-        }
-
-        public void mouseExited(MouseEvent e) {
-            if (active){
-                active = false;
-                repaint();
-            } //covers edge cases where the mouse exits the bounds and the polygon
-        }
-
-        public void mouseClicked(MouseEvent e) {
-
-        }
-
+        return new Polygon(newXPoints, newYPoints, shape.npoints);
     }
     
+    public void mouseMoved(MouseEvent e) {
+        //check if the mouse is even in the bounding box
+        System.out.println("room: " + getX() + ", " + getY());
+        if (!bounds.contains(e.getX()-getX(), e.getY()-getY())) {
+            if (active) {
+               active = false;
+               repaint();
+            }
+        return;
+        }
+        //
+
+        //check if the mouse is within the polygon
+        boolean contained = shape.contains(e.getX()-getX(), e.getY()-getY());
+
+        //switch whether the button is hovered over accordingly
+        if (contained && !active){
+            active = true;
+            repaint();
+        }
+        else if (!contained && active) {
+            active = false;
+            repaint();
+        }
+        //
+
+        //main.dispatchEvent(e);
+
+    }
+
+    public void mouseDragged(MouseEvent e) {
+        //main.dispatchEvent(e);
+    }
+
+    public void mousePressed(MouseEvent e) {
+        //if active...
+        //main.dispatchEvent(e);
+        System.out.println(getParent());
+    }
+
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    public void mouseEntered(MouseEvent e) {
+        mouseMoved(e); //covers edge cases where the mouse enters the bounds and the polygon
+    }
+
+    public void mouseExited(MouseEvent e) {
+        if (active){
+            active = false;
+            repaint();
+        } //covers edge cases where the mouse exits the bounds and the polygon
+    }
+
+    public void mouseClicked(MouseEvent e) {
+
+    }
     
 }
