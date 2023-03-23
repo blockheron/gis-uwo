@@ -23,20 +23,20 @@ public class Room extends JComponent
     private Color color;
     private Color activeColor;
     private boolean active = false;
-    MainWindow main;
     
-    public Room(Polygon shape, MainWindow main) 
+    public Room(Polygon shape, Point position) 
     {
         
-        this.main = main;
+        this(shape);
+        this.setLocation(position);
+        
+    }
+    
+    public Room(Polygon shape) 
+    {
+        
         this.shape = shape;
         setOpaque(false);
-        
-        //mouse handlers
-        //MouseHandler mouseHandler = new MouseHandler();
-        //addMouseListener(mouseHandler);
-        //addMouseMotionListener(mouseHandler);
-        //
         
         //get the bounding rectangle of the polygon
         bounds = this.shape.getBounds();
@@ -90,9 +90,10 @@ public class Room extends JComponent
         return new Polygon(newXPoints, newYPoints, shape.npoints);
     }
     
+    public Polygon getPoly() {return shape;}
+    
     public void mouseMoved(MouseEvent e) {
         //check if the mouse is even in the bounding box
-        System.out.println("room: " + getX() + ", " + getY());
         if (!bounds.contains(e.getX()-getX(), e.getY()-getY())) {
             if (active) {
                active = false;
@@ -127,7 +128,7 @@ public class Room extends JComponent
     public void mousePressed(MouseEvent e) {
         //if active...
         //main.dispatchEvent(e);
-        System.out.println(getParent());
+        
     }
 
     public void mouseReleased(MouseEvent e) {

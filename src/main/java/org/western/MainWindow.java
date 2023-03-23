@@ -13,22 +13,33 @@ import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.*;
 
+import java.util.LinkedList;
+
 /**
  * @author m
  */
 public class MainWindow extends javax.swing.JFrame {
 
     private int x, y, initialX, initialY, deltaX, deltaY;
-    Room room1;
-    Room room2;
+    private boolean editMode = false;
+    private boolean addingRoom = false;
+    private LinkedList<Room> rooms;
+    private Icon editButtonEnabled, editButtonDisabled;
+    private Icon addRoomButtonEnabled, addRoomButtonDisabled;
+    private Room draftRoom;
+    private Polygon draftPoly;
     
     /**
      * Creates new form MainWindow
      */
     public MainWindow() {
+        
+        rooms = new LinkedList<Room>();
+        
         initComponents();
         initMainWindow();
         initSearchBox();
+        initButtons();
         renderFrame();
         prepareIcon();
         renderRooms();
@@ -45,6 +56,8 @@ public class MainWindow extends javax.swing.JFrame {
 
         layerPanel = new javax.swing.JLayeredPane();
         Frame = new javax.swing.JPanel();
+        editButton = new javax.swing.JToggleButton();
+        addRoomButton = new javax.swing.JToggleButton();
         searchPanel = new javax.swing.JPanel();
         searchBox = new javax.swing.JTextField();
         onSearch = new javax.swing.JButton();
@@ -66,15 +79,42 @@ public class MainWindow extends javax.swing.JFrame {
         Frame.setForeground(new java.awt.Color(130, 130, 130));
         Frame.setPreferredSize(new java.awt.Dimension(1200, 800));
 
+        editButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                editButtonMousePressed(evt);
+            }
+        });
+        editButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editButtonActionPerformed(evt);
+            }
+        });
+
+        addRoomButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                addRoomButtonMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout FrameLayout = new javax.swing.GroupLayout(Frame);
         Frame.setLayout(FrameLayout);
         FrameLayout.setHorizontalGroup(
             FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1200, Short.MAX_VALUE)
+            .addGroup(FrameLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(editButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(addRoomButton)
+                .addContainerGap(1122, Short.MAX_VALUE))
         );
         FrameLayout.setVerticalGroup(
             FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FrameLayout.createSequentialGroup()
+                .addContainerGap(787, Short.MAX_VALUE)
+                .addGroup(FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(addRoomButton)
+                    .addComponent(editButton))
+                .addContainerGap())
         );
 
         searchPanel.setForeground(new java.awt.Color(13, 17, 23));
@@ -164,15 +204,21 @@ public class MainWindow extends javax.swing.JFrame {
         layerPanel.setLayout(layerPanelLayout);
         layerPanelLayout.setHorizontalGroup(
             layerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Frame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(layerPanelLayout.createSequentialGroup()
-                .addGap(915, 915, 915)
-                .addComponent(searchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Frame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layerPanelLayout.createSequentialGroup()
+                        .addGap(915, 915, 915)
+                        .addComponent(searchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(6, 6, 6))
         );
         layerPanelLayout.setVerticalGroup(
             layerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Frame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(searchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layerPanelLayout.createSequentialGroup()
+                .addGroup(layerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Frame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(searchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(77, Short.MAX_VALUE))
         );
 
         getContentPane().add(layerPanel, java.awt.BorderLayout.CENTER);
@@ -195,6 +241,44 @@ public class MainWindow extends javax.swing.JFrame {
     private void onSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onSearchActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_onSearchActionPerformed
+
+    private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_editButtonActionPerformed
+
+    private void editButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editButtonMousePressed
+        editMode = !editMode;
+        if (editMode){
+            editButton.setIcon(editButtonEnabled);
+            addRoomButton.setEnabled(true);
+            addRoomButton.setVisible(true);
+        }
+        else {
+            editButton.setIcon(editButtonDisabled);
+            addRoomButtonMouseClicked(evt);
+            addRoomButton.setEnabled(false);
+            addRoomButton.setVisible(false);
+        }
+    }//GEN-LAST:event_editButtonMousePressed
+
+    private void addRoomButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addRoomButtonMouseClicked
+        if (editMode && !addingRoom) {
+            
+            addRoomButton.setIcon(addRoomButtonEnabled);
+            addingRoom = true;
+            
+        }
+        else {
+            
+            addRoomButton.setIcon(addRoomButtonDisabled);
+            addingRoom = false;
+            //save new room
+            draftRoom = null;
+            draftPoly = null;
+            //
+        }
+        
+    }//GEN-LAST:event_addRoomButtonMouseClicked
 
     /**
      * @param args the command line arguments
@@ -329,6 +413,26 @@ public class MainWindow extends javax.swing.JFrame {
         });
     }
 
+    public void initButtons() {
+        
+        //initialize edit button
+        editButtonDisabled = FontIcon.of(RemixiconAL.EDIT_LINE, 24);
+        editButtonEnabled = FontIcon.of(RemixiconAL.EDIT_FILL, 24);
+        
+        editButton.setIcon(editButtonDisabled);
+        //
+        
+        //initialize add room button
+        addRoomButtonDisabled = FontIcon.of(RemixiconAL.ADD_BOX_LINE, 24);
+        addRoomButtonEnabled = FontIcon.of(RemixiconAL.ADD_BOX_FILL, 24);
+        
+        addRoomButton.setIcon(addRoomButtonDisabled);
+        addRoomButton.setVisible(false);
+        addRoomButton.setEnabled(false);
+        //
+        
+    }
+    
     /**
      * Render frame
      */
@@ -357,9 +461,8 @@ public class MainWindow extends javax.swing.JFrame {
         
         Polygon room1Shape = new Polygon(xpoints, ypoints, npoints);
         
-        room1 = new Room(room1Shape, this);
-        layerPanel.add(room1, JLayeredPane.PALETTE_LAYER);
-        room1.setSize(layerPanel.getSize());
+        rooms.add(new Room(room1Shape));
+        attachRoom(rooms.get(0));
         
         int[] xpoints2 = {100, 200, 300};
         int[] ypoints2 = {100, 200, 250};
@@ -367,9 +470,8 @@ public class MainWindow extends javax.swing.JFrame {
         
         Polygon room2Shape = new Polygon(xpoints2, ypoints2, npoints2);
         
-        room2 = new Room(room2Shape, this);
-        layerPanel.add(room2, JLayeredPane.PALETTE_LAYER);
-        room2.setSize(layerPanel.getSize());
+        rooms.add(new Room(room2Shape));
+        attachRoom(rooms.get(1));
              
     }
 
@@ -384,30 +486,66 @@ public class MainWindow extends javax.swing.JFrame {
         return 0;
     }
     
+    private void attachRoom(Room room)
+    {
+        
+        layerPanel.add(room, JLayeredPane.PALETTE_LAYER);
+        room.setSize(layerPanel.getSize());
+        
+    }
+    
     class MouseHandler extends MouseAdapter {
         public void mousePressed(MouseEvent e) {
             initialX = e.getX();
             initialY = e.getY();
+            
+            if (addingRoom) {
+                
+                
+                if(draftRoom == null) {
+                    draftPoly = new Polygon();
+                    draftPoly.addPoint(e.getX(), e.getY());
+                    draftRoom = new Room(draftPoly, new Point(0,0));
+                    attachRoom(draftRoom);
+                }
+                else {
+                    
+                    //remove previous iteration of the draft
+                    layerPanel.remove(draftRoom);
+                    rooms.remove(draftRoom);
+                    //
+                    
+                    //add new draft of room
+                    draftPoly.addPoint(e.getX()-draftRoom.getX(), e.getY()-draftRoom.getY());                
+                    draftRoom = new Room(draftPoly, draftRoom.getLocation()); //fix coordinates off  
+                    rooms.add(draftRoom);
+                    attachRoom(draftRoom);
+                    //
+                    
+                }
+                
+            }
+            
         }
         
         public void mouseEntered(MouseEvent e) {
             //e = new MouseEvent(e.getComponent(), e.getID(), e.getWhen(), e.getModifiersEx(), e.getX()-getX(), e.getY()-getY(), e.getClickCount(), e.isPopupTrigger());
-            room1.mouseEntered(e);
-            room2.mouseEntered(e);
+            for (Room room:rooms) room.mouseEntered(e);
+            
         }
         
         public void mouseExited(MouseEvent e) {
             //e = new MouseEvent(e.getComponent(), e.getID(), e.getWhen(), e.getModifiersEx(), e.getX()-getX(), e.getY()-getY(), e.getClickCount(), e.isPopupTrigger());
-            room1.mouseExited(e);
-            room2.mouseExited(e);
+            for (Room room:rooms) room.mouseExited(e);
+            
         }
     }
 
     class MouseMotionHandler extends MouseMotionAdapter {
         public void mouseMoved(MouseEvent e) {
-            //System.out.println(e.getX() + ", " + e.getY());
-            room1.mouseMoved(e);
-            room2.mouseMoved(e);
+            
+            for (Room room:rooms) room.mouseMoved(e);
+            
         }
         
         public void mouseDragged(MouseEvent e) {
@@ -420,9 +558,7 @@ public class MainWindow extends javax.swing.JFrame {
             y += deltaY;
             
             canvas.translate(deltaX, deltaY);
-            room1.translate(deltaX, deltaY);
-            room2.translate(deltaX, deltaY);
-            
+            for (Room room:rooms) room.translate(deltaX, deltaY);           
 
             initialX = currentX;
             initialY = currentY;
@@ -434,7 +570,9 @@ public class MainWindow extends javax.swing.JFrame {
     private Canvas canvas;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Frame;
+    private javax.swing.JToggleButton addRoomButton;
     private javax.swing.JPanel dropDownPanel;
+    private javax.swing.JToggleButton editButton;
     private javax.swing.JLabel filterIcon;
     private javax.swing.JPanel filterPanel;
     private javax.swing.JLabel filterText;

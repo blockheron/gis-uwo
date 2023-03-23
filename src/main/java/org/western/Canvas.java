@@ -51,7 +51,6 @@ class Canvas extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2D = (Graphics2D) g;
-        System.out.println(this.getX() + ", " + this.getY());
         g2D.drawImage(bi, x, y, this);
     }
     
