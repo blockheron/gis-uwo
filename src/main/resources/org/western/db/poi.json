@@ -1,18 +1,9 @@
 {
   "status": 200,
+  "message": "success",
   "lastModified": "2016-03-01T00:00:00.000Z",
   "count": 1,
-  "data": [
-    {
-      "id": 1,
-      "name": "Middlesex College",
-      "description": "Middlesex College Building",
-      "building": "Middlesex College",
-      "floor": "G",
-      "layer": "building",
-      "room": "building",
-      "coordinates": [[100, 100], [200, 100], [100, 200], [200, 200]],
-      "user": [0]
-    }
-  ]
+  "data": {
+    "mc": 1
+  }
 }
