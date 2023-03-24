@@ -19,7 +19,7 @@ public class JsonDB {
                     if(j.get("data") != null && j.get("data").getAsJsonObject().get(value) != null) {
                         i = j.get("data").getAsJsonObject().get(value).getAsInt();
                         if(i < j.get("count").getAsInt()) { // check if user exists
-                            try (FileReader r = new FileReader(Objects.requireNonNull(getClass().getResource("/org/western/db/" + i + ".json")).getFile())) { // new file reader
+                            try (FileReader r = new FileReader(Objects.requireNonNull(getClass().getResource("/org/western/db/u-" + i + ".json")).getFile())) { // new file reader
                                 User u = g.fromJson(r, User.class); // convert to json element
                                 data = g.toJsonTree(u).getAsJsonObject(); // convert to json object
                             }
