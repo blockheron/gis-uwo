@@ -17,7 +17,8 @@ import java.awt.event.*;
  * @author m
  */
 public class MainWindow extends javax.swing.JFrame {
-    private int session = -1;
+    private int session = -1; // -1 for guest, 0 for admin, 1 for user
+    private int building = 0;
 
     /**
      * Creates new form MainWindow
