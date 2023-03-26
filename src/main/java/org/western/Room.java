@@ -146,8 +146,16 @@ public class Room extends JComponent
         } //covers edge cases where the mouse exits the bounds and the polygon
     }
 
+    public void addPOI(POI poi) {
+        
+        
+        
+    }
+    
     public void mouseClicked(MouseEvent e) {
 
+        
+        
     }
     
 }
