@@ -9,10 +9,10 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Maven: org.kordamp.ikonli:ikonli-swing:12.3.1" level="project" />
-    <orderEntry type="library" name="Maven: org.kordamp.ikonli:ikonli-core:12.3.1" level="project" />
-    <orderEntry type="library" name="Maven: org.kordamp.ikonli:ikonli-remixicon-pack:12.3.1" level="project" />
-    <orderEntry type="library" name="Maven: com.google.code.gson:gson:2.10" level="project" />
-    <orderEntry type="library" name="Maven: com.google.guava:guava:18.0" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.kordamp.ikonli:ikonli-swing:12.3.1" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.kordamp.ikonli:ikonli-core:12.3.1" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.kordamp.ikonli:ikonli-remixicon-pack:12.3.1" level="project" />
+    <orderEntry type="library" exported="" name="Maven: com.google.code.gson:gson:2.10" level="project" />
+    <orderEntry type="library" exported="" name="Maven: com.google.guava:guava:18.0" level="project" />
   </component>
 </module>

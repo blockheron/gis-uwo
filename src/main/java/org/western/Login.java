@@ -4,6 +4,7 @@
  */
 package org.western;
 
+import com.google.common.io.BaseEncoding;
 import com.google.gson.JsonObject;
 import org.kordamp.ikonli.remixicon.RemixiconAL;
 import org.kordamp.ikonli.remixicon.RemixiconMZ;
@@ -13,14 +14,11 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.*;
-import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Objects;
 
 import static java.security.MessageDigest.getInstance;
-import com.google.common.io.BaseEncoding;
 
 
 /**
@@ -102,8 +100,8 @@ public class Login extends javax.swing.JFrame {
         formPanel.setOpaque(false);
         formPanel.setPreferredSize(new java.awt.Dimension(300, 140));
 
-        honeyPot.setBackground(new Color(0, 0, 0, 0 ));
-        honeyPot.setForeground(new Color(0,0,0,200));
+        honeyPot.setBackground(new Color(0, 0, 0, 0));
+        honeyPot.setForeground(new Color(0, 0, 0, 200));
         honeyPot.setBorder(null);
         honeyPot.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         honeyPot.addActionListener(new java.awt.event.ActionListener() {
@@ -177,6 +175,14 @@ public class Login extends javax.swing.JFrame {
                 guestLoginActionPerformed(evt);
             }
         });
+        // guestLogin on click
+        guestLogin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                MainWindow mainWindow = new MainWindow();
+                mainWindow.setVisible(true);
+                dispose();
+            }
+        });
         submitPanel.add(guestLogin, new java.awt.GridBagConstraints());
 
         loginPanel.add(submitPanel);
@@ -201,35 +207,35 @@ public class Login extends javax.swing.JFrame {
         javax.swing.GroupLayout layerPanelLayout = new javax.swing.GroupLayout(layerPanel);
         layerPanel.setLayout(layerPanelLayout);
         layerPanelLayout.setHorizontalGroup(
-            layerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bgPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
-            .addGroup(layerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layerPanelLayout.createSequentialGroup()
-                    .addGap(0, 300, Short.MAX_VALUE)
-                    .addComponent(loginLayer, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                layerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(bgPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
+                        .addGroup(layerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layerPanelLayout.createSequentialGroup()
+                                        .addGap(0, 300, Short.MAX_VALUE)
+                                        .addComponent(loginLayer, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         layerPanelLayout.setVerticalGroup(
-            layerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bgPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
-            .addGroup(layerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(loginLayer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                layerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(bgPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+                        .addGroup(layerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(loginLayer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(layerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(layerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(layerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(layerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -410,6 +416,15 @@ public class Login extends javax.swing.JFrame {
                 }
             }
         });
+        // listen on enter key press
+        passwd.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    onLogin.doClick();
+                }
+            }
+        });
         // add underline effect to guestLogin button
         guestLogin.addMouseListener(new MouseAdapter() {
             @Override
@@ -429,9 +444,9 @@ public class Login extends javax.swing.JFrame {
     private void prepareIcon() {
         try {
             // set images as icons
-            ImageIcon b = new ImageIcon(Objects.requireNonNull(getClass().getResource("/org/western/assets/bg.jpg"))),
-                    m = new ImageIcon(Objects.requireNonNull(getClass().getResource("/org/western/assets/masked_bg.png"))),
-                    l = new ImageIcon(Objects.requireNonNull(getClass().getResource("/org/western/assets/logo.png")));
+            ImageIcon b = new ImageIcon(Objects.requireNonNull(getClass().getResource("assets/bg.jpg"))),
+                    m = new ImageIcon(Objects.requireNonNull(getClass().getResource("assets/masked_bg.png"))),
+                    l = new ImageIcon(Objects.requireNonNull(getClass().getResource("assets/logo.png")));
             FontIcon u = FontIcon.of(RemixiconMZ.USER_3_LINE, 20, Color.decode("#113355")),
                     p = FontIcon.of(RemixiconAL.LOCK_PASSWORD_LINE, 20, Color.decode("#113355"));
             b = new ImageIcon(b.getImage().getScaledInstance(600, 400, Image.SCALE_SMOOTH));
@@ -451,24 +466,71 @@ public class Login extends javax.swing.JFrame {
             logo.setForeground(new Color(78, 38, 131));
         }
     }
+
     private int handleLogin(String username, String password) {
+        int padding = 5;
         byte[] b; // byte array of password
         String h; // hash of password
         JsonObject user;
         JDialog prompt = new JDialog(); // pop up dialog
+        JLabel message = new JLabel();
+        JButton confirm = new JButton("OK");
+        Border defaultBorder = BorderFactory.createLineBorder(Color.decode("#eaeaea"));
         prompt.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         prompt.setModal(true);
-        prompt.setSize(300, 200);
+        prompt.setSize(300, 100);
         prompt.setLocationRelativeTo(null);
-        prompt.setLayout(new BorderLayout());
-        if(!honeyPot.getText().isEmpty() || username.isEmpty() || password.isEmpty()) {
+        prompt.getContentPane().setBackground(Color.WHITE);
+        prompt.setLayout(new FlowLayout());
+        message.setFont(new Font("Inter", 0, 16));
+        message.setForeground(Color.decode("#666666"));
+        confirm.setBackground(Color.WHITE);
+        confirm.setBorder(BorderFactory.createEmptyBorder()); // remove border of onLogin button
+        confirm.setContentAreaFilled(false); // remove background of onLogin button
+        confirm.setOpaque(true); // make onLogin button opaque
+        confirm.setCursor(new Cursor(Cursor.HAND_CURSOR)); // set cursor to hand cursor
+        confirm.setBorder(
+                BorderFactory.createCompoundBorder(
+                        defaultBorder, BorderFactory.createEmptyBorder(padding, 4 * padding, padding, 4 * padding)
+                )
+        );
+
+        confirm.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                Border hoverBorder = BorderFactory.createLineBorder(Color.decode("#666666"));
+                confirm.setBorder(
+                        BorderFactory.createCompoundBorder(
+                                hoverBorder, BorderFactory.createEmptyBorder(padding, 4 * padding, padding, 4 * padding)
+                        ));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                Border defaultBorder = BorderFactory.createLineBorder(Color.decode("#eaeaea"));
+                confirm.setBorder(
+                        BorderFactory.createCompoundBorder(
+                                defaultBorder, BorderFactory.createEmptyBorder(padding, 4 * padding, padding, 4 * padding)
+                        ));
+            }
+        });
+        confirm.addActionListener(e -> prompt.dispose());
+
+        if (!honeyPot.getText().isEmpty() || username.isEmpty() || password.isEmpty()) {
             return -1;
         }
         user = new JsonDB("user", username).getData();
-        if(user.get("status") != null && user.get("status").getAsInt() != 200) {
+        if (user.get("status") != null && user.get("status").getAsInt() != 200) {
             // pop up error message
             prompt.setTitle("Error");
-            prompt.add(new JLabel("Incorrect username or password."), BorderLayout.CENTER);
+            System.out.println(user.get("status").getAsInt());
+            if (user.get("status").getAsInt() == 204) {
+                message.setText("Failed connecting to database.");
+            } else {
+                message.setText("Username or password is incorrect.");
+            }
+            prompt.add(message);
+            prompt.add(confirm);
             prompt.setVisible(true);
             return -2;
         }
@@ -480,19 +542,28 @@ public class Login extends javax.swing.JFrame {
         }
         // https://stackoverflow.com/questions/9655181/how-to-convert-a-byte-array-to-a-hex-string-in-java
         h = BaseEncoding.base16().lowerCase().encode(b);
-        if(user.get("password").getAsString().equals(h)) { // check hash password
+        if (user.get("password").getAsString().equals(h)) { // check hash password
             prompt.setTitle("Success");
-            prompt.add(new JLabel("Login successful."), BorderLayout.CENTER);
+            message.setText("Login successful. Welcome, " + user.get("username").getAsString() + "!");
+            prompt.add(message);
+            prompt.add(confirm);
             prompt.setVisible(true);
+            dispose();
             // check if user is admin
-            if(user.get("roleName").getAsString().equals("admin")) {
+            if (user.get("roleName").getAsString().equals("admin")) {
+                MainWindow mainWindow = new MainWindow(0);
+                mainWindow.setVisible(true);
                 return 0;
             }
+            MainWindow mainWindow = new MainWindow(user.get("id").getAsInt());
+            mainWindow.setVisible(true);
             return 1;
         } else {
             // pop up error message
             prompt.setTitle("Error");
-            prompt.add(new JLabel("Incorrect username or password."), BorderLayout.CENTER);
+            message.setText("Username or password is incorrect.");
+            prompt.add(message);
+            prompt.add(confirm);
             prompt.setVisible(true);
             return -2;
         }

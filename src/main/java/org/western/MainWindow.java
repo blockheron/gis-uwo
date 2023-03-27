@@ -19,6 +19,8 @@ import java.util.LinkedList;
  * @author m
  */
 public class MainWindow extends javax.swing.JFrame {
+    private int session = -1; // -1 for guest, 0 for admin, 1 for user
+    private int building = 0;
 
     private int x, y, initialX, initialY, deltaX, deltaY;
     private boolean editMode = false;
@@ -45,6 +47,16 @@ public class MainWindow extends javax.swing.JFrame {
         renderRooms();
     }
 
+
+    public MainWindow(int session) {
+        this.session = session;
+        initComponents();
+        initMainWindow();
+        initSearchBox();
+        renderFrame();
+        prepareIcon();
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -66,7 +78,9 @@ public class MainWindow extends javax.swing.JFrame {
         filterIcon = new javax.swing.JLabel();
         filterText = new javax.swing.JLabel();
         selectBox = new javax.swing.JComboBox<>();
-        resultPanel = new javax.swing.JPanel();
+        resultContainer = new javax.swing.JPanel();
+        resultPanel = new javax.swing.JScrollPane();
+        resultList = new javax.swing.JList<>();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -154,21 +168,31 @@ public class MainWindow extends javax.swing.JFrame {
         selectBox.setPreferredSize(new java.awt.Dimension(180, 32));
         filterPanel.add(selectBox);
 
-        resultPanel.setBackground(new java.awt.Color(245, 245, 247));
+        resultContainer.setBackground(new java.awt.Color(245, 245, 247));
+
+        resultList.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        resultList.setPreferredSize(new java.awt.Dimension(280, 120));
+        resultPanel.setViewportView(resultList);
+
+        resultContainer.add(resultPanel);
 
         javax.swing.GroupLayout dropDownPanelLayout = new javax.swing.GroupLayout(dropDownPanel);
         dropDownPanel.setLayout(dropDownPanelLayout);
         dropDownPanelLayout.setHorizontalGroup(
             dropDownPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(filterPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(resultPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(resultContainer, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         dropDownPanelLayout.setVerticalGroup(
             dropDownPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(dropDownPanelLayout.createSequentialGroup()
                 .addComponent(filterPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(2, 2, 2)
-                .addComponent(resultPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(resultContainer, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         filterPanel.getAccessibleContext().setAccessibleName("");
@@ -411,6 +435,7 @@ public class MainWindow extends javax.swing.JFrame {
                 onSearch.setBackground(Color.WHITE);
             }
         });
+        onSearch.addActionListener(e -> handleSearch());
     }
 
     public void initButtons() {
@@ -440,17 +465,22 @@ public class MainWindow extends javax.swing.JFrame {
         canvas = new Canvas("/org/western/assets/mc-demo.png", this.getWidth(), this.getHeight());
         Frame.add(canvas);
         Frame.setFocusable(true);
+        System.out.println("User: " + session + " logged in");
     }
 
     /**
      * Prepare icon for onSearch button
      */
     private void prepareIcon() {
-        // Load icon from font library (currently using RemixIcon)
-        FontIcon searchIcon = FontIcon.of(RemixiconMZ.SEARCH_LINE, 20, Color.decode("#828282")),
-                filterIcon = FontIcon.of(RemixiconAL.FILTER_2_LINE, 20, Color.decode("#828282"));
-        onSearch.setIcon(searchIcon);
-        this.filterIcon.setIcon(filterIcon);
+        try {
+            // Load icon from font library (currently using RemixIcon)
+            FontIcon searchIcon = FontIcon.of(RemixiconMZ.SEARCH_LINE, 20, Color.decode("#828282")),
+                    filterIcon = FontIcon.of(RemixiconAL.FILTER_2_LINE, 20, Color.decode("#828282"));
+            onSearch.setIcon(searchIcon);
+            this.filterIcon.setIcon(filterIcon);
+        } catch (Exception e) {
+            System.out.printf("Error: icons failed to load\n%s", e.getMessage());
+        }
     }
     
     private void renderRooms() {
@@ -476,13 +506,32 @@ public class MainWindow extends javax.swing.JFrame {
     }
 
     private int handleSearch() {
-        String query = searchBox.getText();
+        JsonDB db; // database instance
+        String query = searchBox.getText(); // get query from searchBox
+        String[] w; // array of words in query
+        StringBuilder sb = new StringBuilder(); // string builder for acronym
         if (query.isEmpty() || query.equals("Search")) {
             System.out.println("Empty query");
             return 1;
         }
         String filter = selectBox.getSelectedItem().toString();
-        System.out.println(query + " " + filter);
+        db = new JsonDB("poi", query);
+        if(db.getData().get("status").getAsInt() != 200) {
+            w = query.split(" ");
+            for (String word : w) {
+                sb.append(word.charAt(0));
+            }
+            db = new JsonDB("poi", sb.toString().toLowerCase());
+            if(db.getData().get("status").getAsInt() != 200) {
+                System.out.printf("No result found for %s\n", query);
+                return 1;
+            }
+            else {
+                System.out.println(db.getData().toString());
+            }
+        } else {
+            System.out.println(db.getData().toString());
+        }
         return 0;
     }
     
@@ -593,7 +642,9 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JLayeredPane layerPanel;
     private javax.swing.JButton onSearch;
-    private javax.swing.JPanel resultPanel;
+    private javax.swing.JPanel resultContainer;
+    private javax.swing.JList<String> resultList;
+    private javax.swing.JScrollPane resultPanel;
     private javax.swing.JTextField searchBox;
     private javax.swing.JPanel searchPanel;
     private javax.swing.JComboBox<String> selectBox;

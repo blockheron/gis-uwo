@@ -9,29 +9,63 @@ public class JsonDB {
     private JsonObject data;
     public JsonDB(String field, String value) {
         int i;
+        boolean dev = false;
+        String fn;
         JsonObject j;
         Gson g = new Gson();
+        if(!Objects.requireNonNull(getClass().getResource("db/user.json")).toString().contains("!")) {
+            dev = true;
+        }
         if(field.equals("user") || field.equals("poi")) {
-            try (FileReader f = new FileReader(Objects.requireNonNull(getClass().getResource("/org/western/db/" + field + ".json")).getFile())) { // new file reader
+            fn = dev ? Objects.requireNonNull(getClass().getResource("db/" + field + ".json")).getFile() : "db/" + field + ".json";
+            try (FileReader f = new FileReader(fn)) { // new file reader
                 j = JsonParser.parseReader(f).getAsJsonObject(); // parse json file
                 if(field.equals("user"))
                 {
                     if(j.get("data") != null && j.get("data").getAsJsonObject().get(value) != null) {
                         i = j.get("data").getAsJsonObject().get(value).getAsInt();
-                        if(i < j.get("count").getAsInt()) { // check if user exists
-                            try (FileReader r = new FileReader(Objects.requireNonNull(getClass().getResource("/org/western/db/" + i + ".json")).getFile())) { // new file reader
+                        if(i <= j.get("count").getAsInt()) { // check if user exists
+                            fn = dev ? Objects.requireNonNull(getClass().getResource("db/u-" + i + ".json")).getFile() : "db/u-" + i + ".json";
+                            try (FileReader r = new FileReader(fn)) { // new file reader
                                 User u = g.fromJson(r, User.class); // convert to json element
                                 data = g.toJsonTree(u).getAsJsonObject(); // convert to json object
                             }
-                        } else {
-                            data = JsonParser.parseString("{\"status\": 500, \"message\": \"Internal Error\"}").getAsJsonObject(); // internal error
+                            catch (Exception e) {
+                                data = JsonParser.parseString("{\"status\": 500, \"message\": \"Internal Error\"}").getAsJsonObject(); // internal error
+                            }
                         }
                     } else {
                         data = JsonParser.parseString("{\"status\": 404, \"message\": \"Not Found\"}").getAsJsonObject(); // not found
                     }
                 } else {
-                    POI p = g.fromJson(f, POI.class); // convert to json element
-                    data = g.toJsonTree(p).getAsJsonObject(); // convert to json object
+                    if(j.get("data") != null && j.get("data").getAsJsonObject().get(value) != null) {
+                        i = j.get("data").getAsJsonObject().get(value).getAsInt();
+                        if(i <= j.get("count").getAsInt()) { // check if poi exists
+                            fn = dev ? Objects.requireNonNull(getClass().getResource("db/p-" + i + ".json")).getFile() : "db/p-" + i + ".json";
+                            try (FileReader r = new FileReader(fn)) { // new file reader
+                                // parse from reader
+                                j = JsonParser.parseReader(r).getAsJsonObject();
+                                if(j.get("data") != null) {
+                                    JsonArray dataArr = j.get("data").getAsJsonArray(), result = new JsonArray();
+                                    for(JsonElement e : dataArr) {
+                                        POI p = g.fromJson(e, POI.class);
+                                        result.add(g.toJsonTree(p).getAsJsonObject());
+                                    }
+                                    data = new JsonObject();
+                                    data.add("status", JsonParser.parseString("200"));
+                                    data.add("message", JsonParser.parseString("success"));
+                                    data.add("data", result);
+                                } else {
+                                    data = JsonParser.parseString("{\"status\": 403, \"message\": \"Forbidden\"}").getAsJsonObject(); // forbidden
+                                }
+                            }
+                            catch (Exception e) {
+                                data = JsonParser.parseString("{\"status\": 500, \"message\": \"Internal Error\"}").getAsJsonObject(); // internal error
+                            }
+                        }
+                    } else {
+                        data = JsonParser.parseString("{\"status\": 404, \"message\": \"Not Found\"}").getAsJsonObject(); // not found
+                    }
                 }
             } catch (Exception e) {
                 data = JsonParser.parseString("{\"status\": 204, \"message\": \"No Content\"}").getAsJsonObject(); // not found
@@ -45,7 +79,9 @@ public class JsonDB {
         return data;
     }
     public static void main(String[] args) {
-        JsonDB j = new JsonDB("user", "admin");
+        JsonDB j = new JsonDB("poi", "mc");
         System.out.println(j.getData().toString());
+//        Gson g = new GsonBuilder().setPrettyPrinting().create();
+//        System.out.println(g.toJson(j.getData()));
     }
 }

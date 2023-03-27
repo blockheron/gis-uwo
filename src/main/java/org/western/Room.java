@@ -55,7 +55,7 @@ public class Room extends JComponent
         //
         
         //add mock POI to list
-        POIs.add(new POI(1, "test_name", "sample_description", null, "1", null));
+        //POIs.add(new POI(1, "test_name", "sample_description", null, "1", null));
         //
         
     }
