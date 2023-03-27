@@ -10,6 +10,8 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseEvent;
 
+import java.util.LinkedList;
+
 /**
  *
  * @author Liam
@@ -23,6 +25,8 @@ public class Room extends JComponent
     private Color color;
     private Color activeColor;
     private boolean active = false;
+    public LinkedList<POI> POIs;
+    private POIListPopup ListPopup;
     
     public Room(Polygon shape, Point position) 
     {
@@ -38,14 +42,15 @@ public class Room extends JComponent
         this.shape = shape;
         setOpaque(false);
         
+        
         //get the bounding rectangle of the polygon
         bounds = this.shape.getBounds();
         setBounds(bounds);
         //
         
         //set colors
-        color = Color.GRAY;
-        activeColor = Color.BLUE;
+        color = new Color(200,200,200,50);//transparent
+        activeColor = new Color(102, 178, 255, 50);//light blue with transparency
         //
         
         
@@ -53,6 +58,7 @@ public class Room extends JComponent
     
     public void translate (int x, int y) {
         setLocation(getX()+x, getY()+y);
+        if (ListPopup != null) ListPopup.translate(x, y);
     }
     
     public void paintComponent(Graphics g)
@@ -152,10 +158,21 @@ public class Room extends JComponent
         
     }
     
-    public void mouseClicked(MouseEvent e) {
+    public void mouseClicked(MouseEvent e, JLayeredPane layerPanel) {
 
+        if (active && ListPopup == null) {
+          
+            ListPopup = new POIListPopup(this);
+            layerPanel.add(ListPopup, JLayeredPane.POPUP_LAYER);
+            ListPopup.setSize(ListPopup.getPreferredSize());
+            ListPopup.setLocation(e.getPoint());
+            
+        }
         
-        
+    }
+    
+    public void deletePopup() {
+        ListPopup = null;
     }
     
 }

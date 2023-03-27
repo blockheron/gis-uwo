@@ -494,6 +494,13 @@ public class MainWindow extends javax.swing.JFrame {
         
     }
     
+    public void attachComponent(JComponent comp)
+    {
+        
+        layerPanel.add(comp, JLayeredPane.POPUP_LAYER);
+        
+    }
+    
     class MouseHandler extends MouseAdapter {
         public void mousePressed(MouseEvent e) {
             initialX = e.getX();
@@ -539,6 +546,11 @@ public class MainWindow extends javax.swing.JFrame {
             for (Room room:rooms) room.mouseExited(e);
             
         }
+        
+        public void mouseClicked(MouseEvent e) {
+            for (Room room:rooms) room.mouseClicked(e, layerPanel);
+        }
+        
     }
 
     class MouseMotionHandler extends MouseMotionAdapter {
