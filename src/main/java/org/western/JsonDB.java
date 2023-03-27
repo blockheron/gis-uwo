@@ -52,6 +52,8 @@ public class JsonDB {
                                         result.add(g.toJsonTree(p).getAsJsonObject());
                                     }
                                     data = new JsonObject();
+                                    data.add("status", JsonParser.parseString("200"));
+                                    data.add("message", JsonParser.parseString("success"));
                                     data.add("data", result);
                                 } else {
                                     data = JsonParser.parseString("{\"status\": 403, \"message\": \"Forbidden\"}").getAsJsonObject(); // forbidden
