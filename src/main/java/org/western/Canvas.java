@@ -12,14 +12,14 @@ import java.util.Objects;
 // Adapted from http://www.java2s.com/Code/Java/2D-Graphics-GUI/Imagewithmousedragandmoveevent.htm
 
 class Canvas extends JPanel {
-    int x, y, initialX, initialY;
+    int x, y;//, initialX, initialY;
     BufferedImage bi;
 
     Canvas(String f, int w, int h) {
         setBackground(Color.white);
         setSize(w, h);
-        addMouseListener(new MouseHandler());
-        addMouseMotionListener(new MouseMotionHandler());
+        //addMouseListener(new MouseHandler());
+        //addMouseMotionListener(new MouseMotionHandler());
         Image image = new ImageIcon(Objects.requireNonNull(getClass().getResource(f))).getImage();
         // scale image to fit window
         image = image.getScaledInstance(w, image.getHeight(this) * w / image.getWidth(this), Image.SCALE_SMOOTH);
@@ -43,14 +43,22 @@ class Canvas extends JPanel {
         big.drawImage(image, 0, 0, this);
     }
 
+    public void translate (int x, int y) {
+        this.x+=x;
+        this.y+=y;
+    }
+    
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2D = (Graphics2D) g;
-
         g2D.drawImage(bi, x, y, this);
     }
-
-    class MouseHandler extends MouseAdapter {
+    
+    //public int getImgX() {return x;}
+    
+    //public int getImgY() {return y;}
+    
+    /*class MouseHandler extends MouseAdapter {
         public void mousePressed(MouseEvent e) {
             initialX = e.getX();
             initialY = e.getY();
@@ -72,6 +80,6 @@ class Canvas extends JPanel {
 
             repaint();
         }
-    }
+    }*/
 
 }
