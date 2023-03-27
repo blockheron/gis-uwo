@@ -523,6 +523,7 @@ public class Login extends javax.swing.JFrame {
         if (user.get("status") != null && user.get("status").getAsInt() != 200) {
             // pop up error message
             prompt.setTitle("Error");
+            System.out.println(user.get("status").getAsInt());
             if (user.get("status").getAsInt() == 204) {
                 message.setText("Failed connecting to database.");
             } else {

@@ -344,11 +344,15 @@ public class MainWindow extends javax.swing.JFrame {
      * Prepare icon for onSearch button
      */
     private void prepareIcon() {
-        // Load icon from font library (currently using RemixIcon)
-        FontIcon searchIcon = FontIcon.of(RemixiconMZ.SEARCH_LINE, 20, Color.decode("#828282")),
-                filterIcon = FontIcon.of(RemixiconAL.FILTER_2_LINE, 20, Color.decode("#828282"));
-        onSearch.setIcon(searchIcon);
-        this.filterIcon.setIcon(filterIcon);
+        try {
+            // Load icon from font library (currently using RemixIcon)
+            FontIcon searchIcon = FontIcon.of(RemixiconMZ.SEARCH_LINE, 20, Color.decode("#828282")),
+                    filterIcon = FontIcon.of(RemixiconAL.FILTER_2_LINE, 20, Color.decode("#828282"));
+            onSearch.setIcon(searchIcon);
+            this.filterIcon.setIcon(filterIcon);
+        } catch (Exception e) {
+            System.out.printf("Error: icons failed to load\n%s", e.getMessage());
+        }
     }
 
     private int handleSearch() {
