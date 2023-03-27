@@ -41,6 +41,7 @@ public class Room extends JComponent
         
         this.shape = shape;
         setOpaque(false);
+        POIs = new LinkedList<POI>();
         
         
         //get the bounding rectangle of the polygon
@@ -53,6 +54,9 @@ public class Room extends JComponent
         activeColor = new Color(102, 178, 255, 50);//light blue with transparency
         //
         
+        //add mock POI to list
+        POIs.add(new POI(1, "test_name", "sample_description", null, "1", null));
+        //
         
     }
     
@@ -162,7 +166,7 @@ public class Room extends JComponent
 
         if (active && ListPopup == null) {
           
-            ListPopup = new POIListPopup(this);
+            ListPopup = new POIListPopup(this, POIs);
             layerPanel.add(ListPopup, JLayeredPane.POPUP_LAYER);
             ListPopup.setSize(ListPopup.getPreferredSize());
             ListPopup.setLocation(e.getPoint());

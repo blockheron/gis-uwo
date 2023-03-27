@@ -13,6 +13,8 @@ import org.kordamp.ikonli.remixicon.RemixiconAL;
 import org.kordamp.ikonli.remixicon.RemixiconMZ;
 import org.kordamp.ikonli.swing.FontIcon;
 
+import java.util.LinkedList;
+
 /**
  *
  * @author Liam
@@ -20,14 +22,20 @@ import org.kordamp.ikonli.swing.FontIcon;
 public class POIListPopup extends javax.swing.JPanel {
 
     private Room room;
+    private LinkedList<POI> POIs;
     
     /**
      * Creates new form POIListPopup
      */
-    public POIListPopup(Room room) {
-        initComponents();
-        initButtons();
+    public POIListPopup(Room room, LinkedList<POI> POIs) {
+        
         this.room = room;
+        this.POIs = POIs;
+        initComponents();
+        //ButtonContainer.setSize(ButtonContainer.getParent().getSize());
+        
+        initButtons();
+        
     }
 
     /**
@@ -40,23 +48,15 @@ public class POIListPopup extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        POIList = new javax.swing.JList<>();
         ExitButton = new javax.swing.JButton();
+        ScrollPane = new javax.swing.JScrollPane();
+        ButtonContainer = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel1.setText("POIs:");
         jLabel1.setMaximumSize(new java.awt.Dimension(352, 16));
-
-        POIList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        POIList.setMaximumSize(new java.awt.Dimension(388, 152));
-        jScrollPane1.setViewportView(POIList);
 
         ExitButton.setBorder(null);
         ExitButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -70,6 +70,23 @@ public class POIListPopup extends javax.swing.JPanel {
             }
         });
 
+        ScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        ButtonContainer.setMinimumSize(new java.awt.Dimension(386, 60));
+
+        javax.swing.GroupLayout ButtonContainerLayout = new javax.swing.GroupLayout(ButtonContainer);
+        ButtonContainer.setLayout(ButtonContainerLayout);
+        ButtonContainerLayout.setHorizontalGroup(
+            ButtonContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 386, Short.MAX_VALUE)
+        );
+        ButtonContainerLayout.setVerticalGroup(
+            ButtonContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 134, Short.MAX_VALUE)
+        );
+
+        ScrollPane.setViewportView(ButtonContainer);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -77,7 +94,7 @@ public class POIListPopup extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
+                    .addComponent(ScrollPane)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -93,7 +110,7 @@ public class POIListPopup extends javax.swing.JPanel {
                     .addComponent(ExitButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(14, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -104,17 +121,38 @@ public class POIListPopup extends javax.swing.JPanel {
 
     private void ExitButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExitButtonMouseClicked
         
+        close();
+               
+    }//GEN-LAST:event_ExitButtonMouseClicked
+
+    //closes the popup
+    public void close() {
+        
         Container parent = this.getParent();
         parent.remove(this);
         parent.revalidate();
         parent.repaint();
         room.deletePopup();
-               
-    }//GEN-LAST:event_ExitButtonMouseClicked
-
+        
+    }
+    
     private void initButtons() {
+        
+        //set exit button icons
         ExitButton.setIcon(FontIcon.of(RemixiconAL.CLOSE_FILL, 24));
         ExitButton.setPressedIcon(FontIcon.of(RemixiconAL.CLOSE_FILL, 24, Color.RED));
+        //
+        
+        //create buttons for POIs in list
+        for (POI poi:POIs) {
+                       
+            JButton button = new POIButton(poi, this);
+            ButtonContainer.add(button);
+            button.setSize(ScrollPane.getPreferredSize().width, POIButton.HEIGHT);
+            
+        }
+        //
+        
     }
     
     public void translate (int x, int y) {
@@ -123,9 +161,9 @@ public class POIListPopup extends javax.swing.JPanel {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel ButtonContainer;
     private javax.swing.JButton ExitButton;
-    private javax.swing.JList<String> POIList;
+    private javax.swing.JScrollPane ScrollPane;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

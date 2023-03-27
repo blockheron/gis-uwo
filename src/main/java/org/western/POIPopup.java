@@ -4,19 +4,58 @@
  */
 package org.western;
 
+import java.awt.*;
+import org.kordamp.ikonli.remixicon.RemixiconAL;
+import org.kordamp.ikonli.swing.FontIcon;
+
 /**
  *
  * @author Liam
  */
 public class POIPopup extends javax.swing.JPanel {
 
+    private POI POI;
+    
     /**
      * Creates new form POIPopup
      */
-    public POIPopup() {
+    public POIPopup(POI POI) {
+        
+        this.POI = POI;
         initComponents();
+        
+        fillTextBoxes();
+        initButtons();
+        
     }
 
+    private void fillTextBoxes() {
+        
+        POINameField.setText(POI.getName());
+        RoomNameField.setText("Room: " + POI.getRoom());
+        DescriptionTextField.setText(POI.getDescription());
+        //BuildingNameField.setText(POI.getBuilding().getName());
+        
+    }
+    
+    private void initButtons() {
+        
+        //set exit button icons
+        ExitButton.setIcon(FontIcon.of(RemixiconAL.CLOSE_FILL, 24));
+        ExitButton.setPressedIcon(FontIcon.of(RemixiconAL.CLOSE_FILL, 24, Color.RED));
+        //
+        
+    }
+    
+    public void close() {
+        
+        Container parent = this.getParent();
+        parent.remove(this);
+        parent.revalidate();
+        parent.repaint();
+        
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -37,12 +76,16 @@ public class POIPopup extends javax.swing.JPanel {
         SaveButton = new javax.swing.JButton();
         ExitButton = new javax.swing.JButton();
 
+        POINameField.setEditable(false);
         POINameField.setText("POI_NAME");
 
+        BuildingNameField.setEditable(false);
         BuildingNameField.setText("BUILDING_NAME");
 
+        RoomNameField.setEditable(false);
         RoomNameField.setText("ROOM_NAME");
 
+        DescriptionTextField.setEditable(false);
         DescriptionTextField.setColumns(20);
         DescriptionTextField.setRows(5);
         jScrollPane1.setViewportView(DescriptionTextField);
@@ -52,6 +95,12 @@ public class POIPopup extends javax.swing.JPanel {
         EditButton.setText("Edit");
 
         SaveButton.setText("Save");
+
+        ExitButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ExitButtonMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -106,6 +155,10 @@ public class POIPopup extends javax.swing.JPanel {
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void ExitButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExitButtonMouseClicked
+        close();
+    }//GEN-LAST:event_ExitButtonMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
