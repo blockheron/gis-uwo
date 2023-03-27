@@ -41,7 +41,6 @@ public class JsonDB {
                     if(j.get("data") != null && j.get("data").getAsJsonObject().get(value) != null) {
                         i = j.get("data").getAsJsonObject().get(value).getAsInt();
                         if(i <= j.get("count").getAsInt()) { // check if poi exists
-                            System.out.println(getClass().getResource("db/p-" + i + ".json"));
                             fn = dev ? Objects.requireNonNull(getClass().getResource("db/p-" + i + ".json")).getFile() : "db/p-" + i + ".json";
                             try (FileReader r = new FileReader(fn)) { // new file reader
                                 // parse from reader
