@@ -17,7 +17,6 @@ import java.awt.event.*;
  * @author m
  */
 public class MainWindow extends javax.swing.JFrame{
-
     /**
      * Creates new form MainWindow
      */
@@ -41,8 +40,11 @@ public class MainWindow extends javax.swing.JFrame{
 
         layerPanel = new javax.swing.JLayeredPane();
         Frame = new javax.swing.JPanel();
+        layer = new javax.swing.JPanel();
         layersDisplayList = new javax.swing.JPanel();
-        layersButton = new java.awt.Button();
+        layer1Radio = new javax.swing.JRadioButton();
+        layer2Radio = new javax.swing.JRadioButton();
+        LayersToggleButton = new javax.swing.JToggleButton();
         searchPanel = new javax.swing.JPanel();
         searchBox = new javax.swing.JTextField();
         onSearch = new javax.swing.JButton();
@@ -71,50 +73,104 @@ public class MainWindow extends javax.swing.JFrame{
         Frame.setForeground(new java.awt.Color(130, 130, 130));
         Frame.setPreferredSize(new java.awt.Dimension(1200, 800));
 
+        layer.setPreferredSize(new java.awt.Dimension(300, 300));
+
+        javax.swing.GroupLayout layerLayout = new javax.swing.GroupLayout(layer);
+        layer.setLayout(layerLayout);
+        layerLayout.setHorizontalGroup(
+            layerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 898, Short.MAX_VALUE)
+        );
+        layerLayout.setVerticalGroup(
+            layerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
         layersDisplayList.setBackground(new java.awt.Color(255, 255, 255));
+        layersDisplayList.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentMoved(java.awt.event.ComponentEvent evt) {
+                layersDisplayListComponentMoved(evt);
+            }
+        });
+
+        layer1Radio.setText("Layer 1");
+        layer1Radio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                layer1RadioMouseClicked(evt);
+            }
+        });
+        layer1Radio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                layer1RadioActionPerformed(evt);
+            }
+        });
+
+        layer2Radio.setText("Layer 2");
+        layer2Radio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                layer2RadioMouseClicked(evt);
+            }
+        });
+        layer2Radio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                layer2RadioActionPerformed(evt);
+            }
+        });
+
+        LayersToggleButton.setBackground(new java.awt.Color(242, 242, 242));
+        LayersToggleButton.setText("Layers");
+        LayersToggleButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                LayersToggleButtonMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layersDisplayListLayout = new javax.swing.GroupLayout(layersDisplayList);
         layersDisplayList.setLayout(layersDisplayListLayout);
         layersDisplayListLayout.setHorizontalGroup(
             layersDisplayListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(layersDisplayListLayout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(layersDisplayListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(layer2Radio)
+                    .addComponent(layer1Radio))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layersDisplayListLayout.createSequentialGroup()
+                .addComponent(LayersToggleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 12, Short.MAX_VALUE))
         );
         layersDisplayListLayout.setVerticalGroup(
             layersDisplayListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 224, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layersDisplayListLayout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(layer1Radio)
+                .addGap(18, 18, 18)
+                .addComponent(layer2Radio)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addComponent(LayersToggleButton))
         );
-
-        layersButton.setBackground(new java.awt.Color(255, 255, 255));
-        layersButton.setLabel("Layers");
-        layersButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                layersButtonMouseClicked(evt);
-            }
-        });
-        layersButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                layersButtonActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout FrameLayout = new javax.swing.GroupLayout(Frame);
         Frame.setLayout(FrameLayout);
         FrameLayout.setHorizontalGroup(
             FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(FrameLayout.createSequentialGroup()
-                .addGap(948, 948, 948)
-                .addGroup(FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(layersDisplayList, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(layersButton, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(layer, javax.swing.GroupLayout.PREFERRED_SIZE, 898, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(layersDisplayList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12))
         );
         FrameLayout.setVerticalGroup(
             FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(FrameLayout.createSequentialGroup()
-                .addContainerGap(380, Short.MAX_VALUE)
-                .addComponent(layersButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FrameLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(layer, javax.swing.GroupLayout.DEFAULT_SIZE, 788, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FrameLayout.createSequentialGroup()
+                .addContainerGap(496, Short.MAX_VALUE)
                 .addComponent(layersDisplayList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(171, 171, 171))
+                .addGap(156, 156, 156))
         );
 
         searchPanel.setForeground(new java.awt.Color(13, 17, 23));
@@ -270,7 +326,7 @@ public class MainWindow extends javax.swing.JFrame{
                 .addGroup(layerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Frame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(searchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(330, Short.MAX_VALUE))
         );
 
         getContentPane().add(layerPanel, java.awt.BorderLayout.CENTER);
@@ -286,71 +342,108 @@ public class MainWindow extends javax.swing.JFrame{
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    // 
-    private void searchBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_searchBoxActionPerformed
-
-    private void onSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onSearchActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_onSearchActionPerformed
-
-    private void selectBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_selectBoxActionPerformed
-
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
-
- 
-     
-    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
-        
-    }//GEN-LAST:event_jRadioButton2ActionPerformed
-
-    private void favToggle1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_favToggle1ActionPerformed
+    private void favToggle3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_favToggle3ActionPerformed
         // Toggle between filled star and star outline
-        if (favToggle1.isSelected()){
+        if (favToggle3.isSelected()){
             FontIcon favouriteIcon = FontIcon.of(RemixiconMZ.STAR_FILL, 20, Color.decode("#828282"));
-            favToggle1.setIcon(favouriteIcon); 
+            favToggle3.setIcon(favouriteIcon);
         } else {
             FontIcon favouriteIcon = FontIcon.of(RemixiconMZ.STAR_LINE, 20, Color.decode("#828282"));
-            favToggle1.setIcon(favouriteIcon); 
+            favToggle3.setIcon(favouriteIcon);
         }
-    }//GEN-LAST:event_favToggle1ActionPerformed
+    }//GEN-LAST:event_favToggle3ActionPerformed
 
     private void favToggle2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_favToggle2ActionPerformed
         // Toggle between filled star and star outline
         if (favToggle2.isSelected()){
             FontIcon favouriteIcon = FontIcon.of(RemixiconMZ.STAR_FILL, 20, Color.decode("#828282"));
-            favToggle2.setIcon(favouriteIcon); 
+            favToggle2.setIcon(favouriteIcon);
         } else {
             FontIcon favouriteIcon = FontIcon.of(RemixiconMZ.STAR_LINE, 20, Color.decode("#828282"));
-            favToggle2.setIcon(favouriteIcon); 
+            favToggle2.setIcon(favouriteIcon);
         }
     }//GEN-LAST:event_favToggle2ActionPerformed
 
-    private void favToggle3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_favToggle3ActionPerformed
+    private void favToggle1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_favToggle1ActionPerformed
         // Toggle between filled star and star outline
-        if (favToggle3.isSelected()){
+        if (favToggle1.isSelected()){
             FontIcon favouriteIcon = FontIcon.of(RemixiconMZ.STAR_FILL, 20, Color.decode("#828282"));
-            favToggle3.setIcon(favouriteIcon); 
+            favToggle1.setIcon(favouriteIcon);
         } else {
             FontIcon favouriteIcon = FontIcon.of(RemixiconMZ.STAR_LINE, 20, Color.decode("#828282"));
-            favToggle3.setIcon(favouriteIcon); 
+            favToggle1.setIcon(favouriteIcon);
         }
-    }//GEN-LAST:event_favToggle3ActionPerformed
+    }//GEN-LAST:event_favToggle1ActionPerformed
 
-    private void layersButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_layersButtonActionPerformed
+    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+
+    }//GEN-LAST:event_jRadioButton2ActionPerformed
+
+    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_layersButtonActionPerformed
+    }//GEN-LAST:event_jRadioButton1ActionPerformed
 
-    private void layersButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_layersButtonMouseClicked
-        // Move when clicked
-        layersButton.setLocation(layersButton.getLocation().x, layersButton.getY()-20);
-    }//GEN-LAST:event_layersButtonMouseClicked
+    private void selectBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_selectBoxActionPerformed
 
+    private void onSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onSearchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_onSearchActionPerformed
+
+    // 
+    private void searchBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchBoxActionPerformed
+
+    private void layersDisplayListComponentMoved(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_layersDisplayListComponentMoved
+        // TODO add your handling code here:
+        layersDisplayList.setOpaque(true);
+    }//GEN-LAST:event_layersDisplayListComponentMoved
+
+    private void layer2RadioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_layer2RadioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_layer2RadioActionPerformed
+
+    private void layer1RadioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_layer1RadioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_layer1RadioActionPerformed
+
+    private void LayersToggleButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LayersToggleButtonMouseClicked
+        // TODO add your handling code here:
+        if (LayersToggleButton.isSelected()){
+            LayersToggleButton.setLocation(LayersToggleButton.getX(), LayersToggleButton.getY());
+            layersDisplayList.setOpaque(true); // make list visible
+            layer2Radio.setVisible(true);
+            layer1Radio.setVisible(true);
+        } else {
+            LayersToggleButton.setLocation(0, 180);
+            layersDisplayList.setOpaque(false); // make list invisible
+            layer2Radio.setVisible(false);
+            layer1Radio.setVisible(false);
+        }
+    }//GEN-LAST:event_LayersToggleButtonMouseClicked
+
+    private void layer1RadioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_layer1RadioMouseClicked
+        if (layer1Radio.isSelected()){
+            layer.setBackground(new java.awt.Color(255,255,255,100));
+            layer.setVisible(true);   
+        } else {
+            layer.setVisible(false);
+        }
+    }//GEN-LAST:event_layer1RadioMouseClicked
+
+    private void layer2RadioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_layer2RadioMouseClicked
+        // TODO add your handling code here:
+        if (layer2Radio.isSelected()){
+            layer.setBackground(new java.awt.Color(255,51,102,100));
+            layer.setVisible(true);
+        } else {
+            layer.setVisible(false);
+        }
+    }//GEN-LAST:event_layer2RadioMouseClicked
+
+  
     /**
      * @param args the command line arguments
      */
@@ -519,6 +612,7 @@ public class MainWindow extends javax.swing.JFrame{
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Frame;
+    private javax.swing.JToggleButton LayersToggleButton;
     private javax.swing.JPanel dropDownPanel;
     private javax.swing.JToggleButton favToggle1;
     private javax.swing.JToggleButton favToggle2;
@@ -533,8 +627,10 @@ public class MainWindow extends javax.swing.JFrame{
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JRadioButton jRadioButton3;
+    private javax.swing.JPanel layer;
+    private javax.swing.JRadioButton layer1Radio;
+    private javax.swing.JRadioButton layer2Radio;
     private javax.swing.JLayeredPane layerPanel;
-    private java.awt.Button layersButton;
     private javax.swing.JPanel layersDisplayList;
     private javax.swing.JButton onSearch;
     private javax.swing.JPanel resultPanel;
@@ -544,8 +640,14 @@ public class MainWindow extends javax.swing.JFrame{
     // End of variables declaration//GEN-END:variables
 
     private void initLayers(){
-        layersDisplayList.setOpaque(false); // make searchPanel transparent
+        //layersDisplayList.setOpaque(false); // make searchPanel transparent
         // Keep x position same, change y position
-        layersButton.setLocation(layersButton.getX(), ((layersButton.getLocation().y)+layersDisplayList.getHeight()));// Reposition layer button
-    }
+        LayersToggleButton.setLocation(0, 180);
+        layersDisplayList.setOpaque(false);
+        layer2Radio.setVisible(false);
+        layer1Radio.setVisible(false);
+        layer.setVisible(false);
+       // layersButton.addEventListener(layersButtonMouseClicked);
+       
+    } 
 }
