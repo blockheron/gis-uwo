@@ -1,5 +1,7 @@
 package org.western;
 
+import com.google.gson.JsonObject;
+
 public class POI {
     private int id;
     private String name;
@@ -23,7 +25,6 @@ public class POI {
         this.coordinates = coordinates;
         this.user = user;
     }
-
 
     public int getId() {
         return id;

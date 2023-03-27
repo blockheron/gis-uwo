@@ -18,13 +18,14 @@ public class JsonDB {
                 {
                     if(j.get("data") != null && j.get("data").getAsJsonObject().get(value) != null) {
                         i = j.get("data").getAsJsonObject().get(value).getAsInt();
-                        if(i < j.get("count").getAsInt()) { // check if user exists
+                        if(i <= j.get("count").getAsInt()) { // check if user exists
                             try (FileReader r = new FileReader(Objects.requireNonNull(getClass().getResource("/org/western/db/u-" + i + ".json")).getFile())) { // new file reader
                                 User u = g.fromJson(r, User.class); // convert to json element
                                 data = g.toJsonTree(u).getAsJsonObject(); // convert to json object
                             }
-                        } else {
-                            data = JsonParser.parseString("{\"status\": 500, \"message\": \"Internal Error\"}").getAsJsonObject(); // internal error
+                            catch (Exception e) {
+                                data = JsonParser.parseString("{\"status\": 500, \"message\": \"Internal Error\"}").getAsJsonObject(); // internal error
+                            }
                         }
                     } else {
                         data = JsonParser.parseString("{\"status\": 404, \"message\": \"Not Found\"}").getAsJsonObject(); // not found
@@ -32,13 +33,26 @@ public class JsonDB {
                 } else {
                     if(j.get("data") != null && j.get("data").getAsJsonObject().get(value) != null) {
                         i = j.get("data").getAsJsonObject().get(value).getAsInt();
-                        if(i < j.get("count").getAsInt()) { // check if poi exists
+                        if(i <= j.get("count").getAsInt()) { // check if poi exists
+                            System.out.println(getClass().getResource("/org/western/db/p-" + i + ".json"));
                             try (FileReader r = new FileReader(Objects.requireNonNull(getClass().getResource("/org/western/db/p-" + i + ".json")).getFile())) { // new file reader
-                                POI p = g.fromJson(r, POI.class); // convert to json element
-                                data = g.toJsonTree(p).getAsJsonObject(); // convert to json object
+                                // parse from reader
+                                j = JsonParser.parseReader(r).getAsJsonObject();
+                                if(j.get("data") != null) {
+                                    JsonArray dataArr = j.get("data").getAsJsonArray(), result = new JsonArray();
+                                    for(JsonElement e : dataArr) {
+                                        POI p = g.fromJson(e, POI.class);
+                                        result.add(g.toJsonTree(p).getAsJsonObject());
+                                    }
+                                    data = new JsonObject();
+                                    data.add("data", result);
+                                } else {
+                                    data = JsonParser.parseString("{\"status\": 403, \"message\": \"Forbidden\"}").getAsJsonObject(); // forbidden
+                                }
                             }
-                        } else {
-                            data = JsonParser.parseString("{\"status\": 500, \"message\": \"Internal Error\"}").getAsJsonObject(); // internal error
+                            catch (Exception e) {
+                                data = JsonParser.parseString("{\"status\": 500, \"message\": \"Internal Error\"}").getAsJsonObject(); // internal error
+                            }
                         }
                     } else {
                         data = JsonParser.parseString("{\"status\": 404, \"message\": \"Not Found\"}").getAsJsonObject(); // not found
@@ -56,7 +70,7 @@ public class JsonDB {
         return data;
     }
     public static void main(String[] args) {
-        JsonDB j = new JsonDB("user", "admin");
+        JsonDB j = new JsonDB("poi", "mc");
         System.out.println(j.getData().toString());
     }
 }
