@@ -12,14 +12,14 @@ public class JsonDB {
         JsonObject j;
         Gson g = new Gson();
         if(field.equals("user") || field.equals("poi")) {
-            try (FileReader f = new FileReader(Objects.requireNonNull(getClass().getResource("/org/western/db/" + field + ".json")).getFile())) { // new file reader
+            try (FileReader f = new FileReader(Objects.requireNonNull(getClass().getResource("db/" + field + ".json")).getFile())) { // new file reader
                 j = JsonParser.parseReader(f).getAsJsonObject(); // parse json file
                 if(field.equals("user"))
                 {
                     if(j.get("data") != null && j.get("data").getAsJsonObject().get(value) != null) {
                         i = j.get("data").getAsJsonObject().get(value).getAsInt();
                         if(i <= j.get("count").getAsInt()) { // check if user exists
-                            try (FileReader r = new FileReader(Objects.requireNonNull(getClass().getResource("/org/western/db/u-" + i + ".json")).getFile())) { // new file reader
+                            try (FileReader r = new FileReader(Objects.requireNonNull(getClass().getResource("db/u-" + i + ".json")).getFile())) { // new file reader
                                 User u = g.fromJson(r, User.class); // convert to json element
                                 data = g.toJsonTree(u).getAsJsonObject(); // convert to json object
                             }
@@ -34,8 +34,8 @@ public class JsonDB {
                     if(j.get("data") != null && j.get("data").getAsJsonObject().get(value) != null) {
                         i = j.get("data").getAsJsonObject().get(value).getAsInt();
                         if(i <= j.get("count").getAsInt()) { // check if poi exists
-                            System.out.println(getClass().getResource("/org/western/db/p-" + i + ".json"));
-                            try (FileReader r = new FileReader(Objects.requireNonNull(getClass().getResource("/org/western/db/p-" + i + ".json")).getFile())) { // new file reader
+                            System.out.println(getClass().getResource("db/p-" + i + ".json"));
+                            try (FileReader r = new FileReader(Objects.requireNonNull(getClass().getResource("db/p-" + i + ".json")).getFile())) { // new file reader
                                 // parse from reader
                                 j = JsonParser.parseReader(r).getAsJsonObject();
                                 if(j.get("data") != null) {
