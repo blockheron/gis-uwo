@@ -462,7 +462,7 @@ public class MainWindow extends javax.swing.JFrame {
      * Render frame
      */
     private void renderFrame() {
-        canvas = new Canvas("/org/western/assets/mc-demo.png", this.getWidth(), this.getHeight());
+        canvas = new Canvas("/org/western/assets/MC-BF-1.png", this.getWidth(), this.getHeight());
         Frame.add(canvas);
         Frame.setFocusable(true);
         System.out.println("User: " + session + " logged in");
