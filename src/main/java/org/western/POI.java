@@ -9,12 +9,12 @@ public class POI {
     private String building;
     private String floor;
 
-    private String layer;
+    private String[] layer;
     private String room;
     private float[][] coordinates = new float[4][2];
     private int[] user;
 
-    public POI(int id, String name, String description, String building, String floor, String layer, String room, float[][] coordinates, int[] user) {
+    public POI(int id, String name, String description, String building, String floor, String[] layer, String room, float[][] coordinates, int[] user) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -46,7 +46,7 @@ public class POI {
         return floor;
     }
 
-    public String getLayer() {
+    public String[] getLayer() {
         return layer;
     }
 

@@ -13,6 +13,7 @@ import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.*;
 
+import java.util.Dictionary;
 import java.util.LinkedList;
 
 /**
@@ -462,10 +463,15 @@ public class MainWindow extends javax.swing.JFrame {
      * Render frame
      */
     private void renderFrame() {
-        canvas = new Canvas("/org/western/assets/MC-BF-1.png", this.getWidth(), this.getHeight());
+        canvas = new Canvas("assets/MC-BF-1.png", this.getWidth(), this.getHeight());
         Frame.add(canvas);
         Frame.setFocusable(true);
         System.out.println("User: " + session + " logged in");
+
+        JsonDB db = new JsonDB("poi", "mc");
+//        db.getData().get("data").getAsJsonArray().get(0).getAsJsonObject().get("floor").getAsInt();
+        // get floor ^
+//        db.getData().get("data").getAsJsonArray().get(0).getAsJsonObject().get("layer").getAsJsonArray();
     }
 
     /**
