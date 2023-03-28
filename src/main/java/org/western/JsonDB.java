@@ -80,8 +80,8 @@ public class JsonDB {
     }
     public static void main(String[] args) {
         JsonDB j = new JsonDB("poi", "mc");
-        System.out.println(j.getData().toString());
-//        Gson g = new GsonBuilder().setPrettyPrinting().create();
-//        System.out.println(g.toJson(j.getData()));
+//        System.out.println(j.getData().toString());
+        Gson g = new GsonBuilder().setPrettyPrinting().create();
+        System.out.println(g.toJson(j.getData()));
     }
 }
