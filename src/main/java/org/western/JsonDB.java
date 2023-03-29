@@ -94,35 +94,31 @@ public class JsonDB {
         
     }
     
-    public static Building[] getBuildings() {
-        
-        int buildingCount = db.get("count").getAsInt();
-        Building[] out = new Building[buildingCount];
-        JsonArray buildings = db.get("buildings").getAsJsonArray();
-        
-        for (int i = 0; i < buildingCount; ++i) 
-            out[i] = new Building(buildings.get(i).getAsJsonObject());
-        
-        return out;
-        
-    }
-    
     //return building on success, null on failure
-    public static JsonObject addBuilding(String name, String shortName, int floorNum) {
+    public static JsonObject addBuilding(String name, String shortName) {
         
+        load();
         JsonArray buildingArray = db.get("Buildings").getAsJsonArray();
         JsonObject building = new JsonObject();
         building.addProperty("name", name);
         building.addProperty("shortName", shortName);
-        building.addProperty("count", floorNum);
+        building.addProperty("count", 0);
+        building.add("floors", new JsonArray());
         
+        //add id
         //todo check if name/shortname is unique
         
         int count = db.get("count").getAsInt();
-        db.remove("count");
         db.addProperty("count", count+1);
+        
+        save();
+        
         return building;
         
+    }
+    
+    public static JsonArray getBuildings() {
+        return db.get("buildings").getAsJsonArray();       
     }
     
     public static JsonObject getBuilding(int id) {
@@ -140,6 +136,49 @@ public class JsonDB {
         }
         
         return null;
+        
+    }
+    
+    public static JsonArray getFloors(Building building) {
+        return getBuilding(building.getID()).get("floors").getAsJsonArray();
+    }
+    
+    public static JsonObject getFloor (Building building, int id) {
+        
+        int floorCount = building.getFloorNum();
+        JsonArray floors = getFloors(building);
+        
+        for (int i = 0; i < floorCount; ++i) {
+            
+            JsonObject _floor = floors.get(i).getAsJsonObject();
+            
+            if (_floor.get("id").getAsInt() == id)
+                return _floor;
+            
+        }
+        
+        return null;
+        
+    }
+    
+    public static JsonObject addFloor(Building building, String name, String filePath) {
+        
+        load();
+        JsonObject jsonBuilding = getBuilding(building.getID());
+        
+        JsonObject floor = new JsonObject();
+        floor.addProperty("name", name);
+        floor.addProperty("filePath", filePath);
+        floor.addProperty("count", 0);
+        floor.add("layers", new JsonArray());
+        
+        //assign unique id
+        
+        int count = jsonBuilding.get("count").getAsInt();
+        db.addProperty("count", count+1);
+        save();
+        
+        return floor;
         
     }
     

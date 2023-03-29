@@ -6,15 +6,45 @@ import com.google.gson.*;
 
 public class Floor {
     
-    private JsonObject data;
+    //private JsonObject data;
     //private LinkedList<Layer> layers;
-    private String name;
+    private int id;
+    private Building building;
+    //private String name;
     
     
-    public Floor(String name) {
-        this.name = name;
-        //this.layers = layers;
+    public Floor(Building building, String name, String filePath) {
+        this.building = building;
+        this.id = JsonDB.addFloor(building, name, filePath).get("id").getAsInt();
+        //this.id = building.addFloor(building, name, filePath).get("id");
     }
+    
+    public Floor(JsonObject building, JsonObject floor) {
+        this.building = new Building(building);
+        this.id = floor.get("id").getAsInt();
+    }
+    
+    private JsonObject getThis() {
+        
+        JsonDB.load();
+        return JsonDB.getFloor(building, id);
+        
+    }
+    
+    public int getID() {
+        return id;
+    }
+    public Building getBuilding() {
+        return building;
+    }
+    
+    public String getName() {
+        return getThis().get("name").getAsString();
+    }
+    public String getFilePath() {
+        return getThis().get("filePath").getAsString();
+    }
+    
     /*
     public Layer[] getLayers(String floor) {
         data.get("layers");

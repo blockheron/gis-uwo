@@ -1,4 +1,7 @@
 package org.western;
+import com.google.gson.*;
+
+import java.util.LinkedList;
 
 public class Map {
     
@@ -10,12 +13,17 @@ public class Map {
         new JsonDB();
         
     }
-
-    public static Building[] getBuildings() {
+    
+    public static LinkedList<Building> getBuildings() {
         JsonDB.load();
-        Building[] buildings = JsonDB.getBuildings();
-        JsonDB.save();
-        return buildings;
+        JsonArray buildings = JsonDB.getBuildings();
+        LinkedList<Building> out = new LinkedList<Building>();
+        
+        for (JsonElement building:buildings) 
+            out.add(new Building(building.getAsJsonObject()));
+        
+        return out;
+        
     }
     
     public static Building getBuilding(String name) {
@@ -25,6 +33,10 @@ public class Map {
         }
         return null;
         
+    }
+    
+    public static Building addBuilding(String name, String shortName) {
+        return new Building(name, shortName);
     }
     
 }

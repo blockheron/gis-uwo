@@ -1,5 +1,6 @@
 package org.western;
 import com.google.gson.*;
+import java.util.LinkedList;
 
 public class Building {
     private int id;
@@ -8,47 +9,68 @@ public class Building {
     //private POI[] POIs;
     //private JsonObject data;
 
-    public Building(String name, String shortName, int floorNum) {
+    public Building(String name, String shortName) {
         
-        id = JsonDB.addBuilding(name, shortName, floorNum).get("id").getAsInt();
+        id = JsonDB.addBuilding(name, shortName).get("id").getAsInt();
         
     }
-    
     public Building(JsonObject building) {
         
         this.id = building.get("id").getAsInt();
         
     }
     
-    public String getName() {
-        
+    private JsonObject getThis() {
         JsonDB.load();
-        return JsonDB.getBuilding(id).get("name").getAsString();
-        
+        return JsonDB.getBuilding(id);
     }
+    
+    public int getID() {
+        return id;
+    }
+    
+    public String getName() {
+        return getThis().get("name").getAsString(); 
+    }
+    public void setName(String name) {
+        getThis().addProperty("name", name);
+        JsonDB.save();
+    }
+    
     public String getShortName() {
+        return getThis().get("shortName").getAsString();    
+    }
+    public void setShortName (String shortName) {
+        getThis().addProperty("shortName", shortName);
+        JsonDB.save();
+    }
+    
+    public int getFloorNum() {
+        return getThis().get("count").getAsInt();
+    }
+    
+    public LinkedList<Floor> getFloors() {
         
         JsonDB.load();
-        String shortName = JsonDB.getBuilding(id).get("shortName").getAsString();
-        return shortName;
+        JsonArray floors = JsonDB.getFloors(this);
+        LinkedList<Floor> out = new LinkedList<Floor>();
+        
+        for (JsonElement floor:floors) 
+            out.add(new Floor(getThis(), floor.getAsJsonObject()));
+        
+        return out;
         
     }
     
-    public void setName(String name) {
-        
-        JsonDB.load();
-        JsonObject building = JsonDB.getBuilding(id);
-        building.addProperty("name", name);
-        JsonDB.save();
-        
+    public Floor getFloor(int id) {
+        for (Floor floor: getFloors()) {
+            if (floor.getID() == id) return floor;
+        }
+        return null;
     }
-    public void setShortName (String shortName) {
-        
-        JsonDB.load();
-        JsonObject building = JsonDB.getBuilding(id);
-        building.addProperty("shortName", shortName);
-        JsonDB.save();
-        
+    
+    public Floor addFloor(String name, String filePath) {
+        return new Floor(this, name, filePath);
     }
     
     //public String[] getFloors() {
