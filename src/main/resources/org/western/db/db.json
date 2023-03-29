@@ -4,6 +4,7 @@
     
         {
 
+            "id" : 1,
             "name" : "Middlesex College",
             "shortName" : "MC",
             "maxFloors" : 5,
@@ -40,7 +41,8 @@
                     {
                         
                         "name" : "none",
-                        "rooms" : [
+                        "count" : 1,
+                        "layers" : [
                             
                             
                             

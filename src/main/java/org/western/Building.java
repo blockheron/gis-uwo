@@ -2,43 +2,55 @@ package org.western;
 import com.google.gson.*;
 
 public class Building {
-    //private int id;
+    private int id;
     //private String name;
     //private String shortName;
     //private POI[] POIs;
-    private JsonObject data;
+    //private JsonObject data;
 
     public Building(String name, String shortName, int floorNum) {
         
-        this.data = JsonDB.addBuilding(name, shortName, floorNum);
+        id = JsonDB.addBuilding(name, shortName, floorNum).get("id").getAsInt();
         
     }
     
     public Building(JsonObject building) {
         
-        this.data = building;
+        this.id = building.get("id").getAsInt();
         
     }
     
     public String getName() {
-        return data.get("name").getAsString();
+        
+        JsonDB.load();
+        String name = JsonDB.getBuilding(id).get("name").getAsString();
+        JsonDB.save();
+        return name;
+        
     }
     public String getShortName() {
-        return data.get("shortname").getAsString();
+        
+        JsonDB.load();
+        String shortName = JsonDB.getBuilding(id).get("shortName").getAsString();
+        JsonDB.save();
+        return shortName;
+        
     }
     
     public void setName(String name) {
         
-        data.remove("name");
-        data.addProperty("name", name);
-        //if (JsonDB.save()) System.out.println("saved");
+        JsonDB.load();
+        JsonObject building = JsonDB.getBuilding(id);
+        building.addProperty("name", name);
+        JsonDB.save();
         
     }
     public void setShortName (String shortName) {
         
-        data.remove("shortName");
-        data.addProperty("shortName", shortName);
-        //JsonDB.save();
+        JsonDB.load();
+        JsonObject building = JsonDB.getBuilding(id);
+        building.addProperty("shortName", shortName);
+        JsonDB.save();
         
     }
     
