@@ -23,16 +23,13 @@ public class Building {
     public String getName() {
         
         JsonDB.load();
-        String name = JsonDB.getBuilding(id).get("name").getAsString();
-        JsonDB.save();
-        return name;
+        return JsonDB.getBuilding(id).get("name").getAsString();
         
     }
     public String getShortName() {
         
         JsonDB.load();
         String shortName = JsonDB.getBuilding(id).get("shortName").getAsString();
-        JsonDB.save();
         return shortName;
         
     }
