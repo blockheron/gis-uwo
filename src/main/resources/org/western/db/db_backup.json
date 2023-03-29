@@ -1,0 +1,63 @@
+{
+    "count" : 1,
+    "buildings" : [
+    
+        {
+
+            "name" : "Middlesex College",
+            "shortName" : "MC",
+            "maxFloors" : 5,
+            "count" : 1,
+            "floors" : [
+                
+                {
+                "name" : "ground",
+                "count" : 2,
+                "layers" : [
+                    
+                    {
+                        
+                        "name" : "Classrooms",
+                        "rooms" : [
+
+                            {
+
+                            "roomNumber" : 101,
+                            "npoints" : 0,
+                            "xpoints" : [],
+                            "ypoints" : [],
+                            "POIs" : [
+
+                                ]
+
+
+                            }
+
+                        ]
+                    
+                    },
+                    
+                    {
+                        
+                        "name" : "none",
+                        "rooms" : [
+                            
+                            
+                            
+                            ]
+                        
+                    }
+                    
+                    ]
+                    
+                }
+
+
+                ],
+            "user" : []
+
+        }
+        
+    
+    ]
+}

@@ -27,19 +27,23 @@ public class Room extends JComponent
     private boolean active = false;
     public LinkedList<POI> POIs;
     private POIListPopup ListPopup;
+    private Building building;
+    private Floor floor;
     
-    public Room(Polygon shape, Point position) 
+    public Room(Polygon shape, Point position, Building building, Floor floor) 
     {
         
-        this(shape);
+        this(shape, building, floor);
         this.setLocation(position);
         
     }
     
-    public Room(Polygon shape) 
+    public Room(Polygon shape, Building building, Floor floor) 
     {
         
         this.shape = shape;
+        this.building = building;
+        this.floor = floor;
         setOpaque(false);
         POIs = new LinkedList<POI>();
         
@@ -161,6 +165,10 @@ public class Room extends JComponent
         
         
     }
+    
+    /*public Building getBuilding() {
+        
+    }*/
     
     public void mouseClicked(MouseEvent e, JLayeredPane layerPanel) {
 

@@ -12,6 +12,7 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.FileNotFoundException;
 
 import java.util.Dictionary;
 import java.util.LinkedList;
@@ -22,6 +23,9 @@ import java.util.LinkedList;
 public class MainWindow extends javax.swing.JFrame {
     private int session = -1; // -1 for guest, 0 for admin, 1 for user
     private int building = 0;
+    
+    private Building curBuilding;
+    private Floor curFloor;
 
     private int x, y, initialX, initialY, deltaX, deltaY;
     private boolean editMode = false;
@@ -38,6 +42,23 @@ public class MainWindow extends javax.swing.JFrame {
     public MainWindow() {
         
         rooms = new LinkedList<Room>();
+        
+        JsonDB db;
+        
+        //demo code
+        try {
+            
+            db = new JsonDB();
+
+            //curBuilding = db.getBuilding("Middlesex College");
+            //curFloor = curBuilding.getFloors();
+        }
+        catch (FileNotFoundException e) {
+            System.out.println("db not found");
+        }
+        //
+        
+        
         
         initComponents();
         initMainWindow();
@@ -468,7 +489,7 @@ public class MainWindow extends javax.swing.JFrame {
         Frame.setFocusable(true);
         System.out.println("User: " + session + " logged in");
 
-        JsonDB db = new JsonDB("poi", "mc");
+        //JsonDB db = new JsonDB("poi", "mc");
 //        db.getData().get("data").getAsJsonArray().get(0).getAsJsonObject().get("floor").getAsInt();
         // get floor ^
 //        db.getData().get("data").getAsJsonArray().get(0).getAsJsonObject().get("layer").getAsJsonArray();
@@ -497,7 +518,7 @@ public class MainWindow extends javax.swing.JFrame {
         
         Polygon room1Shape = new Polygon(xpoints, ypoints, npoints);
         
-        rooms.add(new Room(room1Shape));
+        //rooms.add(new Room(room1Shape));
         attachRoom(rooms.get(0));
         
         int[] xpoints2 = {100, 200, 300};
@@ -506,12 +527,12 @@ public class MainWindow extends javax.swing.JFrame {
         
         Polygon room2Shape = new Polygon(xpoints2, ypoints2, npoints2);
         
-        rooms.add(new Room(room2Shape));
+        //rooms.add(new Room(room2Shape));
         attachRoom(rooms.get(1));
              
     }
 
-    private int handleSearch() {
+    private int handleSearch() {/*
         JsonDB db; // database instance
         String query = searchBox.getText(); // get query from searchBox
         String[] w; // array of words in query
@@ -537,7 +558,7 @@ public class MainWindow extends javax.swing.JFrame {
             }
         } else {
             System.out.println(db.getData().toString());
-        }
+        }*/
         return 0;
     }
     
@@ -567,7 +588,7 @@ public class MainWindow extends javax.swing.JFrame {
                 if(draftRoom == null) {
                     draftPoly = new Polygon();
                     draftPoly.addPoint(e.getX(), e.getY());
-                    draftRoom = new Room(draftPoly, new Point(0,0));
+                    //draftRoom = new Room(draftPoly, new Point(0,0));
                     attachRoom(draftRoom);
                 }
                 else {
@@ -579,7 +600,7 @@ public class MainWindow extends javax.swing.JFrame {
                     
                     //add new draft of room
                     draftPoly.addPoint(e.getX()-draftRoom.getX(), e.getY()-draftRoom.getY());                
-                    draftRoom = new Room(draftPoly, draftRoom.getLocation()); //fix coordinates off  
+                    //draftRoom = new Room(draftPoly, draftRoom.getLocation()); //fix coordinates off  
                     rooms.add(draftRoom);
                     attachRoom(draftRoom);
                     //

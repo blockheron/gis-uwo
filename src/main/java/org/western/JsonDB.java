@@ -1,87 +1,181 @@
 package org.western;
 
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.Objects;
 
 import com.google.gson.*;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.URL;
+import java.util.LinkedList;
 
 public class JsonDB {
-    private JsonObject data;
-    public JsonDB(String field, String value) {
-        int i;
-        boolean dev = false;
-        String fn;
-        JsonObject j;
-        Gson g = new Gson();
-        if(!Objects.requireNonNull(getClass().getResource("db/user.json")).toString().contains("!")) {
-            dev = true;
-        }
-        if(field.equals("user") || field.equals("poi")) {
-            fn = dev ? Objects.requireNonNull(getClass().getResource("db/" + field + ".json")).getFile() : "db/" + field + ".json";
-            try (FileReader f = new FileReader(fn)) { // new file reader
-                j = JsonParser.parseReader(f).getAsJsonObject(); // parse json file
-                if(field.equals("user"))
-                {
-                    if(j.get("data") != null && j.get("data").getAsJsonObject().get(value) != null) {
-                        i = j.get("data").getAsJsonObject().get(value).getAsInt();
-                        if(i <= j.get("count").getAsInt()) { // check if user exists
-                            fn = dev ? Objects.requireNonNull(getClass().getResource("db/u-" + i + ".json")).getFile() : "db/u-" + i + ".json";
-                            try (FileReader r = new FileReader(fn)) { // new file reader
-                                User u = g.fromJson(r, User.class); // convert to json element
-                                data = g.toJsonTree(u).getAsJsonObject(); // convert to json object
-                            }
-                            catch (Exception e) {
-                                data = JsonParser.parseString("{\"status\": 500, \"message\": \"Internal Error\"}").getAsJsonObject(); // internal error
-                            }
-                        }
-                    } else {
-                        data = JsonParser.parseString("{\"status\": 404, \"message\": \"Not Found\"}").getAsJsonObject(); // not found
-                    }
-                } else {
-                    if(j.get("data") != null && j.get("data").getAsJsonObject().get(value) != null) {
-                        i = j.get("data").getAsJsonObject().get(value).getAsInt();
-                        if(i <= j.get("count").getAsInt()) { // check if poi exists
-                            fn = dev ? Objects.requireNonNull(getClass().getResource("db/p-" + i + ".json")).getFile() : "db/p-" + i + ".json";
-                            try (FileReader r = new FileReader(fn)) { // new file reader
-                                // parse from reader
-                                j = JsonParser.parseReader(r).getAsJsonObject();
-                                if(j.get("data") != null) {
-                                    JsonArray dataArr = j.get("data").getAsJsonArray(), result = new JsonArray();
-                                    for(JsonElement e : dataArr) {
-                                        POI p = g.fromJson(e, POI.class);
-                                        result.add(g.toJsonTree(p).getAsJsonObject());
-                                    }
-                                    data = new JsonObject();
-                                    data.add("status", JsonParser.parseString("200"));
-                                    data.add("message", JsonParser.parseString("success"));
-                                    data.add("data", result);
-                                } else {
-                                    data = JsonParser.parseString("{\"status\": 403, \"message\": \"Forbidden\"}").getAsJsonObject(); // forbidden
-                                }
-                            }
-                            catch (Exception e) {
-                                data = JsonParser.parseString("{\"status\": 500, \"message\": \"Internal Error\"}").getAsJsonObject(); // internal error
-                            }
-                        }
-                    } else {
-                        data = JsonParser.parseString("{\"status\": 404, \"message\": \"Not Found\"}").getAsJsonObject(); // not found
-                    }
-                }
-            } catch (Exception e) {
-                data = JsonParser.parseString("{\"status\": 204, \"message\": \"No Content\"}").getAsJsonObject(); // not found
-                e.printStackTrace();
-            }
-        } else {
-            data = JsonParser.parseString("{\"status\": 400, \"message\": \"Invalid field\"}").getAsJsonObject(); // invalid field
-        }
-    }
-    public JsonObject getData() {
-        return data;
-    }
+    
+    static Gson gson;
+    static String filePath;
+    
     public static void main(String[] args) {
-        JsonDB j = new JsonDB("poi", "mc");
-//        System.out.println(j.getData().toString());
-        Gson g = new GsonBuilder().setPrettyPrinting().create();
-        System.out.println(g.toJson(j.getData()));
+        
+        JsonDB db;
+        
+        //demo code
+        try {
+            
+            db = new JsonDB();
+
+            //curBuilding = db.getBuilding("Middlesex College");
+            //curFloor = curBuilding.getFloors();
+        }
+        catch (FileNotFoundException e) {
+            System.out.println("db not found");
+        }
+        //
+        
+        //db check
+        Building mc1 = JsonDB.getBuilding("Middlesex College");
+        Building mc2 = JsonDB.getBuilding("Middlesex College");
+        
+        System.out.println(mc1.getName());
+        System.out.println(mc2.getName());
+        
+        mc1.setName("test");
+        System.out.println(mc1.getName());
+        System.out.println(mc2.getName());
+        
+        mc2.setName("test");
+        System.out.println(mc1.getName());
+        System.out.println(mc2.getName());
+        //
+        
     }
+    
+    private static JsonObject db;
+    
+    public JsonDB() throws FileNotFoundException {
+        
+        filePath = getClass().getResource("db/db.json").getFile();
+        System.out.println(filePath);
+        db = JsonParser.parseReader(new FileReader(filePath)).getAsJsonObject();
+        gson = new Gson();
+        
+    }
+    
+    /*public static boolean save() {
+        try {
+            gson.toJson(db, new FileWriter(filePath));
+        }
+        catch (IOException e) {
+            return false;
+        }
+        return true;
+    }*/
+    
+    //return building on success, null on failure
+    public static JsonObject addBuilding(String name, String shortName, int floorNum) {
+        
+        JsonArray buildingArray = db.get("Buildings").getAsJsonArray();
+        JsonObject building = new JsonObject();
+        building.addProperty("name", name);
+        building.addProperty("shortName", shortName);
+        building.addProperty("count", floorNum);
+        
+        //todo check if name/shortname is unique
+        
+        int count = db.get("count").getAsInt();
+        db.remove("count");
+        db.addProperty("count", count+1);
+        return building;
+        
+    }
+    
+    public static Building getBuilding(String name) {
+        
+        int buildingCount = db.get("count").getAsInt();
+        JsonArray buildings = db.get("buildings").getAsJsonArray();
+        
+        for (int i = 0; i < buildingCount; ++i) {
+            JsonObject _building = buildings.get(i).getAsJsonObject();
+            if (_building.get("name").getAsString().equals(name))
+                return new Building(_building);
+        }
+        
+        return null;
+        
+    }
+    
+    /*public boolean addPOI(POI POI) {
+        
+        
+        
+    }
+    
+    public boolean addRoom(Room room) {
+        
+        
+        
+        if (building == null) return false;
+        
+        JsonArray floors = building.get("floors").getAsJsonArray();
+        
+        
+    }
+    
+    public Building getBuilding(String name) {
+        
+        int buildingCount = db.get("count").getAsInt();
+        JsonArray buildings = db.get("buildings").getAsJsonArray();
+        
+        JsonObject building = null;
+        
+        for (int i = 0; i < buildingCount; ++i) {
+            JsonObject _building = buildings.get(i).getAsJsonObject();
+            if (_building.get("name").equals(name))
+                return createBuilding(_building);
+        }
+        
+        return null;
+        
+    }
+    
+    private Building createBuilding(JsonObject building) {
+        return new Building(building.get("id").getAsInt(), building.get("name").getAsString(),
+                building.get("shortName").getAsString(), getFloors(building));
+    }
+    
+    private Floor[] getFloors(JsonObject Building) {
+        
+        int floorCount = Building.get("count").getAsInt();
+        Floor[] out = new Floor[floorCount];
+        JsonArray floors = Building.get("floors").getAsJsonArray();
+        
+        for (int i = 0; i < floorCount; ++i) 
+            out[i] = createFloor(floors.get(i).getAsJsonObject());
+        
+        return out;
+        
+    }
+    
+    private Floor createFloor(JsonObject floor) {
+        
+        return new Floor(floor.get("name"), getLayers(floor));
+        
+    }
+    
+    private getLayers(JsonObject floor) {
+        
+        int layerCount = floor.get("count").getAsInt();
+        Layer[] out = new Layer[layerCount];
+        JsonArray Layers = floor.get("layers").getAsJsonArray();
+        
+        for (int i = 0; i < layerCount; ++i) {
+            out[i] = createLayer(floor.get(""))
+        }
+        
+    }
+    
+    private Layer createLayer() {
+        
+    }*/
+    
 }

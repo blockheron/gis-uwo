@@ -519,7 +519,7 @@ public class Login extends javax.swing.JFrame {
         if (!honeyPot.getText().isEmpty() || username.isEmpty() || password.isEmpty()) {
             return -1;
         }
-        user = new JsonDB("user", username).getData();
+        user = null;//user = new JsonDB("user", username).getData(); temporary
         if (user.get("status") != null && user.get("status").getAsInt() != 200) {
             // pop up error message
             prompt.setTitle("Error");
