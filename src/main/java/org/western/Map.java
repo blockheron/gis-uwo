@@ -9,9 +9,10 @@ public class Map {
     //private String[] layers;
 
     public Map() {
-        
-        new JsonDB();
-        
+        this(false);
+    }
+    public Map(boolean debug) { 
+        new JsonDB(debug);
     }
     
     public static LinkedList<Building> getBuildings() {

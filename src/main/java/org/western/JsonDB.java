@@ -20,10 +20,36 @@ public class JsonDB {
     
     public static void main(String[] args) {
         
-        //db check
-        new Map();
+        //db testing
+        new Map(true);
         
-        Building mc1 = Map.getBuilding("Middlesex College");
+        Building mc = new Building("Middlesex College", "MC");
+        Building pab = new Building("Physics and Astronomy Building", "PANDA");
+        
+        for (Building building : Map.getBuildings()) {
+            
+            System.out.println("Building id: " + building.getID() + ", name: " + building.getName());
+            
+        }
+        
+        System.out.println(db.get("count"));
+        
+        mc.addFloor("ground", "path/to/floor");
+        pab.addFloor("grad lounge", "path/to/lounge");
+        
+        //LinkedList<Floor> floors = mc.getFloors();
+        for (Building building : Map.getBuildings()) {
+            
+            System.out.println("Building id: " + building.getID() + ", name: " + building.getName());
+            
+            for (Floor floor : building.getFloors()) {
+                System.out.println("id: " + floor.getID() + ", name: " + floor.getName());
+            }
+            
+        }
+        
+        
+        /*Building mc1 = Map.getBuilding("Middlesex College");
         Building mc2 = Map.getBuilding("Middlesex College");
         
         System.out.println(mc1.getName());
@@ -35,14 +61,22 @@ public class JsonDB {
         
         mc2.setName("test");
         System.out.println(mc1.getName());
-        System.out.println(mc2.getName());
+        System.out.println(mc2.getName());*/
         //
         
     }
     
     public JsonDB() {
+        this(false);
+    }
+    public JsonDB(boolean debug) {
         
-        filePath = getClass().getResource("db/db.json").getFile();
+        if (debug) {
+            filePath = getClass().getResource("db/test_db.json").getFile();
+        }
+        else {
+            filePath = getClass().getResource("db/db.json").getFile();
+        }
         gson = new GsonBuilder().setPrettyPrinting().create();
         
     }
@@ -94,26 +128,11 @@ public class JsonDB {
         
     }
     
-    //return building on success, null on failure
-    public static JsonObject addBuilding(String name, String shortName) {
+    private static int incrementCount(String countName) {
         
-        load();
-        JsonArray buildingArray = db.get("Buildings").getAsJsonArray();
-        JsonObject building = new JsonObject();
-        building.addProperty("name", name);
-        building.addProperty("shortName", shortName);
-        building.addProperty("count", 0);
-        building.add("floors", new JsonArray());
-        
-        //add id
-        //todo check if name/shortname is unique
-        
-        int count = db.get("count").getAsInt();
-        db.addProperty("count", count+1);
-        
-        save();
-        
-        return building;
+        int newVal = db.get(countName).getAsInt() + 1;
+        db.addProperty(countName, newVal);
+        return newVal;
         
     }
     
@@ -136,6 +155,29 @@ public class JsonDB {
         }
         
         return null;
+        
+    }
+    
+    //return building on success, null on failure
+    public static JsonObject addBuilding(String name, String shortName) {
+        
+        load();
+        
+        JsonArray buildingArray = db.get("buildings").getAsJsonArray();
+        JsonObject building = new JsonObject();
+        building.addProperty("id", incrementCount("count"));
+        building.addProperty("name", name);
+        building.addProperty("shortName", shortName);
+        building.addProperty("count", 0);
+        building.add("floors", new JsonArray());
+        
+        //todo check if name/shortname is unique
+        
+        buildingArray.add(building);
+        
+        save();
+        
+        return building;
         
     }
     
@@ -167,95 +209,20 @@ public class JsonDB {
         JsonObject jsonBuilding = getBuilding(building.getID());
         
         JsonObject floor = new JsonObject();
+        floor.addProperty("id", incrementCount("floorCount"));
         floor.addProperty("name", name);
         floor.addProperty("filePath", filePath);
         floor.addProperty("count", 0);
         floor.add("layers", new JsonArray());
         
-        //assign unique id
+        jsonBuilding.get("floors").getAsJsonArray().add(floor);
         
         int count = jsonBuilding.get("count").getAsInt();
-        db.addProperty("count", count+1);
+        jsonBuilding.addProperty("count", count+1);
         save();
         
         return floor;
         
     }
-    
-    //public static JsonObject getFloor()
-    
-    /*public boolean addPOI(POI POI) {
-        
-        
-        
-    }
-    
-    public boolean addRoom(Room room) {
-        
-        
-        
-        if (building == null) return false;
-        
-        JsonArray floors = building.get("floors").getAsJsonArray();
-        
-        
-    }
-    
-    public Building getBuilding(String name) {
-        
-        int buildingCount = db.get("count").getAsInt();
-        JsonArray buildings = db.get("buildings").getAsJsonArray();
-        
-        JsonObject building = null;
-        
-        for (int i = 0; i < buildingCount; ++i) {
-            JsonObject _building = buildings.get(i).getAsJsonObject();
-            if (_building.get("name").equals(name))
-                return createBuilding(_building);
-        }
-        
-        return null;
-        
-    }
-    
-    private Building createBuilding(JsonObject building) {
-        return new Building(building.get("id").getAsInt(), building.get("name").getAsString(),
-                building.get("shortName").getAsString(), getFloors(building));
-    }
-    
-    private Floor[] getFloors(JsonObject Building) {
-        
-        int floorCount = Building.get("count").getAsInt();
-        Floor[] out = new Floor[floorCount];
-        JsonArray floors = Building.get("floors").getAsJsonArray();
-        
-        for (int i = 0; i < floorCount; ++i) 
-            out[i] = createFloor(floors.get(i).getAsJsonObject());
-        
-        return out;
-        
-    }
-    
-    private Floor createFloor(JsonObject floor) {
-        
-        return new Floor(floor.get("name"), getLayers(floor));
-        
-    }
-    
-    private getLayers(JsonObject floor) {
-        
-        int layerCount = floor.get("count").getAsInt();
-        Layer[] out = new Layer[layerCount];
-        JsonArray Layers = floor.get("layers").getAsJsonArray();
-        
-        for (int i = 0; i < layerCount; ++i) {
-            out[i] = createLayer(floor.get(""))
-        }
-        
-    }
-    
-    private Layer createLayer() {
-        
-    }*/
     
 }
