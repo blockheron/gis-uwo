@@ -2,21 +2,28 @@ package org.western;
 
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.util.Objects;
+import java.awt.*;
 
 import com.google.gson.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Dictionary;
 import java.util.LinkedList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class JsonDB {
     
     private static Gson gson;
     private static String filePath;
     private static JsonObject db;
+    
+    private static Dictionary<Integer, Building> loadedBuildings;
+    private static Dictionary<Integer, Floor> loadedFloors;
+    private static Dictionary<Integer, Layer> loadedLayers;
+    private static Dictionary<Integer, Room> loadedRooms;
+    private static Dictionary<Integer, POI> loadedPOIs;
     
     public static void main(String[] args) {
         
@@ -83,13 +90,13 @@ public class JsonDB {
     
     public static boolean load() {
         
-        FileReader reader = null;
+        BufferedReader reader = null;
         
         try {
         
             try {
                 //System.out.println(filePath);
-                reader = new FileReader(filePath);
+                reader = new BufferedReader(new FileReader(filePath));
                 db = JsonParser.parseReader(reader).getAsJsonObject();
             }
             catch (FileNotFoundException e) {
@@ -116,7 +123,7 @@ public class JsonDB {
     public static boolean save() {
         
         try {
-            FileWriter writer = new FileWriter(filePath);
+            BufferedWriter writer = new BufferedWriter(new FileWriter(filePath));
             gson.toJson(db, writer);
             writer.close();
         }
@@ -222,6 +229,107 @@ public class JsonDB {
         save();
         
         return floor;
+        
+    }
+    
+    public static JsonArray getLayers(Building building, Floor floor) {
+        //return getBuilding(building.getID()).get("floors").getAsJsonArray();
+        return getFloor(building, floor.getID()).get("layers").getAsJsonArray();
+    }
+    
+    public static JsonObject getLayer (Building building, Floor floor, int id) {
+        
+        int layerCount = floor.getLayerNum();
+        JsonArray layers = getLayers(building, floor);
+        
+        for (int i = 0; i < layerCount; ++i) {
+            
+            JsonObject _layer = layers.get(i).getAsJsonObject();
+            
+            if (_layer.get("id").getAsInt() == id)
+                return _layer;
+            
+        }
+        
+        return null;
+        
+    }
+    
+    public static JsonObject addLayer(Building building, Floor floor, String name, Color color) {
+        
+        load();
+        JsonObject jsonFloor = getFloor(building, floor.getID());
+        
+        JsonObject layer = new JsonObject();
+        layer.addProperty("id", incrementCount("layerCount"));
+        layer.addProperty("name", name);
+        layer.addProperty("color", color.getRGB());
+        layer.addProperty("count", 0);
+        layer.add("rooms", new JsonArray());
+        
+        jsonFloor.get("layers").getAsJsonArray().add(layer);
+        
+        int count = jsonFloor.get("count").getAsInt();
+        jsonFloor.addProperty("count", count+1);
+        save();
+        
+        return layer;
+        
+    }
+    
+    public static JsonArray getRooms(Building building, Floor floor, Layer layer) {
+        //System.out.println(building.getName() + " " + floor.getName() + " " + layer.getName());
+        return getLayer(building, floor, layer.getID()).get("rooms").getAsJsonArray();
+    }
+    
+    public static JsonObject getRoom (Building building, Floor floor, Layer layer, int id) {
+        
+        int roomCount = layer.getRoomNum();
+        JsonArray rooms = getRooms(building, floor, layer);
+        
+        for (int i = 0; i < roomCount; ++i) {
+            
+            JsonObject _room = rooms.get(i).getAsJsonObject();
+            //System.out.println(_room.get("id"));
+            
+            if (_room.get("id").getAsInt() == id)
+                return _room;
+            
+        }
+        
+        return null;
+        
+    }
+    
+    public static JsonObject addRoom(Building building, Floor floor, Layer layer, Polygon shape, Point position) {
+        
+        load();
+        JsonObject jsonLayer = getLayer(building, floor, layer.getID());
+        
+        JsonObject room = new JsonObject();
+        room.addProperty("id", incrementCount("roomCount"));
+        room.addProperty("roomNumber", -1);
+        room.addProperty("x", position.getX());
+        room.addProperty("y", position.getY());
+        
+        room.addProperty("npoints", shape.npoints);
+        JsonArray xpoints = new JsonArray(shape.npoints);
+        JsonArray ypoints = new JsonArray(shape.npoints);
+        for (int x : shape.xpoints) xpoints.add(x);
+        for (int y : shape.ypoints) ypoints.add(y);
+        room.add("xpoints", xpoints);
+        room.add("ypoints", ypoints);
+        
+        room.addProperty("count", 0);
+        room.add("POIs", new JsonArray());
+        
+        jsonLayer.get("rooms").getAsJsonArray().add(room);
+        
+        int count = jsonLayer.get("count").getAsInt();
+        jsonLayer.addProperty("count", count+1);
+        save();
+        
+        return room;
         
     }
     

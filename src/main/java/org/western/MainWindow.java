@@ -22,7 +22,6 @@ import java.util.LinkedList;
  */
 public class MainWindow extends javax.swing.JFrame {
     private int session = -1; // -1 for guest, 0 for admin, 1 for user
-    private int building = 0;
     
     private Building curBuilding;
     private Floor curFloor;
@@ -30,7 +29,6 @@ public class MainWindow extends javax.swing.JFrame {
     private int x, y, initialX, initialY, deltaX, deltaY;
     private boolean editMode = false;
     private boolean addingRoom = false;
-    private LinkedList<Room> rooms;
     private Icon editButtonEnabled, editButtonDisabled;
     private Icon addRoomButtonEnabled, addRoomButtonDisabled;
     private Room draftRoom;
@@ -41,21 +39,13 @@ public class MainWindow extends javax.swing.JFrame {
      */
     public MainWindow() {
         
-        rooms = new LinkedList<Room>();
-        
         JsonDB db;
         
         //demo code
-        try {
-            
-            db = new JsonDB();
-
-            //curBuilding = db.getBuilding("Middlesex College");
-            //curFloor = curBuilding.getFloors();
-        }
-        catch (FileNotFoundException e) {
-            System.out.println("db not found");
-        }
+        db = new JsonDB(true);
+        
+        curBuilding = new Building("Middlesex College", "MC");
+        curFloor = curBuilding.addFloor("Ground", "Path-to-image");
         //
         
         
@@ -512,14 +502,14 @@ public class MainWindow extends javax.swing.JFrame {
     
     private void renderRooms() {
         
-        int[] xpoints = {300, 500, 500};
+        /*int[] xpoints = {300, 500, 500};
         int[] ypoints = {50, 100, 200};
         int npoints = 3;
         
         Polygon room1Shape = new Polygon(xpoints, ypoints, npoints);
         
-        //rooms.add(new Room(room1Shape));
-        attachRoom(rooms.get(0));
+        Room room1 = new Room(curBuilding, curFloor, room1Shape);
+        attachRoom(room1);
         
         int[] xpoints2 = {100, 200, 300};
         int[] ypoints2 = {100, 200, 250};
@@ -527,8 +517,8 @@ public class MainWindow extends javax.swing.JFrame {
         
         Polygon room2Shape = new Polygon(xpoints2, ypoints2, npoints2);
         
-        //rooms.add(new Room(room2Shape));
-        attachRoom(rooms.get(1));
+        Room room2 = new Room(curBuilding, curFloor, room2Shape);
+        attachRoom(room2);*/
              
     }
 
@@ -588,20 +578,20 @@ public class MainWindow extends javax.swing.JFrame {
                 if(draftRoom == null) {
                     draftPoly = new Polygon();
                     draftPoly.addPoint(e.getX(), e.getY());
-                    //draftRoom = new Room(draftPoly, new Point(0,0));
+                    draftRoom = new Room(curBuilding, curFloor, draftPoly);
                     attachRoom(draftRoom);
                 }
                 else {
                     
                     //remove previous iteration of the draft
                     layerPanel.remove(draftRoom);
-                    rooms.remove(draftRoom);
+                    //curFloor.removeRoom(draftRoom);
                     //
                     
                     //add new draft of room
                     draftPoly.addPoint(e.getX()-draftRoom.getX(), e.getY()-draftRoom.getY());                
                     //draftRoom = new Room(draftPoly, draftRoom.getLocation()); //fix coordinates off  
-                    rooms.add(draftRoom);
+                    curFloor.addRoom(draftRoom);
                     attachRoom(draftRoom);
                     //
                     
@@ -613,18 +603,18 @@ public class MainWindow extends javax.swing.JFrame {
         
         public void mouseEntered(MouseEvent e) {
             //e = new MouseEvent(e.getComponent(), e.getID(), e.getWhen(), e.getModifiersEx(), e.getX()-getX(), e.getY()-getY(), e.getClickCount(), e.isPopupTrigger());
-            for (Room room:rooms) room.mouseEntered(e);
+            for (Room room:curFloor.getRooms()) room.mouseEntered(e);
             
         }
         
         public void mouseExited(MouseEvent e) {
             //e = new MouseEvent(e.getComponent(), e.getID(), e.getWhen(), e.getModifiersEx(), e.getX()-getX(), e.getY()-getY(), e.getClickCount(), e.isPopupTrigger());
-            for (Room room:rooms) room.mouseExited(e);
+            for (Room room:curFloor.getRooms()) room.mouseExited(e);
             
         }
         
         public void mouseClicked(MouseEvent e) {
-            for (Room room:rooms) room.mouseClicked(e, layerPanel);
+            //for (Room room:curFloor.getRooms()) room.mouseClicked(e, layerPanel);
         }
         
     }
@@ -632,7 +622,7 @@ public class MainWindow extends javax.swing.JFrame {
     class MouseMotionHandler extends MouseMotionAdapter {
         public void mouseMoved(MouseEvent e) {
             
-            for (Room room:rooms) room.mouseMoved(e);
+            for (Room room:curFloor.getRooms()) room.mouseMoved(e);
             
         }
         
@@ -646,7 +636,7 @@ public class MainWindow extends javax.swing.JFrame {
             y += deltaY;
             
             canvas.translate(deltaX, deltaY);
-            for (Room room:rooms) room.translate(deltaX, deltaY);           
+            //for (Room room:curFloor.getRooms()) room.translate(deltaX, deltaY);           
 
             initialX = currentX;
             initialY = currentY;
