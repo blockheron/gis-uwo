@@ -10,7 +10,7 @@ import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Dictionary;
+import java.util.HashSet;
 import java.util.LinkedList;
 
 public class JsonDB {
@@ -19,11 +19,11 @@ public class JsonDB {
     private static String filePath;
     private static JsonObject db;
     
-    private static Dictionary<Integer, Building> loadedBuildings;
-    private static Dictionary<Integer, Floor> loadedFloors;
-    private static Dictionary<Integer, Layer> loadedLayers;
-    private static Dictionary<Integer, Room> loadedRooms;
-    private static Dictionary<Integer, POI> loadedPOIs;
+    private static HashSet<Integer> invalidBuildings = new HashSet<Integer>();
+    private static HashSet<Integer> invalidFloors = new HashSet<Integer>();
+    private static HashSet<Integer> invalidLayers = new HashSet<Integer>();
+    private static HashSet<Integer> invalidRooms = new HashSet<Integer>();
+    private static HashSet<Integer> invalidPOIs = new HashSet<Integer>();
     
     public static void main(String[] args) {
         
@@ -88,6 +88,14 @@ public class JsonDB {
         
     }
     
+    private static void validateAll() {
+        invalidBuildings.clear();
+        invalidFloors.clear();
+        invalidLayers.clear();
+        invalidRooms.clear();
+        invalidPOIs.clear();
+    }
+    
     public static boolean load() {
         
         BufferedReader reader = null;
@@ -116,6 +124,7 @@ public class JsonDB {
             
         }
         
+        validateAll();
         return true;
         
     }
@@ -144,7 +153,20 @@ public class JsonDB {
     }
     
     public static JsonArray getBuildings() {
-        return db.get("buildings").getAsJsonArray();       
+        JsonArray buildings = db.get("buildings").getAsJsonArray();
+        
+        for (JsonElement _building : buildings) {
+            JsonObject building = _building.getAsJsonObject();
+            if (invalidBuildings.contains(building.get("id").getAsInt())) {
+                load(); return getBuildings();  //load and revalidate
+            }
+        }
+        
+        return buildings;
+    }
+    
+    public static void invalidateBuilding(Building building) {
+        invalidBuildings.add(building.getID());
     }
     
     public static JsonObject getBuilding(int id) {
@@ -189,7 +211,21 @@ public class JsonDB {
     }
     
     public static JsonArray getFloors(Building building) {
-        return getBuilding(building.getID()).get("floors").getAsJsonArray();
+        JsonArray floors = getBuilding(building.getID()).get("floors").getAsJsonArray();
+        
+        for (JsonElement _floor : floors) { //checks for invalid floors
+            JsonObject floor = _floor.getAsJsonObject();
+            if (invalidFloors.contains(floor.get("id").getAsInt())) {
+                load(); return getFloors(building);  //load and revalidate
+            }
+        }
+        
+        return floors;
+        
+    }
+    
+    public static void invalidateFloor(Floor floor) {
+        invalidFloors.add(floor.getID());
     }
     
     public static JsonObject getFloor (Building building, int id) {
@@ -212,7 +248,6 @@ public class JsonDB {
     
     public static JsonObject addFloor(Building building, String name, String filePath) {
         
-        load();
         JsonObject jsonBuilding = getBuilding(building.getID());
         
         JsonObject floor = new JsonObject();
@@ -227,6 +262,8 @@ public class JsonDB {
         int count = jsonBuilding.get("count").getAsInt();
         jsonBuilding.addProperty("count", count+1);
         save();
+        
+        building.invalidate();
         
         return floor;
         

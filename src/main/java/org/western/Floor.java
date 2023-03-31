@@ -27,10 +27,11 @@ public class Floor {
     }
     
     private JsonObject getThis() {
-        
-        JsonDB.load();
-        return JsonDB.getFloor(building, id);
-        
+        return JsonDB.getFloor(building, id);       
+    }
+    
+    public void invalidate() {
+        JsonDB.invalidateFloor(this);
     }
     
     public int getID() {

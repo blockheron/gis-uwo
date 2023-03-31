@@ -21,8 +21,11 @@ public class Building {
     }
     
     private JsonObject getThis() {
-        JsonDB.load();
         return JsonDB.getBuilding(id);
+    }
+    
+    public void invalidate() {
+        JsonDB.invalidateBuilding(this);
     }
     
     public int getID() {
@@ -34,6 +37,7 @@ public class Building {
     }
     public void setName(String name) {
         getThis().addProperty("name", name);
+        invalidate();
         JsonDB.save();
     }
     
@@ -42,6 +46,7 @@ public class Building {
     }
     public void setShortName (String shortName) {
         getThis().addProperty("shortName", shortName);
+        invalidate();
         JsonDB.save();
     }
     
