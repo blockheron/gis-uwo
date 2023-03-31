@@ -10,6 +10,7 @@ import com.google.gson.*;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseEvent;
+import java.util.HashMap;
 
 import java.util.LinkedList;
 
@@ -29,14 +30,16 @@ public class Room extends JComponent
     private Floor floor;
     private Layer layer;
     
-    private Polygon curShape;
-    private Rectangle curBounds;
+    //private Polygon curShape;
+    //private Rectangle curBounds;
     
     private Color curColor;
     private Color curActiveColor;
     private boolean active = false;
     //public LinkedList<POI> POIs;
     private POIListPopup ListPopup;
+    
+    private static HashMap<Integer, Room> loadedRooms = new HashMap<Integer, Room>();
     
     public Room(Building building, Floor floor, Polygon shape)
     {
@@ -63,38 +66,49 @@ public class Room extends JComponent
         this.id = JsonDB.addRoom(building, floor, layer, shape, position).get("id").getAsInt();
         curColor = DEFAULT_COLOR;
         curActiveColor = DEFAULT_ACTIVE_COLOR;
+        loadedRooms.put(id, this);
         
     }
     
-    public Room(JsonObject building, JsonObject floor, JsonObject layer, JsonObject room) {
-        this.building = new Building(building);
-        this.floor = new Floor(building, floor);
-        this.layer = new Layer(building, floor, layer);
+    private Room(JsonObject building, JsonObject floor, JsonObject layer, JsonObject room) {
+        this.building = Building.getBuilding(building);
+        this.floor = Floor.getFloor(building, floor);
+        this.layer = Layer.getLayer(building, floor, layer);
         this.id = room.get("id").getAsInt();
+        loadedRooms.put(id, this);
     }
     
-    public void Delete() {
-        layer.remove(this);
+    public static Room getRoom(JsonObject building, JsonObject floor, JsonObject layer, JsonObject room) {
+        int roomID = room.get("id").getAsInt();
+        if (loadedRooms.containsKey(roomID))
+            return loadedRooms.get(roomID);
+        
+        return new Room(building, floor, layer, room);
+        
+    }
+    
+    public void free() {
+        loadedRooms.remove(id);
     }
     
     private JsonObject getThis() {
-        JsonDB.load();
         return JsonDB.getRoom(building, floor, layer, id);
+    }
+    
+    public Point getSavedLocation() {
+        return new Point(getThis().get("x").getAsInt(), getThis().get("y").getAsInt());
     }
     
     public int getID() {
         return id;
     }
-    public int getX() {
-        return getThis().get("x").getAsInt();
-    }
-    public int getY() {
-        return getThis().get("y").getAsInt();
-    }
+    /*public Point getStartingLocation() {
+        return new Point(getThis().get("x").getAsInt(), getThis().get("y").getAsInt());
+    }*/
     
     public Polygon getShape() {
         
-        if (curShape == null)
+        //if (curShape == null)
         {
             int npoints = getThis().get("npoints").getAsInt();
 
@@ -108,10 +122,10 @@ public class Room extends JComponent
             for (int i = 0; i < npoints; ++i) 
                 ypoints[i] = jsonypoints.get(i).getAsInt();
 
-            curShape = new Polygon(xpoints, ypoints, npoints);
-            return curShape;
+            //curShape = new Polygon(xpoints, ypoints, npoints);
+            return new Polygon(xpoints, ypoints, npoints);
         }
-        else return curShape;
+        //else return curShape;
         
     }
     
@@ -125,7 +139,7 @@ public class Room extends JComponent
         for (int y : shape.ypoints) ypoints.add(y);
         getThis().add("xpoints", xpoints);
         getThis().add("ypoints", ypoints);
-        curShape = null; //invalidate cached values
+        JsonDB.save();
         
     }
     
@@ -166,13 +180,7 @@ public class Room extends JComponent
     }*/
     
     public void translate (int x, int y) {
-        System.out.println(getLocation());
-        System.out.println(x + " " + y);
         setLocation(getX()+x, getY()+y); //set location in scene
-        //update db
-        getThis().addProperty("x", getX() + x);
-        getThis().addProperty("y", getY() + y);
-        //
         if (ListPopup != null) ListPopup.translate(x, y);
     }
     

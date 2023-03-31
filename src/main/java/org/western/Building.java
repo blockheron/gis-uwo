@@ -1,5 +1,6 @@
 package org.western;
 import com.google.gson.*;
+import java.util.HashMap;
 import java.util.LinkedList;
 
 public class Building {
@@ -9,23 +10,30 @@ public class Building {
     //private POI[] POIs;
     //private JsonObject data;
 
+    private static HashMap<Integer, Building> loadedBuildings = new HashMap<Integer, Building>();
+    
     public Building(String name, String shortName) {
         
         id = JsonDB.addBuilding(name, shortName).get("id").getAsInt();
+        loadedBuildings.put(id, this);
         
     }
-    public Building(JsonObject building) {
+    private Building(JsonObject building) {
         
         this.id = building.get("id").getAsInt();
+        loadedBuildings.put(id, this);
         
+    }
+    public static Building getBuilding(JsonObject building) {
+        int buildingID = building.get("id").getAsInt();
+        if (loadedBuildings.containsKey(buildingID))
+            return loadedBuildings.get(buildingID);
+        
+        return new Building(building);
     }
     
     private JsonObject getThis() {
         return JsonDB.getBuilding(id);
-    }
-    
-    public void invalidate() {
-        JsonDB.invalidateBuilding(this);
     }
     
     public int getID() {
@@ -37,7 +45,6 @@ public class Building {
     }
     public void setName(String name) {
         getThis().addProperty("name", name);
-        invalidate();
         JsonDB.save();
     }
     
@@ -46,7 +53,6 @@ public class Building {
     }
     public void setShortName (String shortName) {
         getThis().addProperty("shortName", shortName);
-        invalidate();
         JsonDB.save();
     }
     
@@ -56,12 +62,11 @@ public class Building {
     
     public LinkedList<Floor> getFloors() {
         
-        JsonDB.load();
         JsonArray floors = JsonDB.getFloors(this);
         LinkedList<Floor> out = new LinkedList<Floor>();
         
         for (JsonElement floor:floors) 
-            out.add(new Floor(getThis(), floor.getAsJsonObject()));
+            out.add(Floor.getFloor(getThis(), floor.getAsJsonObject()));
         
         return out;
         

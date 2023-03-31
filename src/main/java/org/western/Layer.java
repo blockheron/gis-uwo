@@ -2,6 +2,7 @@ package org.western;
 
 import java.awt.*;
 import com.google.gson.*;
+import java.util.HashMap;
 
 import java.util.LinkedList;
 
@@ -11,19 +12,29 @@ public class Layer {
     private Building building;
     private Floor floor;
 
+    private static HashMap<Integer, Layer> loadedLayers = new HashMap<Integer, Layer>();
+    
     public Layer(Building building, Floor floor, String name, Color color) {
         this.building = building;
         this.floor = floor;
         this.id = JsonDB.addLayer(building, floor, name, color).get("id").getAsInt();
+        loadedLayers.put(id, this);
     }
-    public Layer(JsonObject building, JsonObject floor, JsonObject layer) {
-        this.building = new Building(building);
-        this.floor = new Floor(building, floor);
+    private Layer(JsonObject building, JsonObject floor, JsonObject layer) {
+        this.building = Building.getBuilding(building);
+        this.floor = Floor.getFloor(building, floor);
         this.id = layer.get("id").getAsInt();
+        loadedLayers.put(id, this);
+    }
+    public static Layer getLayer(JsonObject building, JsonObject floor, JsonObject layer) {
+        int layerID = layer.get("id").getAsInt();
+        if (loadedLayers.containsKey(layerID))
+            return loadedLayers.get(layerID);
+        
+        return new Layer(building, floor, layer);
     }
     
     private JsonObject getThis() {
-        JsonDB.load();
         return JsonDB.getLayer(building, floor, id);
     }
     
@@ -49,12 +60,11 @@ public class Layer {
     
     public LinkedList<Room> getRooms() {
         
-        JsonDB.load();
         JsonArray rooms = JsonDB.getRooms(building, floor, this);
         LinkedList<Room> out = new LinkedList<Room>();
         
         for (JsonElement room:rooms) 
-            out.add(new Room(JsonDB.getBuilding(building.getID()),
+            out.add(Room.getRoom(JsonDB.getBuilding(building.getID()),
                     JsonDB.getFloor(building, floor.getID()),
                     getThis(),
                     room.getAsJsonObject()
@@ -80,6 +90,11 @@ public class Layer {
         getThis().get("rooms").getAsJsonArray().remove(
                 JsonDB.getRoom(building, floor, this, room.getID())
         );
+        int count = getThis().get("count").getAsInt();
+        getThis().addProperty("count", count-1);
+        
+        room.free();
+        JsonDB.save();
     }
     
 }

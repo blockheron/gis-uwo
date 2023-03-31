@@ -16,12 +16,11 @@ public class Map {
     }
     
     public static LinkedList<Building> getBuildings() {
-        JsonDB.load();
         JsonArray buildings = JsonDB.getBuildings();
         LinkedList<Building> out = new LinkedList<Building>();
         
         for (JsonElement building:buildings) 
-            out.add(new Building(building.getAsJsonObject()));
+            out.add(Building.getBuilding(building.getAsJsonObject()));
         
         return out;
         

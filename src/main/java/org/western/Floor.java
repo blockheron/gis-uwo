@@ -5,6 +5,7 @@ import java.util.LinkedList;
 
 import java.awt.*;
 import com.google.gson.*;
+import java.util.HashMap;
 
 public class Floor {
     
@@ -12,6 +13,7 @@ public class Floor {
     //private LinkedList<Layer> layers;
     private int id;
     private Building building;
+    private static HashMap<Integer, Floor> loadedFloors = new HashMap<Integer, Floor>();
     //private String name;
     
     
@@ -19,19 +21,27 @@ public class Floor {
         this.building = building;
         this.id = JsonDB.addFloor(building, name, filePath).get("id").getAsInt();
         addLayer("Unassigned", new Color(200, 0, 0, 50));
+        loadedFloors.put(id, this);
     }
     
-    public Floor(JsonObject building, JsonObject floor) {
-        this.building = new Building(building);
+    private Floor(JsonObject building, JsonObject floor) {
+        this.building = Building.getBuilding(building);
         this.id = floor.get("id").getAsInt();
+        loadedFloors.put(id, this);
+    }
+    
+    public static Floor getFloor(JsonObject building, JsonObject floor) {
+        int floorID = floor.get("id").getAsInt();
+        if (loadedFloors.containsKey(floorID))
+            return loadedFloors.get(floorID);
+        
+        return new Floor(building, floor);
     }
     
     private JsonObject getThis() {
-        return JsonDB.getFloor(building, id);       
-    }
-    
-    public void invalidate() {
-        JsonDB.invalidateFloor(this);
+        
+        return JsonDB.getFloor(building, id);
+        
     }
     
     public int getID() {
@@ -53,12 +63,11 @@ public class Floor {
     
     public LinkedList<Layer> getLayers() {
         
-        JsonDB.load();
         JsonArray layers = JsonDB.getLayers(building, this);
         LinkedList<Layer> out = new LinkedList<Layer>();
         
         for (JsonElement layer:layers) 
-            out.add(new Layer(JsonDB.getBuilding(building.getID()),
+            out.add(Layer.getLayer(JsonDB.getBuilding(building.getID()),
                     getThis(),
                     layer.getAsJsonObject()
             ));

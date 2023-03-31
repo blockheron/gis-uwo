@@ -502,7 +502,7 @@ public class MainWindow extends javax.swing.JFrame {
     
     private void renderRooms() {
         
-        /*int[] xpoints = {300, 500, 500};
+        int[] xpoints = {300, 500, 500};
         int[] ypoints = {50, 100, 200};
         int npoints = 3;
         
@@ -518,7 +518,7 @@ public class MainWindow extends javax.swing.JFrame {
         Polygon room2Shape = new Polygon(xpoints2, ypoints2, npoints2);
         
         Room room2 = new Room(curBuilding, curFloor, room2Shape);
-        attachRoom(room2);*/
+        attachRoom(room2);
              
     }
 
@@ -589,9 +589,8 @@ public class MainWindow extends javax.swing.JFrame {
                     //
                     
                     //add new draft of room
-                    draftPoly.addPoint(e.getX()-draftRoom.getX(), e.getY()-draftRoom.getY());                
+                    draftRoom.addPoint(e.getX()-draftRoom.getX(), e.getY()-draftRoom.getY());                
                     //draftRoom = new Room(draftPoly, draftRoom.getLocation()); //fix coordinates off  
-                    curFloor.addRoom(draftRoom);
                     attachRoom(draftRoom);
                     //
                     
@@ -636,7 +635,7 @@ public class MainWindow extends javax.swing.JFrame {
             y += deltaY;
             
             canvas.translate(deltaX, deltaY);
-            //for (Room room:curFloor.getRooms()) room.translate(deltaX, deltaY);           
+            for (Room room:curFloor.getRooms()) room.translate(deltaX, deltaY);           
 
             initialX = currentX;
             initialY = currentY;
