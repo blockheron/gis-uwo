@@ -1,65 +1,75 @@
 {
-    "count" : 1,
-    "buildings" : [
-    
+  "count": 1,
+  "buildings": [
+    {
+      "id": 1,
+      "name": "Middlesex College",
+      "shortName": "MC",
+      "maxFloors": 5,
+      "count": 1,
+      "floors": [
         {
-
-            "id" : 1,
-            "name" : "Middlesex College",
-            "shortName" : "MC",
-            "maxFloors" : 5,
-            "count" : 1,
-            "floors" : [
-                
+          "name": "ground",
+          "count": 2,
+          "layers": [
+            {
+              "name": "Classrooms",
+              "rooms": [
                 {
-                "name" : "ground",
-                "count" : 2,
-                "layers" : [
-                    
-                    {
-                        
-                        "name" : "Classrooms",
-                        "rooms" : [
-
-                            {
-
-                            "roomNumber" : 101,
-                            "npoints" : 0,
-                            "xpoints" : [],
-                            "ypoints" : [],
-                            "POIs" : [
-
-                                ]
-
-
-                            }
-
-                        ]
-                    
-                    },
-                    
-                    {
-                        
-                        "name" : "none",
-                        "count" : 1,
-                        "layers" : [
-                            
-                            
-                            
-                            ]
-                        
-                    }
-                    
-                    ]
-                    
+                  "roomNumber": 101,
+                  "npoints": 0,
+                  "xpoints": [],
+                  "ypoints": [],
+                  "POIs": [
+                  ]
                 }
-
-
-                ],
-            "user" : []
-
+              ]
+            },
+            {
+              "name": "none",
+              "count": 1,
+              "layers": [
+              ]
+            }
+          ]
         }
-        
-    
-    ]
+      ],
+      "user": []
+    },
+    {
+      "id": 2,
+      "name": "Natural Sciences Centre",
+      "shortName": "NSC",
+      "maxFloors": 5,
+      "count": 1,
+      "floors": [
+        {
+          "name": "ground",
+          "count": 2,
+          "layers": [
+            {
+              "name": "Classrooms",
+              "rooms": [
+                {
+                  "roomNumber": 101,
+                  "npoints": 0,
+                  "xpoints": [],
+                  "ypoints": [],
+                  "POIs": [
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "none",
+              "count": 1,
+              "layers": [
+              ]
+            }
+          ]
+        }
+      ],
+      "user": []
+    }
+  ]
 }
