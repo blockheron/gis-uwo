@@ -136,7 +136,7 @@ public class MainWindow extends javax.swing.JFrame {
         FrameLayout.setVerticalGroup(
             FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FrameLayout.createSequentialGroup()
-                .addContainerGap(787, Short.MAX_VALUE)
+                .addContainerGap(788, Short.MAX_VALUE)
                 .addGroup(FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(addRoomButton)
                     .addComponent(editButton))
@@ -181,13 +181,18 @@ public class MainWindow extends javax.swing.JFrame {
         filterPanel.add(selectBox);
 
         resultContainer.setBackground(new java.awt.Color(245, 245, 247));
+        resultContainer.setPreferredSize(new java.awt.Dimension(282, 154));
+        resultContainer.setLayout(new javax.swing.BoxLayout(resultContainer, javax.swing.BoxLayout.LINE_AXIS));
+
+        resultPanel.setBorder(null);
+        resultPanel.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         resultList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            String[] strings = { "Loading..." };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        resultList.setPreferredSize(new java.awt.Dimension(280, 120));
+        resultList.setPreferredSize(new java.awt.Dimension(280, 200));
         resultPanel.setViewportView(resultList);
 
         resultContainer.add(resultPanel);
@@ -315,6 +320,12 @@ public class MainWindow extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_addRoomButtonMouseClicked
+
+    private void searchBoxOnClick(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchBoxOnClick
+        // TODO add your handling code here:
+        searchBox.grabFocus();
+        searchPanel.setVisible(true);
+    }//GEN-LAST:event_searchBoxOnClick
 
     /**
      * @param args the command line arguments
@@ -614,6 +625,7 @@ public class MainWindow extends javax.swing.JFrame {
         
         public void mouseClicked(MouseEvent e) {
             //for (Room room:curFloor.getRooms()) room.mouseClicked(e, layerPanel);
+            dropDownPanel.setVisible(false);
         }
         
     }
