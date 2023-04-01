@@ -79,8 +79,18 @@ public class Building {
         return null;
     }
     
+    public Floor getFloor(String name) {
+        for (Floor floor: getFloors()) {
+            if (floor.getName().equals(name)) return floor;
+        }
+        return null;
+    }
+    
     public Floor addFloor(String name, String filePath) {
         return new Floor(this, name, filePath);
+    }
+    public Floor addFloor(String name, String filePath, int prevFloorID) {
+        return new Floor(this, name, filePath, prevFloorID);
     }
     
     //public String[] getFloors() {

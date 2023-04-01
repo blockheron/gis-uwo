@@ -1,64 +1,88 @@
 package org.western;
 
 import com.google.gson.JsonObject;
+import java.awt.*;
+import java.util.HashMap;
 
 public class POI {
     private int id;
-    private String name;
-    private String description;
-    private String building;
-    private String floor;
+    private Building building;
+    private Floor floor;
+    private Layer layer;
+    private Room room;
+    //private String name;
+    //private String description;
+    //private String building;
+    //private String floor;
+    //private int[] user;
 
-    private String[] layer;
-    private String room;
-    private float[][] coordinates = new float[4][2];
-    private int[] user;
-
-    public POI(int id, String name, String description, String building, String floor, String[] layer, String room, float[][] coordinates, int[] user) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
+    private static HashMap<Integer, POI> loadedPOIs = new HashMap<Integer, POI>();
+    
+    public POI(Building building, Floor floor, Layer layer, Room room, String name, String description, Point location) {
         this.building = building;
         this.floor = floor;
         this.layer = layer;
         this.room = room;
-        this.coordinates = coordinates;
-        this.user = user;
+        this.id = JsonDB.addPOI(building, floor, layer, room, name, description, location).get("id").getAsInt();
+        loadedPOIs.put(id, this);
+        
+    }
+    
+    private POI(JsonObject building, JsonObject floor, JsonObject layer, JsonObject room, JsonObject POI) {
+        this.building = Building.getBuilding(building);
+        this.floor = Floor.getFloor(building, floor);
+        this.layer = Layer.getLayer(building, floor, layer);
+        this.room = Room.getRoom(building, floor, layer, room);
+        this.id = room.get("id").getAsInt();
+        loadedPOIs.put(id, this);
+    }
+    
+    public static POI getPOI(JsonObject building, JsonObject floor, JsonObject layer, JsonObject room, JsonObject POI) {
+        int POIID = POI.get("id").getAsInt();
+        if (loadedPOIs.containsKey(POIID))
+            return loadedPOIs.get(POIID);
+        
+        return new POI(building, floor, layer, room, POI);
     }
 
-    public int getId() {
+    private JsonObject getThis() {
+        return JsonDB.getPOI(building, floor, layer, room, id);
+    }
+    
+    public int getID() {
         return id;
     }
 
     public String getName() {
-        return name;
+        return getThis().get("name").getAsString();
     }
 
     public String getDescription() {
-        return description;
+        return getThis().get("description").getAsString();
     }
 
-    public String getBuilding() {
+    public Building getBuilding() {
         return building;
     }
 
-    public String getFloor() {
+    public Floor getFloor() {
         return floor;
     }
 
-    public String[] getLayer() {
+    public Layer getLayer() {
         return layer;
     }
 
-    public String getRoom() {
+    public Room getRoom() {
         return room;
     }
 
-    public float[][] getCoordinates() {
+    /*public float[][] getCoordinates() {
         return coordinates;
     }
 
     public int[] getUser() {
         return user;
-    }
+    }*/
+    
 }

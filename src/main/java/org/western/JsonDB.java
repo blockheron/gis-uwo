@@ -36,6 +36,8 @@ public class JsonDB {
         System.out.println(db.get("count"));
         
         mc.addFloor("ground", "path/to/floor");
+        mc.addFloor("basement", "different-file-path", -1); //inserts at beginning of floors
+        mc.addFloor("lower ground", "", mc.getFloor("basement").getID());
         pab.addFloor("grad lounge", "path/to/lounge");
         
         //LinkedList<Floor> floors = mc.getFloors();
@@ -72,13 +74,24 @@ public class JsonDB {
     }
     public JsonDB(boolean debug) {
         
-        if (debug) {
+        gson = new GsonBuilder().setPrettyPrinting().create();
+        if (debug) { //creates an empty database
+            JsonObject cleanDB = new JsonObject();
+            cleanDB.addProperty("POICount", 0);
+            cleanDB.addProperty("roomCount", 0);
+            cleanDB.addProperty("layerCount", 0);
+            cleanDB.addProperty("floorCount", 0);
+            cleanDB.addProperty("count", 0);
+            cleanDB.add("buildings", new JsonArray());
+            
             filePath = getClass().getResource("db/test_db.json").getFile();
+            db = cleanDB;
+            save();
         }
         else {
             filePath = getClass().getResource("db/db.json").getFile();
         }
-        gson = new GsonBuilder().setPrettyPrinting().create();
+        
         load();
         
     }
@@ -224,6 +237,39 @@ public class JsonDB {
         
     }
     
+    public static JsonObject addFloor(Building building, String name, String filePath, int prevFloorID) {
+        
+        JsonObject jsonBuilding = getBuilding(building.getID());
+        
+        JsonObject floor = new JsonObject();
+        floor.addProperty("id", incrementCount("floorCount"));
+        floor.addProperty("name", name);
+        floor.addProperty("filePath", filePath);
+        floor.addProperty("count", 0);
+        floor.add("layers", new JsonArray());
+        
+        JsonArray floorArray = jsonBuilding.get("floors").getAsJsonArray();
+        
+        //find index of previous floor
+        int index = 0;
+        for (int i = 0; i < building.getFloorNum(); ++i) {
+            if (floorArray.get(i).getAsJsonObject().get("id").getAsInt() == prevFloorID) {
+                index = i;
+            }
+        }
+        //
+        
+        //insert
+        floorArray.asList().add(index, floor);
+        
+        int count = jsonBuilding.get("count").getAsInt();
+        jsonBuilding.addProperty("count", count+1);
+        save();
+        
+        return floor;
+        
+    }
+    
     public static JsonArray getLayers(Building building, Floor floor) {
         //return getBuilding(building.getID()).get("floors").getAsJsonArray();
         return getFloor(building, floor.getID()).get("layers").getAsJsonArray();
@@ -320,6 +366,51 @@ public class JsonDB {
         save();
         
         return room;
+        
+    }
+    
+    public static JsonArray getPOIs(Building building, Floor floor, Layer layer, Room room) {
+        //System.out.println(building.getName() + " " + floor.getName() + " " + layer.getName());
+        return getRoom(building, floor, layer, room.getID()).get("POIs").getAsJsonArray();
+    }
+    
+    public static JsonObject getPOI (Building building, Floor floor, Layer layer, Room room, int id) {
+        //System.out.println(id);
+        int POICount = room.getPOINum();
+        JsonArray POIs = getPOIs(building, floor, layer, room);
+        
+        for (int i = 0; i < POICount; ++i) {
+            
+            JsonObject _POI = POIs.get(i).getAsJsonObject();
+            //System.out.println(_room.get("id"));
+            
+            if (_POI.get("id").getAsInt() == id)
+                return _POI;
+            
+        }
+        
+        return null;
+        
+    }
+    
+    public static JsonObject addPOI(Building building, Floor floor, Layer layer, Room room, String name, String description, Point position) {
+        
+        JsonObject jsonRoom = getRoom(building, floor, layer, room.getID());
+        
+        JsonObject POI = new JsonObject();
+        POI.addProperty("id", incrementCount("POICount"));
+        POI.addProperty("name", name);
+        POI.addProperty("description", description);
+        POI.addProperty("x", position.getX());
+        POI.addProperty("y", position.getY());
+        
+        jsonRoom.get("POIs").getAsJsonArray().add(POI);
+        
+        int count = jsonRoom.get("count").getAsInt();
+        jsonRoom.addProperty("count", count+1);
+        save();
+        
+        return POI;
         
     }
     

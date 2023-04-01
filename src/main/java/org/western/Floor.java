@@ -24,6 +24,13 @@ public class Floor {
         loadedFloors.put(id, this);
     }
     
+    public Floor(Building building, String name, String filePath, int prevFloorID) {
+        this.building = building;
+        this.id = JsonDB.addFloor(building, name, filePath, prevFloorID).get("id").getAsInt();
+        addLayer("Unassigned", new Color(200, 0, 0, 50));
+        loadedFloors.put(id, this); 
+    }
+    
     private Floor(JsonObject building, JsonObject floor) {
         this.building = Building.getBuilding(building);
         this.id = floor.get("id").getAsInt();

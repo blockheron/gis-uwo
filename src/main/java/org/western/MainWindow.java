@@ -502,6 +502,7 @@ public class MainWindow extends javax.swing.JFrame {
     
     private void renderRooms() {
         
+        //demo code
         int[] xpoints = {300, 500, 500};
         int[] ypoints = {50, 100, 200};
         int npoints = 3;
@@ -509,7 +510,7 @@ public class MainWindow extends javax.swing.JFrame {
         Polygon room1Shape = new Polygon(xpoints, ypoints, npoints);
         
         Room room1 = new Room(curBuilding, curFloor, room1Shape);
-        attachRoom(room1);
+        room1.addPOI("test", "nothing", room1.getLocation());
         
         int[] xpoints2 = {100, 200, 300};
         int[] ypoints2 = {100, 200, 250};
@@ -518,7 +519,12 @@ public class MainWindow extends javax.swing.JFrame {
         Polygon room2Shape = new Polygon(xpoints2, ypoints2, npoints2);
         
         Room room2 = new Room(curBuilding, curFloor, room2Shape);
-        attachRoom(room2);
+        room2.addPOI("test2", "", room2.getLocation());
+        //
+        
+        for (Room room : curFloor.getRooms()) {
+            attachRoom(room);
+        }
              
     }
 
@@ -613,7 +619,7 @@ public class MainWindow extends javax.swing.JFrame {
         }
         
         public void mouseClicked(MouseEvent e) {
-            //for (Room room:curFloor.getRooms()) room.mouseClicked(e, layerPanel);
+            for (Room room:curFloor.getRooms()) room.mouseClicked(e, layerPanel);
         }
         
     }
