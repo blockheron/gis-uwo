@@ -30,12 +30,13 @@ public class Search {
 
     // loadFilter() loads the filter list from the database
     private int loadFilter() {
+        JsonDB db = new JsonDB();
         JsonArray b; // b is a temporary building array
         AtomicReference<JsonArray> f = new AtomicReference<>(); // f is a temporary floor array
         AtomicReference<JsonArray> l = new AtomicReference<>(); // l is a temporary layer array
         try {
-            if (JsonDB.getBuildings() != null) {
-                b = JsonDB.getBuildings().getAsJsonArray();
+            if (db.getBuildings() != null) {
+                b = db.getBuildings().getAsJsonArray();
                 if (b != null) {
                     b.forEach(building -> {
                         f.set(building.getAsJsonObject().get("floors").getAsJsonArray());
@@ -77,13 +78,13 @@ public class Search {
     }
 
     // getFilter() returns the filter list
-    public String[] getFilter() {
+    public String[] getFilters() {
         return fL.toArray(new String[0]);
     }
 
     public static void main(String[] args) {
         Search s = new Search();
-        for (String str : s.getFilter())
+        for (String str : s.getFilters())
             System.out.println(str);
     }
 }
