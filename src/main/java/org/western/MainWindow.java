@@ -4,6 +4,7 @@
  */
 package org.western;
 
+
 import org.kordamp.ikonli.remixicon.RemixiconAL;
 import org.kordamp.ikonli.remixicon.RemixiconMZ;
 import org.kordamp.ikonli.swing.FontIcon;
@@ -12,6 +13,7 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.*;
+import javax.imageio.ImageIO;
 
 /**
  * @author m
@@ -27,6 +29,7 @@ public class MainWindow extends javax.swing.JFrame {
         initSearchBox();
         renderFrame();
         prepareIcon();
+        
     }
 
     /**
@@ -38,7 +41,7 @@ public class MainWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        layerPanel = new javax.swing.JLayeredPane();
+        jLayeredPane1 = new javax.swing.JLayeredPane();
         Frame = new javax.swing.JPanel();
         searchPanel = new javax.swing.JPanel();
         searchBox = new javax.swing.JTextField();
@@ -49,6 +52,10 @@ public class MainWindow extends javax.swing.JFrame {
         filterText = new javax.swing.JLabel();
         selectBox = new javax.swing.JComboBox<>();
         resultPanel = new javax.swing.JPanel();
+        smallMap = new javax.swing.JPanel();
+        jButton2 = new javax.swing.JButton();
+        BigMapLayer = new javax.swing.JLayeredPane();
+        HelpButton = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -56,21 +63,8 @@ public class MainWindow extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
 
-        layerPanel.setPreferredSize(new java.awt.Dimension(1200, 800));
-
         Frame.setForeground(new java.awt.Color(130, 130, 130));
         Frame.setPreferredSize(new java.awt.Dimension(1200, 800));
-
-        javax.swing.GroupLayout FrameLayout = new javax.swing.GroupLayout(Frame);
-        Frame.setLayout(FrameLayout);
-        FrameLayout.setHorizontalGroup(
-            FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1200, Short.MAX_VALUE)
-        );
-        FrameLayout.setVerticalGroup(
-            FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
-        );
 
         searchPanel.setForeground(new java.awt.Color(13, 17, 23));
         searchPanel.setPreferredSize(new java.awt.Dimension(280, 40));
@@ -145,32 +139,113 @@ public class MainWindow extends javax.swing.JFrame {
             searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(searchPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(onSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(searchBox, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(onSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(searchBox, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(dropDownPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE))
         );
 
-        layerPanel.setLayer(Frame, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        layerPanel.setLayer(searchPanel, javax.swing.JLayeredPane.POPUP_LAYER);
+        smallMap.setBackground(new java.awt.Color(255, 255, 255));
+        smallMap.setPreferredSize(new java.awt.Dimension(180, 125));
 
-        javax.swing.GroupLayout layerPanelLayout = new javax.swing.GroupLayout(layerPanel);
-        layerPanel.setLayout(layerPanelLayout);
-        layerPanelLayout.setHorizontalGroup(
-            layerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Frame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGroup(layerPanelLayout.createSequentialGroup()
-                .addGap(915, 915, 915)
-                .addComponent(searchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        jButton2.setText("jButton2");
+        jButton2.setPreferredSize(new java.awt.Dimension(185, 125));
+
+        javax.swing.GroupLayout smallMapLayout = new javax.swing.GroupLayout(smallMap);
+        smallMap.setLayout(smallMapLayout);
+        smallMapLayout.setHorizontalGroup(
+            smallMapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
         );
-        layerPanelLayout.setVerticalGroup(
-            layerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Frame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(searchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+        smallMapLayout.setVerticalGroup(
+            smallMapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        getContentPane().add(layerPanel, java.awt.BorderLayout.CENTER);
+        jButton2.getAccessibleContext().setAccessibleDescription("");
+
+        BigMapLayer.setPreferredSize(new java.awt.Dimension(1200, 800));
+
+        javax.swing.GroupLayout BigMapLayerLayout = new javax.swing.GroupLayout(BigMapLayer);
+        BigMapLayer.setLayout(BigMapLayerLayout);
+        BigMapLayerLayout.setHorizontalGroup(
+            BigMapLayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1206, Short.MAX_VALUE)
+        );
+        BigMapLayerLayout.setVerticalGroup(
+            BigMapLayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 234, Short.MAX_VALUE)
+        );
+
+        HelpButton.setText("?");
+        HelpButton.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                HelpButtonMouseMoved(evt);
+            }
+        });
+        HelpButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HelpButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout FrameLayout = new javax.swing.GroupLayout(Frame);
+        Frame.setLayout(FrameLayout);
+        FrameLayout.setHorizontalGroup(
+            FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FrameLayout.createSequentialGroup()
+                .addGap(79, 79, 79)
+                .addComponent(smallMap, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 688, Short.MAX_VALUE)
+                .addComponent(searchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16))
+            .addGroup(FrameLayout.createSequentialGroup()
+                .addGap(45, 45, 45)
+                .addComponent(HelpButton)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(FrameLayout.createSequentialGroup()
+                    .addGap(18, 18, 18)
+                    .addComponent(BigMapLayer, javax.swing.GroupLayout.PREFERRED_SIZE, 1206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(18, Short.MAX_VALUE)))
+        );
+        FrameLayout.setVerticalGroup(
+            FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(FrameLayout.createSequentialGroup()
+                .addGroup(FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(FrameLayout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(searchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(FrameLayout.createSequentialGroup()
+                        .addGap(56, 56, 56)
+                        .addComponent(smallMap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 438, Short.MAX_VALUE)
+                .addComponent(HelpButton)
+                .addGap(44, 44, 44))
+            .addGroup(FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(FrameLayout.createSequentialGroup()
+                    .addGap(283, 283, 283)
+                    .addComponent(BigMapLayer, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(283, Short.MAX_VALUE)))
+        );
+
+        jLayeredPane1.setLayer(Frame, javax.swing.JLayeredPane.MODAL_LAYER);
+
+        javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
+        jLayeredPane1.setLayout(jLayeredPane1Layout);
+        jLayeredPane1Layout.setHorizontalGroup(
+            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(Frame, javax.swing.GroupLayout.DEFAULT_SIZE, 1242, Short.MAX_VALUE)
+        );
+        jLayeredPane1Layout.setVerticalGroup(
+            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                .addComponent(Frame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(578, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(jLayeredPane1, java.awt.BorderLayout.PAGE_START);
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -190,6 +265,17 @@ public class MainWindow extends javax.swing.JFrame {
     private void onSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onSearchActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_onSearchActionPerformed
+
+    private void HelpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HelpButtonActionPerformed
+        CustomTip p = new CustomTip();
+        p.run();
+        
+                
+    }//GEN-LAST:event_HelpButtonActionPerformed
+
+    private void HelpButtonMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HelpButtonMouseMoved
+       
+    }//GEN-LAST:event_HelpButtonMouseMoved
 
     /**
      * @param args the command line arguments
@@ -323,8 +409,26 @@ public class MainWindow extends javax.swing.JFrame {
      */
     private void renderFrame() {
         Canvas c = new Canvas("/org/western/assets/mc-demo.png", this.getWidth(), this.getHeight());
+        Canvas2 smallMapPic = new Canvas2("/org/western/assets/campus_map.png", 180, 125);
+//        try{
+//            Image img = ImageIO.read(getClass().getResource("/org/western/assets/campus_map.png"));
+//            jButton2.setIcon(new ImageIcon(img));
+//            img.setSize(50,150);
+//        }
+//        catch(Exception ex){
+//            System.out.println(ex);
+//        }
+        
+//        Canvas v = new Canvas("/org/western/assets/mc-demo.png", 300, 400);
+//        Frame.add(v);
+//        Frame.setFocusable(true);
         Frame.add(c);
         Frame.setFocusable(true);
+//        smallMap.add(smallMapPic);
+//        smallMap.setFocusable(false);
+        jButton2.add(smallMapPic);
+        jButton2.setFocusable(false);
+        
     }
 
     /**
@@ -350,19 +454,23 @@ public class MainWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLayeredPane BigMapLayer;
     private javax.swing.JPanel Frame;
+    private javax.swing.JButton HelpButton;
     private javax.swing.JPanel dropDownPanel;
     private javax.swing.JLabel filterIcon;
     private javax.swing.JPanel filterPanel;
     private javax.swing.JLabel filterText;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JLayeredPane layerPanel;
     private javax.swing.JButton onSearch;
     private javax.swing.JPanel resultPanel;
     private javax.swing.JTextField searchBox;
     private javax.swing.JPanel searchPanel;
     private javax.swing.JComboBox<String> selectBox;
+    private javax.swing.JPanel smallMap;
     // End of variables declaration//GEN-END:variables
 }
