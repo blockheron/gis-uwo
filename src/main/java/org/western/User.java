@@ -43,20 +43,6 @@ public class User {
     private JsonObject getThis() {
         return JsonDB.getUser(id);
     }
-    
-    /*public User() {
-        this.id = ascId++;
-        this.username = "";
-        this.password = "";
-        this.roleName = role.USER;
-    }
-
-    public User(String username, String password, String type) {
-        this.id = ascId++;
-        this.username = username;
-        this.password = password;
-        this.roleName = role.valueOf(type);
-    }*/
 
     public String getUsername() {
         return getThis().get("username").getAsString();

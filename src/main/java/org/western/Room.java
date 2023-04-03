@@ -41,6 +41,12 @@ public class Room extends JComponent
     
     private static HashMap<Integer, Room> loadedRooms = new HashMap<Integer, Room>();
     
+    /**
+     * create a new room at the origin on an undefined layer
+     * @param building the building the room is in
+     * @param floor the floor the room is on
+     * @param shape the shape of the room
+     */
     public Room(Building building, Floor floor, Polygon shape)
     {
         
@@ -49,6 +55,13 @@ public class Room extends JComponent
                
     }
     
+    /**
+     * create a new room on the undefined layer
+     * @param building the building the room is in
+     * @param floor the floor the room is on
+     * @param shape the shape of the room
+     * @param position the position of the room
+     */
     public Room(Building building, Floor floor, Polygon shape, Point position)
     {
         

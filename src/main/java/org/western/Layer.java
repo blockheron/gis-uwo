@@ -14,6 +14,13 @@ public class Layer {
 
     private static HashMap<Integer, Layer> loadedLayers = new HashMap<Integer, Layer>();
     
+    /**
+     * add a new layer to the database
+     * @param building the building the layer is in
+     * @param floor the floor the layer is on
+     * @param name the name of the layer
+     * @param color the color of the layer
+     */
     public Layer(Building building, Floor floor, String name, Color color) {
         this.building = building;
         this.floor = floor;
@@ -58,6 +65,10 @@ public class Layer {
         return getThis().get("count").getAsInt();
     }
     
+    /**
+     * get all the rooms in the layer
+     * @return a LinkedList of the rooms in the layer
+     */
     public LinkedList<Room> getRooms() {
         
         JsonArray rooms = JsonDB.getRooms(building, floor, this);
@@ -74,6 +85,11 @@ public class Layer {
         
     }
     
+    /**
+     * get room from id
+     * @param id the id of the room
+     * @return the room if it exists, otherwise null
+     */
     public Room getRoom(int id) {
         
         for (Room room: getRooms()) {
@@ -82,10 +98,20 @@ public class Layer {
         return null;
     }
     
+    /**
+     * add a room to the database
+     * @param shape the shape of the room(the polygon defining its outline)
+     * @param position the position of the room
+     * @return the room if successful, otherwise null
+     */
     public Room addRoom(Polygon shape, Point position) {
         return new Room(building, floor, this, shape, position);
     }
     
+    /**
+     * remove a room from the database
+     * @param room the room to remove
+     */
     public void remove(Room room) {
         getThis().get("rooms").getAsJsonArray().remove(
                 JsonDB.getRoom(building, floor, this, room.getID())
