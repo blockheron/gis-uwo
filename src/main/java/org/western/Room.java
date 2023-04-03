@@ -95,13 +95,16 @@ public class Room extends JComponent
         return JsonDB.getRoom(building, floor, layer, id);
     }
     
+    public int getID() {
+        return id;
+    }
+    public int getPOINum() {
+        return getThis().get("count").getAsInt();
+    }
     public Point getSavedLocation() {
         return new Point(getThis().get("x").getAsInt(), getThis().get("y").getAsInt());
     }
     
-    public int getID() {
-        return id;
-    }
     /*public Point getStartingLocation() {
         return new Point(getThis().get("x").getAsInt(), getThis().get("y").getAsInt());
     }*/
@@ -151,6 +154,35 @@ public class Room extends JComponent
     
     public Rectangle getBounds() {
         return getShape().getBounds();
+    }
+    
+    public LinkedList<POI> getPOIs() {
+        
+        JsonArray POIs = JsonDB.getPOIs(building, floor, layer, this);
+        LinkedList<POI> out = new LinkedList<POI>();
+        
+        for (JsonElement poi:POIs) 
+            out.add(POI.getPOI(JsonDB.getBuilding(building.getID()),
+                    JsonDB.getFloor(building, floor.getID()),
+                    JsonDB.getLayer(building, floor, id),
+                    getThis(),
+                    poi.getAsJsonObject()
+            ));
+        
+        return out;
+        
+    }
+    
+    public POI getPOI(int id) {
+        
+        for (POI poi: getPOIs()) {
+            if (poi.getID() == id) return poi;
+        }
+        return null;
+    }
+    
+    public POI addPOI(String name, String description, Point position) {
+        return new POI(building, floor, layer, this , name, description, position);
     }
     
     /*public Room(Polygon shape, Building building, Floor floor) 
@@ -264,18 +296,18 @@ public class Room extends JComponent
     }*/
     
     //reimplement when pois implemented
-    /*public void mouseClicked(MouseEvent e, JLayeredPane layerPanel) {
+    public void mouseClicked(MouseEvent e, JLayeredPane layerPanel) {
 
         if (active && ListPopup == null) {
           
-            ListPopup = new POIListPopup(this, POIs);
+            ListPopup = new POIListPopup(this, getPOIs());
             layerPanel.add(ListPopup, JLayeredPane.POPUP_LAYER);
             ListPopup.setSize(ListPopup.getPreferredSize());
             ListPopup.setLocation(e.getPoint());
             
         }
         
-    }*/
+    }
     
     public void deletePopup() {
         ListPopup = null;

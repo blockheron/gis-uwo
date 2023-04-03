@@ -39,4 +39,31 @@ public class Map {
         return new Building(name, shortName);
     }
     
+    public static LinkedList<User> getUsers() {
+        JsonArray users = JsonDB.getUsers();
+        LinkedList<User> out = new LinkedList<User>();
+        
+        for (JsonElement user:users) 
+            out.add(User.getUser(user.getAsJsonObject()));
+        
+        return out;
+        
+    }
+    
+    public static User getUser(String username) {
+        
+        for (User user: getUsers()) {
+            if (user.getUsername().equals(username)) return user;
+        }
+        return null;
+        
+    }
+    
+    public static User addUser(String username, String password) {
+        return new User(username, password, false);
+    }
+    public static User addUser(String username, String password, boolean admin) {
+        return new User(username, password, admin);
+    }
+    
 }

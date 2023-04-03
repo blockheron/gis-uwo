@@ -21,10 +21,11 @@ import java.util.LinkedList;
  * @author m
  */
 public class MainWindow extends javax.swing.JFrame {
-    private int session = -1; // -1 for guest, 0 for admin, 1 for user
-
+    //private int session = -1; // -1 for guest, 0 for admin, 1 for user
+    
     private Building curBuilding;
     private Floor curFloor;
+    private User curUser;
 
     private int x, y, initialX, initialY, deltaX, deltaY;
     private boolean editMode = false;
@@ -33,23 +34,30 @@ public class MainWindow extends javax.swing.JFrame {
     private Icon addRoomButtonEnabled, addRoomButtonDisabled;
     private Room draftRoom;
     private Polygon draftPoly;
-
+    
     /**
      * Creates new form MainWindow
      */
-    public MainWindow() {
-
-        JsonDB db;
-
+    public MainWindow(boolean debug, User user) {
+        
+        curUser = user;
+        
         //demo code
-        db = new JsonDB(true);
+        if (debug)
+        {
+            JsonDB db;
+            db = new JsonDB(true);
 
+            curBuilding = new Building("Middlesex College", "MC");
+            curFloor = curBuilding.addFloor("Ground", "Path-to-image");
+        }
         curBuilding = new Building("Middlesex College", "MC");
         curFloor = curBuilding.addFloor("Ground", "Path-to-image");
+        
         //
-
-
-
+        
+        
+        
         initComponents();
         initMainWindow();
         initSearchBox();
@@ -57,16 +65,6 @@ public class MainWindow extends javax.swing.JFrame {
         renderFrame();
         prepareIcon();
         renderRooms();
-    }
-
-
-    public MainWindow(int session) {
-        this.session = session;
-        initComponents();
-        initMainWindow();
-        initSearchBox();
-        renderFrame();
-        prepareIcon();
     }
 
     /**
@@ -136,7 +134,7 @@ public class MainWindow extends javax.swing.JFrame {
         FrameLayout.setVerticalGroup(
             FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FrameLayout.createSequentialGroup()
-                .addContainerGap(788, Short.MAX_VALUE)
+                .addContainerGap(787, Short.MAX_VALUE)
                 .addGroup(FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(addRoomButton)
                     .addComponent(editButton))
@@ -181,18 +179,13 @@ public class MainWindow extends javax.swing.JFrame {
         filterPanel.add(selectBox);
 
         resultContainer.setBackground(new java.awt.Color(245, 245, 247));
-        resultContainer.setPreferredSize(new java.awt.Dimension(282, 154));
-        resultContainer.setLayout(new javax.swing.BoxLayout(resultContainer, javax.swing.BoxLayout.LINE_AXIS));
-
-        resultPanel.setBorder(null);
-        resultPanel.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         resultList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Loading..." };
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        resultList.setPreferredSize(new java.awt.Dimension(280, 200));
+        resultList.setPreferredSize(new java.awt.Dimension(280, 120));
         resultPanel.setViewportView(resultList);
 
         resultContainer.add(resultPanel);
@@ -304,13 +297,13 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void addRoomButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addRoomButtonMouseClicked
         if (editMode && !addingRoom) {
-
+            
             addRoomButton.setIcon(addRoomButtonEnabled);
             addingRoom = true;
-
+            
         }
         else {
-
+            
             addRoomButton.setIcon(addRoomButtonDisabled);
             addingRoom = false;
             //save new room
@@ -318,14 +311,8 @@ public class MainWindow extends javax.swing.JFrame {
             draftPoly = null;
             //
         }
-
+        
     }//GEN-LAST:event_addRoomButtonMouseClicked
-
-    private void searchBoxOnClick(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchBoxOnClick
-        // TODO add your handling code here:
-        searchBox.grabFocus();
-        searchPanel.setVisible(true);
-    }//GEN-LAST:event_searchBoxOnClick
 
     /**
      * @param args the command line arguments
@@ -357,7 +344,7 @@ public class MainWindow extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainWindow().setVisible(true);
+                new MainWindow(true, null).setVisible(true);
             }
         });
     }
@@ -373,11 +360,12 @@ public class MainWindow extends javax.swing.JFrame {
         this.setLocation(center.x - this.getWidth() / 2, center.y - this.getHeight() / 2);
         this.setResizable(false);
         this.setBackground(Color.WHITE);
-
+        
         layerPanel.addMouseListener(new MouseHandler());
         layerPanel.addMouseMotionListener(new MouseMotionHandler());
-
+        
         layerPanel.setSize(this.getSize());
+        //layerPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 500));
     }
 
     /**
@@ -458,33 +446,28 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
         onSearch.addActionListener(e -> handleSearch());
-        selectBox.setModel(new DefaultComboBoxModel<>(handleFilterLoad()));
-//        for(String s : handleFilterLoad()){
-//            selectBox.addItem(s);
-//            System.out.println(s);
-//        }
     }
 
     public void initButtons() {
-
+        
         //initialize edit button
         editButtonDisabled = FontIcon.of(RemixiconAL.EDIT_LINE, 24);
         editButtonEnabled = FontIcon.of(RemixiconAL.EDIT_FILL, 24);
-
+        
         editButton.setIcon(editButtonDisabled);
         //
-
+        
         //initialize add room button
         addRoomButtonDisabled = FontIcon.of(RemixiconAL.ADD_BOX_LINE, 24);
         addRoomButtonEnabled = FontIcon.of(RemixiconAL.ADD_BOX_FILL, 24);
-
+        
         addRoomButton.setIcon(addRoomButtonDisabled);
         addRoomButton.setVisible(false);
         addRoomButton.setEnabled(false);
         //
-
+        
     }
-
+    
     /**
      * Render frame
      */
@@ -492,7 +475,8 @@ public class MainWindow extends javax.swing.JFrame {
         canvas = new Canvas("assets/MC-BF-1.png", this.getWidth(), this.getHeight());
         Frame.add(canvas);
         Frame.setFocusable(true);
-        System.out.println("User: " + session + " logged in");
+        if(curUser != null)
+            System.out.println("User: " + curUser.getUsername() + " logged in");
 
         //JsonDB db = new JsonDB("poi", "mc");
 //        db.getData().get("data").getAsJsonArray().get(0).getAsJsonObject().get("floor").getAsInt();
@@ -514,33 +498,35 @@ public class MainWindow extends javax.swing.JFrame {
             System.out.printf("Error: icons failed to load\n%s", e.getMessage());
         }
     }
-
+    
     private void renderRooms() {
-
+        
+        //demo code
         int[] xpoints = {300, 500, 500};
         int[] ypoints = {50, 100, 200};
         int npoints = 3;
-
+        
         Polygon room1Shape = new Polygon(xpoints, ypoints, npoints);
-
+        
         Room room1 = new Room(curBuilding, curFloor, room1Shape);
-        attachRoom(room1);
-
+        room1.addPOI("test", "nothing", room1.getLocation());
+        
         int[] xpoints2 = {100, 200, 300};
         int[] ypoints2 = {100, 200, 250};
         int npoints2 = 3;
-
+        
         Polygon room2Shape = new Polygon(xpoints2, ypoints2, npoints2);
-
+        
         Room room2 = new Room(curBuilding, curFloor, room2Shape);
-        attachRoom(room2);
-
+        room2.addPOI("test2", "", room2.getLocation());
+        //
+        
+        for (Room room : curFloor.getRooms()) {
+            attachRoom(room);
+        }
+             
     }
 
-    private String[] handleFilterLoad() {
-        Search s = new Search();
-        return s.getFilters();
-    }
     private int handleSearch() {/*
         JsonDB db; // database instance
         String query = searchBox.getText(); // get query from searchBox
@@ -570,30 +556,30 @@ public class MainWindow extends javax.swing.JFrame {
         }*/
         return 0;
     }
-
+    
     private void attachRoom(Room room)
     {
-
+        
         layerPanel.add(room, JLayeredPane.PALETTE_LAYER);
         room.setSize(layerPanel.getSize());
-
+        
     }
-
+    
     public void attachComponent(JComponent comp)
     {
-
+        
         layerPanel.add(comp, JLayeredPane.POPUP_LAYER);
-
+        
     }
-
+    
     class MouseHandler extends MouseAdapter {
         public void mousePressed(MouseEvent e) {
             initialX = e.getX();
             initialY = e.getY();
-
+            
             if (addingRoom) {
-
-
+                
+                
                 if(draftRoom == null) {
                     draftPoly = new Polygon();
                     draftPoly.addPoint(e.getX(), e.getY());
@@ -601,50 +587,49 @@ public class MainWindow extends javax.swing.JFrame {
                     attachRoom(draftRoom);
                 }
                 else {
-
+                    
                     //remove previous iteration of the draft
                     layerPanel.remove(draftRoom);
                     //curFloor.removeRoom(draftRoom);
                     //
-
+                    
                     //add new draft of room
-                    draftRoom.addPoint(e.getX()-draftRoom.getX(), e.getY()-draftRoom.getY());
-                    //draftRoom = new Room(draftPoly, draftRoom.getLocation()); //fix coordinates off
+                    draftRoom.addPoint(e.getX()-draftRoom.getX(), e.getY()-draftRoom.getY());                
+                    //draftRoom = new Room(draftPoly, draftRoom.getLocation()); //fix coordinates off  
                     attachRoom(draftRoom);
                     //
-
+                    
                 }
-
+                
             }
-
+            
         }
-
+        
         public void mouseEntered(MouseEvent e) {
             //e = new MouseEvent(e.getComponent(), e.getID(), e.getWhen(), e.getModifiersEx(), e.getX()-getX(), e.getY()-getY(), e.getClickCount(), e.isPopupTrigger());
             for (Room room:curFloor.getRooms()) room.mouseEntered(e);
-
+            
         }
-
+        
         public void mouseExited(MouseEvent e) {
             //e = new MouseEvent(e.getComponent(), e.getID(), e.getWhen(), e.getModifiersEx(), e.getX()-getX(), e.getY()-getY(), e.getClickCount(), e.isPopupTrigger());
             for (Room room:curFloor.getRooms()) room.mouseExited(e);
-
+            
         }
-
+        
         public void mouseClicked(MouseEvent e) {
-            //for (Room room:curFloor.getRooms()) room.mouseClicked(e, layerPanel);
-            dropDownPanel.setVisible(false);
+            for (Room room:curFloor.getRooms()) room.mouseClicked(e, layerPanel);
         }
-
+        
     }
 
     class MouseMotionHandler extends MouseMotionAdapter {
         public void mouseMoved(MouseEvent e) {
-
+            
             for (Room room:curFloor.getRooms()) room.mouseMoved(e);
-
+            
         }
-
+        
         public void mouseDragged(MouseEvent e) {
             int currentX = e.getX();
             int currentY = e.getY();
@@ -653,9 +638,9 @@ public class MainWindow extends javax.swing.JFrame {
 
             x += deltaX;
             y += deltaY;
-
+            
             canvas.translate(deltaX, deltaY);
-            for (Room room:curFloor.getRooms()) room.translate(deltaX, deltaY);
+            for (Room room:curFloor.getRooms()) room.translate(deltaX, deltaY);           
 
             initialX = currentX;
             initialY = currentY;

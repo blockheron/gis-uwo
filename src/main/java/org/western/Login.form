@@ -196,7 +196,7 @@
                         </Property>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="user">
+                    <Component class="javax.swing.JTextField" name="usernameField">
                       <Properties>
                         <Property name="columns" type="int" value="22"/>
                         <Property name="text" type="java.lang.String" value="Enter your username"/>
@@ -205,7 +205,7 @@
                         </Property>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="userActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="usernameFieldActionPerformed"/>
                       </Events>
                     </Component>
                     <Component class="javax.swing.JLabel" name="passwordText">
@@ -222,7 +222,7 @@
                         </Property>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JPasswordField" name="passwd">
+                    <Component class="javax.swing.JPasswordField" name="passwordField">
                       <Properties>
                         <Property name="columns" type="int" value="22"/>
                         <Property name="text" type="java.lang.String" value="password"/>
@@ -231,7 +231,7 @@
                         </Property>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="passwdActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="passwordFieldActionPerformed"/>
                       </Events>
                     </Component>
                   </SubComponents>
@@ -291,9 +291,9 @@
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="null"/>
                         </Property>
-                        <Property name="ignoreRepaint" type="boolean" value="true"/>
                       </Properties>
                       <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="guestLoginMouseClicked"/>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="guestLoginActionPerformed"/>
                       </Events>
                       <Constraints>

@@ -25,11 +25,21 @@ import static java.security.MessageDigest.getInstance;
  * @author m
  */
 public class Login extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form Login
      */
-    public Login() {
+    public Login(boolean debug) {
+        
+        if (debug) {
+            
+            JsonDB db;
+            db = new JsonDB(true);
+            Map.addUser("test", "1234");
+            
+        }
+        
+        
         initComponents();
         initLoginPanel();
         prepareIcon();
@@ -55,9 +65,9 @@ public class Login extends javax.swing.JFrame {
         formPanel = new javax.swing.JPanel();
         honeyPot = new javax.swing.JTextField();
         userText = new javax.swing.JLabel();
-        user = new javax.swing.JTextField();
+        usernameField = new javax.swing.JTextField();
         passwordText = new javax.swing.JLabel();
-        passwd = new javax.swing.JPasswordField();
+        passwordField = new javax.swing.JPasswordField();
         submitPanel = new javax.swing.JPanel();
         onLogin = new javax.swing.JButton();
         condition = new javax.swing.JLabel();
@@ -100,8 +110,8 @@ public class Login extends javax.swing.JFrame {
         formPanel.setOpaque(false);
         formPanel.setPreferredSize(new java.awt.Dimension(300, 140));
 
-        honeyPot.setBackground(new Color(0, 0, 0, 0));
-        honeyPot.setForeground(new Color(0, 0, 0, 200));
+        honeyPot.setBackground(new Color(0, 0, 0, 0 ));
+        honeyPot.setForeground(new Color(0,0,0,200));
         honeyPot.setBorder(null);
         honeyPot.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         honeyPot.addActionListener(new java.awt.event.ActionListener() {
@@ -118,15 +128,15 @@ public class Login extends javax.swing.JFrame {
         userText.setPreferredSize(new java.awt.Dimension(260, 20));
         formPanel.add(userText);
 
-        user.setColumns(22);
-        user.setText("Enter your username");
-        user.setBorder(null);
-        user.addActionListener(new java.awt.event.ActionListener() {
+        usernameField.setColumns(22);
+        usernameField.setText("Enter your username");
+        usernameField.setBorder(null);
+        usernameField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userActionPerformed(evt);
+                usernameFieldActionPerformed(evt);
             }
         });
-        formPanel.add(user);
+        formPanel.add(usernameField);
 
         passwordText.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         passwordText.setForeground(new java.awt.Color(17, 51, 85));
@@ -134,15 +144,15 @@ public class Login extends javax.swing.JFrame {
         passwordText.setPreferredSize(new java.awt.Dimension(260, 20));
         formPanel.add(passwordText);
 
-        passwd.setColumns(22);
-        passwd.setText("password");
-        passwd.setBorder(null);
-        passwd.addActionListener(new java.awt.event.ActionListener() {
+        passwordField.setColumns(22);
+        passwordField.setText("password");
+        passwordField.setBorder(null);
+        passwordField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwdActionPerformed(evt);
+                passwordFieldActionPerformed(evt);
             }
         });
-        formPanel.add(passwd);
+        formPanel.add(passwordField);
 
         loginPanel.add(formPanel);
 
@@ -169,18 +179,14 @@ public class Login extends javax.swing.JFrame {
         guestLogin.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         guestLogin.setText("Continue as guest");
         guestLogin.setBorder(null);
-        guestLogin.setIgnoreRepaint(true);
+        guestLogin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                guestLoginMouseClicked(evt);
+            }
+        });
         guestLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 guestLoginActionPerformed(evt);
-            }
-        });
-        // guestLogin on click
-        guestLogin.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                MainWindow mainWindow = new MainWindow();
-                mainWindow.setVisible(true);
-                dispose();
             }
         });
         submitPanel.add(guestLogin, new java.awt.GridBagConstraints());
@@ -207,50 +213,50 @@ public class Login extends javax.swing.JFrame {
         javax.swing.GroupLayout layerPanelLayout = new javax.swing.GroupLayout(layerPanel);
         layerPanel.setLayout(layerPanelLayout);
         layerPanelLayout.setHorizontalGroup(
-                layerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(bgPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
-                        .addGroup(layerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layerPanelLayout.createSequentialGroup()
-                                        .addGap(0, 300, Short.MAX_VALUE)
-                                        .addComponent(loginLayer, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            layerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(bgPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
+            .addGroup(layerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layerPanelLayout.createSequentialGroup()
+                    .addGap(0, 300, Short.MAX_VALUE)
+                    .addComponent(loginLayer, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         layerPanelLayout.setVerticalGroup(
-                layerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(bgPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
-                        .addGroup(layerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(loginLayer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            layerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(bgPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .addGroup(layerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(loginLayer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(layerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(layerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(layerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(layerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userActionPerformed
+    private void usernameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_userActionPerformed
+    }//GEN-LAST:event_usernameFieldActionPerformed
 
-    private void passwdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwdActionPerformed
+    private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_passwdActionPerformed
+    }//GEN-LAST:event_passwordFieldActionPerformed
 
     private void onLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onLoginActionPerformed
-        handleLogin(user.getText(), new String(passwd.getPassword()));
+        handleLogin();
     }//GEN-LAST:event_onLoginActionPerformed
 
     private void guestLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guestLoginActionPerformed
@@ -260,6 +266,12 @@ public class Login extends javax.swing.JFrame {
     private void honeyPotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_honeyPotActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_honeyPotActionPerformed
+
+    private void guestLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guestLoginMouseClicked
+        MainWindow mainWindow = new MainWindow(false, null);
+        mainWindow.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_guestLoginMouseClicked
 
     /**
      * @param args the command line arguments
@@ -291,7 +303,7 @@ public class Login extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Login().setVisible(true);
+                new Login(true).setVisible(true);
             }
         });
     }
@@ -316,13 +328,13 @@ public class Login extends javax.swing.JFrame {
         guestLogin.setBorder(BorderFactory.createEmptyBorder()); // remove border of guestLogin button
         guestLogin.setContentAreaFilled(false); // remove background of guestLogin button
         guestLogin.setOpaque(false); // make guestLogin button opaque
-        user.setForeground(Color.decode("#666666"));
-        user.setBorder(
+        usernameField.setForeground(Color.decode("#666666"));
+        usernameField.setBorder(
                 BorderFactory.createCompoundBorder(
                         defaultBorder, BorderFactory.createEmptyBorder(padding, padding, padding, padding)
                 )
         );
-        passwd.setBorder(
+        passwordField.setBorder(
                 BorderFactory.createCompoundBorder(
                         defaultBorder, BorderFactory.createEmptyBorder(padding, padding, padding, padding)
                 )
@@ -347,59 +359,59 @@ public class Login extends javax.swing.JFrame {
                 onLogin.setBackground(Color.decode("#4e2683"));
             }
         });
-        user.addFocusListener(new FocusListener() {
+        usernameField.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
-                user.setForeground(Color.decode("#000000"));
-                user.setBorder(
+                usernameField.setForeground(Color.decode("#000000"));
+                usernameField.setBorder(
                         BorderFactory.createCompoundBorder(
                                 focusBorder, BorderFactory.createEmptyBorder(padding, padding, padding, padding)
                         )
                 );
-                if (user.getText().equals("Enter your username")) {
-                    user.setText("");
+                if (usernameField.getText().equals("Enter your username")) {
+                    usernameField.setText("");
                 }
             }
 
             @Override
             public void focusLost(FocusEvent e) {
-                user.setForeground(Color.decode("#666666"));
-                user.setBorder(
+                usernameField.setForeground(Color.decode("#666666"));
+                usernameField.setBorder(
                         BorderFactory.createCompoundBorder(
                                 defaultBorder, BorderFactory.createEmptyBorder(padding, padding, padding, padding)
                         )
                 );
-                if (user.getText().equals("")) {
-                    user.setText("Enter your username");
+                if (usernameField.getText().equals("")) {
+                    usernameField.setText("Enter your username");
                 }
             }
         });
-        passwd.addFocusListener(new FocusListener() {
+        passwordField.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
-                passwd.setForeground(Color.decode("#000000"));
-                passwd.setBorder(
+                passwordField.setForeground(Color.decode("#000000"));
+                passwordField.setBorder(
                         BorderFactory.createCompoundBorder(
                                 focusBorder, BorderFactory.createEmptyBorder(padding, padding, padding, padding)
                         )
                 );
-                if (new String(passwd.getPassword()).equals("password")) {
-                    passwd.setText("");
+                if (new String(passwordField.getPassword()).equals("password")) {
+                    passwordField.setText("");
                 }
             }
 
             @Override
             public void focusLost(FocusEvent e) {
                 String username = "", password = "";
-                passwd.setForeground(Color.decode("#666666"));
-                passwd.setBorder(
+                passwordField.setForeground(Color.decode("#666666"));
+                passwordField.setBorder(
                         BorderFactory.createCompoundBorder(
                                 defaultBorder, BorderFactory.createEmptyBorder(padding, padding, padding, padding)
                         )
                 );
-                password = new String(passwd.getPassword());
+                password = new String(passwordField.getPassword());
                 if (password.equals("")) {
-                    passwd.setText("password");
+                    passwordField.setText("password");
 
                 }
                 // check password strength
@@ -417,7 +429,7 @@ public class Login extends javax.swing.JFrame {
             }
         });
         // listen on enter key press
-        passwd.addKeyListener(new KeyAdapter() {
+        passwordField.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -467,14 +479,15 @@ public class Login extends javax.swing.JFrame {
         }
     }
 
-    private int handleLogin(String username, String password) {
+    private int handleLogin() {
         int padding = 5;
         byte[] b; // byte array of password
         String h; // hash of password
-        JsonObject user;
+        User user;
         JDialog prompt = new JDialog(); // pop up dialog
         JLabel message = new JLabel();
         JButton confirm = new JButton("OK");
+        
         Border defaultBorder = BorderFactory.createLineBorder(Color.decode("#eaeaea"));
         prompt.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         prompt.setModal(true);
@@ -516,48 +529,55 @@ public class Login extends javax.swing.JFrame {
         });
         confirm.addActionListener(e -> prompt.dispose());
 
+        //get username and password from text fields
+        String username = usernameField.getText();
+        String password = new String(passwordField.getPassword());
+        //
+        
         if (!honeyPot.getText().isEmpty() || username.isEmpty() || password.isEmpty()) {
             return -1;
         }
-        user = null;//user = new JsonDB("user", username).getData(); temporary
-        if (user.get("status") != null && user.get("status").getAsInt() != 200) {
+        user = Map.getUser(username);
+        if (user == null) {
             // pop up error message
             prompt.setTitle("Error");
-            System.out.println(user.get("status").getAsInt());
-            if (user.get("status").getAsInt() == 204) {
-                message.setText("Failed connecting to database.");
-            } else {
-                message.setText("Username or password is incorrect.");
-            }
+            message.setText("Username or password is incorrect.");
             prompt.add(message);
             prompt.add(confirm);
             prompt.setVisible(true);
             return -2;
         }
+        
+        //hash input password
         b = password.getBytes(StandardCharsets.UTF_8);
         try {
             b = getInstance("MD5").digest(b);
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
         }
+        //
+        
         // https://stackoverflow.com/questions/9655181/how-to-convert-a-byte-array-to-a-hex-string-in-java
         h = BaseEncoding.base16().lowerCase().encode(b);
-        if (user.get("password").getAsString().equals(h)) { // check hash password
+        if (user.getPassword().equals(h)) { // check hash password
             prompt.setTitle("Success");
-            message.setText("Login successful. Welcome, " + user.get("username").getAsString() + "!");
+            message.setText("Login successful. Welcome, " + user.getUsername() + "!");
             prompt.add(message);
             prompt.add(confirm);
             prompt.setVisible(true);
             dispose();
             // check if user is admin
-            if (user.get("roleName").getAsString().equals("admin")) {
+            /*if (user.isAdmin()) {
                 MainWindow mainWindow = new MainWindow(0);
                 mainWindow.setVisible(true);
                 return 0;
             }
             MainWindow mainWindow = new MainWindow(user.get("id").getAsInt());
             mainWindow.setVisible(true);
-            return 1;
+            return 1;*/
+            MainWindow mainWindow = new MainWindow(false, user);
+            mainWindow.setVisible(true);
+            return 0;
         } else {
             // pop up error message
             prompt.setTitle("Error");
@@ -584,11 +604,11 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPanel mask;
     private javax.swing.JLabel maskBg;
     private javax.swing.JButton onLogin;
-    private javax.swing.JPasswordField passwd;
+    private javax.swing.JPasswordField passwordField;
     private javax.swing.JLabel passwordText;
     private javax.swing.JPanel submitPanel;
     private javax.swing.JLabel title;
-    private javax.swing.JTextField user;
     private javax.swing.JLabel userText;
+    private javax.swing.JTextField usernameField;
     // End of variables declaration//GEN-END:variables
 }
