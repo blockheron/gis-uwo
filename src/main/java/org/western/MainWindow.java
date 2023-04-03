@@ -64,7 +64,7 @@ public class MainWindow extends javax.swing.JFrame {
         
         initComponents();
         initMainWindow();
-        initSearchBox();
+        initSearch();
         initButtons();
         renderFrame();
         prepareIcon();
@@ -383,7 +383,7 @@ public class MainWindow extends javax.swing.JFrame {
      * Set placeholder of search box
      * Create hover effect for search button
      */
-    private void initSearchBox() {
+    private void initSearch() {
         int padding = 10;
         // https://stackoverflow.com/questions/10274750/java-swing-setting-margins-on-textarea-with-line-border
         Border defaultBorder = BorderFactory.createLineBorder(Color.decode("#eaeaea")), // create default line border for searchBox
