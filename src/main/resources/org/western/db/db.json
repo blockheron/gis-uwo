@@ -1,75 +1,97 @@
 {
+  "userCount": 1,
+  "POICount": 2,
+  "roomCount": 2,
+  "layerCount": 1,
+  "floorCount": 1,
   "count": 1,
   "buildings": [
     {
       "id": 1,
       "name": "Middlesex College",
       "shortName": "MC",
-      "maxFloors": 5,
       "count": 1,
       "floors": [
         {
-          "name": "ground",
-          "count": 2,
+          "id": 1,
+          "name": "Ground",
+          "filePath": "Path-to-image",
+          "count": 1,
           "layers": [
             {
-              "name": "Classrooms",
+              "id": 1,
+              "name": "Unassigned",
+              "color": 851968000,
+              "count": 2,
               "rooms": [
                 {
-                  "roomNumber": 101,
-                  "npoints": 0,
-                  "xpoints": [],
-                  "ypoints": [],
+                  "id": 1,
+                  "roomNumber": -1,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "npoints": 3,
+                  "xpoints": [
+                    300,
+                    500,
+                    500
+                  ],
+                  "ypoints": [
+                    50,
+                    100,
+                    200
+                  ],
+                  "count": 1,
                   "POIs": [
+                    {
+                      "id": 1,
+                      "name": "test",
+                      "description": "nothing",
+                      "x": 0.0,
+                      "y": 0.0
+                    }
+                  ]
+                },
+                {
+                  "id": 2,
+                  "roomNumber": -1,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "npoints": 3,
+                  "xpoints": [
+                    100,
+                    200,
+                    300
+                  ],
+                  "ypoints": [
+                    100,
+                    200,
+                    250
+                  ],
+                  "count": 1,
+                  "POIs": [
+                    {
+                      "id": 2,
+                      "name": "test2",
+                      "description": "",
+                      "x": 0.0,
+                      "y": 0.0
+                    }
                   ]
                 }
-              ]
-            },
-            {
-              "name": "none",
-              "count": 1,
-              "layers": [
               ]
             }
           ]
         }
-      ],
-      "user": []
-    },
+      ]
+    }
+  ],
+  "users": [
     {
-      "id": 2,
-      "name": "Natural Sciences Centre",
-      "shortName": "NSC",
-      "maxFloors": 5,
-      "count": 1,
-      "floors": [
-        {
-          "name": "ground",
-          "count": 2,
-          "layers": [
-            {
-              "name": "Classrooms",
-              "rooms": [
-                {
-                  "roomNumber": 101,
-                  "npoints": 0,
-                  "xpoints": [],
-                  "ypoints": [],
-                  "POIs": [
-                  ]
-                }
-              ]
-            },
-            {
-              "name": "Labs",
-              "count": 1,
-              "layers": [
-              ]
-            }
-          ]
-        }
-      ],
-      "user": []
+      "id": 1,
+      "username": "test",
+      "password": "81dc9bdb52d04dc20036dbd8313ed055",
+      "admin": false,
+      "favouriteIDs": []
     }
   ]
 }
