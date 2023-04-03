@@ -21,10 +21,11 @@ import java.util.LinkedList;
  * @author m
  */
 public class MainWindow extends javax.swing.JFrame {
-    private int session = -1; // -1 for guest, 0 for admin, 1 for user
+    //private int session = -1; // -1 for guest, 0 for admin, 1 for user
     
     private Building curBuilding;
     private Floor curFloor;
+    private User curUser;
 
     private int x, y, initialX, initialY, deltaX, deltaY;
     private boolean editMode = false;
@@ -37,15 +38,22 @@ public class MainWindow extends javax.swing.JFrame {
     /**
      * Creates new form MainWindow
      */
-    public MainWindow() {
+    public MainWindow(boolean debug, User user) {
         
-        JsonDB db;
+        curUser = user;
         
         //demo code
-        db = new JsonDB(true);
-        
+        if (debug)
+        {
+            JsonDB db;
+            db = new JsonDB(true);
+
+            curBuilding = new Building("Middlesex College", "MC");
+            curFloor = curBuilding.addFloor("Ground", "Path-to-image");
+        }
         curBuilding = new Building("Middlesex College", "MC");
         curFloor = curBuilding.addFloor("Ground", "Path-to-image");
+        
         //
         
         
@@ -57,16 +65,6 @@ public class MainWindow extends javax.swing.JFrame {
         renderFrame();
         prepareIcon();
         renderRooms();
-    }
-
-
-    public MainWindow(int session) {
-        this.session = session;
-        initComponents();
-        initMainWindow();
-        initSearchBox();
-        renderFrame();
-        prepareIcon();
     }
 
     /**
@@ -346,7 +344,7 @@ public class MainWindow extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainWindow().setVisible(true);
+                new MainWindow(true, null).setVisible(true);
             }
         });
     }
@@ -477,7 +475,8 @@ public class MainWindow extends javax.swing.JFrame {
         canvas = new Canvas("assets/MC-BF-1.png", this.getWidth(), this.getHeight());
         Frame.add(canvas);
         Frame.setFocusable(true);
-        System.out.println("User: " + session + " logged in");
+        if(curUser != null)
+            System.out.println("User: " + curUser.getUsername() + " logged in");
 
         //JsonDB db = new JsonDB("poi", "mc");
 //        db.getData().get("data").getAsJsonArray().get(0).getAsJsonObject().get("floor").getAsInt();

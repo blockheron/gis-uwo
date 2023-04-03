@@ -1,26 +1,50 @@
 package org.western;
 
-import com.google.gson.annotations.SerializedName;
-
-import java.util.Objects;
+import com.google.gson.*;
+import java.util.HashMap;
 
 
 public class User {
-    enum role {
-        @SerializedName("admin")
-        ADMIN,
-        @SerializedName("user")
-        USER
-    }
+    
     private int id;
-    private String username;
-    private String password;
+    //private String username;
+    //private String password;
+    //private boolean admin;
 
-    private role roleName;
-
-    private static int ascId = 0;
-
-    public User() {
+    private static HashMap<Integer, User> loadedUsers = new HashMap<Integer, User>();
+    
+    public User(String username, String password) {
+        
+        id = JsonDB.addUser(username, password, false).get("id").getAsInt();
+        loadedUsers.put(id, this);
+        
+    }
+    public User(String username, String password, boolean admin) {
+        
+        id = JsonDB.addUser(username, password, admin).get("id").getAsInt();
+        loadedUsers.put(id, this);
+        
+    }
+    
+    private User(JsonObject user) {
+        
+        this.id = user.get("id").getAsInt();
+        loadedUsers.put(id, this);
+        
+    }
+    public static User getUser(JsonObject user) {
+        int buildingID = user.get("id").getAsInt();
+        if (loadedUsers.containsKey(buildingID))
+            return loadedUsers.get(buildingID);
+        
+        return new User(user);
+    }
+    
+    private JsonObject getThis() {
+        return JsonDB.getUser(id);
+    }
+    
+    /*public User() {
         this.id = ascId++;
         this.username = "";
         this.password = "";
@@ -32,9 +56,19 @@ public class User {
         this.username = username;
         this.password = password;
         this.roleName = role.valueOf(type);
-    }
+    }*/
 
-    public int login(String username, String password) {
+    public String getUsername() {
+        return getThis().get("username").getAsString();
+    }    
+    public String getPassword() {
+        return getThis().get("password").getAsString();
+    }
+    public boolean isAdmin() {
+        return getThis().get("admin").getAsBoolean();
+    }
+    
+    /*public int login(String username, String password) {
         if (Objects.equals(this.username, username) && Objects.equals(this.password, password)) {
             return 0;
         } else {
@@ -49,9 +83,9 @@ public class User {
             this.password = password;
             return 0;
         }
-    }
+    }*/
 
-    public int getId() {
+    public int getID() {
         return id;
     }
 }

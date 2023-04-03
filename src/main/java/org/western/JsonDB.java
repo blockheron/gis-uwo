@@ -1,5 +1,6 @@
 package org.western;
 
+import com.google.common.io.BaseEncoding;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.awt.*;
@@ -10,6 +11,9 @@ import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import static java.security.MessageDigest.getInstance;
+import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.LinkedList;
 
@@ -77,12 +81,14 @@ public class JsonDB {
         gson = new GsonBuilder().setPrettyPrinting().create();
         if (debug) { //creates an empty database
             JsonObject cleanDB = new JsonObject();
+            cleanDB.addProperty("userCount", 0);
             cleanDB.addProperty("POICount", 0);
             cleanDB.addProperty("roomCount", 0);
             cleanDB.addProperty("layerCount", 0);
             cleanDB.addProperty("floorCount", 0);
             cleanDB.addProperty("count", 0);
             cleanDB.add("buildings", new JsonArray());
+            cleanDB.add("users", new JsonArray());
             
             filePath = getClass().getResource("db/test_db.json").getFile();
             db = cleanDB;
@@ -191,6 +197,59 @@ public class JsonDB {
         save();
         
         return building;
+        
+    }
+    
+    public static JsonArray getUsers() {
+        return db.get("users").getAsJsonArray();       
+    }
+    
+    public static JsonObject getUser(int id) {
+        
+        int userCount = db.get("userCount").getAsInt();
+        JsonArray users = db.get("users").getAsJsonArray();
+        
+        for (int i = 0; i < userCount; ++i) {
+            
+            JsonObject _user = users.get(i).getAsJsonObject();
+            
+            if (_user.get("id").getAsInt() == id)
+                return _user;
+            
+        }
+        
+        return null;
+        
+    }
+    
+    //return building on success, null on failure
+    public static JsonObject addUser(String username, String password, boolean admin) {
+        
+        //hash input password
+        byte[] b = password.getBytes(StandardCharsets.UTF_8);
+        try {
+            b = getInstance("MD5").digest(b);
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+        String hashedPassword = BaseEncoding.base16().lowerCase().encode(b);
+        //
+        
+        JsonArray userArray = db.get("users").getAsJsonArray();
+        JsonObject user = new JsonObject();
+        user.addProperty("id", incrementCount("userCount"));
+        user.addProperty("username", username);
+        user.addProperty("password", hashedPassword);
+        user.addProperty("admin", admin);
+        user.add("favouriteIDs", new JsonArray());
+        
+        //todo check if name/shortname is unique
+        
+        userArray.add(user);
+        
+        save();
+        
+        return user;
         
     }
     
