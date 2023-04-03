@@ -183,6 +183,11 @@ public class MainWindow extends javax.swing.JFrame {
         filterPanel.add(selectBox);
 
         resultContainer.setBackground(new java.awt.Color(245, 245, 247));
+        resultContainer.setPreferredSize(new java.awt.Dimension(282, 154));
+        resultContainer.setLayout(new javax.swing.BoxLayout(resultContainer, javax.swing.BoxLayout.LINE_AXIS));
+
+        resultPanel.setBorder(null);
+        resultPanel.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         resultList.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -625,8 +630,14 @@ public class MainWindow extends javax.swing.JFrame {
         
         public void mouseClicked(MouseEvent e) {
             for (Room room:curFloor.getRooms()) room.mouseClicked(e, layerPanel);
+            dropDownPanel.setVisible(false);
         }
         
+    }
+
+    private void searchBoxOnClick(java.awt.event.MouseEvent evt) {
+        searchBox.grabFocus();
+        searchPanel.setVisible(true);
     }
 
     class MouseMotionHandler extends MouseMotionAdapter {
