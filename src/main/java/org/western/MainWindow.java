@@ -43,14 +43,15 @@ public class MainWindow extends javax.swing.JFrame {
         curUser = user;
         
         //demo code
-        if (debug)
-        {
-            JsonDB db;
-            db = new JsonDB(true);
-
-            curBuilding = new Building("Middlesex College", "MC");
-            curFloor = curBuilding.addFloor("Ground", "Path-to-image");
-        }
+//        if (debug)
+//        {
+//            JsonDB db;
+//            db = new JsonDB(true);
+//
+//            curBuilding = new Building("Middlesex College", "MC");
+//            curFloor = curBuilding.addFloor("Ground", "Path-to-image");
+//        }
+        JsonDB db = new JsonDB();
         curBuilding = new Building("Middlesex College", "MC");
         curFloor = curBuilding.addFloor("Ground", "Path-to-image");
         
@@ -382,6 +383,7 @@ public class MainWindow extends javax.swing.JFrame {
         // https://stackoverflow.com/questions/10274750/java-swing-setting-margins-on-textarea-with-line-border
         Border defaultBorder = BorderFactory.createLineBorder(Color.decode("#eaeaea")), // create default line border for searchBox
                 focusBorder = BorderFactory.createLineBorder(Color.decode("#666666")); // create focused line border for searchBox
+        Search s = new Search();
         searchPanel.setOpaque(false); // make searchPanel transparent
         dropDownPanel.setVisible(false); // hide dropDownPanel
         searchBox.setText("Search"); // set default text of searchBox
@@ -449,6 +451,7 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
         onSearch.addActionListener(e -> handleSearch());
+        selectBox.setModel(new DefaultComboBoxModel<>(s.getFilters()));
     }
 
     public void initButtons() {
