@@ -251,7 +251,7 @@
                         <Property name="text" type="java.lang.String" value="Filter by: "/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JComboBox" name="selectBox">
+                    <Component class="javax.swing.JComboBox" name="filterBox">
                       <Properties>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="4">
