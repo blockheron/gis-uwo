@@ -49,7 +49,7 @@ public class MainWindow extends javax.swing.JFrame {
 //        }
 //        curBuilding = new Building("Middlesex College", "MC");
 //        curFloor = curBuilding.addFloor("Ground", "Path-to-image");
-        JsonDB db = new JsonDB();
+        JsonDB db = new JsonDB(true);
         curBuilding = new Building("Middlesex College", "MC");
         curFloor = curBuilding.addFloor("Ground", "Path-to-image");
 

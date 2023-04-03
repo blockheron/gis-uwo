@@ -21,7 +21,6 @@ public class Search {
 
     // Search() is the constructor for the Search class
     Search() {
-        JsonDB db = new JsonDB();
         sQ = new PriorityQueue<>();
         fL = new ArrayList<>();
         fS = new HashSet<>();
