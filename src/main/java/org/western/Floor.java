@@ -9,14 +9,16 @@ import java.util.HashMap;
 
 public class Floor {
     
-    //private JsonObject data;
-    //private LinkedList<Layer> layers;
     private int id;
     private Building building;
-    private static HashMap<Integer, Floor> loadedFloors = new HashMap<Integer, Floor>();
-    //private String name;
+    private static HashMap<Integer, Floor> loadedFloors = new HashMap<Integer, Floor>();  
     
-    
+    /**
+     * creates a new floor as the top floor of the passed building
+     * @param building the building the floor is in
+     * @param name the name of the floor
+     * @param filePath the path to the image file of the floor
+     */
     public Floor(Building building, String name, String filePath) {
         this.building = building;
         this.id = JsonDB.addFloor(building, name, filePath).get("id").getAsInt();
@@ -24,6 +26,13 @@ public class Floor {
         loadedFloors.put(id, this);
     }
     
+    /**
+     * inserts a floor above the floor given by prevFloorID
+     * @param building the building the floor is in
+     * @param name the name of the floor
+     * @param filePath the path to the image file of the floor
+     * @param prevFloorID the ID of the floor to add the new floor above (use -1 to add a new bottom floor)
+     */
     public Floor(Building building, String name, String filePath, int prevFloorID) {
         this.building = building;
         this.id = JsonDB.addFloor(building, name, filePath, prevFloorID).get("id").getAsInt();
@@ -57,7 +66,6 @@ public class Floor {
     public Building getBuilding() {
         return building;
     }
-    
     public String getName() {
         return getThis().get("name").getAsString();
     }
@@ -83,6 +91,11 @@ public class Floor {
         
     }
     
+    /**
+     * gets a layer in the floor based on the layer's id
+     * @param id the id of the layer to get 
+     * @return the layer if it exists, otherwise null
+     */
     public Layer getLayer(int id) {
         for (Layer layer: getLayers()) {
             if (layer.getID() == id) return layer;
@@ -90,6 +103,11 @@ public class Floor {
         return null;
     }
     
+    /**
+     * gets a layer in the floor based on the layer's id
+     * @param name the name of the layer to get 
+     * @return the layer if it exists, otherwise null
+     */
     public Layer getLayer(String name) {
         for (Layer layer: getLayers()) {
             if (layer.getName().equals(name)) return layer;
@@ -97,6 +115,12 @@ public class Floor {
         return null;
     }
     
+    /**
+     * adds a new layer to the floor
+     * @param name the name of the layer to add
+     * @param color the color of the layer to add
+     * @return the layer on success, otherwise null
+     */
     public Layer addLayer(String name, Color color) {
         return new Layer(building, this, name, color);
     }
@@ -110,10 +134,14 @@ public class Floor {
         return rooms;
     }
     
-    public void addRoom(Room room) {
+    /*public void addRoom(Room room) {
         
-    }
+    }*/
     
+    /**
+     * remove a room from the floor
+     * @param room the room to remove
+     */
     public void removeRoom(Room room) {
         for (Layer layer : getLayers()) {
             layer.remove(room);
