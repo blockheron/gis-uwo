@@ -1,17 +1,13 @@
 package org.western;
 
-import com.google.gson.JsonArray;
 import org.w3c.dom.Node;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.PriorityQueue;
-import java.util.Set;
-import java.util.concurrent.atomic.AtomicReference;
+import java.util.*;
 
 public class Search {
+    private JsonDB db;
     private PriorityQueue<Node> sQ; // sQ is the search queue
-    private ArrayList<String> fL; // fL is the filter list
+    private ArrayList<String> fList; // fL is the filter list
     private Set<String> fS; // fS is the filter set
     private String[] regex; // regex is a regular expression table
     private User cU; // cU is the current user
@@ -21,55 +17,70 @@ public class Search {
 
     // Search() is the constructor for the Search class
     Search() {
-        JsonDB db = new JsonDB();
+        db = new JsonDB();
         sQ = new PriorityQueue<>();
-        fL = new ArrayList<>();
+        fList = new ArrayList<>();
         fS = new HashSet<>();
         loadFilter();
     }
 
     // loadFilter() loads the filter list from the database
     private int loadFilter() {
-        JsonDB db = new JsonDB();
-        JsonArray b; // b is a temporary building array
-        AtomicReference<JsonArray> f = new AtomicReference<>(); // f is a temporary floor array
-        AtomicReference<JsonArray> l = new AtomicReference<>(); // l is a temporary layer array
+        LinkedList<Building> bL;
+        LinkedList<Floor> fL;
+        LinkedList<Layer> lL;
         try {
-            if (db.getBuildings() != null) {
-                b = db.getBuildings().getAsJsonArray();
-                if (b != null) {
-                    b.forEach(building -> {
-                        f.set(building.getAsJsonObject().get("floors").getAsJsonArray());
-                        if (f.get() != null) {
-                            f.get().forEach(floor -> {
-                                l.set(floor.getAsJsonObject().get("layers").getAsJsonArray());
-                                if (l.get() != null) {
-                                    l.get().forEach(layer -> {
-                                        if (layer != null && layer.getAsJsonObject().get("name") != null && layer.getAsJsonObject().get("name").getAsString().length() > 0) {
-                                            fL.add(layer.getAsJsonObject().get("name").getAsString());
-                                        } else {
-                                            System.out.println("Layer name is null or empty.");
-                                        }
-                                    });
-                                } else {
-                                    System.out.println("Failed to load layers.");
-                                    return;
-                                }
-                            });
-                        } else {
-                            System.out.println("Failed to load floors.");
-                            return;
-                        }
-                    });
-                    fS.addAll(fL);
-                    fL = new ArrayList<>(fS);
-                } else {
-                    System.out.println("Failed to load buildings.");
-                    return 1;
+//            if (JsonDB.getBuildings() != null) {
+//                b = JsonDB.getBuildings().getAsJsonArray();
+//                if (b != null) {
+//                    b.forEach(building -> {
+//                        f.set(building.getAsJsonObject().get("floors").getAsJsonArray());
+//                        if (f.get() != null) {
+//                            f.get().forEach(floor -> {
+//                                l.set(floor.getAsJsonObject().get("layers").getAsJsonArray());
+//                                if (l.get() != null) {
+//                                    l.get().forEach(layer -> {
+//                                        if (layer != null && layer.getAsJsonObject().get("name") != null && layer.getAsJsonObject().get("name").getAsString().length() > 0) {
+//                                            fL.add(layer.getAsJsonObject().get("name").getAsString());
+//                                        } else {
+//                                            System.out.println("Layer name is null or empty.");
+//                                        }
+//                                    });
+//                                } else {
+//                                    System.out.println("Failed to load layers.");
+//                                    return;
+//                                }
+//                            });
+//                        } else {
+//                            System.out.println("Failed to load floors.");
+//                            return;
+//                        }
+//                    });
+//                    fS.addAll(fL);
+//                    fL = new ArrayList<>(fS);
+//                } else {
+//                    System.out.println("Failed to load buildings.");
+//                    return 1;
+//                }
+//            } else {
+//                System.out.println("Failed to connect to database.");
+//            }
+            bL = Map.getBuildings();
+            if (bL.isEmpty()) return 1;
+            for (Building b : bL) {
+                fL = b.getFloors();
+                if (fL.isEmpty()) continue;
+                for (Floor floor : fL) {
+                    lL = floor.getLayers();
+                    if (lL.isEmpty()) continue;
+                    for (Layer layer : lL) {
+                        if (layer.getRooms().isEmpty()) continue;
+                        fList.add(layer.getName());
+                    }
                 }
-            } else {
-                System.out.println("Failed to connect to database.");
             }
+            fS.addAll(fList);
+            fList = new ArrayList<>(fS);
         } catch (Exception e) {
             e.printStackTrace();
             return -1;
@@ -79,7 +90,8 @@ public class Search {
 
     // getFilter() returns the filter list
     public String[] getFilters() {
-        return fL.toArray(new String[0]);
+        fList.add(0, "All");
+        return fList.toArray(new String[0]);
     }
 
     public static void main(String[] args) {
