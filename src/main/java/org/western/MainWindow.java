@@ -415,6 +415,7 @@ public class MainWindow extends javax.swing.JFrame {
      * @author Emma
      */
     private void nextFloorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextFloorButtonActionPerformed
+        ImageIcon pic = null;
         if ("up".equals(evt.getActionCommand())) {
             System.out.println("Floor index: " + floorList.indexOf(curFloor));
         
@@ -425,7 +426,7 @@ public class MainWindow extends javax.swing.JFrame {
             
             // Render next floor image
             System.out.println("New floor path: " + curFloor.getFilePath());
-            ImageIcon pic = new ImageIcon(Objects.requireNonNull(getClass().getResource(curFloor.getFilePath())));
+            pic = new ImageIcon(Objects.requireNonNull(getClass().getResource(curFloor.getFilePath())));
             canvas.setImage(pic);
             
             // If at max floor, disable. Else, enable
@@ -446,6 +447,7 @@ public class MainWindow extends javax.swing.JFrame {
      * @author Emma
      */
     private void prevFloorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prevFloorButtonActionPerformed
+        ImageIcon pic = null;
         if ("down".equals(evt.getActionCommand())) {
             System.out.println("Floor index: " + floorList.indexOf(curFloor));
         
@@ -456,7 +458,7 @@ public class MainWindow extends javax.swing.JFrame {
             
             // Render next floor image
             System.out.println("New floor path: " + curFloor.getFilePath());
-            ImageIcon pic = new ImageIcon(Objects.requireNonNull(getClass().getResource(curFloor.getFilePath())));
+            pic = new ImageIcon(Objects.requireNonNull(getClass().getResource(curFloor.getFilePath())));
             canvas.setImage(pic);
 
             // If at min floor, disable. Else, enable
