@@ -10,16 +10,11 @@ import org.kordamp.ikonli.swing.FontIcon;
 
 import javax.swing.*;
 import javax.swing.border.Border;
-import javax.swing.plaf.basic.BasicComboBoxUI;
-import javax.swing.plaf.basic.BasicComboPopup;
-import javax.swing.plaf.basic.BasicScrollBarUI;
-import javax.swing.plaf.basic.ComboPopup;
 import java.awt.*;
 import java.awt.event.*;
-import java.io.FileNotFoundException;
 
-import java.util.Dictionary;
 import java.util.LinkedList;
+import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * @author m
@@ -583,33 +578,50 @@ public class MainWindow extends javax.swing.JFrame {
              
     }
 
-    private int handleSearch() {/*
-        JsonDB db; // database instance
-        String query = searchBox.getText(); // get query from searchBox
-        String[] w; // array of words in query
-        StringBuilder sb = new StringBuilder(); // string builder for acronym
-        if (query.isEmpty() || query.equals("Search")) {
-            System.out.println("Empty query");
-            return 1;
-        }
-        String filter = selectBox.getSelectedItem().toString();
-        db = new JsonDB("poi", query);
-        if(db.getData().get("status").getAsInt() != 200) {
-            w = query.split(" ");
-            for (String word : w) {
-                sb.append(word.charAt(0));
-            }
-            db = new JsonDB("poi", sb.toString().toLowerCase());
-            if(db.getData().get("status").getAsInt() != 200) {
-                System.out.printf("No result found for %s\n", query);
+    private int handleSearch() {
+        String q = searchBox.getText(); // get query from searchBox
+        String f = filterBox.getSelectedItem().toString(); // get filter from filterBox
+        LinkedList<Building> b = Map.getBuildings(); // get list of buildings
+        AtomicReference<ResultLabel> r = new AtomicReference<>(); // result label
+        if(q.isEmpty() || q.equals("Search")) {
+            if(b.size() == 0) {
+                r.set(new ResultLabel());
+                resultPanel.add(r.get());
                 return 1;
             }
-            else {
-                System.out.println(db.getData().toString());
-            }
-        } else {
-            System.out.println(db.getData().toString());
-        }*/
+            b.forEach(building -> building.getPOIs().forEach(
+                    poi -> {
+                        if(poi != null) {
+                            r.set(new ResultLabel(poi));
+                            resultPanel.add(r.get());
+                        }
+                    }
+            ));
+        }
+//        JsonDB db; // database instance
+//        String[] w; // array of words in query
+//        StringBuilder sb = new StringBuilder(); // string builder for acronym
+//        if (query.isEmpty() || query.equals("Search")) {
+//            System.out.println("Empty query");
+//            return 1;
+//        }
+//        db = new JsonDB("poi", query);
+//        if(db.getData().get("status").getAsInt() != 200) {
+//            w = query.split(" ");
+//            for (String word : w) {
+//                sb.append(word.charAt(0));
+//            }
+//            db = new JsonDB("poi", sb.toString().toLowerCase());
+//            if(db.getData().get("status").getAsInt() != 200) {
+//                System.out.printf("No result found for %s\n", query);
+//                return 1;
+//            }
+//            else {
+//                System.out.println(db.getData().toString());
+//            }
+//        } else {
+//            System.out.println(db.getData().toString());
+//        }
         return 0;
     }
     

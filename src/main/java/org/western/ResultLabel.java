@@ -14,8 +14,21 @@ public class ResultLabel extends JPanel {
     private JLabel sLabel = new JLabel(); // search label
     private FontIcon favIcon = FontIcon.of(RemixiconMZ.STAR_FILL, 20, Color.decode("#ffcc00"));
     private FontIcon unfavIcon = FontIcon.of(RemixiconMZ.STAR_LINE, 20, Color.BLACK);
+    ResultLabel() {
+        super();
+        this.setPreferredSize(new java.awt.Dimension(280, 40));
+        bLabel.setText("No Results");
+        this.add(bLabel);
+    }
     ResultLabel(POI poi) {
         super();
+        if(poi == null)
+        {
+            this.setPreferredSize(new java.awt.Dimension(280, 40));
+            bLabel.setText("Unknown POI");
+            this.add(bLabel);
+            return;
+        }
         bLabel.setText("Building");
         fLabel.setText("Floor");
         rLabel.setText("Room");
