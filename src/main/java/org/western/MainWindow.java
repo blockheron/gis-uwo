@@ -45,18 +45,14 @@ public class MainWindow extends javax.swing.JFrame {
         //demo code
         if (debug)
         {
-            JsonDB db;
-            db = new JsonDB(true);
+            //JsonDB db;
+            new JsonDB(true);
 
             curBuilding = new Building("Middlesex College", "MC");
             curFloor = curBuilding.addFloor("Ground", "Path-to-image");
         }
         curBuilding = new Building("Middlesex College", "MC");
         curFloor = curBuilding.addFloor("Ground", "Path-to-image");
-        
-        //building.getPOIs()
-        
-        
         //
         
         

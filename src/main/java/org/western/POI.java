@@ -25,18 +25,36 @@ public class POI {
         this.room = room;
         this.id = JsonDB.addPOI(building, floor, layer, room, name, description, location).get("id").getAsInt();
         loadedPOIs.put(id, this);
+        layer.addPOI(this);
+        
+    }
+    public POI(Building building, Floor floor, Room room, String name, String description, Point location) {
+        this.building = building;
+        this.floor = floor;
+        this.layer = Map.getLayer("unassigned");
+        this.room = room;
+        this.id = JsonDB.addPOI(building, floor, this.layer, room, name, description, location).get("id").getAsInt();
+        loadedPOIs.put(id, this);
+        layer.addPOI(this);
         
     }
     
     private POI(JsonObject building, JsonObject floor, JsonObject layer, JsonObject room, JsonObject POI) {
         this.building = Building.getBuilding(building);
         this.floor = Floor.getFloor(building, floor);
-        this.layer = Layer.getLayer(building, floor, layer);
-        this.room = Room.getRoom(building, floor, layer, room);
+        this.layer = Layer.getLayer(layer);
+        this.room = Room.getRoom(building, floor, room);
         this.id = room.get("id").getAsInt();
         loadedPOIs.put(id, this);
     }
     
+    public static POI getPOI(JsonObject building, JsonObject floor, JsonObject room, JsonObject POI) {
+        int POIID = POI.get("id").getAsInt();
+        if (loadedPOIs.containsKey(POIID))
+            return loadedPOIs.get(POIID);
+        
+        return new POI(building, floor, JsonDB.getLayer("unassigned"), room, POI);
+    }
     public static POI getPOI(JsonObject building, JsonObject floor, JsonObject layer, JsonObject room, JsonObject POI) {
         int POIID = POI.get("id").getAsInt();
         if (loadedPOIs.containsKey(POIID))
@@ -46,7 +64,7 @@ public class POI {
     }
 
     private JsonObject getThis() {
-        return JsonDB.getPOI(building, floor, layer, room, id);
+        return JsonDB.getPOI(building, floor, room, id);
     }
     
     public int getID() {
@@ -75,6 +93,15 @@ public class POI {
 
     public Room getRoom() {
         return room;
+    }
+    
+    /**
+     * removes the POI from its current layer and moves it to the given layer
+     * @param layer the layer to move the POI to
+     */
+    public void switchLayer(Layer layer) {
+        this.layer.removePOI(this);
+        layer.addPOI(this);
     }
 
     /*public float[][] getCoordinates() {

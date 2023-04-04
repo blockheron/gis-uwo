@@ -87,20 +87,30 @@ public class Building {
         
     }
     
+    public LinkedList<Room> getRooms() {
+        
+        LinkedList<Room> out = new LinkedList<Room>();
+        
+        for (Floor floor : getFloors()) {
+            for (Room room : floor.getRooms()) {
+                out.add(room);
+            }
+        }
+        return out;
+        
+    }
+    
     public LinkedList<POI> getPOIs() {
     
         LinkedList<POI> out = new LinkedList<POI>();
         
         if (getFloors().isEmpty()) return out;
         for (Floor floor : getFloors()) {
-            if (floor.getLayers().isEmpty()) continue;
-            for (Layer layer : floor.getLayers()) {
-                if (layer.getRooms().isEmpty()) continue;
-                for (Room room : layer.getRooms()) {
-                    if (room.getPOIs().isEmpty()) continue;
-                    for (POI poi : room.getPOIs()) {
-                        out.add(poi);
-                    }
+            if (floor.getRooms().isEmpty()) continue;
+            for (Room room : floor.getRooms()) {
+                if (room.getPOIs().isEmpty()) continue;
+                for (POI poi : room.getPOIs()) {
+                    out.add(poi);
                 }
             }
         }
@@ -115,6 +125,7 @@ public class Building {
      * @return the floor if it exists otherwise null
      */
     public Floor getFloor(int id) {
+        if (getFloors().isEmpty()) return null;
         for (Floor floor: getFloors()) {
             if (floor.getID() == id) return floor;
         }
@@ -127,6 +138,7 @@ public class Building {
      * @return the floor if it exists otherwise null
      */
     public Floor getFloor(String name) {
+        if (getFloors().isEmpty()) return null;
         for (Floor floor: getFloors()) {
             if (floor.getName().equals(name)) return floor;
         }

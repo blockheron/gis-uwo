@@ -31,18 +31,21 @@ public class JsonDB {
         Building mc = new Building("Middlesex College", "MC");
         Building pab = new Building("Physics and Astronomy Building", "PANDA");
         
-        for (Building building : Map.getBuildings()) {
-            
-            System.out.println("Building id: " + building.getID() + ", name: " + building.getName());
-            
-        }
+        User sampleUser = new User("testUser", "1234");
         
-        System.out.println(db.get("count"));
+        Layer test = Map.addLayer("newLayer", Color.yellow);
         
-        mc.addFloor("ground", "path/to/floor");
-        mc.addFloor("basement", "different-file-path", -1); //inserts at beginning of floors
-        mc.addFloor("lower ground", "", mc.getFloor("basement").getID());
-        pab.addFloor("grad lounge", "path/to/lounge");
+        Floor ground = mc.addFloor("ground", "path/to/floor");
+        Floor basement = mc.addFloor("basement", "different-file-path", -1); //inserts at beginning of floors
+        Floor lg = mc.addFloor("lower ground", "", mc.getFloor("basement").getID());
+        Floor lounge = pab.addFloor("grad lounge", "path/to/lounge");
+        
+        Room gr = ground.addRoom(new Polygon(), new Point(0,0));
+        gr.addPOI("gr1", "1st ground room", new Point(0,0));
+        gr.addPOI("gr2", "desc2", new Point(0,0));
+        gr.addPOI("gr3", "desc3", new Point(0,0)).switchLayer(test);
+        Room loungeRoom = lounge.addRoom(new Polygon(), new Point(0,0));
+        loungeRoom.addPOI("lng1", "desc4", new Point(0,0)).switchLayer(test);
         
         //LinkedList<Floor> floors = mc.getFloors();
         for (Building building : Map.getBuildings()) {
@@ -54,6 +57,17 @@ public class JsonDB {
             }
             
         }
+        
+        System.out.println(Map.getLayer("unassigned").getPOIs());
+        for(POI poi : Map.getLayer("unassigned").getPOIs()) {
+            System.out.println(poi.getName());
+        }
+        System.out.println(Map.getLayer("newLayer").getPOIs());
+        for(POI poi : Map.getLayer("newLayer").getPOIs()) {
+            System.out.println(poi.getName());
+        }
+        
+        //mc.getFloor("ground").
         
         
         /*Building mc1 = Map.getBuilding("Middlesex College");
@@ -90,14 +104,18 @@ public class JsonDB {
             cleanDB.addProperty("POICount", 0);
             cleanDB.addProperty("roomCount", 0);
             cleanDB.addProperty("layerCount", 0);
+            cleanDB.addProperty("curLayerCount", 0);
             cleanDB.addProperty("floorCount", 0);
-            cleanDB.addProperty("count", 0);
+            cleanDB.addProperty("buildingCount", 0);
+            cleanDB.addProperty("curBuildingCount", 0);
+            cleanDB.add("layers", new JsonArray());
             cleanDB.add("buildings", new JsonArray());
             cleanDB.add("users", new JsonArray());
             
             filePath = getClass().getResource("db/test_db.json").getFile();
             db = cleanDB;
             save();
+            addLayer("unassigned", Color.RED);
         }
         else {
             filePath = getClass().getResource("db/db.json").getFile();
@@ -185,7 +203,7 @@ public class JsonDB {
      */
     public static JsonObject getBuilding(int id) {
         
-        int buildingCount = db.get("count").getAsInt();
+        int buildingCount = db.get("curBuildingCount").getAsInt();
         JsonArray buildings = db.get("buildings").getAsJsonArray();
         
         for (int i = 0; i < buildingCount; ++i) {
@@ -211,7 +229,8 @@ public class JsonDB {
         
         JsonArray buildingArray = db.get("buildings").getAsJsonArray();
         JsonObject building = new JsonObject();
-        building.addProperty("id", incrementCount("count"));
+        building.addProperty("id", incrementCount("buildingCount"));
+        incrementCount("curBuildingCount");
         building.addProperty("name", name);
         building.addProperty("shortName", shortName);
         building.addProperty("count", 0);
@@ -303,6 +322,9 @@ public class JsonDB {
     public static JsonArray getFloors(Building building) {
         return getBuilding(building.getID()).get("floors").getAsJsonArray();
     }
+    public static JsonArray getFloors (JsonObject building) {
+        return building.get("floors").getAsJsonArray();
+    }
     
     /**
      * get a specific floor given its building and id
@@ -344,7 +366,7 @@ public class JsonDB {
         floor.addProperty("name", name);
         floor.addProperty("filePath", filePath);
         floor.addProperty("count", 0);
-        floor.add("layers", new JsonArray());
+        floor.add("rooms", new JsonArray());
         
         jsonBuilding.get("floors").getAsJsonArray().add(floor);
         
@@ -373,7 +395,7 @@ public class JsonDB {
         floor.addProperty("name", name);
         floor.addProperty("filePath", filePath);
         floor.addProperty("count", 0);
-        floor.add("layers", new JsonArray());
+        floor.add("rooms", new JsonArray());
         
         JsonArray floorArray = jsonBuilding.get("floors").getAsJsonArray();
         
@@ -398,27 +420,23 @@ public class JsonDB {
     }
     
     /**
-     * gets all of the layers in a given building on a given floor
-     * @param building the building the layers are in
-     * @param floor the floor the layer is on
-     * @return the JsonArray representing the layers if they exist, otherwise null
+     * gets all the layers in the database
+     * @return the JsonArray representing the layers
      */
-    public static JsonArray getLayers(Building building, Floor floor) {
+    public static JsonArray getLayers() {
         //return getBuilding(building.getID()).get("floors").getAsJsonArray();
-        return getFloor(building, floor.getID()).get("layers").getAsJsonArray();
+        return db.get("layers").getAsJsonArray();
     }
     
     /**
      * get a specific layer based on its id
-     * @param building the building the layer is in
-     * @param floor the floor the layer is on
      * @param id the id of the layer
      * @return the JsonObject representing the layer if it exists, otherwise null
      */
-    public static JsonObject getLayer (Building building, Floor floor, int id) {
+    public static JsonObject getLayer (int id) {
         
-        int layerCount = floor.getLayerNum();
-        JsonArray layers = getLayers(building, floor);
+        int layerCount = db.get("curLayerCount").getAsInt();
+        JsonArray layers = db.get("layers").getAsJsonArray();
         
         for (int i = 0; i < layerCount; ++i) {
             
@@ -434,28 +452,49 @@ public class JsonDB {
     }
     
     /**
+     * get a specific layer based on its name
+     * @param name the name of the layer
+     * @return the JsonObject representing the layer if it exists, otherwise null
+     */
+    public static JsonObject getLayer (String name) {
+        
+        int layerCount = db.get("curLayerCount").getAsInt();
+        JsonArray layers = db.get("layers").getAsJsonArray();
+        
+        for (int i = 0; i < layerCount; ++i) {
+            
+            JsonObject _layer = layers.get(i).getAsJsonObject();
+            
+            if (_layer.get("id").getAsString().compareTo(name) == 0)
+                return _layer;
+            
+        }
+        
+        return null;
+        
+    }
+    
+    /**
      * add a layer to the database
-     * @param building the building the layer is in
-     * @param floor the floor the layer is on
      * @param name the name of the layer
      * @param color the color of rooms in the layer when enabled
      * @return the JsonObject representing the Layer on success, null on failure
      */
-    public static JsonObject addLayer(Building building, Floor floor, String name, Color color) {
+    public static JsonObject addLayer(String name, Color color) {
         
-        JsonObject jsonFloor = getFloor(building, floor.getID());
-        
+        JsonArray layerArray = db.get("layers").getAsJsonArray();
         JsonObject layer = new JsonObject();
         layer.addProperty("id", incrementCount("layerCount"));
+        incrementCount("curLayerCount");
         layer.addProperty("name", name);
         layer.addProperty("color", color.getRGB());
         layer.addProperty("count", 0);
-        layer.add("rooms", new JsonArray());
+        layer.add("POIs", new JsonArray());
         
-        jsonFloor.get("layers").getAsJsonArray().add(layer);
+        //todo check if name is unique
         
-        int count = jsonFloor.get("count").getAsInt();
-        jsonFloor.addProperty("count", count+1);
+        layerArray.add(layer);
+        
         save();
         
         return layer;
@@ -463,15 +502,36 @@ public class JsonDB {
     }
     
     /**
-     * gets all the rooms in a layer
+     * gets all the rooms on a floor
      * @param building the building the rooms are in
      * @param floor the floor the rooms are on
-     * @param layer the layer the room is in
      * @return the JsonArray representing the rooms if they exist, otherwise null
      */
-    public static JsonArray getRooms(Building building, Floor floor, Layer layer) {
+    public static JsonArray getRooms(Building building, Floor floor) {
         //System.out.println(building.getName() + " " + floor.getName() + " " + layer.getName());
-        return getLayer(building, floor, layer.getID()).get("rooms").getAsJsonArray();
+        return getFloor(building, floor.getID()).get("rooms").getAsJsonArray();
+    }
+    public static JsonArray getRooms(JsonObject floor) {
+        return floor.get("rooms").getAsJsonArray();
+    }
+    /**
+     * gets all the POIs in a layer
+     * @param layer the layer the POIs are in
+     * @return a list of POIs in the layer
+     */
+    public static LinkedList<JsonObject> getPOIs(Layer layer) {
+        //System.out.println(building.getName() + " " + floor.getName() + " " + layer.getName());
+        int POINum = getLayer(layer.getID()).get("count").getAsInt();
+        JsonArray POIIDArray =  getLayer(layer.getID()).get("rooms").getAsJsonArray();
+        
+        LinkedList<JsonObject> out = new LinkedList<JsonObject>();
+        
+        for (int i = 0; i < POINum; ++i) {
+            out.add(getPOI(POIIDArray.get(i).getAsInt()));
+        }
+        
+        return out;
+        
     }
     
     /**
@@ -482,10 +542,10 @@ public class JsonDB {
      * @param id the id of the room
      * @return a JsonObject representing the room if it exists, otherwise null
      */
-    public static JsonObject getRoom (Building building, Floor floor, Layer layer, int id) {
+    public static JsonObject getRoom (Building building, Floor floor, int id) {
         //System.out.println(id);
-        int roomCount = layer.getRoomNum();
-        JsonArray rooms = getRooms(building, floor, layer);
+        int roomCount = floor.getRoomNum();
+        JsonArray rooms = getRooms(building, floor);
         
         for (int i = 0; i < roomCount; ++i) {
             
@@ -510,13 +570,13 @@ public class JsonDB {
      * @param position the position of the building
      * @return the JsonObject representing the room on success, null on failure
      */
-    public static JsonObject addRoom(Building building, Floor floor, Layer layer, Polygon shape, Point position) {
+    public static JsonObject addRoom(Building building, Floor floor, Polygon shape, Point position) {
         
-        JsonObject jsonLayer = getLayer(building, floor, layer.getID());
+        JsonObject jsonFloor = getFloor(building, floor.getID());
         
         JsonObject room = new JsonObject();
         room.addProperty("id", incrementCount("roomCount"));
-        room.addProperty("roomNumber", -1);
+        room.addProperty("roomNumber", "");
         room.addProperty("x", position.getX());
         room.addProperty("y", position.getY());
         
@@ -531,10 +591,10 @@ public class JsonDB {
         room.addProperty("count", 0);
         room.add("POIs", new JsonArray());
         
-        jsonLayer.get("rooms").getAsJsonArray().add(room);
+        jsonFloor.get("rooms").getAsJsonArray().add(room);
         
-        int count = jsonLayer.get("count").getAsInt();
-        jsonLayer.addProperty("count", count+1);
+        int count = jsonFloor.get("count").getAsInt();
+        jsonFloor.addProperty("count", count+1);
         save();
         
         return room;
@@ -549,9 +609,12 @@ public class JsonDB {
      * @param room the room the POIs are in
      * @return the JsonArray representing the POIs if they exist, otherwise none
      */
-    public static JsonArray getPOIs(Building building, Floor floor, Layer layer, Room room) {
+    public static JsonArray getPOIs(Building building, Floor floor, Room room) {
         //System.out.println(building.getName() + " " + floor.getName() + " " + layer.getName());
-        return getRoom(building, floor, layer, room.getID()).get("POIs").getAsJsonArray();
+        return getRoom(building, floor, room.getID()).get("POIs").getAsJsonArray();
+    }
+    public static JsonArray getPOIs(JsonObject room) {
+        return room.get("POIs").getAsJsonArray();
     }
     
     /**
@@ -563,10 +626,10 @@ public class JsonDB {
      * @param id the id of the POI
      * @return the JsonObject representing the POI if it exists, otherwise null
      */
-    public static JsonObject getPOI (Building building, Floor floor, Layer layer, Room room, int id) {
+    public static JsonObject getPOI (Building building, Floor floor, Room room, int id) {
         //System.out.println(id);
         int POICount = room.getPOINum();
-        JsonArray POIs = getPOIs(building, floor, layer, room);
+        JsonArray POIs = getPOIs(building, floor, room);
         
         for (int i = 0; i < POICount; ++i) {
             
@@ -575,6 +638,45 @@ public class JsonDB {
             
             if (_POI.get("id").getAsInt() == id)
                 return _POI;
+            
+        }
+        
+        return null;
+        
+    }
+    
+    /**
+     * get all the POIs in the database
+     * @return the JsonArray representing the POIs if they exist, otherwise none
+     */
+    public static LinkedList<JsonObject> getPOIs() {
+        //System.out.println(building.getName() + " " + floor.getName() + " " + layer.getName());
+        LinkedList<JsonObject> out = new LinkedList<JsonObject>();
+        for(JsonElement building: getBuildings()) {
+            for(JsonElement floor: getFloors(building.getAsJsonObject())) {
+                for(JsonElement room: getRooms(floor.getAsJsonObject())) {
+                    for (JsonElement poi: getPOIs(room.getAsJsonObject())) {
+                        out.add(poi.getAsJsonObject());
+                    }
+                }
+            }
+        }
+        return out;
+    }
+    
+    /**
+     * gets a specific POI
+     * @param id the id of the POI
+     * @return the JsonObject representing the POI if it exists, otherwise null
+     */
+    public static JsonObject getPOI (int id) {
+        //System.out.println(id);
+        LinkedList<JsonObject> POIList = getPOIs();
+        
+        for (JsonObject poi : POIList) {
+            
+            if (poi.get("id").getAsInt() == id)
+                return poi;
             
         }
         
@@ -595,12 +697,13 @@ public class JsonDB {
      */
     public static JsonObject addPOI(Building building, Floor floor, Layer layer, Room room, String name, String description, Point position) {
         
-        JsonObject jsonRoom = getRoom(building, floor, layer, room.getID());
+        JsonObject jsonRoom = getRoom(building, floor, room.getID());
         
         JsonObject POI = new JsonObject();
         POI.addProperty("id", incrementCount("POICount"));
         POI.addProperty("name", name);
         POI.addProperty("description", description);
+        POI.addProperty("layerID", layer.getID());
         POI.addProperty("x", position.getX());
         POI.addProperty("y", position.getY());
         

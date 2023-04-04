@@ -28,7 +28,7 @@ public class Room extends JComponent
     private int id;
     private Building building;
     private Floor floor;
-    private Layer layer;
+    //private Layer layer;
     
     //private Polygon curShape;
     //private Rectangle curBounds;
@@ -51,7 +51,7 @@ public class Room extends JComponent
     {
         
         //add room in unassigned layer
-        this(building, floor, floor.getLayer("Unassigned"), shape, new Point(0,0));
+        this(building, floor, shape, new Point(0,0));
                
     }
     
@@ -62,41 +62,40 @@ public class Room extends JComponent
      * @param shape the shape of the room
      * @param position the position of the room
      */
-    public Room(Building building, Floor floor, Polygon shape, Point position)
+    /*public Room(Building building, Floor floor, Polygon shape, Point position)
     {
         
         //add room in unassigned layer
-        this(building, floor, floor.getLayer("Unassigned"), shape, position);
+        this(building, floor, Map.getLayer("Unassigned"), shape, position);
                
-    }
+    }*/
     
-    public Room(Building building, Floor floor, Layer layer, Polygon shape, Point position)
+    public Room(Building building, Floor floor, Polygon shape, Point position)
     {
         
         this.building = building;
         this.floor = floor;
-        this.layer = layer;
-        this.id = JsonDB.addRoom(building, floor, layer, shape, position).get("id").getAsInt();
+        this.id = JsonDB.addRoom(building, floor, shape, position).get("id").getAsInt();
         curColor = DEFAULT_COLOR;
         curActiveColor = DEFAULT_ACTIVE_COLOR;
         loadedRooms.put(id, this);
         
     }
     
-    private Room(JsonObject building, JsonObject floor, JsonObject layer, JsonObject room) {
+    private Room(JsonObject building, JsonObject floor, JsonObject room) {
         this.building = Building.getBuilding(building);
         this.floor = Floor.getFloor(building, floor);
-        this.layer = Layer.getLayer(building, floor, layer);
+        //this.layer = Layer.getLayer(building, floor, layer);
         this.id = room.get("id").getAsInt();
         loadedRooms.put(id, this);
     }
     
-    public static Room getRoom(JsonObject building, JsonObject floor, JsonObject layer, JsonObject room) {
+    public static Room getRoom(JsonObject building, JsonObject floor, JsonObject room) {
         int roomID = room.get("id").getAsInt();
         if (loadedRooms.containsKey(roomID))
             return loadedRooms.get(roomID);
         
-        return new Room(building, floor, layer, room);
+        return new Room(building, floor, room);
         
     }
     
@@ -105,7 +104,7 @@ public class Room extends JComponent
     }
     
     private JsonObject getThis() {
-        return JsonDB.getRoom(building, floor, layer, id);
+        return JsonDB.getRoom(building, floor, id);
     }
     
     public int getID() {
@@ -171,13 +170,12 @@ public class Room extends JComponent
     
     public LinkedList<POI> getPOIs() {
         
-        JsonArray POIs = JsonDB.getPOIs(building, floor, layer, this);
+        JsonArray POIs = JsonDB.getPOIs(building, floor, this);
         LinkedList<POI> out = new LinkedList<POI>();
         
         for (JsonElement poi:POIs) 
             out.add(POI.getPOI(JsonDB.getBuilding(building.getID()),
                     JsonDB.getFloor(building, floor.getID()),
-                    JsonDB.getLayer(building, floor, id),
                     getThis(),
                     poi.getAsJsonObject()
             ));
@@ -195,7 +193,7 @@ public class Room extends JComponent
     }
     
     public POI addPOI(String name, String description, Point position) {
-        return new POI(building, floor, layer, this , name, description, position);
+        return new POI(building, floor, Map.getLayer("unassigned"), this , name, description, position);
     }
     
     /*public Room(Polygon shape, Building building, Floor floor) 
