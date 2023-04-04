@@ -53,21 +53,25 @@ public class ResultLabel extends JPanel {
         {
             sB.append(" ").append(poi.getRoom().getName());
         }
+        if(poi.getName() != null)
+        {
+            sB.append(" ").append(poi.getName());
+        }
         pField.setText(sB.toString());
         this.add(pField, new java.awt.GridBagConstraints());
         sLabel.setPreferredSize(new java.awt.Dimension(40, 40));
         sLabel.setIcon(unfavIcon);
         // add hover effect
-        addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                setBackground(new java.awt.Color(234, 234, 234));
-                pField.setBackground(new java.awt.Color(234, 234, 234));
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                setBackground(new java.awt.Color(255, 255, 255));
-                pField.setBackground(new java.awt.Color(255, 255, 255));
-            }
-        });
+//        addMouseListener(new java.awt.event.MouseAdapter() {
+//            public void mouseEntered(java.awt.event.MouseEvent evt) {
+//                setBackground(new java.awt.Color(234, 234, 234));
+//                pField.setBackground(new java.awt.Color(234, 234, 234));
+//            }
+//            public void mouseExited(java.awt.event.MouseEvent evt) {
+//                setBackground(new java.awt.Color(255, 255, 255));
+//                pField.setBackground(new java.awt.Color(255, 255, 255));
+//            }
+//        });
         // add onclick
         sLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

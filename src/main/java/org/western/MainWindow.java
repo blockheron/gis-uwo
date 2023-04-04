@@ -492,9 +492,9 @@ public class MainWindow extends javax.swing.JFrame {
         onSearch.addActionListener(e -> handleSearch());
 
 
-        POI testPOI = curFloor.getRooms().get(0).getPOIs().get(0);
-        ResultLabel test = new ResultLabel(testPOI);
-        resultPanel.add(test);
+//        POI testPOI = curFloor.getRooms().get(0).getPOIs().get(0);
+//        ResultLabel test = new ResultLabel(testPOI);
+//        resultPanel.add(test);
     }
 
     public void initButtons() {
@@ -584,6 +584,7 @@ public class MainWindow extends javax.swing.JFrame {
         LinkedList<Building> b = Map.getBuildings(); // get list of buildings
         AtomicReference<ResultLabel> r = new AtomicReference<>(); // result label
         if(q.isEmpty() || q.equals("Search")) {
+            resultPanel.removeAll();
             if(b.size() == 0) {
                 r.set(new ResultLabel());
                 resultPanel.add(r.get());
@@ -591,10 +592,8 @@ public class MainWindow extends javax.swing.JFrame {
             }
             b.forEach(building -> building.getPOIs().forEach(
                     poi -> {
-                        if(poi != null) {
-                            r.set(new ResultLabel(poi));
-                            resultPanel.add(r.get());
-                        }
+                        r.set(new ResultLabel(poi));
+                        resultPanel.add(r.get());
                     }
             ));
         }
