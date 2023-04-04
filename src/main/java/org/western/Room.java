@@ -177,7 +177,7 @@ public class Room extends JComponent
         for (JsonElement poi:POIs) 
             out.add(POI.getPOI(JsonDB.getBuilding(building.getID()),
                     JsonDB.getFloor(building, floor.getID()),
-                    JsonDB.getLayer(building, floor, id),
+                    JsonDB.getLayer(building, floor, layer.getID()),
                     getThis(),
                     poi.getAsJsonObject()
             ));
