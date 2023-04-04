@@ -7,45 +7,38 @@ import javax.swing.*;
 import java.awt.*;
 
 public class ResultLabel extends JPanel {
-    private JLabel pLabel = new JLabel(); // placeholder label
-    private JLabel bLabel = new JLabel(); // building label
-    private JLabel fLabel = new JLabel(); // floor label
-    private JLabel rLabel = new JLabel(); // room label
-    private JLabel sLabel = new JLabel(); // search label
+    private JTextField pField = new JTextField(); // poi field
+    private JLabel sLabel = new JLabel(); // star label
     private FontIcon favIcon = FontIcon.of(RemixiconMZ.STAR_FILL, 20, Color.decode("#ffcc00"));
     private FontIcon unfavIcon = FontIcon.of(RemixiconMZ.STAR_LINE, 20, Color.BLACK);
     ResultLabel() {
         super();
         this.setPreferredSize(new java.awt.Dimension(280, 40));
-        bLabel.setText("No Results");
-        this.add(bLabel);
+        pField.setText("No Results found.");
+        this.add(pField);
     }
     ResultLabel(POI poi) {
         super();
+        StringBuilder sB = new StringBuilder(); // string builder for poi string
         if(poi == null)
         {
             this.setPreferredSize(new java.awt.Dimension(280, 40));
-            bLabel.setText("Unknown POI");
-            this.add(bLabel);
+            pField.setText("Unknown POI");
+            this.add(pField);
             return;
         }
-        bLabel.setText("Building");
-        fLabel.setText("Floor");
-        rLabel.setText("Room");
-        bLabel.setFont(new java.awt.Font("Inter", 0, 14));
-        fLabel.setFont(new java.awt.Font("Inter", 0, 14));
-        rLabel.setFont(new java.awt.Font("Inter", 0, 14));
         this.setBackground(new java.awt.Color(234, 234, 234));
         this.setPreferredSize(new java.awt.Dimension(280, 40));
         this.setLayout(new java.awt.GridBagLayout());
-        pLabel.setPreferredSize(new java.awt.Dimension(20, 40));
-        this.add(pLabel, new java.awt.GridBagConstraints());
+        pField.setPreferredSize(new java.awt.Dimension(240, 40));
+        pField.setFont(new java.awt.Font("Inter", 0, 14));
+        pField.setEditable(false);
+        pField.setBorder(null);
+        pField.setBackground(new java.awt.Color(234, 234, 234));
         if(poi.getBuilding() != null && poi.getBuilding().getShortName() != null)
         {
-            bLabel.setText(poi.getBuilding().getShortName());
+            sB.append(" ").append(poi.getBuilding().getShortName());
         }
-        bLabel.setPreferredSize(new java.awt.Dimension(40, 17));
-        this.add(bLabel, new java.awt.GridBagConstraints());
         if(poi.getFloor() != null && poi.getFloor().getName() != null)
         {
             String[] words = poi.getFloor().getName().split(" ");
@@ -54,18 +47,27 @@ public class ResultLabel extends JPanel {
             {
                 floorName.append(word.charAt(0));
             }
-            fLabel.setText(floorName.toString());
+            sB.append(" ").append(floorName);
         }
-        fLabel.setPreferredSize(new java.awt.Dimension(40, 17));
-        this.add(fLabel, new java.awt.GridBagConstraints());
         if(poi.getRoom() != null && poi.getRoom().getName() != null)
         {
-            rLabel.setText(poi.getRoom().getName());
+            sB.append(" ").append(poi.getRoom().getName());
         }
-        rLabel.setPreferredSize(new java.awt.Dimension(140, 17));
-        this.add(rLabel, new java.awt.GridBagConstraints());
+        pField.setText(sB.toString());
+        this.add(pField, new java.awt.GridBagConstraints());
         sLabel.setPreferredSize(new java.awt.Dimension(40, 40));
         sLabel.setIcon(unfavIcon);
+        // add hover effect
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                setBackground(new java.awt.Color(234, 234, 234));
+                pField.setBackground(new java.awt.Color(234, 234, 234));
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                setBackground(new java.awt.Color(255, 255, 255));
+                pField.setBackground(new java.awt.Color(255, 255, 255));
+            }
+        });
         // add onclick
         sLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
