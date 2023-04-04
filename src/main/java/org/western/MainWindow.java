@@ -54,7 +54,6 @@ public class MainWindow extends javax.swing.JFrame {
         resultPanel = new javax.swing.JPanel();
         smallMap = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
-        BigMapLayer = new javax.swing.JLayeredPane();
         HelpButton = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -165,20 +164,8 @@ public class MainWindow extends javax.swing.JFrame {
 
         jButton2.getAccessibleContext().setAccessibleDescription("");
 
-        BigMapLayer.setPreferredSize(new java.awt.Dimension(1200, 800));
-
-        javax.swing.GroupLayout BigMapLayerLayout = new javax.swing.GroupLayout(BigMapLayer);
-        BigMapLayer.setLayout(BigMapLayerLayout);
-        BigMapLayerLayout.setHorizontalGroup(
-            BigMapLayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1206, Short.MAX_VALUE)
-        );
-        BigMapLayerLayout.setVerticalGroup(
-            BigMapLayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 234, Short.MAX_VALUE)
-        );
-
         HelpButton.setText("?");
+        HelpButton.setToolTipText("help page ");
         HelpButton.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
                 HelpButtonMouseMoved(evt);
@@ -197,18 +184,13 @@ public class MainWindow extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FrameLayout.createSequentialGroup()
                 .addGap(79, 79, 79)
                 .addComponent(smallMap, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 688, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 694, Short.MAX_VALUE)
                 .addComponent(searchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16))
             .addGroup(FrameLayout.createSequentialGroup()
                 .addGap(45, 45, 45)
                 .addComponent(HelpButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(FrameLayout.createSequentialGroup()
-                    .addGap(18, 18, 18)
-                    .addComponent(BigMapLayer, javax.swing.GroupLayout.PREFERRED_SIZE, 1206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(18, Short.MAX_VALUE)))
         );
         FrameLayout.setVerticalGroup(
             FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -223,26 +205,23 @@ public class MainWindow extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 438, Short.MAX_VALUE)
                 .addComponent(HelpButton)
                 .addGap(44, 44, 44))
-            .addGroup(FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(FrameLayout.createSequentialGroup()
-                    .addGap(283, 283, 283)
-                    .addComponent(BigMapLayer, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(283, Short.MAX_VALUE)))
         );
 
-        jLayeredPane1.setLayer(Frame, javax.swing.JLayeredPane.MODAL_LAYER);
+        searchPanel.getAccessibleContext().setAccessibleParent(jLayeredPane1);
+
+        jLayeredPane1.setLayer(Frame, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
         jLayeredPane1.setLayout(jLayeredPane1Layout);
         jLayeredPane1Layout.setHorizontalGroup(
             jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Frame, javax.swing.GroupLayout.DEFAULT_SIZE, 1242, Short.MAX_VALUE)
+            .addComponent(Frame, javax.swing.GroupLayout.DEFAULT_SIZE, 1248, Short.MAX_VALUE)
         );
         jLayeredPane1Layout.setVerticalGroup(
             jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jLayeredPane1Layout.createSequentialGroup()
                 .addComponent(Frame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(578, Short.MAX_VALUE))
+                .addContainerGap(617, Short.MAX_VALUE))
         );
 
         getContentPane().add(jLayeredPane1, java.awt.BorderLayout.PAGE_START);
@@ -258,24 +237,23 @@ public class MainWindow extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void searchBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_searchBoxActionPerformed
+    private void HelpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HelpButtonActionPerformed
+        CustomTip p = new CustomTip();
+        p.run();
+
+    }//GEN-LAST:event_HelpButtonActionPerformed
+
+    private void HelpButtonMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HelpButtonMouseMoved
+
+    }//GEN-LAST:event_HelpButtonMouseMoved
 
     private void onSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onSearchActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_onSearchActionPerformed
 
-    private void HelpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HelpButtonActionPerformed
-        CustomTip p = new CustomTip();
-        p.run();
-        
-                
-    }//GEN-LAST:event_HelpButtonActionPerformed
-
-    private void HelpButtonMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HelpButtonMouseMoved
-       
-    }//GEN-LAST:event_HelpButtonMouseMoved
+    private void searchBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchBoxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -454,7 +432,6 @@ public class MainWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLayeredPane BigMapLayer;
     private javax.swing.JPanel Frame;
     private javax.swing.JButton HelpButton;
     private javax.swing.JPanel dropDownPanel;
