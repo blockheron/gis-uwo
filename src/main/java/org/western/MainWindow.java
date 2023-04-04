@@ -71,6 +71,9 @@ public class MainWindow extends javax.swing.JFrame {
         Frame = new javax.swing.JPanel();
         editButton = new javax.swing.JToggleButton();
         addRoomButton = new javax.swing.JToggleButton();
+        smallMap = new javax.swing.JPanel();
+        smallMapButton = new javax.swing.JButton();
+        helpButton = new javax.swing.JButton();
         searchPanel = new javax.swing.JPanel();
         searchBox = new javax.swing.JTextField();
         onSearch = new javax.swing.JButton();
@@ -111,21 +114,59 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
+        smallMapButton.setText("jButton1");
+
+        javax.swing.GroupLayout smallMapLayout = new javax.swing.GroupLayout(smallMap);
+        smallMap.setLayout(smallMapLayout);
+        smallMapLayout.setHorizontalGroup(
+            smallMapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(smallMapButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
+        );
+        smallMapLayout.setVerticalGroup(
+            smallMapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(smallMapButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
+        );
+
+        helpButton.setText("?");
+        helpButton.setToolTipText("Help Page");
+        helpButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        helpButton.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                helpButtonMouseMoved(evt);
+            }
+        });
+        helpButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                helpButtonMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout FrameLayout = new javax.swing.GroupLayout(Frame);
         Frame.setLayout(FrameLayout);
         FrameLayout.setHorizontalGroup(
             FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(FrameLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(editButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(addRoomButton)
-                .addContainerGap(1122, Short.MAX_VALUE))
+                .addGroup(FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(FrameLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(editButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(addRoomButton))
+                    .addGroup(FrameLayout.createSequentialGroup()
+                        .addGap(73, 73, 73)
+                        .addGroup(FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(smallMap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(helpButton))))
+                .addContainerGap(953, Short.MAX_VALUE))
         );
         FrameLayout.setVerticalGroup(
             FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FrameLayout.createSequentialGroup()
-                .addContainerGap(787, Short.MAX_VALUE)
+                .addGap(54, 54, 54)
+                .addComponent(smallMap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 560, Short.MAX_VALUE)
+                .addComponent(helpButton, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(addRoomButton)
                     .addComponent(editButton))
@@ -305,6 +346,15 @@ public class MainWindow extends javax.swing.JFrame {
         
     }//GEN-LAST:event_addRoomButtonMouseClicked
 
+    private void helpButtonMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_helpButtonMouseMoved
+        // TODO add your handling code here:
+    }//GEN-LAST:event_helpButtonMouseMoved
+
+    private void helpButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_helpButtonMouseClicked
+        CustomTip p = new CustomTip();
+        p.run();
+    }//GEN-LAST:event_helpButtonMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -464,8 +514,12 @@ public class MainWindow extends javax.swing.JFrame {
      */
     private void renderFrame() {
         canvas = new Canvas("assets/MC-BF-1.png", this.getWidth(), this.getHeight());
+        Canvas2 smallMapPic = new Canvas2("/org/western/assets/campus_map.png", 180, 125);
+
         Frame.add(canvas);
         Frame.setFocusable(true);
+        smallMapButton.add(smallMapPic);
+        smallMapButton.setFocusable(true);
         System.out.println("User: " + session + " logged in");
 
         JsonDB db = new JsonDB("poi", "mc");
@@ -643,6 +697,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JLabel filterIcon;
     private javax.swing.JPanel filterPanel;
     private javax.swing.JLabel filterText;
+    private javax.swing.JButton helpButton;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
@@ -654,5 +709,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JTextField searchBox;
     private javax.swing.JPanel searchPanel;
     private javax.swing.JComboBox<String> selectBox;
+    private javax.swing.JPanel smallMap;
+    private javax.swing.JButton smallMapButton;
     // End of variables declaration//GEN-END:variables
 }
