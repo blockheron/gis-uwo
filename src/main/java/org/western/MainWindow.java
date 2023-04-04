@@ -161,6 +161,18 @@ public class MainWindow extends javax.swing.JFrame {
                 searchBoxActionPerformed(evt);
             }
         });
+        // listen on select all key press
+        searchBox.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_A && e.isControlDown()) {
+                    searchBox.selectAll();
+                } else if (e.getKeyCode() == KeyEvent.VK_A && e.isMetaDown()) {
+                    searchBox.selectAll();
+                }
+            }
+        });
+
 
         onSearch.setBorder(null);
         onSearch.addActionListener(new java.awt.event.ActionListener() {
