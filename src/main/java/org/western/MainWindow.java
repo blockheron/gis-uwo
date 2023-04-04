@@ -10,6 +10,10 @@ import org.kordamp.ikonli.swing.FontIcon;
 
 import javax.swing.*;
 import javax.swing.border.Border;
+import javax.swing.plaf.basic.BasicComboBoxUI;
+import javax.swing.plaf.basic.BasicComboPopup;
+import javax.swing.plaf.basic.BasicScrollBarUI;
+import javax.swing.plaf.basic.ComboPopup;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.FileNotFoundException;
@@ -456,6 +460,19 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
         onSearch.addActionListener(e -> handleSearch());
+        selectBox.setFocusable(false);
+        selectBox.setFocusTraversalKeysEnabled(false);
+        selectBox.setRenderer(new DefaultListCellRenderer() {
+            @Override
+            public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+                super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+                setFont(new Font("Inter", Font.PLAIN, 12));
+                if (isSelected) {
+                    setBackground(Color.decode("#eaeaea"));
+                }
+                return this;
+            }
+        });
         selectBox.setModel(new DefaultComboBoxModel<>(s.getFilters()));
     }
 
