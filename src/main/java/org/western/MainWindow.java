@@ -12,20 +12,26 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
 import java.io.FileNotFoundException;
 
 import java.util.Dictionary;
 import java.util.LinkedList;
+import java.util.Objects;
 
 /**
- * @author m
+ * @author Maxwell, Emma
+ * A JFrame to display all visual components of this program
  */
 public class MainWindow extends javax.swing.JFrame {
-    //private int session = -1; // -1 for guest, 0 for admin, 1 for user
+    private int session = -1; // -1 for guest, 0 for admin, 1 for user
     
     private Building curBuilding;
     private Floor curFloor;
-    private User curUser;
+    private LinkedList<Floor> floorList;
+    private LinkedList<Layer> layerList;
+    private LinkedList<Room> roomList;
+    private CanvasGUI canvas;
 
     private int x, y, initialX, initialY, deltaX, deltaY;
     private boolean editMode = false;
@@ -37,37 +43,56 @@ public class MainWindow extends javax.swing.JFrame {
     
     /**
      * Creates new form MainWindow
+     * @author Maxwell, Emma
      */
-    public MainWindow(boolean debug, User user) {
+    public MainWindow() {
         
-        curUser = user;
+        JsonDB db;
+        
+        // Print out user session
+        System.out.println("User: " + session + " logged in");
         
         //demo code
-        if (debug)
-        {
-            JsonDB db;
-            db = new JsonDB(true);
-
-            curBuilding = new Building("Middlesex College", "MC");
-            curFloor = curBuilding.addFloor("Ground", "Path-to-image");
-        }
+        db = new JsonDB(true);
+        
+        // Make Middlesex; add its floors
         curBuilding = new Building("Middlesex College", "MC");
-        curFloor = curBuilding.addFloor("Ground", "Path-to-image");
+        curBuilding.addFloor("Ground", "assets/MC-BF-1.png");
+        curBuilding.addFloor("First", "assets/MC-BF-2.png");
+        curBuilding.addFloor("Second", "assets/MC-BF-3.png");
+        curBuilding.addFloor("Third", "assets/MC-BF-4.png");
+        curBuilding.addFloor("Fourth", "assets/MC-BF-5.png");
+        floorList = curBuilding.getFloors();
+        // Set lowest floor as default landing floor
+        curFloor = floorList.get(0);
+        layerList = curFloor.getLayers();
+        roomList = curFloor.getRooms();
         
-        //building.getPOIs()
-        
-        
+        System.out.println("curFloor index: " + curBuilding.getFloors().indexOf(curFloor));
         //
-        
-        
-        
+
         initComponents();
+        myInitComponents(); // added
         initMainWindow();
         initSearchBox();
         initButtons();
         renderFrame();
         prepareIcon();
         renderRooms();
+    }
+
+    /**
+     * Creates new form MainWindow for a specified session
+     * @param session an int representing the current session
+     * @author Maxwell
+     */
+    public MainWindow(int session) {
+        this.session = session;
+        initComponents();
+        initMainWindow();
+        initSearchBox();
+        renderFrame();
+        prepareIcon();
     }
 
     /**
@@ -83,6 +108,8 @@ public class MainWindow extends javax.swing.JFrame {
         Frame = new javax.swing.JPanel();
         editButton = new javax.swing.JToggleButton();
         addRoomButton = new javax.swing.JToggleButton();
+        nextFloorButton = new javax.swing.JButton();
+        prevFloorButton = new javax.swing.JButton();
         searchPanel = new javax.swing.JPanel();
         searchBox = new javax.swing.JTextField();
         onSearch = new javax.swing.JButton();
@@ -123,21 +150,50 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
+        nextFloorButton.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        nextFloorButton.setText("↑");
+        nextFloorButton.setPreferredSize(new java.awt.Dimension(40, 40));
+        nextFloorButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nextFloorButtonActionPerformed(evt);
+            }
+        });
+
+        prevFloorButton.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        prevFloorButton.setText("↓");
+        prevFloorButton.setPreferredSize(new java.awt.Dimension(40, 40));
+        prevFloorButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                prevFloorButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout FrameLayout = new javax.swing.GroupLayout(Frame);
         Frame.setLayout(FrameLayout);
         FrameLayout.setHorizontalGroup(
             FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(FrameLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(editButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(addRoomButton)
+                .addGroup(FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(FrameLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(editButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(addRoomButton))
+                    .addGroup(FrameLayout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addGroup(FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(prevFloorButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nextFloorButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(1122, Short.MAX_VALUE))
         );
         FrameLayout.setVerticalGroup(
             FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FrameLayout.createSequentialGroup()
-                .addContainerGap(787, Short.MAX_VALUE)
+                .addContainerGap(656, Short.MAX_VALUE)
+                .addComponent(nextFloorButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(prevFloorButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45)
                 .addGroup(FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(addRoomButton)
                     .addComponent(editButton))
@@ -271,18 +327,49 @@ public class MainWindow extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Custom initComponents for button action commands
+     * @author Emma
+     */
+    public void myInitComponents() {
+        nextFloorButton.setActionCommand("up");
+        prevFloorButton.setActionCommand("down");
+        // Start at lowest floor by default: prev floor doesn't exist
+        prevFloorButton.setEnabled(false);
+    }
+    
+    /**
+     * 
+     * @param evt 
+     * @author
+     */
     private void searchBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_searchBoxActionPerformed
-
+    
+    /**
+     * 
+     * @param evt 
+     * @author
+     */
     private void onSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onSearchActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_onSearchActionPerformed
 
+    /**
+     * 
+     * @param evt 
+     * @author
+     */
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_editButtonActionPerformed
 
+    /**
+     * 
+     * @param evt 
+     * @author
+     */
     private void editButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editButtonMousePressed
         editMode = !editMode;
         if (editMode){
@@ -298,6 +385,11 @@ public class MainWindow extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_editButtonMousePressed
 
+    /**
+     * 
+     * @param evt 
+     * @author
+     */
     private void addRoomButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addRoomButtonMouseClicked
         if (editMode && !addingRoom) {
             
@@ -316,6 +408,69 @@ public class MainWindow extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_addRoomButtonMouseClicked
+
+    /**
+     * nextFloorButton actions when receiving an ActionEvent to switch floors
+     * @param evt ActionEvent "down" or "up" triggered by clicking nextFloor or prevFloor
+     * @author Emma
+     */
+    private void nextFloorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextFloorButtonActionPerformed
+        if ("up".equals(evt.getActionCommand())) {
+            System.out.println("Floor index: " + floorList.indexOf(curFloor));
+        
+            // Load in next floor obejct (next item in floorList)
+            curFloor = floorList.get(floorList.indexOf(curFloor) + 1);
+            layerList = curFloor.getLayers();
+            roomList = curFloor.getRooms();
+            
+            // Render next floor image
+            System.out.println("New floor path: " + curFloor.getFilePath());
+            ImageIcon pic = new ImageIcon(Objects.requireNonNull(getClass().getResource(curFloor.getFilePath())));
+            canvas.setImage(pic);
+            
+            // If at max floor, disable. Else, enable
+            if (floorList.indexOf(curFloor) == curBuilding.getFloorNum() - 1) {
+                nextFloorButton.setEnabled(false);
+                prevFloorButton.setEnabled(true);
+            } else {
+                nextFloorButton.setEnabled(true);
+                prevFloorButton.setEnabled(true);
+            }
+        }
+        System.out.println("New floor index: " + floorList.indexOf(curFloor));
+    }//GEN-LAST:event_nextFloorButtonActionPerformed
+    
+    /**
+     * prevFloorButton actions when receiving an ActionEvent to switch floors
+     * @param evt ActionEvent "down" or "up" triggered by clicking nextFloor or prevFloor
+     * @author Emma
+     */
+    private void prevFloorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prevFloorButtonActionPerformed
+        if ("down".equals(evt.getActionCommand())) {
+            System.out.println("Floor index: " + floorList.indexOf(curFloor));
+        
+            // Load in next floor obejct (prev item in floorList)
+            curFloor = floorList.get(floorList.indexOf(curFloor) - 1);
+            layerList = curFloor.getLayers();
+            roomList = curFloor.getRooms();
+            
+            // Render next floor image
+            System.out.println("New floor path: " + curFloor.getFilePath());
+            ImageIcon pic = new ImageIcon(Objects.requireNonNull(getClass().getResource(curFloor.getFilePath())));
+            canvas.setImage(pic);
+
+            // If at min floor, disable. Else, enable
+            if (floorList.indexOf(curFloor) == 0) {
+                nextFloorButton.setEnabled(true);
+                prevFloorButton.setEnabled(false);
+            } else {
+                nextFloorButton.setEnabled(true);
+                prevFloorButton.setEnabled(true);
+            }
+        }
+        System.out.println("New floor index: " + floorList.indexOf(curFloor));
+
+    }//GEN-LAST:event_prevFloorButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -347,7 +502,7 @@ public class MainWindow extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainWindow(true, null).setVisible(true);
+                new MainWindow().setVisible(true);
             }
         });
     }
@@ -357,6 +512,7 @@ public class MainWindow extends javax.swing.JFrame {
      * Relocate window to center of screen
      * Set window size
      * Set window background color
+     * @author Maxwell
      */
     private void initMainWindow() {
         Point center = GraphicsEnvironment.getLocalGraphicsEnvironment().getCenterPoint();
@@ -376,6 +532,7 @@ public class MainWindow extends javax.swing.JFrame {
      * Set search box to transparent
      * Set placeholder of search box
      * Create hover effect for search button
+     * @author Maxwell
      */
     private void initSearchBox() {
         int padding = 10;
@@ -451,6 +608,10 @@ public class MainWindow extends javax.swing.JFrame {
         onSearch.addActionListener(e -> handleSearch());
     }
 
+    /**
+     * Initialise edit and room buttons
+     * @author ?
+     */
     public void initButtons() {
         
         //initialize edit button
@@ -472,21 +633,15 @@ public class MainWindow extends javax.swing.JFrame {
     }
     
     /**
-     * Render frame
+     * Render frame to display CanvasGUI
+     * @author Maxwell
      */
     private void renderFrame() {
-        canvas = new Canvas("assets/MC-BF-1.png", this.getWidth(), this.getHeight());
+        canvas = new CanvasGUI(curFloor.getFilePath(), this.getWidth(), this.getHeight());
         Frame.add(canvas);
         Frame.setFocusable(true);
-        if(curUser != null)
-            System.out.println("User: " + curUser.getUsername() + " logged in");
-
-        //JsonDB db = new JsonDB("poi", "mc");
-//        db.getData().get("data").getAsJsonArray().get(0).getAsJsonObject().get("floor").getAsInt();
-        // get floor ^
-//        db.getData().get("data").getAsJsonArray().get(0).getAsJsonObject().get("layer").getAsJsonArray();
     }
-
+    
     /**
      * Prepare icon for onSearch button
      */
@@ -502,6 +657,10 @@ public class MainWindow extends javax.swing.JFrame {
         }
     }
     
+    /**
+     * Render selectable room boundaries
+     * @author Liam
+     */
     private void renderRooms() {
         
         //demo code
@@ -530,6 +689,11 @@ public class MainWindow extends javax.swing.JFrame {
              
     }
 
+    /**
+     * 
+     * @return 
+     * @author 
+     */
     private int handleSearch() {/*
         JsonDB db; // database instance
         String query = searchBox.getText(); // get query from searchBox
@@ -560,6 +724,11 @@ public class MainWindow extends javax.swing.JFrame {
         return 0;
     }
     
+    /**
+     * 
+     * @param room 
+     * @author 
+     */
     private void attachRoom(Room room)
     {
         
@@ -568,6 +737,11 @@ public class MainWindow extends javax.swing.JFrame {
         
     }
     
+    /**
+     * Method to add a component to a JLayeredPane
+     * @param comp component to be added
+     * @author 
+     */
     public void attachComponent(JComponent comp)
     {
         
@@ -575,6 +749,10 @@ public class MainWindow extends javax.swing.JFrame {
         
     }
     
+    /**
+     * 
+     * @author Maxwell
+     */
     class MouseHandler extends MouseAdapter {
         public void mousePressed(MouseEvent e) {
             initialX = e.getX();
@@ -608,24 +786,44 @@ public class MainWindow extends javax.swing.JFrame {
             
         }
         
+        /**
+         * 
+         * @param e mouse event
+         * @author Maxwell
+         */
         public void mouseEntered(MouseEvent e) {
             //e = new MouseEvent(e.getComponent(), e.getID(), e.getWhen(), e.getModifiersEx(), e.getX()-getX(), e.getY()-getY(), e.getClickCount(), e.isPopupTrigger());
             for (Room room:curFloor.getRooms()) room.mouseEntered(e);
             
         }
         
+        /**
+         * 
+         * @param e mouse event
+         * @author Maxwell
+         */
         public void mouseExited(MouseEvent e) {
             //e = new MouseEvent(e.getComponent(), e.getID(), e.getWhen(), e.getModifiersEx(), e.getX()-getX(), e.getY()-getY(), e.getClickCount(), e.isPopupTrigger());
             for (Room room:curFloor.getRooms()) room.mouseExited(e);
             
         }
         
+        /**
+         * 
+         * @param e mouse event
+         * @author Maxwell
+         * 
+         */
         public void mouseClicked(MouseEvent e) {
             for (Room room:curFloor.getRooms()) room.mouseClicked(e, layerPanel);
         }
         
     }
 
+    /**
+     * 
+     * @author Maxwell
+     */
     class MouseMotionHandler extends MouseMotionAdapter {
         public void mouseMoved(MouseEvent e) {
             
@@ -651,8 +849,7 @@ public class MainWindow extends javax.swing.JFrame {
             repaint();
         }
     }
-
-    private Canvas canvas;
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Frame;
     private javax.swing.JToggleButton addRoomButton;
@@ -665,7 +862,9 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JLayeredPane layerPanel;
+    private javax.swing.JButton nextFloorButton;
     private javax.swing.JButton onSearch;
+    private javax.swing.JButton prevFloorButton;
     private javax.swing.JPanel resultContainer;
     private javax.swing.JList<String> resultList;
     private javax.swing.JScrollPane resultPanel;
