@@ -56,9 +56,10 @@ public class MainWindow extends javax.swing.JFrame {
 //            curFloor = curBuilding.addFloor("Ground", "Path-to-image");
 //        }
         JsonDB db = new JsonDB();
-        curBuilding = new Building("Middlesex College", "MC");
-        curFloor = curBuilding.addFloor("Ground", "Path-to-image");
-        
+        //curBuilding = new Building("Middlesex College", "MC");
+        //curFloor = curBuilding.addFloor("Ground", "Path-to-image");
+        curBuilding = Map.getBuilding("Middlesex College");
+        curFloor = curBuilding.getFloor("Ground");
         //building.getPOIs()
         
         
@@ -95,10 +96,15 @@ public class MainWindow extends javax.swing.JFrame {
         filterPanel = new javax.swing.JPanel();
         filterIcon = new javax.swing.JLabel();
         filterText = new javax.swing.JLabel();
-        selectBox = new javax.swing.JComboBox<>();
+        filterBox = new javax.swing.JComboBox<>();
         resultContainer = new javax.swing.JPanel();
-        resultPanel = new javax.swing.JScrollPane();
-        resultList = new javax.swing.JList<>();
+        resultScroll = new javax.swing.JScrollPane();
+        resultPanel = new javax.swing.JPanel();
+        resultLabel = new javax.swing.JPanel();
+        bLabel = new javax.swing.JLabel();
+        fLabel = new javax.swing.JLabel();
+        rLabel = new javax.swing.JLabel();
+        sLabel = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -142,7 +148,7 @@ public class MainWindow extends javax.swing.JFrame {
         FrameLayout.setVerticalGroup(
             FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FrameLayout.createSequentialGroup()
-                .addContainerGap(787, Short.MAX_VALUE)
+                .addContainerGap(788, Short.MAX_VALUE)
                 .addGroup(FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(addRoomButton)
                     .addComponent(editButton))
@@ -179,29 +185,44 @@ public class MainWindow extends javax.swing.JFrame {
         filterText.setText("Filter by: ");
         filterPanel.add(filterText);
 
-        selectBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        selectBox.setAutoscrolls(true);
-        selectBox.setBorder(null);
-        selectBox.setMinimumSize(new java.awt.Dimension(80, 23));
-        selectBox.setPreferredSize(new java.awt.Dimension(180, 32));
-        filterPanel.add(selectBox);
+        filterBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        filterBox.setAutoscrolls(true);
+        filterBox.setBorder(null);
+        filterBox.setMinimumSize(new java.awt.Dimension(80, 23));
+        filterBox.setPreferredSize(new java.awt.Dimension(180, 32));
+        filterPanel.add(filterBox);
 
         resultContainer.setBackground(new java.awt.Color(245, 245, 247));
         resultContainer.setPreferredSize(new java.awt.Dimension(282, 154));
         resultContainer.setLayout(new javax.swing.BoxLayout(resultContainer, javax.swing.BoxLayout.LINE_AXIS));
 
-        resultPanel.setBorder(null);
-        resultPanel.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        resultScroll.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
-        resultList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        resultList.setPreferredSize(new java.awt.Dimension(280, 120));
-        resultPanel.setViewportView(resultList);
+        resultPanel.setBackground(new java.awt.Color(255, 255, 255));
+        resultPanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 0, 0));
 
-        resultContainer.add(resultPanel);
+//        resultLabel.setBackground(new java.awt.Color(234, 234, 234));
+//        resultLabel.setPreferredSize(new java.awt.Dimension(280, 32));
+//        resultLabel.setLayout(new java.awt.GridBagLayout());
+//
+//        bLabel.setText("Building");
+//        bLabel.setPreferredSize(new java.awt.Dimension(60, 17));
+//        resultLabel.add(bLabel, new java.awt.GridBagConstraints());
+//
+//        fLabel.setText("Floor");
+//        fLabel.setPreferredSize(new java.awt.Dimension(60, 17));
+//        resultLabel.add(fLabel, new java.awt.GridBagConstraints());
+//
+//        rLabel.setText("Room");
+//        rLabel.setPreferredSize(new java.awt.Dimension(120, 17));
+//        resultLabel.add(rLabel, new java.awt.GridBagConstraints());
+//
+//        sLabel.setPreferredSize(new java.awt.Dimension(32, 32));
+//        resultLabel.add(sLabel, new java.awt.GridBagConstraints());
+
+        resultScroll.setViewportView(resultPanel);
+
+        resultContainer.add(resultScroll);
 
         javax.swing.GroupLayout dropDownPanelLayout = new javax.swing.GroupLayout(dropDownPanel);
         dropDownPanel.setLayout(dropDownPanelLayout);
@@ -265,7 +286,7 @@ public class MainWindow extends javax.swing.JFrame {
                 .addGroup(layerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Frame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(searchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(77, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         getContentPane().add(layerPanel, java.awt.BorderLayout.CENTER);
@@ -402,9 +423,23 @@ public class MainWindow extends javax.swing.JFrame {
                         defaultBorder, BorderFactory.createEmptyBorder(0, padding, 0, padding)
                 )
         ); // set inset padding of searchBox
-        selectBox.setBackground(Color.decode("#ffffff")); // set background color of searchBox
-        selectBox.setForeground(Color.decode("#999999")); // set default color of searchBox
-
+        filterBox.setBackground(Color.decode("#ffffff")); // set background color of searchBox
+        filterBox.setForeground(Color.decode("#999999")); // set default color of searchBox
+        filterBox.setFocusable(false);
+        filterBox.setFocusTraversalKeysEnabled(false);
+        filterBox.setRenderer(new DefaultListCellRenderer() {
+            @Override
+            public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+                super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+                setFont(new Font("Inter", Font.PLAIN, 12));
+                if (isSelected) {
+                    setBackground(Color.decode("#eaeaea"));
+                }
+                return this;
+            }
+        });
+        filterBox.setModel(new DefaultComboBoxModel<>(s.getFilters()));
+        resultScroll.setBorder(null);
         searchBox.addKeyListener(new KeyAdapter() { // add key listener to searchBox
             @Override
             public void keyReleased(KeyEvent e) {
@@ -460,20 +495,11 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
         onSearch.addActionListener(e -> handleSearch());
-        selectBox.setFocusable(false);
-        selectBox.setFocusTraversalKeysEnabled(false);
-        selectBox.setRenderer(new DefaultListCellRenderer() {
-            @Override
-            public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
-                super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-                setFont(new Font("Inter", Font.PLAIN, 12));
-                if (isSelected) {
-                    setBackground(Color.decode("#eaeaea"));
-                }
-                return this;
-            }
-        });
-        selectBox.setModel(new DefaultComboBoxModel<>(s.getFilters()));
+
+
+        POI testPOI = curFloor.getRooms().get(0).getPOIs().get(0);
+        ResultLabel test = new ResultLabel(testPOI);
+        resultPanel.add(test);
     }
 
     public void initButtons() {
@@ -519,9 +545,11 @@ public class MainWindow extends javax.swing.JFrame {
         try {
             // Load icon from font library (currently using RemixIcon)
             FontIcon searchIcon = FontIcon.of(RemixiconMZ.SEARCH_LINE, 20, Color.decode("#828282")),
-                    filterIcon = FontIcon.of(RemixiconAL.FILTER_2_LINE, 20, Color.decode("#828282"));
+                    filterIcon = FontIcon.of(RemixiconAL.FILTER_2_LINE, 20, Color.decode("#828282")),
+                    favIcon = FontIcon.of(RemixiconMZ.STAR_LINE, 20, Color.decode("#828282"));
             onSearch.setIcon(searchIcon);
             this.filterIcon.setIcon(filterIcon);
+            this.sLabel.setIcon(favIcon);
         } catch (Exception e) {
             System.out.printf("Error: icons failed to load\n%s", e.getMessage());
         }
@@ -536,8 +564,8 @@ public class MainWindow extends javax.swing.JFrame {
         
         Polygon room1Shape = new Polygon(xpoints, ypoints, npoints);
         
-        Room room1 = new Room(curBuilding, curFloor, room1Shape);
-        room1.addPOI("test", "nothing", room1.getLocation());
+        //Room room1 = new Room(curBuilding, curFloor, room1Shape);
+        //room1.addPOI("test", "nothing", room1.getLocation());
         
         int[] xpoints2 = {100, 200, 300};
         int[] ypoints2 = {100, 200, 250};
@@ -545,8 +573,8 @@ public class MainWindow extends javax.swing.JFrame {
         
         Polygon room2Shape = new Polygon(xpoints2, ypoints2, npoints2);
         
-        Room room2 = new Room(curBuilding, curFloor, room2Shape);
-        room2.addPOI("test2", "", room2.getLocation());
+        //Room room2 = new Room(curBuilding, curFloor, room2Shape);
+        //room2.addPOI("test2", "", room2.getLocation());
         //
         
         for (Room room : curFloor.getRooms()) {
@@ -687,8 +715,11 @@ public class MainWindow extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Frame;
     private javax.swing.JToggleButton addRoomButton;
+    private javax.swing.JLabel bLabel;
     private javax.swing.JPanel dropDownPanel;
     private javax.swing.JToggleButton editButton;
+    private javax.swing.JLabel fLabel;
+    private javax.swing.JComboBox<String> filterBox;
     private javax.swing.JLabel filterIcon;
     private javax.swing.JPanel filterPanel;
     private javax.swing.JLabel filterText;
@@ -697,11 +728,13 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JLayeredPane layerPanel;
     private javax.swing.JButton onSearch;
+    private javax.swing.JLabel rLabel;
     private javax.swing.JPanel resultContainer;
-    private javax.swing.JList<String> resultList;
-    private javax.swing.JScrollPane resultPanel;
+    private javax.swing.JPanel resultLabel;
+    private javax.swing.JPanel resultPanel;
+    private javax.swing.JScrollPane resultScroll;
+    private javax.swing.JLabel sLabel;
     private javax.swing.JTextField searchBox;
     private javax.swing.JPanel searchPanel;
-    private javax.swing.JComboBox<String> selectBox;
     // End of variables declaration//GEN-END:variables
 }
