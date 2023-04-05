@@ -95,11 +95,6 @@ public class MainWindow extends javax.swing.JFrame {
         resultContainer = new javax.swing.JPanel();
         resultScroll = new javax.swing.JScrollPane();
         resultPanel = new javax.swing.JPanel();
-        resultLabel = new javax.swing.JPanel();
-        bLabel = new javax.swing.JLabel();
-        fLabel = new javax.swing.JLabel();
-        rLabel = new javax.swing.JLabel();
-        sLabel = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -161,18 +156,6 @@ public class MainWindow extends javax.swing.JFrame {
                 searchBoxActionPerformed(evt);
             }
         });
-        // listen on select all key press
-        searchBox.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_A && e.isControlDown()) {
-                    searchBox.selectAll();
-                } else if (e.getKeyCode() == KeyEvent.VK_A && e.isMetaDown()) {
-                    searchBox.selectAll();
-                }
-            }
-        });
-
 
         onSearch.setBorder(null);
         onSearch.addActionListener(new java.awt.event.ActionListener() {
@@ -207,26 +190,6 @@ public class MainWindow extends javax.swing.JFrame {
 
         resultPanel.setBackground(new java.awt.Color(255, 255, 255));
         resultPanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 0, 0));
-
-//        resultLabel.setBackground(new java.awt.Color(234, 234, 234));
-//        resultLabel.setPreferredSize(new java.awt.Dimension(280, 32));
-//        resultLabel.setLayout(new java.awt.GridBagLayout());
-//
-//        bLabel.setText("Building");
-//        bLabel.setPreferredSize(new java.awt.Dimension(60, 17));
-//        resultLabel.add(bLabel, new java.awt.GridBagConstraints());
-//
-//        fLabel.setText("Floor");
-//        fLabel.setPreferredSize(new java.awt.Dimension(60, 17));
-//        resultLabel.add(fLabel, new java.awt.GridBagConstraints());
-//
-//        rLabel.setText("Room");
-//        rLabel.setPreferredSize(new java.awt.Dimension(120, 17));
-//        resultLabel.add(rLabel, new java.awt.GridBagConstraints());
-//
-//        sLabel.setPreferredSize(new java.awt.Dimension(32, 32));
-//        resultLabel.add(sLabel, new java.awt.GridBagConstraints());
-
         resultScroll.setViewportView(resultPanel);
 
         resultContainer.add(resultScroll);
@@ -552,11 +515,11 @@ public class MainWindow extends javax.swing.JFrame {
         try {
             // Load icon from font library (currently using RemixIcon)
             FontIcon searchIcon = FontIcon.of(RemixiconMZ.SEARCH_LINE, 20, Color.decode("#828282")),
-                    filterIcon = FontIcon.of(RemixiconAL.FILTER_2_LINE, 20, Color.decode("#828282")),
-                    favIcon = FontIcon.of(RemixiconMZ.STAR_LINE, 20, Color.decode("#828282"));
+                    filterIcon = FontIcon.of(RemixiconAL.FILTER_2_LINE, 20, Color.decode("#828282"));
+//                    favIcon = FontIcon.of(RemixiconMZ.STAR_LINE, 20, Color.decode("#828282"));
             onSearch.setIcon(searchIcon);
             this.filterIcon.setIcon(filterIcon);
-            this.sLabel.setIcon(favIcon);
+//            this.sLabel.setIcon(favIcon);
         } catch (Exception e) {
             System.out.printf("Error: icons failed to load\n%s", e.getMessage());
         }
@@ -604,8 +567,11 @@ public class MainWindow extends javax.swing.JFrame {
             }
             b.forEach(building -> building.getPOIs().forEach(
                     poi -> {
-                        r.set(new ResultLabel(poi));
-                        resultPanel.add(r.get());
+                        System.out.println(poi.getName());
+//                        r.set(new ResultLabel(poi));
+//                        resultPanel.add(r.get());
+                        resultPanel.add(new ResultLabel(poi));
+//                        resultScroll.add(new ResultLabel(poi));
                     }
             ));
         }
@@ -738,10 +704,8 @@ public class MainWindow extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Frame;
     private javax.swing.JToggleButton addRoomButton;
-    private javax.swing.JLabel bLabel;
     private javax.swing.JPanel dropDownPanel;
     private javax.swing.JToggleButton editButton;
-    private javax.swing.JLabel fLabel;
     private javax.swing.JComboBox<String> filterBox;
     private javax.swing.JLabel filterIcon;
     private javax.swing.JPanel filterPanel;
@@ -751,12 +715,9 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JLayeredPane layerPanel;
     private javax.swing.JButton onSearch;
-    private javax.swing.JLabel rLabel;
     private javax.swing.JPanel resultContainer;
-    private javax.swing.JPanel resultLabel;
     private javax.swing.JPanel resultPanel;
     private javax.swing.JScrollPane resultScroll;
-    private javax.swing.JLabel sLabel;
     private javax.swing.JTextField searchBox;
     private javax.swing.JPanel searchPanel;
     // End of variables declaration//GEN-END:variables
