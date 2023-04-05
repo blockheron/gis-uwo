@@ -21,6 +21,7 @@ public class Search {
         sQ = new PriorityQueue<>();
         fList = new ArrayList<>();
         fS = new HashSet<>();
+        regex = new String[]{"(\\D*)(\\d+)", "(\\\\d+)", "([a-zA-Z]+)"};
         loadFilter();
     }
 
@@ -92,6 +93,14 @@ public class Search {
     public String[] getFilters() {
         fList.add(0, "All");
         return fList.toArray(new String[0]);
+    }
+
+    public List<POI> handleFilter(String filter) {
+        return null;
+    }
+
+    public String performRegex(String str, int i) {
+        return str.replaceAll(regex[0], "$i");
     }
 
     public static void main(String[] args) {
