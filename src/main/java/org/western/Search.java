@@ -104,6 +104,19 @@ public class Search {
         return Map.getBuilding(s);
     }
 
+    public POI searchPOI(POI p, String s, String l) {
+        // check if p is in the current layer
+        if(!l.equals("All")) {
+            if(!p.getLayer().getName().equals(l)) {
+                return null;
+            }
+        }
+        if(p.getName().toUpperCase().contains(s.toUpperCase()) || s.toUpperCase().contains(p.getName().toUpperCase())) {
+            return p;
+        }
+        return null;
+    }
+
     public String performRegex(String str, int i) {
         switch (i) {
             case 0:
