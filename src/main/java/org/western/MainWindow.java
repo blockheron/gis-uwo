@@ -12,10 +12,6 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.*;
-//import java.io.File;
-//import java.io.FileNotFoundException;
-
-//import java.util.Dictionary;
 import java.util.LinkedList;
 import java.util.Objects;
 
