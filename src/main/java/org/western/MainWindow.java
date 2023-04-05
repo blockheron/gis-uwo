@@ -189,7 +189,8 @@ public class MainWindow extends javax.swing.JFrame {
         resultScroll.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         resultPanel.setBackground(new java.awt.Color(255, 255, 255));
-        resultPanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 0, 0));
+        resultPanel.setPreferredSize(new java.awt.Dimension(280, 0));
+        resultPanel.setLayout(new java.awt.GridLayout(0, 1));
         resultScroll.setViewportView(resultPanel);
 
         resultContainer.add(resultScroll);
@@ -557,23 +558,23 @@ public class MainWindow extends javax.swing.JFrame {
         String q = searchBox.getText(); // get query from searchBox
         String f = filterBox.getSelectedItem().toString(); // get filter from filterBox
         LinkedList<Building> b = Map.getBuildings(); // get list of buildings
-        AtomicReference<ResultLabel> r = new AtomicReference<>(); // result label
+        Search s = new Search(); // search instance
         if(q.isEmpty() || q.equals("Search")) {
             resultPanel.removeAll();
+            resultPanel.setPreferredSize(new Dimension(resultPanel.getPreferredSize().width,0));
             if(b.size() == 0) {
-                r.set(new ResultLabel());
-                resultPanel.add(r.get());
+                resultPanel.add(new ResultLabel());
                 return 1;
             }
             b.forEach(building -> building.getPOIs().forEach(
                     poi -> {
-                        System.out.println(poi.getName());
-//                        r.set(new ResultLabel(poi));
-//                        resultPanel.add(r.get());
+                        resultPanel.setPreferredSize(new Dimension(resultPanel.getPreferredSize().width,resultPanel.getPreferredSize().height + 40));
                         resultPanel.add(new ResultLabel(poi));
-//                        resultScroll.add(new ResultLabel(poi));
                     }
             ));
+        } else {
+            String test = s.performRegex(q, 1);
+            System.out.println(test);
         }
 //        JsonDB db; // database instance
 //        String[] w; // array of words in query
