@@ -5,8 +5,6 @@ import org.w3c.dom.Node;
 import java.util.*;
 
 public class Search {
-    private JsonDB db;
-    private PriorityQueue<Node> sQ; // sQ is the search queue
     private ArrayList<String> fList; // fL is the filter list
     private Set<String> fS; // fS is the filter set
     private String[] regex; // regex is a regular expression table
@@ -17,8 +15,6 @@ public class Search {
 
     // Search() is the constructor for the Search class
     Search() {
-        db = new JsonDB();
-        sQ = new PriorityQueue<>();
         fList = new ArrayList<>();
         fS = new HashSet<>();
         regex = new String[]{"(\\D*)(\\d+)", "(\\\\d+)", "([a-zA-Z]+)"};
@@ -105,7 +101,9 @@ public class Search {
     }
 
     public POI searchPOI(POI p, String s, String l) {
-        // check if p is in the current layer
+        if(s.isEmpty() || s.equals("Search")) {
+            return p;
+        }
         if(!l.equals("All")) {
             if(!p.getLayer().getName().equals(l)) {
                 return null;
