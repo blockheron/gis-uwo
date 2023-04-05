@@ -662,25 +662,63 @@ public class MainWindow extends javax.swing.JFrame {
         room2.addPOI("test2", "", room2.getLocation());
         //
          
-        // Default POI(washroom)
+        // Default POI(Grad Club Servery)
         int[] xpoints3 = {460, 420, 510, 510};
         int[] ypoints3 = {330, 265, 245, 280};
         
         Polygon room3Shape = new Polygon(xpoints3, ypoints3, 4);
-        Layer mcWashLayer = new Layer("washroomLayer", new java.awt.Color(128,128,128,150));
+        Layer mcGradServLayer = new Layer("userPOILayer", new java.awt.Color(51,51,51,200));
      
-        Room mcRoom = new Room(curBuilding, curFloor, room3Shape, new Point(100,100), mcWashLayer);
-        mcRoom.addPOI("Universal Washroom", "Disability friendly washroom for all genders", mcRoom.getLocation());
+        Room mcRoom = new Room(curBuilding, curFloor, room3Shape, new Point(100,100), mcGradServLayer);
+        mcRoom.addPOI("Grad Club Servery", "Place to eat in Grad Club", mcRoom.getLocation());
         
-        // Default POI(female washroom)
-      //  int[] xpoints4 = {650, 530, 550};
-        //int[] ypoints4 = {250, 360, 350};
+        // Default POI(Male washroom)
+        int[] xpoints4 = {560, 520, 500, 540};
+        int[] ypoints4 = {410, 330, 360, 425};
+        
+        Polygon room4Shape = new Polygon(xpoints4, ypoints4, 4);
         
         //Polygon room4Shape = new Polygon(xpoints4, ypoints4, npoints2);
-       // Layer mcFemWashLayer = new Layer("washroomLayer", new java.awt.Color(128,128,128,150));
+        Layer mcMaleWashLayer = new Layer("washroomLayer", new java.awt.Color(51,51,51,200));
      
-        //Room mcFRoom = new Room(curBuilding, curFloor, room4Shape, new Point(100,100), mcFemWashLayer);
-        //mcFRoom.addPOI("Female Washroom", "Washroom for females", mcRoom.getLocation());
+        Room mcMRoom = new Room(curBuilding, curFloor, room4Shape, new Point(100,100), mcMaleWashLayer);
+        mcMRoom.addPOI("Male Washroom", "Washroom for males", mcMRoom.getLocation());
+        
+      // Default POI(Female washroom)
+        int[] xpoints5 = {600, 590, 540, 555};
+        int[] ypoints5 = {390, 355, 360, 395};
+        
+        Polygon room5Shape = new Polygon(xpoints5, ypoints5, 4);
+        
+        //Polygon room4Shape = new Polygon(xpoints4, ypoints4, npoints2);
+        Layer mcFemWashLayer = new Layer("washroomLayer", new java.awt.Color(51,51,51,200));
+     
+        Room mcFRoom = new Room(curBuilding, curFloor, room5Shape, new Point(100,100), mcFemWashLayer);
+        mcFRoom.addPOI("Female Washroom", "Washroom for females", mcFRoom.getLocation());  
+        
+        // Default POI(Classroom)
+        int[] xpoints6 = {400, 350, 300, 340};
+        int[] ypoints6 = {365, 325, 350, 395};
+        
+        Polygon room6Shape = new Polygon(xpoints6, ypoints6, 4);
+        
+        //Polygon room4Shape = new Polygon(xpoints4, ypoints4, npoints2);
+        Layer mcclass1Layer = new Layer("classroomLayer", new java.awt.Color(51,51,51,200));
+     
+        Room mcclass1Room = new Room(curBuilding, curFloor, room6Shape, new Point(100,100), mcclass1Layer);
+        mcclass1Room.addPOI("Classroom 17", "Classroom", mcclass1Room.getLocation());      
+        
+        // Default POI(Classroom 2)
+        int[] xpoints7 = {310, 280, 240, 290};
+        int[] ypoints7 = {385, 345, 370, 430};
+        
+        Polygon room7Shape = new Polygon(xpoints7, ypoints7, 4);
+        
+        //Polygon room4Shape = new Polygon(xpoints4, ypoints4, npoints2);
+        Layer mcclass2Layer = new Layer("classroomLayer", new java.awt.Color(51,51,51,200));
+     
+        Room mcclass2Room = new Room(curBuilding, curFloor, room7Shape, new Point(100,100), mcclass2Layer);
+        mcclass2Room.addPOI("Classroom 16B", "Classroom", mcclass2Room.getLocation());      
         
         for (Room room : curFloor.getRooms()) {             
             attachRoom(room);
