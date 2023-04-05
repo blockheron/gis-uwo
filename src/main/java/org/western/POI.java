@@ -131,6 +131,10 @@ public class POI {
         return user.isFavorite(this);
     }
     
+    public boolean isUser(User user) {
+        return user.getID() == getThis().get("user").getAsInt();
+    }
+    
     public void toggleFavourite(User user) {
         if (user == null) return;
         if (user.isFavorite(this))
