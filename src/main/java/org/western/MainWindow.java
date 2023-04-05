@@ -48,28 +48,27 @@ public class MainWindow extends javax.swing.JFrame {
      */
     public MainWindow(boolean debug, User user) {
         
-        JsonDB db;
-        
         // Print out user session
-        System.out.println("User: " + session + " logged in");
+        if (user != null) System.out.println("User: " + user.getUsername() + " logged in");
         
         //demo code
-        db = new JsonDB(true);
+        if (debug == true) {
         
-        // Make Middlesex; add its floors
-        curBuilding = new Building("Middlesex College", "MC");
-        curBuilding.addFloor("Ground", "assets/MC-BF-1.png");
-        curBuilding.addFloor("First", "assets/MC-BF-2.png");
-        curBuilding.addFloor("Second", "assets/MC-BF-3.png");
-        curBuilding.addFloor("Third", "assets/MC-BF-4.png");
-        curBuilding.addFloor("Fourth", "assets/MC-BF-5.png");
-        floorList = curBuilding.getFloors();
-        // Set lowest floor as default landing floor
-        curFloor = floorList.get(0);
-        layerList = Map.getLayers();
-        roomList = curFloor.getRooms();
-        
-        System.out.println("curFloor index: " + curBuilding.getFloors().indexOf(curFloor));
+            // Make Middlesex; add its floors
+            curBuilding = new Building("Middlesex College", "MC");
+            curBuilding.addFloor("Ground", "assets/MC-BF-1.png");
+            curBuilding.addFloor("First", "assets/MC-BF-2.png");
+            curBuilding.addFloor("Second", "assets/MC-BF-3.png");
+            curBuilding.addFloor("Third", "assets/MC-BF-4.png");
+            curBuilding.addFloor("Fourth", "assets/MC-BF-5.png");
+            floorList = curBuilding.getFloors();
+            // Set lowest floor as default landing floor
+            curFloor = floorList.get(0);
+            layerList = Map.getLayers();
+            roomList = curFloor.getRooms();
+
+            System.out.println("curFloor index: " + curBuilding.getFloors().indexOf(curFloor));
+        }
         //
 
         initComponents();
@@ -87,14 +86,14 @@ public class MainWindow extends javax.swing.JFrame {
      * @param session an int representing the current session
      * @author Maxwell
      */
-    public MainWindow(int session) {
+    /*public MainWindow(int session) {
         this.session = session;
         initComponents();
         initMainWindow();
         initSearchBox();
         renderFrame();
         prepareIcon();
-    }
+    }*/
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -604,6 +603,7 @@ public class MainWindow extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
+                new JsonDB(true);
                 new MainWindow(true, null).setVisible(true);
             }
         });

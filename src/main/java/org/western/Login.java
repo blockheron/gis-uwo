@@ -268,7 +268,7 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_honeyPotActionPerformed
 
     private void guestLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guestLoginMouseClicked
-        MainWindow mainWindow = new MainWindow(false, null);
+        MainWindow mainWindow = new MainWindow(true, null);
         mainWindow.setVisible(true);
         dispose();
     }//GEN-LAST:event_guestLoginMouseClicked
@@ -575,7 +575,7 @@ public class Login extends javax.swing.JFrame {
             MainWindow mainWindow = new MainWindow(user.get("id").getAsInt());
             mainWindow.setVisible(true);
             return 1;*/
-            MainWindow mainWindow = new MainWindow(false, user);
+            MainWindow mainWindow = new MainWindow(true, user);
             mainWindow.setVisible(true);
             return 0;
         } else {
