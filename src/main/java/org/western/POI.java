@@ -18,14 +18,36 @@ public class POI {
 
     private static HashMap<Integer, POI> loadedPOIs = new HashMap<Integer, POI>();
     
+    public POI(Building building, Floor floor, Layer layer, Room room, User user, String name, String description, Point location) {
+        this.building = building;
+        this.floor = floor;
+        this.layer = layer;
+        this.room = room;
+        this.id = JsonDB.addPOI(building, floor, layer, room, user, name, description, location).get("id").getAsInt();
+        loadedPOIs.put(id, this);
+        layer.addPOI(this);
+        user.addPOI(this);
+        
+    }
     public POI(Building building, Floor floor, Layer layer, Room room, String name, String description, Point location) {
         this.building = building;
         this.floor = floor;
         this.layer = layer;
         this.room = room;
-        this.id = JsonDB.addPOI(building, floor, layer, room, name, description, location).get("id").getAsInt();
+        this.id = JsonDB.addPOI(building, floor, layer, room, null, name, description, location).get("id").getAsInt();
         loadedPOIs.put(id, this);
         layer.addPOI(this);
+        
+    }
+    public POI(Building building, Floor floor, Room room, User user, String name, String description, Point location) {
+        this.building = building;
+        this.floor = floor;
+        this.layer = Map.getLayer("unassigned");
+        this.room = room;
+        this.id = JsonDB.addPOI(building, floor, this.layer, room, user, name, description, location).get("id").getAsInt();
+        loadedPOIs.put(id, this);
+        layer.addPOI(this);
+        user.addPOI(this);
         
     }
     public POI(Building building, Floor floor, Room room, String name, String description, Point location) {
@@ -33,7 +55,7 @@ public class POI {
         this.floor = floor;
         this.layer = Map.getLayer("unassigned");
         this.room = room;
-        this.id = JsonDB.addPOI(building, floor, this.layer, room, name, description, location).get("id").getAsInt();
+        this.id = JsonDB.addPOI(building, floor, this.layer, room, null, name, description, location).get("id").getAsInt();
         loadedPOIs.put(id, this);
         layer.addPOI(this);
         
@@ -102,6 +124,18 @@ public class POI {
     public void switchLayer(Layer layer) {
         this.layer.removePOI(this);
         layer.addPOI(this);
+    }
+    
+    public boolean isFavourite(User user) {
+        if (user == null) return false;
+        return user.isFavorite(this);
+    }
+    
+    public void toggleFavourite(User user) {
+        if (user == null) return;
+        if (user.isFavorite(this))
+            user.removeFavouritePOI(this);
+        else user.addFavouritePOI(this);
     }
 
     /*public float[][] getCoordinates() {

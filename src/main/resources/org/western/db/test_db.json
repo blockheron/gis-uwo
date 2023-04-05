@@ -12,7 +12,7 @@
       "id": 1,
       "name": "unassigned",
       "color": -65536,
-      "count": 4,
+      "count": 2,
       "POIs": [
         1,
         2
@@ -82,7 +82,8 @@
                   "description": "1st ground room",
                   "layerID": 1,
                   "x": 0.0,
-                  "y": 0.0
+                  "y": 0.0,
+                  "user": -1
                 },
                 {
                   "id": 2,
@@ -90,7 +91,8 @@
                   "description": "desc2",
                   "layerID": 1,
                   "x": 0.0,
-                  "y": 0.0
+                  "y": 0.0,
+                  "user": -1
                 },
                 {
                   "id": 3,
@@ -98,7 +100,8 @@
                   "description": "desc3",
                   "layerID": 1,
                   "x": 0.0,
-                  "y": 0.0
+                  "y": 0.0,
+                  "user": -1
                 }
               ]
             }
@@ -144,7 +147,8 @@
                   "description": "desc4",
                   "layerID": 1,
                   "x": 0.0,
-                  "y": 0.0
+                  "y": 0.0,
+                  "user": 1
                 }
               ]
             }
@@ -159,7 +163,12 @@
       "username": "testUser",
       "password": "81dc9bdb52d04dc20036dbd8313ed055",
       "admin": false,
-      "favouriteIDs": []
+      "favouriteCount": 0,
+      "favouriteIDs": [],
+      "userPOICount": 1,
+      "userPOIIDs": [
+        4
+      ]
     }
   ]
 }

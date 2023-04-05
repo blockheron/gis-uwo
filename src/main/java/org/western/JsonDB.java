@@ -45,7 +45,9 @@ public class JsonDB {
         gr.addPOI("gr2", "desc2", new Point(0,0));
         gr.addPOI("gr3", "desc3", new Point(0,0)).switchLayer(test);
         Room loungeRoom = lounge.addRoom(new Polygon(), new Point(0,0));
-        loungeRoom.addPOI("lng1", "desc4", new Point(0,0)).switchLayer(test);
+        POI loungePOI = loungeRoom.addPOI(sampleUser, "lng1", "desc4", new Point(0,0));
+        loungePOI.switchLayer(test);
+        
         
         //LinkedList<Floor> floors = mc.getFloors();
         for (Building building : Map.getBuildings()) {
@@ -66,6 +68,16 @@ public class JsonDB {
         for(POI poi : Map.getLayer("newLayer").getPOIs()) {
             System.out.println(poi.getName());
         }
+        
+        System.out.println(sampleUser.getPOIs());
+        System.out.println(sampleUser.getFavouritePOIs());
+        loungePOI.toggleFavourite(sampleUser);
+        System.out.println(sampleUser.getPOIs());
+        System.out.println(sampleUser.getFavouritePOIs());
+        loungePOI.toggleFavourite(sampleUser);
+        System.out.println(sampleUser.getPOIs());
+        System.out.println(sampleUser.getFavouritePOIs());
+        
         
         //mc.getFloor("ground").
         
@@ -302,7 +314,10 @@ public class JsonDB {
         user.addProperty("username", username);
         user.addProperty("password", hashedPassword);
         user.addProperty("admin", admin);
+        user.addProperty("favouriteCount", 0);
         user.add("favouriteIDs", new JsonArray());
+        user.addProperty("userPOICount", 0);
+        user.add("userPOIIDs", new JsonArray());
         
         //todo check if name/shortname is unique
         
@@ -690,12 +705,13 @@ public class JsonDB {
      * @param floor the floor the POI is on
      * @param layer the layer the POI is in
      * @param room the room the POI is in
+     * @param user the user the POI belongs to, null if none
      * @param name the name of the POI
      * @param description the description of the POI
      * @param position the position of the POI
      * @return the JsonObject representing the POI if it exists, otherwise null
      */
-    public static JsonObject addPOI(Building building, Floor floor, Layer layer, Room room, String name, String description, Point position) {
+    public static JsonObject addPOI(Building building, Floor floor, Layer layer, Room room, User user, String name, String description, Point position) {
         
         JsonObject jsonRoom = getRoom(building, floor, room.getID());
         
@@ -706,6 +722,10 @@ public class JsonDB {
         POI.addProperty("layerID", layer.getID());
         POI.addProperty("x", position.getX());
         POI.addProperty("y", position.getY());
+        if (user == null)
+            POI.addProperty("user", -1);
+        else
+            POI.addProperty("user", user.getID());
         
         jsonRoom.get("POIs").getAsJsonArray().add(POI);
         

@@ -135,13 +135,13 @@ public class Layer {
      * get all the rooms in the layer
      * @return a LinkedList of the rooms in the layer
      */
-    public LinkedList<Room> getRooms() {
+    /*public LinkedList<Room> getRooms() {
         
         LinkedList<Room> out = new LinkedList<Room>();
         
         //load the poi ids into a hashset for fast contains method
         HashSet<Integer> roomIDs = new HashSet<Integer>();
-        for(JsonElement i : getThis().get("rooms").getAsJsonArray()) {
+        for(JsonElement i : getThis().get("POIs").getAsJsonArray()) {
             roomIDs.add(i.getAsInt());
         }
         //
@@ -154,20 +154,20 @@ public class Layer {
         
         return out;
         
-    }
+    }*/
     
     /**
      * get all the rooms in the layer
      * @param building the building to search in
      * @return a LinkedList of the rooms in the layer
      */
-    public LinkedList<Room> getRooms(Building building) {
+    /*public LinkedList<Room> getRooms(Building building) {
         
         LinkedList<Room> out = new LinkedList<Room>();
         
         //load the poi ids into a hashset for fast contains method
         HashSet<Integer> roomIDs = new HashSet<Integer>();
-        for(JsonElement i : getThis().get("rooms").getAsJsonArray()) {
+        for(JsonElement i : getThis().get("POIs").getAsJsonArray()) {
             roomIDs.add(i.getAsInt());
         }
         //
@@ -180,13 +180,13 @@ public class Layer {
         
         return out;
         
-    }
+    }*/
     /**
      * get all the rooms in the layer
      * @param floor the floor to search in
      * @return a LinkedList of the rooms in the layer
      */
-    public LinkedList<Room> getRooms(Floor floor) {
+    /*public LinkedList<Room> getRooms(Floor floor) {
         
         LinkedList<Room> out = new LinkedList<Room>();
         
@@ -205,20 +205,20 @@ public class Layer {
         
         return out;
         
-    }
+    }*/
     
     /**
      * get room from id
      * @param id the id of the room
      * @return the room if it exists, otherwise null
      */
-    public Room getRoom(int id) {
+    /*public Room getRoom(int id) {
         
         for (Room room: getRooms()) {
             if (room.getID() == id) return room;
         }
         return null;
-    }
+    }*/
     
     /**
      * adds the given POI to the list of POIs in the layer
@@ -240,6 +240,7 @@ public class Layer {
         for (JsonElement poiID : POIList) {
             if (poiID.getAsInt() == poi.getID()) {
                 POIList.remove(poiID);
+                getThis().addProperty("count", getThis().get("count").getAsInt() - 1);
                 JsonDB.save();
                 break;
             }

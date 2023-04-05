@@ -193,7 +193,10 @@ public class Room extends JComponent
     }
     
     public POI addPOI(String name, String description, Point position) {
-        return new POI(building, floor, Map.getLayer("unassigned"), this , name, description, position);
+        return new POI(building, floor, Map.getLayer("unassigned"), this, name, description, position);
+    }
+    public POI addPOI(User user, String name, String description, Point position) {
+        return new POI(building, floor, Map.getLayer("unassigned"), this, user , name, description, position);
     }
     
     /*public Room(Polygon shape, Building building, Floor floor) 
