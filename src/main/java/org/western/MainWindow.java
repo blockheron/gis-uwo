@@ -347,7 +347,7 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_addRoomButtonMouseClicked
 
     private void helpButtonMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_helpButtonMouseMoved
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_helpButtonMouseMoved
 
     private void helpButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_helpButtonMouseClicked
