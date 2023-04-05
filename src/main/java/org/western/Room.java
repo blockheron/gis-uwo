@@ -85,8 +85,9 @@ public class Room extends JComponent
     private Room(JsonObject building, JsonObject floor, JsonObject room) {
         this.building = Building.getBuilding(building);
         this.floor = Floor.getFloor(building, floor);
-        //this.layer = Layer.getLayer(building, floor, layer);
         this.id = room.get("id").getAsInt();
+        curColor = DEFAULT_COLOR;
+        curActiveColor = DEFAULT_ACTIVE_COLOR;
         loadedRooms.put(id, this);
     }
     
@@ -238,11 +239,6 @@ public class Room extends JComponent
         else g2D.setColor(curActiveColor);
         g2D.fillPolygon(getShape());
         
-        //System.out.println(this.getX() + ", " + this.getY());
-        
-        //g2D.setColor(Color.BLACK);
-        //g2D.drawRect(bounds.x, bounds.y, bounds.width, bounds.height);
-        
     }
     
     public void mouseMoved(MouseEvent e) {
@@ -269,8 +265,6 @@ public class Room extends JComponent
             repaint();
         }
         //
-
-        //main.dispatchEvent(e);
 
     }
 
@@ -309,7 +303,6 @@ public class Room extends JComponent
         
     }*/
     
-    //reimplement when pois implemented
     public void mouseClicked(MouseEvent e, JLayeredPane layerPanel) {
 
         if (active && ListPopup == null) {

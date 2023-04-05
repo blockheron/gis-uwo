@@ -445,6 +445,8 @@ public class MainWindow extends javax.swing.JFrame {
             // Render campus map image
             ImageIcon pic = new ImageIcon(Objects.requireNonNull(getClass().getResource("assets/campus_map.png")));
             canvas.setImage(pic);
+            curBuilding = null;
+            curFloor = null;
 
             // Hide building floor map buttons
             smallMapBtn.setVisible(false);
@@ -496,6 +498,7 @@ public class MainWindow extends javax.swing.JFrame {
         if ("up".equals(evt.getActionCommand())) {
             //unrender rooms
             unrenderRooms();
+            //if(editMode) 
             
             // Load in next floor obejct (next item in floorList)
             curFloor = floorList.get(floorList.indexOf(curFloor) + 1);
@@ -526,6 +529,10 @@ public class MainWindow extends javax.swing.JFrame {
      * @author
      */
     private void addRoomButtonMouseClicked(java.awt.event.MouseEvent evt) {                                           
+        addRoomButtonMouseClicked();
+    } 
+    
+    private void addRoomButtonMouseClicked() {                                           
         if (editMode && !addingRoom) {
 
             addRoomButton.setIcon(addRoomButtonEnabled);
@@ -541,7 +548,7 @@ public class MainWindow extends javax.swing.JFrame {
             draftPoly = null;
             //
         }
-    }                                          
+    }
 
     /**
      * 
@@ -553,6 +560,10 @@ public class MainWindow extends javax.swing.JFrame {
     }
     
     private void editButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editButtonMousePressed
+        editButtonMousePressed();
+    }//GEN-LAST:event_editButtonMousePressed
+
+    private void editButtonMousePressed() {                                        
         editMode = !editMode;
         if (editMode){
             editButton.setIcon(editButtonEnabled);
@@ -561,13 +572,11 @@ public class MainWindow extends javax.swing.JFrame {
         }
         else {
             editButton.setIcon(editButtonDisabled);
-            addRoomButtonMouseClicked(evt);
+            addRoomButtonMouseClicked();
             addRoomButton.setEnabled(false);
             addRoomButton.setVisible(false);
         }
-    }//GEN-LAST:event_editButtonMousePressed
-
-                                        
+    }                                   
  
                                        
 
@@ -849,6 +858,8 @@ public class MainWindow extends javax.swing.JFrame {
         
         layerPanel.add(room, JLayeredPane.PALETTE_LAYER);
         room.setSize(layerPanel.getSize());
+        room.setLocation(canvas.x + room.getSavedLocation().x,
+                canvas.y + room.getSavedLocation().y);
         
     }
     
@@ -911,8 +922,11 @@ public class MainWindow extends javax.swing.JFrame {
          * @author Maxwell
          */
         public void mouseEntered(MouseEvent e) {
-            //e = new MouseEvent(e.getComponent(), e.getID(), e.getWhen(), e.getModifiersEx(), e.getX()-getX(), e.getY()-getY(), e.getClickCount(), e.isPopupTrigger());
-            for (Room room:curFloor.getRooms()) room.mouseEntered(e);
+            
+            if (curBuilding == null) 
+                for (Building building : Map.getBuildings()) building.translate(deltaX, deltaY);
+            else
+                for (Room room:curFloor.getRooms()) room.mouseEntered(e);
             
         }
         
@@ -922,8 +936,11 @@ public class MainWindow extends javax.swing.JFrame {
          * @author Maxwell
          */
         public void mouseExited(MouseEvent e) {
-            //e = new MouseEvent(e.getComponent(), e.getID(), e.getWhen(), e.getModifiersEx(), e.getX()-getX(), e.getY()-getY(), e.getClickCount(), e.isPopupTrigger());
-            for (Room room:curFloor.getRooms()) room.mouseExited(e);
+            
+            if (curBuilding == null) 
+                for (Building building : Map.getBuildings()) building.translate(deltaX, deltaY);
+            else
+                for (Room room:curFloor.getRooms()) room.mouseExited(e);
             
         }
         
@@ -934,7 +951,12 @@ public class MainWindow extends javax.swing.JFrame {
          * 
          */
         public void mouseClicked(MouseEvent e) {
-            for (Room room:curFloor.getRooms()) room.mouseClicked(e, layerPanel);
+            
+            if (curBuilding == null) 
+                for (Building building : Map.getBuildings()) building.translate(deltaX, deltaY);
+            else
+                for (Room room:curFloor.getRooms()) room.mouseClicked(e, layerPanel);
+            
         }
         
     }
@@ -946,7 +968,10 @@ public class MainWindow extends javax.swing.JFrame {
     class MouseMotionHandler extends MouseMotionAdapter {
         public void mouseMoved(MouseEvent e) {
             
-            for (Room room:curFloor.getRooms()) room.mouseMoved(e);
+            if (curBuilding == null) 
+                for (Building building : Map.getBuildings()) building.translate(deltaX, deltaY);
+            else
+                for (Room room:curFloor.getRooms()) room.mouseMoved(e);
             
         }
         
@@ -960,7 +985,10 @@ public class MainWindow extends javax.swing.JFrame {
             y += deltaY;
             
             canvas.translate(deltaX, deltaY);
-            for (Room room:curFloor.getRooms()) room.translate(deltaX, deltaY);           
+            if (curBuilding == null) 
+                for (Building building : Map.getBuildings()) building.translate(deltaX, deltaY);
+            else
+                for (Room room:curFloor.getRooms()) room.translate(deltaX, deltaY);           
 
             initialX = currentX;
             initialY = currentY;

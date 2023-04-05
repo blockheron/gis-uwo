@@ -237,7 +237,7 @@ public class JsonDB {
      * @param shortName the short name of the building
      * @return an editable JsonObject representing the building on success, null on failure
      */
-    public static JsonObject addBuilding(String name, String shortName) {
+    public static JsonObject addBuilding(String name, String shortName, Polygon shape, Point position) {
         
         JsonArray buildingArray = db.get("buildings").getAsJsonArray();
         JsonObject building = new JsonObject();
@@ -247,6 +247,17 @@ public class JsonDB {
         building.addProperty("shortName", shortName);
         building.addProperty("count", 0);
         building.add("floors", new JsonArray());
+        
+        building.addProperty("x", position.getX());
+        building.addProperty("y", position.getY());
+        
+        building.addProperty("npoints", shape.npoints);
+        JsonArray xpoints = new JsonArray(shape.npoints);
+        JsonArray ypoints = new JsonArray(shape.npoints);
+        for (int x : shape.xpoints) xpoints.add(x);
+        for (int y : shape.ypoints) ypoints.add(y);
+        building.add("xpoints", xpoints);
+        building.add("ypoints", ypoints);
         
         //todo check if name/shortname is unique
         

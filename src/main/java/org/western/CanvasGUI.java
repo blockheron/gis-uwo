@@ -10,7 +10,7 @@ import java.util.Objects;
  */
 
 class CanvasGUI extends JPanel {
-    int x, y;   // initialX, initialY from MainWindow
+    public int x, y;   // initialX, initialY from MainWindow
     int w, h;   // width and height from MainWindow
     ImageIcon imageIcon;
     Image image;
