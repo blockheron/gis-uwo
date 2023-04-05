@@ -156,6 +156,15 @@ public class MainWindow extends javax.swing.JFrame {
                 searchBoxActionPerformed(evt);
             }
         });
+        // add listener to ctrl + a key press
+        searchBox.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if ((e.getKeyCode() == KeyEvent.VK_A) && ((e.getModifiers() & KeyEvent.CTRL_MASK) != 0) || (e.getModifiers() & KeyEvent.META_MASK) != 0) {
+                    searchBox.selectAll();
+                }
+            }
+        });
 
         onSearch.setBorder(null);
         onSearch.addActionListener(new java.awt.event.ActionListener() {
@@ -573,7 +582,7 @@ public class MainWindow extends javax.swing.JFrame {
                     }
             ));
         } else {
-            String test = s.performRegex(q, 1);
+            String test = s.performRegex(q, 0);
             System.out.println(test);
         }
 //        JsonDB db; // database instance
