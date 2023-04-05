@@ -564,27 +564,29 @@ public class MainWindow extends javax.swing.JFrame {
     }
 
     private int handleSearch() {
-        String q = searchBox.getText(); // get query from searchBox
-        String f = filterBox.getSelectedItem().toString(); // get filter from filterBox
-        LinkedList<Building> b = Map.getBuildings(); // get list of buildings
+        String q = searchBox.getText(), // get query from searchBox
+        f = filterBox.getSelectedItem().toString(), // get filter from filterBox
+        bN; // building name
+        LinkedList<Building> bL = new LinkedList<>(); // get list of buildings
         Search s = new Search(); // search instance
+        resultPanel.removeAll();
+        resultPanel.setPreferredSize(new Dimension(resultPanel.getPreferredSize().width,0));
         if(q.isEmpty() || q.equals("Search")) {
-            resultPanel.removeAll();
-            resultPanel.setPreferredSize(new Dimension(resultPanel.getPreferredSize().width,0));
-            if(b.size() == 0) {
-                resultPanel.add(new ResultLabel());
-                return 1;
-            }
-            b.forEach(building -> building.getPOIs().forEach(
-                    poi -> {
-                        resultPanel.setPreferredSize(new Dimension(resultPanel.getPreferredSize().width,resultPanel.getPreferredSize().height + 40));
-                        resultPanel.add(new ResultLabel(poi));
-                    }
-            ));
+            bL = Map.getBuildings();
         } else {
-            String test = s.performRegex(q, 0);
-            System.out.println(test);
+            bN = s.performRegex(q, 0);
+            bL.add(Map.getBuilding(bN));
         }
+        if(bL.size() == 0) {
+            resultPanel.add(new ResultLabel());
+            return 1;
+        }
+        bL.forEach(building -> building.getPOIs().forEach(
+                poi -> {
+                    resultPanel.setPreferredSize(new Dimension(resultPanel.getPreferredSize().width,resultPanel.getPreferredSize().height + 40));
+                    resultPanel.add(new ResultLabel(poi));
+                }
+        ));
 //        JsonDB db; // database instance
 //        String[] w; // array of words in query
 //        StringBuilder sb = new StringBuilder(); // string builder for acronym
