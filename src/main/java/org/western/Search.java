@@ -99,14 +99,17 @@ public class Search {
         return null;
     }
 
+    public Building searchBuilding(String s) {
+        s = performRegex(s, 0).toUpperCase();
+        return Map.getBuilding(s);
+    }
+
     public String performRegex(String str, int i) {
         switch (i) {
             case 0:
                 return str.replaceAll(regex[0], "$1");
             case 1:
-                return str.replaceAll(regex[1], "$2");
-            case 2:
-                return str.replaceAll(regex[2], "$3");
+                return str.replaceAll(regex[1], "");
             default:
                 return str;
         }
