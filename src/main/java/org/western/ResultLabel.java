@@ -25,6 +25,37 @@ public class ResultLabel extends JPanel {
         pField.setText("No Results found.");
         this.add(pField);
     }
+    ResultLabel(Building building) {
+        super();
+        this.setPreferredSize(new java.awt.Dimension(280, 40));
+        this.setBackground(new java.awt.Color(234, 234, 234));
+        this.setPreferredSize(new java.awt.Dimension(280, 40));
+        this.setLayout(new java.awt.GridBagLayout());
+        pField.setPreferredSize(new java.awt.Dimension(240, 40));
+        pField.setFont(new java.awt.Font("Inter", 0, 14));
+        pField.setEditable(false);
+        pField.setBorder(null);
+        pField.setBackground(new java.awt.Color(234, 234, 234));
+        pField.setText(String.format("Building %s", building.getName()));
+        this.add(pField);
+        sLabel.setPreferredSize(new java.awt.Dimension(40, 40));
+        sLabel.setIcon(unfavIcon);
+        sLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                if(sLabel.getIcon() == favIcon)
+                {
+                    sLabel.setIcon(unfavIcon);
+                    // remove from favorites
+                }
+                else
+                {
+                    sLabel.setIcon(favIcon);
+                    // add to favorites
+                }
+            }
+        });
+        this.add(sLabel);
+    }
     ResultLabel(POI poi) {
         super();
         StringBuilder sB = new StringBuilder(); // string builder for poi string
