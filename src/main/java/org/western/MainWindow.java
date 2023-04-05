@@ -419,18 +419,9 @@ public class MainWindow extends javax.swing.JFrame {
      * @author Valentina
      */
     private void helpButtonActionPerformed(java.awt.event.ActionEvent evt) {                                           
-        //CustomTip p = new CustomTip(); //temporarily removed until customTip is merged
-        //p.run();
-    }                                          
-
-    /**
-     * 
-     * @param evt
-     * @author Valentina
-     */
-    private void helpButtonMouseMoved(java.awt.event.MouseEvent evt) {                                      
-
-    }                                     
+        CustomTip p = new CustomTip(); 
+        p.run();
+    }                                                                             
 
     /**
      * smallMapBtn when receiving an ActionEvent to switch from building to map
@@ -522,15 +513,6 @@ public class MainWindow extends javax.swing.JFrame {
             }
         }
     }                                            
-
-    /**
-     * 
-     * @param evt 
-     * @author
-     */
-    private void addRoomButtonMouseClicked(java.awt.event.MouseEvent evt) {                                           
-        addRoomButtonMouseClicked();
-    } 
     
     private void addRoomButtonMouseClicked() {                                           
         if (editMode && !addingRoom) {
@@ -580,7 +562,20 @@ public class MainWindow extends javax.swing.JFrame {
  
                                        
 
-  
+    private void addRoomButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addRoomButtonMouseClicked
+        addRoomButtonMouseClicked();
+        
+    }//GEN-LAST:event_addRoomButtonMouseClicked
+
+    private void helpButtonMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_helpButtonMouseMoved
+        
+    }//GEN-LAST:event_helpButtonMouseMoved
+
+    private void helpButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_helpButtonMouseClicked
+        CustomTip p = new CustomTip();
+        p.run();
+    }//GEN-LAST:event_helpButtonMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -757,7 +752,13 @@ public class MainWindow extends javax.swing.JFrame {
         Frame.add(smallMapPic);
         Frame.setFocusable(true);
         smallMapBtn.add(smallMapPic);
-        smallMapBtn.setFocusable(false);
+        smallMapBtn.setFocusable(true);
+        System.out.println("User: " + session + " logged in");
+
+        //JsonDB db = new JsonDB("poi", "mc");
+//        db.getData().get("data").getAsJsonArray().get(0).getAsJsonObject().get("floor").getAsInt();
+        // get floor ^
+//        db.getData().get("data").getAsJsonArray().get(0).getAsJsonObject().get("layer").getAsJsonArray();
     }
     
     /**
