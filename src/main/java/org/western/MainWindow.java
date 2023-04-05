@@ -13,6 +13,7 @@ import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.LinkedList;
+import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * @author m
@@ -566,37 +567,60 @@ public class MainWindow extends javax.swing.JFrame {
 
     private int handleSearch() {
         String q = searchBox.getText(), // get query from searchBox
-                f = filterBox.getSelectedItem().toString(), // get filter from filterBox
-                bN; // building name
+        f = filterBox.getSelectedItem().toString(), // get filter from filterBox
+        bN = ""; // building name
+        AtomicReference<String> pN;
+        Boolean iB; // whether query is a building name
         LinkedList<Building> bL = new LinkedList<>(); // get list of buildings
-        Building b; // building instance
+        Building b = null; // building instance
         Search s = new Search(); // search instance
         resultPanel.removeAll();
         resultPanel.setPreferredSize(new Dimension(resultPanel.getPreferredSize().width, 0));
         if (q.isEmpty() || q.equals("Search")) {
+            iB = false;
             bL = Map.getBuildings();
         } else {
-            if (s.searchBuilding(q) != null) {
-                bL.add(s.searchBuilding(q));
+            b = s.searchBuilding(q);
+            if (b != null) {
+                if(q.toUpperCase().equals(b.getShortName()))
+                {
+                    iB = true;
+                    bN = b.getShortName();
+                } else {
+                    iB = false;
+                }
+                bL.add(b);
+            } else {
+                iB = false;
+                bL = Map.getBuildings();
             }
         }
         if (bL.size() == 0) {
             resultPanel.add(new ResultLabel());
             return 1;
         }
-        bL.forEach(building -> {
-            if (q.equals(s.performRegex(q))) {
-                resultPanel.setPreferredSize(new Dimension(resultPanel.getPreferredSize().width, resultPanel.getPreferredSize().height + 40));
-                resultPanel.add(new ResultLabel(building));
-            }
-            building.getPOIs().forEach(
+
+        if (iB) {
+            resultPanel.setPreferredSize(new Dimension(resultPanel.getPreferredSize().width, resultPanel.getPreferredSize().height + 40));
+            resultPanel.add(new ResultLabel(b));
+            b.getPOIs().forEach(
                     poi -> {
-                        if (s.searchPOI(poi, q, f) != null) {
-                            resultPanel.setPreferredSize(new Dimension(resultPanel.getPreferredSize().width, resultPanel.getPreferredSize().height + 40));
-                            resultPanel.add(new ResultLabel(poi));
-                        }
+                        resultPanel.setPreferredSize(new Dimension(resultPanel.getPreferredSize().width, resultPanel.getPreferredSize().height + 40));
+                        resultPanel.add(new ResultLabel(poi));
                     });
-        });
+        } else {
+            // remove building name at the beginning of query
+            q.replaceFirst(bN, "");
+        bL.forEach(building -> {
+                building.getPOIs().forEach(
+                        poi -> {
+                            if (s.searchPOI(poi, q, f) != null) {
+                                resultPanel.setPreferredSize(new Dimension(resultPanel.getPreferredSize().width, resultPanel.getPreferredSize().height + 40));
+                                resultPanel.add(new ResultLabel(poi));
+                            }
+                        });
+            });
+        }
 //        JsonDB db; // database instance
 //        String[] w; // array of words in query
 //        StringBuilder sb = new StringBuilder(); // string builder for acronym
