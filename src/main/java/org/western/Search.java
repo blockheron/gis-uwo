@@ -96,7 +96,7 @@ public class Search {
     }
 
     public Building searchBuilding(String s) {
-        s = performRegex(s, 0).toUpperCase();
+        s = performRegex(s).toUpperCase();
         return Map.getBuilding(s);
     }
 
@@ -109,21 +109,15 @@ public class Search {
                 return null;
             }
         }
+        s = s.replaceAll(regex[0], "");
         if(p.getName().toUpperCase().contains(s.toUpperCase()) || s.toUpperCase().contains(p.getName().toUpperCase())) {
             return p;
         }
         return null;
     }
 
-    public String performRegex(String str, int i) {
-        switch (i) {
-            case 0:
-                return str.replaceAll(regex[0], "$1");
-            case 1:
-                return str.replaceAll(regex[1], "");
-            default:
-                return str;
-        }
+    public String performRegex(String str) {
+        return str.replaceAll(regex[0], "$1");
     }
 
     public static void main(String[] args) {
