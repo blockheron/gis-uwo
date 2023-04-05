@@ -91,10 +91,6 @@ public class Search {
         return fList.toArray(new String[0]);
     }
 
-    public List<POI> handleFilter(String filter) {
-        return null;
-    }
-
     public Building searchBuilding(String s) {
         s = performRegex(s).toUpperCase();
         return Map.getBuilding(s);
@@ -109,7 +105,6 @@ public class Search {
                 return null;
             }
         }
-        s = s.replaceAll(regex[0], "");
         if(p.getName().toUpperCase().contains(s.toUpperCase()) || s.toUpperCase().contains(p.getName().toUpperCase())) {
             return p;
         }
