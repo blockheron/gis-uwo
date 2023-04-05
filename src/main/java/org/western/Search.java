@@ -100,7 +100,16 @@ public class Search {
     }
 
     public String performRegex(String str, int i) {
-        return str.replaceAll(regex[0], "$i");
+        switch (i) {
+            case 0:
+                return str.replaceAll(regex[0], "$1");
+            case 1:
+                return str.replaceAll(regex[1], "$2");
+            case 2:
+                return str.replaceAll(regex[2], "$3");
+            default:
+                return str;
+        }
     }
 
     public static void main(String[] args) {
