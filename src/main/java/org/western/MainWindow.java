@@ -585,8 +585,11 @@ public class MainWindow extends javax.swing.JFrame {
         }
         bL.forEach(building -> building.getPOIs().forEach(
                 poi -> {
-                    resultPanel.setPreferredSize(new Dimension(resultPanel.getPreferredSize().width,resultPanel.getPreferredSize().height + 40));
-                    resultPanel.add(new ResultLabel(poi));
+                    if(s.searchPOI(poi, q, f) != null)
+                    {
+                        resultPanel.setPreferredSize(new Dimension(resultPanel.getPreferredSize().width,resultPanel.getPreferredSize().height + 40));
+                        resultPanel.add(new ResultLabel(poi));
+                    }
                 }
         ));
 //        JsonDB db; // database instance
