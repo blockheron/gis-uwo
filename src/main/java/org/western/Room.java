@@ -25,6 +25,8 @@ public class Room extends JComponent
     private static Color DEFAULT_COLOR = new Color(200,200,200,50); //transparent grey
     private static Color DEFAULT_ACTIVE_COLOR = new Color(102, 178, 255, 50);//light blue with transparency
     
+    private LinkedList<Color> highlightLayers = new LinkedList<Color>();
+    
     private int id;
     private Building building;
     private Floor floor;
@@ -121,6 +123,33 @@ public class Room extends JComponent
     /*public Point getStartingLocation() {
         return new Point(getThis().get("x").getAsInt(), getThis().get("y").getAsInt());
     }*/
+    
+    public void hightlight(Color color) {
+        this.highlightLayers.add(color);
+        Color cur = new Color(0,0,0,50); 
+        for(Color c : highlightLayers) {
+            cur = new Color(cur.getRed() + c.getRed(),
+                cur.getBlue() + c.getBlue(),
+                cur.getGreen() + c.getGreen(), 50);
+        }
+        curColor = cur;
+        repaint();
+    }
+    
+    public void dehightlight(Color color) {
+        this.highlightLayers.remove(color);
+        if (highlightLayers.isEmpty()) {
+            Color cur = new Color(0,0,0,50); 
+            for(Color c : highlightLayers) {
+                cur = new Color(cur.getRed() + c.getRed(),
+                    cur.getBlue() + c.getBlue(),
+                    cur.getGreen() + c.getGreen(), 50);
+            }
+            curColor = cur;
+        }
+        else curColor = DEFAULT_COLOR;
+        repaint();
+    }
     
     public Polygon getShape() {
         

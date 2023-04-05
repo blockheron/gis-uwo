@@ -26,8 +26,8 @@ import java.util.Objects;
 public class MainWindow extends javax.swing.JFrame {
     private int session = -1; // -1 for guest, 0 for admin, 1 for user
     
-    private Building curBuilding;
-    private Floor curFloor;
+    public static Building curBuilding;
+    public static Floor curFloor;
     private LinkedList<Floor> floorList;
     private LinkedList<Layer> layerList;
     private LinkedList<Room> roomList;
@@ -393,6 +393,12 @@ public class MainWindow extends javax.swing.JFrame {
         
         // Action command for smallMapBtn
         smallMapBtn.setActionCommand("mapToBuild");
+        LayerSelectPanel selectPanel = new LayerSelectPanel();
+        layerPanel.add(selectPanel, JLayeredPane.PALETTE_LAYER);
+        selectPanel.setVisible(true);
+        selectPanel.setSize(selectPanel.getPreferredSize());
+        selectPanel.setLocation(this.getSize().width - (int)selectPanel.getPreferredSize().getWidth(),
+                this.getSize().height - (int)selectPanel.getPreferredSize().getHeight());
     }
     
     /**
