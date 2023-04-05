@@ -119,10 +119,4 @@ public class Search {
     public String performRegex(String str) {
         return str.replaceAll(regex[0], "$1");
     }
-
-    public static void main(String[] args) {
-        Search s = new Search();
-        for (String str : s.getFilters())
-            System.out.println(str);
-    }
 }
