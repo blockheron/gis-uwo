@@ -890,7 +890,7 @@ public class MainWindow extends javax.swing.JFrame {
                 
                 if(draftRoom == null) {
                     draftPoly = new Polygon();
-                    draftPoly.addPoint(e.getX(), e.getY());
+                    draftPoly.addPoint(e.getX()-canvas.x, e.getY()-canvas.y);
                     draftRoom = new Room(curBuilding, curFloor, draftPoly);
                     attachRoom(draftRoom);
                 }
@@ -966,7 +966,7 @@ public class MainWindow extends javax.swing.JFrame {
         public void mouseMoved(MouseEvent e) {
             
             if (curBuilding == null) 
-                for (Building building : Map.getBuildings()) building.translate(deltaX, deltaY);
+                for (Building building : Map.getBuildings()) building.mouseMoved(e);
             else
                 for (Room room:curFloor.getRooms()) room.mouseMoved(e);
             
