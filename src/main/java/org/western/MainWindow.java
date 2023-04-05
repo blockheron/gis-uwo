@@ -575,7 +575,9 @@ public class MainWindow extends javax.swing.JFrame {
         if(q.isEmpty() || q.equals("Search")) {
             bL = Map.getBuildings();
         } else {
-            bL.add(s.searchBuilding(q));
+            if(s.searchBuilding(q) != null) {
+                bL.add(s.searchBuilding(q));
+            }
         }
         if(bL.size() == 0) {
             resultPanel.add(new ResultLabel());
