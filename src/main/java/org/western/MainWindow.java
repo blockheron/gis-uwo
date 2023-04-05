@@ -568,14 +568,14 @@ public class MainWindow extends javax.swing.JFrame {
         f = filterBox.getSelectedItem().toString(), // get filter from filterBox
         bN; // building name
         LinkedList<Building> bL = new LinkedList<>(); // get list of buildings
+        Building b; // building instance
         Search s = new Search(); // search instance
         resultPanel.removeAll();
         resultPanel.setPreferredSize(new Dimension(resultPanel.getPreferredSize().width,0));
         if(q.isEmpty() || q.equals("Search")) {
             bL = Map.getBuildings();
         } else {
-            bN = s.performRegex(q, 0);
-            bL.add(Map.getBuilding(bN));
+            bL.add(s.searchBuilding(q));
         }
         if(bL.size() == 0) {
             resultPanel.add(new ResultLabel());
