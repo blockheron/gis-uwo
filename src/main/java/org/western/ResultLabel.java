@@ -14,6 +14,14 @@ public class ResultLabel extends JPanel {
     ResultLabel() {
         super();
         this.setPreferredSize(new java.awt.Dimension(280, 40));
+        this.setBackground(new java.awt.Color(234, 234, 234));
+        this.setPreferredSize(new java.awt.Dimension(280, 40));
+        this.setLayout(new java.awt.GridBagLayout());
+        pField.setPreferredSize(new java.awt.Dimension(240, 40));
+        pField.setFont(new java.awt.Font("Inter", 0, 14));
+        pField.setEditable(false);
+        pField.setBorder(null);
+        pField.setBackground(new java.awt.Color(234, 234, 234));
         pField.setText("No Results found.");
         this.add(pField);
     }
