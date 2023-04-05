@@ -134,6 +134,65 @@ public class User {
     }
     
     /**
+     * get all the rooms the user has POIs in
+     * @return a LinkedList of the rooms
+     */
+    public LinkedList<Room> getRooms() {
+        
+        LinkedList<Room> out = new LinkedList<Room>();
+        
+        LinkedList<POI> pois = getPOIs();
+        
+        for (POI poi : pois) {
+            if (!out.contains(poi.getRoom()))
+                out.add(poi.getRoom());
+        }
+        
+        return out;
+        
+    }
+    
+    /**
+     * get all the rooms storing a user POI in a building
+     * @param building the building to search in
+     * @return a LinkedList of the rooms
+     */
+    public LinkedList<Room> getRooms(Building building) {
+        
+        LinkedList<Room> out = new LinkedList<Room>();
+        
+        LinkedList<POI> pois = getPOIs(building);
+        
+        for (POI poi : pois) {
+            if (!out.contains(poi.getRoom()))
+                out.add(poi.getRoom());
+        }
+        
+        return out;
+        
+    }
+    
+    /**
+     * get all the rooms storing a user POI in a floor
+     * @param floor the floor to search in
+     * @return a LinkedList of the rooms
+     */
+    public LinkedList<Room> getRooms(Floor floor) {
+        
+        LinkedList<Room> out = new LinkedList<Room>();
+        
+        LinkedList<POI> pois = getPOIs(floor);
+        
+        for (POI poi : pois) {
+            if (!out.contains(poi.getRoom()))
+                out.add(poi.getRoom());
+        }
+        
+        return out;
+        
+    }
+    
+    /**
      * get user room from id
      * @param id the id of the room
      * @return the room if it exists, otherwise null
@@ -256,6 +315,65 @@ public class User {
             if (POIIDs.contains(poi.getID())) out.add(poi);
         }
         //
+        
+        return out;
+        
+    }
+    
+    /**
+     * get all the rooms the user has POIs in
+     * @return a LinkedList of the rooms
+     */
+    public LinkedList<Room> getFavoriteRooms() {
+        
+        LinkedList<Room> out = new LinkedList<Room>();
+        
+        LinkedList<POI> pois = getFavouritePOIs();
+        
+        for (POI poi : pois) {
+            if (!out.contains(poi.getRoom()))
+                out.add(poi.getRoom());
+        }
+        
+        return out;
+        
+    }
+    
+    /**
+     * get all the rooms storing a user POI in a building
+     * @param building the building to search in
+     * @return a LinkedList of the rooms
+     */
+    public LinkedList<Room> getFavouriteRooms(Building building) {
+        
+        LinkedList<Room> out = new LinkedList<Room>();
+        
+        LinkedList<POI> pois = getFavouritePOIs(building);
+        
+        for (POI poi : pois) {
+            if (!out.contains(poi.getRoom()))
+                out.add(poi.getRoom());
+        }
+        
+        return out;
+        
+    }
+    
+    /**
+     * get all the rooms storing a user POI in a floor
+     * @param floor the floor to search in
+     * @return a LinkedList of the rooms
+     */
+    public LinkedList<Room> getFavouriteRooms(Floor floor) {
+        
+        LinkedList<Room> out = new LinkedList<Room>();
+        
+        LinkedList<POI> pois = getFavouritePOIs(floor);
+        
+        for (POI poi : pois) {
+            if (!out.contains(poi.getRoom()))
+                out.add(poi.getRoom());
+        }
         
         return out;
         

@@ -135,77 +135,59 @@ public class Layer {
      * get all the rooms in the layer
      * @return a LinkedList of the rooms in the layer
      */
-    /*public LinkedList<Room> getRooms() {
+    public LinkedList<Room> getRooms() {
         
         LinkedList<Room> out = new LinkedList<Room>();
         
-        //load the poi ids into a hashset for fast contains method
-        HashSet<Integer> roomIDs = new HashSet<Integer>();
-        for(JsonElement i : getThis().get("POIs").getAsJsonArray()) {
-            roomIDs.add(i.getAsInt());
-        }
-        //
+        LinkedList<POI> pois = getPOIs();
         
-        //checks if the room id is in the roomID array
-        for (Room room : Map.getRooms()) 
-            
-            if (roomIDs.contains(room.getID()))
-                out.add(room);
+        for (POI poi : pois) {
+            if (!out.contains(poi.getRoom()))
+                out.add(poi.getRoom());
+        }
         
         return out;
         
-    }*/
+    }
     
     /**
      * get all the rooms in the layer
      * @param building the building to search in
      * @return a LinkedList of the rooms in the layer
      */
-    /*public LinkedList<Room> getRooms(Building building) {
+    public LinkedList<Room> getRooms(Building building) {
         
         LinkedList<Room> out = new LinkedList<Room>();
         
-        //load the poi ids into a hashset for fast contains method
-        HashSet<Integer> roomIDs = new HashSet<Integer>();
-        for(JsonElement i : getThis().get("POIs").getAsJsonArray()) {
-            roomIDs.add(i.getAsInt());
-        }
-        //
+        LinkedList<POI> pois = getPOIs(building);
         
-        //checks if the room id is in the roomID array
-        for (Room room : building.getRooms()) 
-            
-            if (roomIDs.contains(room.getID()))
-                out.add(room);
+        for (POI poi : pois) {
+            if (!out.contains(poi.getRoom()))
+                out.add(poi.getRoom());
+        }
         
         return out;
         
-    }*/
+    }
     /**
      * get all the rooms in the layer
      * @param floor the floor to search in
      * @return a LinkedList of the rooms in the layer
      */
-    /*public LinkedList<Room> getRooms(Floor floor) {
+    public LinkedList<Room> getRooms(Floor floor) {
         
         LinkedList<Room> out = new LinkedList<Room>();
         
-        //load the poi ids into a hashset for fast contains method
-        HashSet<Integer> roomIDs = new HashSet<Integer>();
-        for(JsonElement i : getThis().get("rooms").getAsJsonArray()) {
-            roomIDs.add(i.getAsInt());
-        }
-        //
+        LinkedList<POI> pois = getPOIs(floor);
         
-        //checks if the room id is in the roomID array
-        for (Room room : floor.getRooms()) 
-            
-            if (roomIDs.contains(room.getID()))
-                out.add(room);
+        for (POI poi : pois) {
+            if (!out.contains(poi.getRoom()))
+                out.add(poi.getRoom());
+        }
         
         return out;
         
-    }*/
+    }
     
     /**
      * get room from id
