@@ -12,16 +12,14 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.*;
-
 import java.util.LinkedList;
-import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * @author m
  */
 public class MainWindow extends javax.swing.JFrame {
     //private int session = -1; // -1 for guest, 0 for admin, 1 for user
-    
+
     private Building curBuilding;
     private Floor curFloor;
     private User curUser;
@@ -33,14 +31,14 @@ public class MainWindow extends javax.swing.JFrame {
     private Icon addRoomButtonEnabled, addRoomButtonDisabled;
     private Room draftRoom;
     private Polygon draftPoly;
-    
+
     /**
      * Creates new form MainWindow
      */
     public MainWindow(boolean debug, User user) {
-        
+
         curUser = user;
-        
+
         //demo code
 //        if (debug)
 //        {
@@ -56,12 +54,11 @@ public class MainWindow extends javax.swing.JFrame {
         curBuilding = Map.getBuilding("Middlesex College");
         curFloor = curBuilding.getFloor("Ground");
         //building.getPOIs()
-        
-        
+
+
         //
-        
-        
-        
+
+
         initComponents();
         initMainWindow();
         initSearch();
@@ -127,22 +124,22 @@ public class MainWindow extends javax.swing.JFrame {
         javax.swing.GroupLayout FrameLayout = new javax.swing.GroupLayout(Frame);
         Frame.setLayout(FrameLayout);
         FrameLayout.setHorizontalGroup(
-            FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(FrameLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(editButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(addRoomButton)
-                .addContainerGap(1122, Short.MAX_VALUE))
+                FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(FrameLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(editButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(addRoomButton)
+                                .addContainerGap(1122, Short.MAX_VALUE))
         );
         FrameLayout.setVerticalGroup(
-            FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FrameLayout.createSequentialGroup()
-                .addContainerGap(788, Short.MAX_VALUE)
-                .addGroup(FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(addRoomButton)
-                    .addComponent(editButton))
-                .addContainerGap())
+                FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FrameLayout.createSequentialGroup()
+                                .addContainerGap(788, Short.MAX_VALUE)
+                                .addGroup(FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(addRoomButton)
+                                        .addComponent(editButton))
+                                .addContainerGap())
         );
 
         searchPanel.setForeground(new java.awt.Color(13, 17, 23));
@@ -184,7 +181,7 @@ public class MainWindow extends javax.swing.JFrame {
         filterText.setText("Filter by: ");
         filterPanel.add(filterText);
 
-        filterBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        filterBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Item 1", "Item 2", "Item 3", "Item 4"}));
         filterBox.setAutoscrolls(true);
         filterBox.setBorder(null);
         filterBox.setMinimumSize(new java.awt.Dimension(80, 23));
@@ -207,16 +204,16 @@ public class MainWindow extends javax.swing.JFrame {
         javax.swing.GroupLayout dropDownPanelLayout = new javax.swing.GroupLayout(dropDownPanel);
         dropDownPanel.setLayout(dropDownPanelLayout);
         dropDownPanelLayout.setHorizontalGroup(
-            dropDownPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(filterPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(resultContainer, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
+                dropDownPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(filterPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(resultContainer, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         dropDownPanelLayout.setVerticalGroup(
-            dropDownPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(dropDownPanelLayout.createSequentialGroup()
-                .addComponent(filterPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(2, 2, 2)
-                .addComponent(resultContainer, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                dropDownPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(dropDownPanelLayout.createSequentialGroup()
+                                .addComponent(filterPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(2, 2, 2)
+                                .addComponent(resultContainer, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         filterPanel.getAccessibleContext().setAccessibleName("");
@@ -224,25 +221,25 @@ public class MainWindow extends javax.swing.JFrame {
         javax.swing.GroupLayout searchPanelLayout = new javax.swing.GroupLayout(searchPanel);
         searchPanel.setLayout(searchPanelLayout);
         searchPanelLayout.setHorizontalGroup(
-            searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(searchPanelLayout.createSequentialGroup()
-                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(searchPanelLayout.createSequentialGroup()
-                        .addComponent(searchBox, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(onSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(dropDownPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(searchPanelLayout.createSequentialGroup()
+                                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(searchPanelLayout.createSequentialGroup()
+                                                .addComponent(searchBox, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(onSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(dropDownPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         searchPanelLayout.setVerticalGroup(
-            searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(searchPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(onSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(searchBox, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(dropDownPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE))
+                searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(searchPanelLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(onSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(searchBox, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(dropDownPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE))
         );
 
         layerPanel.setLayer(Frame, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -251,22 +248,22 @@ public class MainWindow extends javax.swing.JFrame {
         javax.swing.GroupLayout layerPanelLayout = new javax.swing.GroupLayout(layerPanel);
         layerPanel.setLayout(layerPanelLayout);
         layerPanelLayout.setHorizontalGroup(
-            layerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layerPanelLayout.createSequentialGroup()
-                .addGroup(layerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Frame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layerPanelLayout.createSequentialGroup()
-                        .addGap(915, 915, 915)
-                        .addComponent(searchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(6, 6, 6))
+                layerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layerPanelLayout.createSequentialGroup()
+                                .addGroup(layerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(Frame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(layerPanelLayout.createSequentialGroup()
+                                                .addGap(915, 915, 915)
+                                                .addComponent(searchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(6, 6, 6))
         );
         layerPanelLayout.setVerticalGroup(
-            layerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layerPanelLayout.createSequentialGroup()
-                .addGroup(layerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Frame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(searchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                layerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layerPanelLayout.createSequentialGroup()
+                                .addGroup(layerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(Frame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(searchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         getContentPane().add(layerPanel, java.awt.BorderLayout.CENTER);
@@ -296,12 +293,11 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void editButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editButtonMousePressed
         editMode = !editMode;
-        if (editMode){
+        if (editMode) {
             editButton.setIcon(editButtonEnabled);
             addRoomButton.setEnabled(true);
             addRoomButton.setVisible(true);
-        }
-        else {
+        } else {
             editButton.setIcon(editButtonDisabled);
             addRoomButtonMouseClicked(evt);
             addRoomButton.setEnabled(false);
@@ -311,13 +307,12 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void addRoomButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addRoomButtonMouseClicked
         if (editMode && !addingRoom) {
-            
+
             addRoomButton.setIcon(addRoomButtonEnabled);
             addingRoom = true;
-            
-        }
-        else {
-            
+
+        } else {
+
             addRoomButton.setIcon(addRoomButtonDisabled);
             addingRoom = false;
             //save new room
@@ -325,7 +320,7 @@ public class MainWindow extends javax.swing.JFrame {
             draftPoly = null;
             //
         }
-        
+
     }//GEN-LAST:event_addRoomButtonMouseClicked
 
     /**
@@ -374,10 +369,10 @@ public class MainWindow extends javax.swing.JFrame {
         this.setLocation(center.x - this.getWidth() / 2, center.y - this.getHeight() / 2);
         this.setResizable(false);
         this.setBackground(Color.WHITE);
-        
+
         layerPanel.addMouseListener(new MouseHandler());
         layerPanel.addMouseMotionListener(new MouseMotionHandler());
-        
+
         layerPanel.setSize(this.getSize());
         //layerPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 500));
     }
@@ -416,6 +411,12 @@ public class MainWindow extends javax.swing.JFrame {
                     setBackground(Color.decode("#eaeaea"));
                 }
                 return this;
+            }
+        });
+        filterBox.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                handleSearch();
             }
         });
         filterBox.setModel(new DefaultComboBoxModel<>(s.getFilters()));
@@ -483,25 +484,25 @@ public class MainWindow extends javax.swing.JFrame {
     }
 
     public void initButtons() {
-        
+
         //initialize edit button
         editButtonDisabled = FontIcon.of(RemixiconAL.EDIT_LINE, 24);
         editButtonEnabled = FontIcon.of(RemixiconAL.EDIT_FILL, 24);
-        
+
         editButton.setIcon(editButtonDisabled);
         //
-        
+
         //initialize add room button
         addRoomButtonDisabled = FontIcon.of(RemixiconAL.ADD_BOX_LINE, 24);
         addRoomButtonEnabled = FontIcon.of(RemixiconAL.ADD_BOX_FILL, 24);
-        
+
         addRoomButton.setIcon(addRoomButtonDisabled);
         addRoomButton.setVisible(false);
         addRoomButton.setEnabled(false);
         //
-        
+
     }
-    
+
     /**
      * Render frame
      */
@@ -509,7 +510,7 @@ public class MainWindow extends javax.swing.JFrame {
         canvas = new Canvas("assets/MC-BF-1.png", this.getWidth(), this.getHeight());
         Frame.add(canvas);
         Frame.setFocusable(true);
-        if(curUser != null)
+        if (curUser != null)
             System.out.println("User: " + curUser.getUsername() + " logged in");
 
         //JsonDB db = new JsonDB("poi", "mc");
@@ -534,64 +535,68 @@ public class MainWindow extends javax.swing.JFrame {
             System.out.printf("Error: icons failed to load\n%s", e.getMessage());
         }
     }
-    
+
     private void renderRooms() {
-        
+
         //demo code
         int[] xpoints = {300, 500, 500};
         int[] ypoints = {50, 100, 200};
         int npoints = 3;
-        
+
         Polygon room1Shape = new Polygon(xpoints, ypoints, npoints);
-        
+
         //Room room1 = new Room(curBuilding, curFloor, room1Shape);
         //room1.addPOI("test", "nothing", room1.getLocation());
-        
+
         int[] xpoints2 = {100, 200, 300};
         int[] ypoints2 = {100, 200, 250};
         int npoints2 = 3;
-        
+
         Polygon room2Shape = new Polygon(xpoints2, ypoints2, npoints2);
-        
+
         //Room room2 = new Room(curBuilding, curFloor, room2Shape);
         //room2.addPOI("test2", "", room2.getLocation());
         //
-        
+
         for (Room room : curFloor.getRooms()) {
             attachRoom(room);
         }
-             
+
     }
 
     private int handleSearch() {
         String q = searchBox.getText(), // get query from searchBox
-        f = filterBox.getSelectedItem().toString(), // get filter from filterBox
-        bN; // building name
+                f = filterBox.getSelectedItem().toString(), // get filter from filterBox
+                bN; // building name
         LinkedList<Building> bL = new LinkedList<>(); // get list of buildings
         Building b; // building instance
         Search s = new Search(); // search instance
         resultPanel.removeAll();
-        resultPanel.setPreferredSize(new Dimension(resultPanel.getPreferredSize().width,0));
-        if(q.isEmpty() || q.equals("Search")) {
+        resultPanel.setPreferredSize(new Dimension(resultPanel.getPreferredSize().width, 0));
+        if (q.isEmpty() || q.equals("Search")) {
             bL = Map.getBuildings();
         } else {
-            if(s.searchBuilding(q) != null) {
+            if (s.searchBuilding(q) != null) {
                 bL.add(s.searchBuilding(q));
             }
         }
-        if(bL.size() == 0) {
+        if (bL.size() == 0) {
             resultPanel.add(new ResultLabel());
             return 1;
         }
-        bL.forEach(building -> building.getPOIs().forEach(
-                poi -> {
-                    if(s.searchPOI(poi, q, f) != null)
-                    {
-                        resultPanel.setPreferredSize(new Dimension(resultPanel.getPreferredSize().width,resultPanel.getPreferredSize().height + 40));
-                        resultPanel.add(new ResultLabel(poi));
-                    }
-                }
-        ));
+        bL.forEach(building -> {
+            if (q.equals(s.performRegex(q))) {
+                resultPanel.setPreferredSize(new Dimension(resultPanel.getPreferredSize().width, resultPanel.getPreferredSize().height + 40));
+                resultPanel.add(new ResultLabel(building));
+            }
+            building.getPOIs().forEach(
+                    poi -> {
+                        if (s.searchPOI(poi, q, f) != null) {
+                            resultPanel.setPreferredSize(new Dimension(resultPanel.getPreferredSize().width, resultPanel.getPreferredSize().height + 40));
+                            resultPanel.add(new ResultLabel(poi));
+                        }
+                    });
+        });
 //        JsonDB db; // database instance
 //        String[] w; // array of words in query
 //        StringBuilder sb = new StringBuilder(); // string builder for acronym
@@ -618,72 +623,69 @@ public class MainWindow extends javax.swing.JFrame {
 //        }
         return 0;
     }
-    
-    private void attachRoom(Room room)
-    {
-        
+
+    private void attachRoom(Room room) {
+
         layerPanel.add(room, JLayeredPane.PALETTE_LAYER);
         room.setSize(layerPanel.getSize());
-        
+
     }
-    
-    public void attachComponent(JComponent comp)
-    {
-        
+
+    public void attachComponent(JComponent comp) {
+
         layerPanel.add(comp, JLayeredPane.POPUP_LAYER);
-        
+
     }
-    
+
     class MouseHandler extends MouseAdapter {
         public void mousePressed(MouseEvent e) {
             initialX = e.getX();
             initialY = e.getY();
-            
+
             if (addingRoom) {
-                
-                
-                if(draftRoom == null) {
+
+
+                if (draftRoom == null) {
                     draftPoly = new Polygon();
                     draftPoly.addPoint(e.getX(), e.getY());
                     draftRoom = new Room(curBuilding, curFloor, draftPoly);
                     attachRoom(draftRoom);
-                }
-                else {
-                    
+                } else {
+
                     //remove previous iteration of the draft
                     layerPanel.remove(draftRoom);
                     //curFloor.removeRoom(draftRoom);
                     //
-                    
+
                     //add new draft of room
-                    draftRoom.addPoint(e.getX()-draftRoom.getX(), e.getY()-draftRoom.getY());                
+                    draftRoom.addPoint(e.getX() - draftRoom.getX(), e.getY() - draftRoom.getY());
                     //draftRoom = new Room(draftPoly, draftRoom.getLocation()); //fix coordinates off  
                     attachRoom(draftRoom);
                     //
-                    
+
                 }
-                
+
             }
-            
+
         }
-        
+
         public void mouseEntered(MouseEvent e) {
             //e = new MouseEvent(e.getComponent(), e.getID(), e.getWhen(), e.getModifiersEx(), e.getX()-getX(), e.getY()-getY(), e.getClickCount(), e.isPopupTrigger());
-            for (Room room:curFloor.getRooms()) room.mouseEntered(e);
-            
+            for (Room room : curFloor.getRooms()) room.mouseEntered(e);
+
         }
-        
+
         public void mouseExited(MouseEvent e) {
             //e = new MouseEvent(e.getComponent(), e.getID(), e.getWhen(), e.getModifiersEx(), e.getX()-getX(), e.getY()-getY(), e.getClickCount(), e.isPopupTrigger());
-            for (Room room:curFloor.getRooms()) room.mouseExited(e);
-            
+            for (Room room : curFloor.getRooms()) room.mouseExited(e);
+
         }
-        
+
         public void mouseClicked(MouseEvent e) {
-            for (Room room:curFloor.getRooms()) room.mouseClicked(e, layerPanel);
+            for (Room room : curFloor.getRooms()) room.mouseClicked(e, layerPanel);
             dropDownPanel.setVisible(false);
         }
-        
+
     }
 
     private void searchBoxOnClick(java.awt.event.MouseEvent evt) {
@@ -693,11 +695,11 @@ public class MainWindow extends javax.swing.JFrame {
 
     class MouseMotionHandler extends MouseMotionAdapter {
         public void mouseMoved(MouseEvent e) {
-            
-            for (Room room:curFloor.getRooms()) room.mouseMoved(e);
-            
+
+            for (Room room : curFloor.getRooms()) room.mouseMoved(e);
+
         }
-        
+
         public void mouseDragged(MouseEvent e) {
             int currentX = e.getX();
             int currentY = e.getY();
@@ -706,9 +708,9 @@ public class MainWindow extends javax.swing.JFrame {
 
             x += deltaX;
             y += deltaY;
-            
+
             canvas.translate(deltaX, deltaY);
-            for (Room room:curFloor.getRooms()) room.translate(deltaX, deltaY);           
+            for (Room room : curFloor.getRooms()) room.translate(deltaX, deltaY);
 
             initialX = currentX;
             initialY = currentY;
