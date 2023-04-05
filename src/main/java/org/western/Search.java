@@ -92,8 +92,23 @@ public class Search {
     }
 
     public Building searchBuilding(String s) {
+        Building b;
+        StringBuilder sb = new StringBuilder();
         s = performRegex(s).toUpperCase();
-        return Map.getBuilding(s);
+        b = Map.getBuilding(s);
+        if(b != null) {
+            return b;
+        }
+        if(s.length() > 0)
+        {
+            String[] words = s.split(" ");
+            sb = new StringBuilder();
+            for(String word : words) {
+                sb.append(word.charAt(0));
+            }
+        }
+        b = Map.getBuilding(sb.toString());
+        return b;
     }
 
     public POI searchPOI(POI p, String s, String l) {

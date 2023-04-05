@@ -570,7 +570,9 @@ public class MainWindow extends javax.swing.JFrame {
         f = filterBox.getSelectedItem().toString(), // get filter from filterBox
         bN = ""; // building name
         AtomicReference<String> pN;
-        Boolean iB; // whether query is a building name
+        Boolean iB;// whether query is a building name
+                // whether there is any result
+        AtomicReference<Boolean> hasResult = new AtomicReference<>(false);
         LinkedList<Building> bL = new LinkedList<>(); // get list of buildings
         Building b = null; // building instance
         Search s = new Search(); // search instance
@@ -607,19 +609,25 @@ public class MainWindow extends javax.swing.JFrame {
                     poi -> {
                         resultPanel.setPreferredSize(new Dimension(resultPanel.getPreferredSize().width, resultPanel.getPreferredSize().height + 40));
                         resultPanel.add(new ResultLabel(poi));
+                        hasResult.set(true);
                     });
         } else {
             // remove building name at the beginning of query
-            q.replaceFirst(bN, "");
-        bL.forEach(building -> {
+            String finalQ = q.replaceFirst(bN, "");
+            bL.forEach(building -> {
                 building.getPOIs().forEach(
                         poi -> {
-                            if (s.searchPOI(poi, q, f) != null) {
+                            if (s.searchPOI(poi, finalQ, f) != null) {
                                 resultPanel.setPreferredSize(new Dimension(resultPanel.getPreferredSize().width, resultPanel.getPreferredSize().height + 40));
                                 resultPanel.add(new ResultLabel(poi));
+                                hasResult.set(true);
                             }
                         });
             });
+        }
+        // check if there is any result
+        if (!hasResult.get()) {
+            resultPanel.add(new ResultLabel());
         }
 //        JsonDB db; // database instance
 //        String[] w; // array of words in query
