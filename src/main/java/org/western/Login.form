@@ -422,7 +422,7 @@
                         </Component>
                         <Component class="javax.swing.JLabel" name="dText">
                           <Properties>
-                            <Property name="text" type="java.lang.String" value="jLabel4"/>
+                            <Property name="text" type="java.lang.String" value="Loading weather data"/>
                             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                               <Dimension value="[180, 20]"/>
                             </Property>

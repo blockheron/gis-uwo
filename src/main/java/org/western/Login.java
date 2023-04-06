@@ -5,8 +5,8 @@
 package org.western;
 
 import com.google.common.io.BaseEncoding;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import org.kordamp.ikonli.remixicon.RemixiconAL;
 import org.kordamp.ikonli.remixicon.RemixiconMZ;
 import org.kordamp.ikonli.swing.FontIcon;
@@ -21,9 +21,10 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.security.NoSuchAlgorithmException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Objects;
-import com.google.gson.*;
 
 import static java.security.MessageDigest.getInstance;
 
@@ -280,7 +281,7 @@ public class Login extends javax.swing.JFrame {
         tempDown.setPreferredSize(new java.awt.Dimension(80, 32));
         weatherInfo.add(tempDown);
 
-        dText.setText("jLabel4");
+        dText.setText("Loading weather data");
         dText.setPreferredSize(new java.awt.Dimension(180, 20));
         weatherInfo.add(dText);
 
@@ -580,7 +581,9 @@ public class Login extends javax.swing.JFrame {
     }
 
     private void loadWeather() {
-        int weatherCode;
+        int weatherCode; // weather code
+        String weatherDesc; // weather description
+        StringBuilder upTemp = new StringBuilder(), downTemp = new StringBuilder(); // temperature
         JsonObject data;
         HashMap<Integer, String> wmoWeatherCodes = new HashMap<>() {
             {
@@ -618,6 +621,8 @@ public class Login extends javax.swing.JFrame {
             }
         };
         wText.setForeground(Color.decode("#8e8e93"));
+        tempUp.setFont(new Font("Inter", 0, 14));
+        tempDown.setFont(new Font("Inter", 0, 14));
         // get weather data from API
         try {
             String url = "https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&daily=weathercode,temperature_2m_max,temperature_2m_min&forecast_days=1&timezone=America%2FNew_York";
@@ -626,6 +631,7 @@ public class Login extends javax.swing.JFrame {
             con.setRequestMethod("GET");
             con.setRequestProperty("User-Agent", "Mozilla/5.0");
             int responseCode = con.getResponseCode();
+            Date date = new Date();
             System.out.println("GET Response Code :: " + responseCode);
             if (responseCode == HttpURLConnection.HTTP_OK) { // success
                 BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
@@ -641,9 +647,42 @@ public class Login extends javax.swing.JFrame {
                 // get weather data
                 weatherCode = data.get("daily").getAsJsonObject().get("weathercode").getAsJsonArray().get(0).getAsInt();
                 // convert wmo code to weather description
-                wText.setText(wmoWeatherCodes.get(weatherCode));
-
+                weatherDesc = wmoWeatherCodes.get(weatherCode);
+                wText.setText(weatherDesc);
+                if (weatherDesc.toUpperCase().contains("RAIN") || weatherDesc.toUpperCase().contains("SNOW") || weatherDesc.toUpperCase().contains("STORM")) {
+                    wText.setForeground(Color.decode("#32ade6"));
+                    if (weatherDesc.toUpperCase().contains("RAIN")) {
+                        wIcon.setIcon(FontIcon.of(RemixiconMZ.RAINY_FILL, 40, Color.decode("#32ade6")));
+                    } else if (weatherDesc.toUpperCase().contains("SNOW")) {
+                        wIcon.setIcon(FontIcon.of(RemixiconMZ.SNOWY_FILL, 40, Color.decode("#32ade6")));
+                    } else if (weatherDesc.toUpperCase().contains("STORM")) {
+                        wIcon.setIcon(FontIcon.of(RemixiconMZ.THUNDERSTORMS_FILL, 40, Color.decode("#32ade6")));
+                    }
+                } else if(weatherDesc.toUpperCase().contains("FOG") || weatherDesc.toUpperCase().contains("HAZE") || weatherDesc.toUpperCase().contains("SMOKE") || weatherDesc.toUpperCase().contains("DUST")) {
+                    wText.setForeground(Color.decode("#5856d6"));
+                    wIcon.setIcon(FontIcon.of(RemixiconAL.FOGGY_FILL, 40, Color.decode("#8e8e93")));
+                } else if (weatherDesc.toUpperCase().contains("CLOUDY") || weatherDesc.toUpperCase().contains("OVERCAST")) {
+                    wText.setForeground(Color.decode("#40c8e0"));
+                    wIcon.setIcon(FontIcon.of(RemixiconAL.CLOUDY_FILL, 40, Color.decode("#40c8e0")));
+                } else if (weatherDesc.toUpperCase().contains("CLEAR")) {
+                    wText.setForeground(Color.decode("#ff9500"));
+                    wIcon.setIcon(FontIcon.of(RemixiconMZ.SUN_FILL, 40, Color.decode("#ff9500")));
+                } else {
+                    wText.setForeground(Color.decode("#63e6e2"));
+                    wIcon.setIcon(FontIcon.of(RemixiconMZ.SUN_CLOUDY_FILL, 40, Color.decode("#63e6e2")));
+                }
+                upTemp.append(data.get("daily").getAsJsonObject().get("temperature_2m_max").getAsJsonArray().get(0).getAsInt());
+                downTemp.append(data.get("daily").getAsJsonObject().get("temperature_2m_min").getAsJsonArray().get(0).getAsInt());
+                upTemp.append("°C");
+                downTemp.append("°C");
+                tempUp.setText(upTemp.toString());
+                tempDown.setText(downTemp.toString());
+                // format date
+                SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy, HH:mm");
+                String strDate = formatter.format(date);
+                dText.setText("Updated: " + strDate);
             } else {
+                dText.setText("Weather data unavailable");
                 System.out.println("GET request not worked");
             }
         } catch (Exception e) {
