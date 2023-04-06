@@ -1,104 +1,257 @@
 {
-  "userCount": 1,
-  "POICount": 3,
-  "roomCount": 2,
-  "layerCount": 1,
-  "floorCount": 1,
-  "count": 1,
+  "userCount": 6,
+  "POICount": 0,
+  "roomCount": 0,
+  "layerCount": 3,
+  "curLayerCount": 3,
+  "floorCount": 13,
+  "buildingCount": 3,
+  "curBuildingCount": 3,
+  "layers": [
+    {
+      "id": 1,
+      "name": "unassigned",
+      "color": -65536,
+      "count": 0,
+      "POIs": []
+    },
+    {
+      "id": 2,
+      "name": "Classrooms",
+      "color": -256,
+      "count": 0,
+      "POIs": []
+    },
+    {
+      "id": 3,
+      "name": "Washrooms",
+      "color": -16711681,
+      "count": 0,
+      "POIs": []
+    }
+  ],
   "buildings": [
     {
       "id": 1,
       "name": "Middlesex College",
       "shortName": "MC",
-      "count": 1,
+      "count": 5,
       "floors": [
         {
           "id": 1,
           "name": "Ground",
-          "filePath": "Path-to-image",
-          "count": 1,
-          "layers": [
-            {
-              "id": 1,
-              "name": "Unassigned",
-              "color": 851968000,
-              "count": 2,
-              "rooms": [
-                {
-                  "id": 1,
-                  "roomNumber": -1,
-                  "x": 0.0,
-                  "y": 0.0,
-                  "npoints": 3,
-                  "xpoints": [
-                    300,
-                    500,
-                    500
-                  ],
-                  "ypoints": [
-                    50,
-                    100,
-                    200
-                  ],
-                  "count": 1,
-                  "POIs": [
-                    {
-                      "id": 1,
-                      "name": "test",
-                      "description": "nothing",
-                      "x": 0.0,
-                      "y": 0.0
-                    }
-                  ]
-                },
-                {
-                  "id": 2,
-                  "roomNumber": -1,
-                  "x": 0.0,
-                  "y": 0.0,
-                  "npoints": 3,
-                  "xpoints": [
-                    100,
-                    200,
-                    300
-                  ],
-                  "ypoints": [
-                    100,
-                    200,
-                    250
-                  ],
-                  "count": 2,
-                  "POIs": [
-                    {
-                      "id": 2,
-                      "name": "test2",
-                      "description": "",
-                      "x": 0.0,
-                      "y": 0.0
-                    },
-                    {
-                      "id": 3,
-                      "name": "test3",
-                      "description": "",
-                      "x": 0.0,
-                      "y": 0.0
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
+          "filePath": "assets/MC-BF-1.png",
+          "count": 0,
+          "rooms": []
+        },
+        {
+          "id": 2,
+          "name": "2",
+          "filePath": "assets/MC-BF-2.png",
+          "count": 0,
+          "rooms": []
+        },
+        {
+          "id": 3,
+          "name": "3",
+          "filePath": "assets/MC-BF-3.png",
+          "count": 0,
+          "rooms": []
+        },
+        {
+          "id": 4,
+          "name": "4",
+          "filePath": "assets/MC-BF-4.png",
+          "count": 0,
+          "rooms": []
+        },
+        {
+          "id": 5,
+          "name": "5",
+          "filePath": "assets/MC-BF-5.png",
+          "count": 0,
+          "rooms": []
         }
+      ],
+      "x": 0.0,
+      "y": 0.0,
+      "npoints": 0,
+      "xpoints": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "ypoints": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Physics and Astronomy Building",
+      "shortName": "PAB",
+      "count": 4,
+      "floors": [
+        {
+          "id": 6,
+          "name": "1",
+          "filePath": "assets/PAB-BF-1.png",
+          "count": 0,
+          "rooms": []
+        },
+        {
+          "id": 7,
+          "name": "2",
+          "filePath": "assets/PAB-BF-2.png",
+          "count": 0,
+          "rooms": []
+        },
+        {
+          "id": 8,
+          "name": "3",
+          "filePath": "assets/PAB-BF-3.png",
+          "count": 0,
+          "rooms": []
+        },
+        {
+          "id": 9,
+          "name": "4",
+          "filePath": "assets/PAB-BF-4.png",
+          "count": 0,
+          "rooms": []
+        }
+      ],
+      "x": 0.0,
+      "y": 0.0,
+      "npoints": 0,
+      "xpoints": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "ypoints": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Western Science Center",
+      "shortName": "WSC",
+      "count": 4,
+      "floors": [
+        {
+          "id": 10,
+          "name": "1",
+          "filePath": "assets/WSC-BF-1.png",
+          "count": 0,
+          "rooms": []
+        },
+        {
+          "id": 11,
+          "name": "2",
+          "filePath": "assets/WSC-BF-2.png",
+          "count": 0,
+          "rooms": []
+        },
+        {
+          "id": 12,
+          "name": "3",
+          "filePath": "assets/WSC-BF-3.png",
+          "count": 0,
+          "rooms": []
+        },
+        {
+          "id": 13,
+          "name": "4",
+          "filePath": "assets/WSC-BF-4.png",
+          "count": 0,
+          "rooms": []
+        }
+      ],
+      "x": 0.0,
+      "y": 0.0,
+      "npoints": 0,
+      "xpoints": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "ypoints": [
+        0,
+        0,
+        0,
+        0
       ]
     }
   ],
   "users": [
     {
       "id": 1,
-      "username": "test",
+      "username": "admin",
+      "password": "5f4dcc3b5aa765d61d8327deb882cf99",
+      "admin": true,
+      "favouriteCount": 0,
+      "favouriteIDs": [],
+      "userPOICount": 0,
+      "userPOIIDs": []
+    },
+    {
+      "id": 2,
+      "username": "Liam",
       "password": "81dc9bdb52d04dc20036dbd8313ed055",
       "admin": false,
-      "favouriteIDs": []
+      "favouriteCount": 0,
+      "favouriteIDs": [],
+      "userPOICount": 0,
+      "userPOIIDs": []
+    },
+    {
+      "id": 3,
+      "username": "Maxwell",
+      "password": "81dc9bdb52d04dc20036dbd8313ed055",
+      "admin": false,
+      "favouriteCount": 0,
+      "favouriteIDs": [],
+      "userPOICount": 0,
+      "userPOIIDs": []
+    },
+    {
+      "id": 4,
+      "username": "Karen",
+      "password": "81dc9bdb52d04dc20036dbd8313ed055",
+      "admin": false,
+      "favouriteCount": 0,
+      "favouriteIDs": [],
+      "userPOICount": 0,
+      "userPOIIDs": []
+    },
+    {
+      "id": 5,
+      "username": "Emma",
+      "password": "81dc9bdb52d04dc20036dbd8313ed055",
+      "admin": false,
+      "favouriteCount": 0,
+      "favouriteIDs": [],
+      "userPOICount": 0,
+      "userPOIIDs": []
+    },
+    {
+      "id": 6,
+      "username": "Valentina",
+      "password": "81dc9bdb52d04dc20036dbd8313ed055",
+      "admin": false,
+      "favouriteCount": 0,
+      "favouriteIDs": [],
+      "userPOICount": 0,
+      "userPOIIDs": []
     }
   ]
 }
