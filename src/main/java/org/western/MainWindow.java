@@ -353,10 +353,6 @@ public class MainWindow extends javax.swing.JFrame {
         p.run();
     }//GEN-LAST:event_helpButtonMouseClicked
 
-    private void helpButtonMouseClicked(java.awt.event.MouseEvent evt) {   
-        CustomTip p = new CustomTip();
-        p.run();
-    }
     /**
      * smallMapBtn when receiving an ActionEvent to switch from building to map
      * (except smallMapBtn doesn't exist; pending deletion)
