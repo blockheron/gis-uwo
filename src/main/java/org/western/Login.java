@@ -625,7 +625,7 @@ public class Login extends javax.swing.JFrame {
         }
         catch (Exception e) {
             e.printStackTrace();
-            return;
+            cText.setText("Failed to fetch geolocation.");
         }
         // get weather data from API
         try {
