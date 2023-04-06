@@ -5,6 +5,7 @@
 package org.western;
 
 import com.google.common.io.BaseEncoding;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.kordamp.ikonli.remixicon.RemixiconAL;
@@ -15,8 +16,7 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.*;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
@@ -581,10 +581,50 @@ public class Login extends javax.swing.JFrame {
     }
 
     private void loadWeather() {
+        JsonObject data;
+        wText.setForeground(Color.decode("#8e8e93"));
+        tempUp.setFont(new Font("Inter", 0, 14));
+        tempDown.setFont(new Font("Inter", 0, 14));
+        // get weather data from API
+        try {
+            String url = "https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&daily=weathercode,temperature_2m_max,temperature_2m_min&forecast_days=1&timezone=America%2FNew_York";
+            URL obj = new URL(url);
+            HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+            con.setRequestMethod("GET");
+            con.setRequestProperty("User-Agent", "Mozilla/5.0");
+            int responseCode = con.getResponseCode();
+            System.out.println("GET Response Code :: " + responseCode);
+            if (responseCode == HttpURLConnection.HTTP_OK) { // success
+                BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+                String inputLine;
+                StringBuffer response = new StringBuffer();
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                }
+                in.close();
+                // print result
+                System.out.println(response);
+                // get weather data
+                data = JsonParser.parseString(response.toString()).getAsJsonObject();
+                if(data != null) {
+                    handleWeatherData(data);
+                } else {
+                    wText.setText("Weather data unavailable.");
+                }
+            } else {
+                dText.setText("Weather data unavailable.");
+                System.out.println("GET request not worked.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private int handleWeatherData(JsonObject data) {
         int weatherCode; // weather code
+        Date date = new Date();
         String weatherDesc; // weather description
         StringBuilder upTemp = new StringBuilder(), downTemp = new StringBuilder(); // temperature
-        JsonObject data;
         HashMap<Integer, String> wmoWeatherCodes = new HashMap<>() {
             {
                 put(0, "Metar not available");
@@ -620,74 +660,52 @@ public class Login extends javax.swing.JFrame {
                 put(30, "Tornado");
             }
         };
-        wText.setForeground(Color.decode("#8e8e93"));
-        tempUp.setFont(new Font("Inter", 0, 14));
-        tempDown.setFont(new Font("Inter", 0, 14));
-        // get weather data from API
-        try {
-            String url = "https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&daily=weathercode,temperature_2m_max,temperature_2m_min&forecast_days=1&timezone=America%2FNew_York";
-            URL obj = new URL(url);
-            HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-            con.setRequestMethod("GET");
-            con.setRequestProperty("User-Agent", "Mozilla/5.0");
-            int responseCode = con.getResponseCode();
-            Date date = new Date();
-            System.out.println("GET Response Code :: " + responseCode);
-            if (responseCode == HttpURLConnection.HTTP_OK) { // success
-                BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-                String inputLine;
-                StringBuffer response = new StringBuffer();
-                while ((inputLine = in.readLine()) != null) {
-                    response.append(inputLine);
-                }
-                in.close();
-                // print result
-                System.out.println(response);
-                data = JsonParser.parseString(response.toString()).getAsJsonObject();
-                // get weather data
-                weatherCode = data.get("daily").getAsJsonObject().get("weathercode").getAsJsonArray().get(0).getAsInt();
-                // convert wmo code to weather description
-                weatherDesc = wmoWeatherCodes.get(weatherCode);
-                wText.setText(weatherDesc);
-                if (weatherDesc.toUpperCase().contains("RAIN") || weatherDesc.toUpperCase().contains("SNOW") || weatherDesc.toUpperCase().contains("STORM")) {
-                    wText.setForeground(Color.decode("#32ade6"));
-                    if (weatherDesc.toUpperCase().contains("RAIN")) {
-                        wIcon.setIcon(FontIcon.of(RemixiconMZ.RAINY_FILL, 40, Color.decode("#32ade6")));
-                    } else if (weatherDesc.toUpperCase().contains("SNOW")) {
-                        wIcon.setIcon(FontIcon.of(RemixiconMZ.SNOWY_FILL, 40, Color.decode("#32ade6")));
-                    } else if (weatherDesc.toUpperCase().contains("STORM")) {
-                        wIcon.setIcon(FontIcon.of(RemixiconMZ.THUNDERSTORMS_FILL, 40, Color.decode("#32ade6")));
-                    }
-                } else if(weatherDesc.toUpperCase().contains("FOG") || weatherDesc.toUpperCase().contains("HAZE") || weatherDesc.toUpperCase().contains("SMOKE") || weatherDesc.toUpperCase().contains("DUST")) {
-                    wText.setForeground(Color.decode("#5856d6"));
-                    wIcon.setIcon(FontIcon.of(RemixiconAL.FOGGY_FILL, 40, Color.decode("#8e8e93")));
-                } else if (weatherDesc.toUpperCase().contains("CLOUDY") || weatherDesc.toUpperCase().contains("OVERCAST")) {
-                    wText.setForeground(Color.decode("#40c8e0"));
-                    wIcon.setIcon(FontIcon.of(RemixiconAL.CLOUDY_FILL, 40, Color.decode("#40c8e0")));
-                } else if (weatherDesc.toUpperCase().contains("CLEAR")) {
-                    wText.setForeground(Color.decode("#ff9500"));
-                    wIcon.setIcon(FontIcon.of(RemixiconMZ.SUN_FILL, 40, Color.decode("#ff9500")));
-                } else {
-                    wText.setForeground(Color.decode("#63e6e2"));
-                    wIcon.setIcon(FontIcon.of(RemixiconMZ.SUN_CLOUDY_FILL, 40, Color.decode("#63e6e2")));
-                }
-                upTemp.append(data.get("daily").getAsJsonObject().get("temperature_2m_max").getAsJsonArray().get(0).getAsInt());
-                downTemp.append(data.get("daily").getAsJsonObject().get("temperature_2m_min").getAsJsonArray().get(0).getAsInt());
-                upTemp.append("°C");
-                downTemp.append("°C");
-                tempUp.setText(upTemp.toString());
-                tempDown.setText(downTemp.toString());
-                // format date
-                SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy, HH:mm");
-                String strDate = formatter.format(date);
-                dText.setText("Updated: " + strDate);
-            } else {
-                dText.setText("Weather data unavailable");
-                System.out.println("GET request not worked");
+        weatherCode = data.get("daily").getAsJsonObject().get("weathercode").getAsJsonArray().get(0).getAsInt();
+        // convert wmo code to weather description
+        weatherDesc = wmoWeatherCodes.get(weatherCode);
+        wText.setText(weatherDesc);
+        if (weatherDesc.toUpperCase().contains("RAIN") || weatherDesc.toUpperCase().contains("SNOW") || weatherDesc.toUpperCase().contains("STORM")) {
+            wText.setForeground(Color.decode("#32ade6"));
+            if (weatherDesc.toUpperCase().contains("RAIN")) {
+                wIcon.setIcon(FontIcon.of(RemixiconMZ.RAINY_FILL, 40, Color.decode("#32ade6")));
+            } else if (weatherDesc.toUpperCase().contains("SNOW")) {
+                wIcon.setIcon(FontIcon.of(RemixiconMZ.SNOWY_FILL, 40, Color.decode("#32ade6")));
+            } else if (weatherDesc.toUpperCase().contains("STORM")) {
+                wIcon.setIcon(FontIcon.of(RemixiconMZ.THUNDERSTORMS_FILL, 40, Color.decode("#32ade6")));
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } else if(weatherDesc.toUpperCase().contains("FOG") || weatherDesc.toUpperCase().contains("HAZE") || weatherDesc.toUpperCase().contains("SMOKE") || weatherDesc.toUpperCase().contains("DUST")) {
+            wText.setForeground(Color.decode("#5856d6"));
+            wIcon.setIcon(FontIcon.of(RemixiconAL.FOGGY_FILL, 40, Color.decode("#8e8e93")));
+        } else if (weatherDesc.toUpperCase().contains("CLOUDY") || weatherDesc.toUpperCase().contains("OVERCAST")) {
+            wText.setForeground(Color.decode("#40c8e0"));
+            wIcon.setIcon(FontIcon.of(RemixiconAL.CLOUDY_FILL, 40, Color.decode("#40c8e0")));
+        } else if (weatherDesc.toUpperCase().contains("CLEAR")) {
+            wText.setForeground(Color.decode("#ff9500"));
+            wIcon.setIcon(FontIcon.of(RemixiconMZ.SUN_FILL, 40, Color.decode("#ff9500")));
+        } else {
+            wText.setForeground(Color.decode("#63e6e2"));
+            wIcon.setIcon(FontIcon.of(RemixiconMZ.SUN_CLOUDY_FILL, 40, Color.decode("#63e6e2")));
         }
+        upTemp.append(data.get("daily").getAsJsonObject().get("temperature_2m_max").getAsJsonArray().get(0).getAsInt());
+        downTemp.append(data.get("daily").getAsJsonObject().get("temperature_2m_min").getAsJsonArray().get(0).getAsInt());
+        upTemp.append("°C");
+        downTemp.append("°C");
+        tempUp.setText(upTemp.toString());
+        tempDown.setText(downTemp.toString());
+        // format date
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy, HH:mm");
+        String strDate = formatter.format(date);
+        dText.setText("Updated: " + strDate);
+        // store in to json file
+        try {
+            FileWriter file = new FileWriter(getClass().getResource("db/weather.json").getFile());
+            file.write(data.toString());
+            file.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return -1;
+        }
+        return 0;
     }
 
     private int handleLogin() {
