@@ -408,7 +408,7 @@ public class MainWindow extends javax.swing.JFrame {
         }
     }
         
-    private void addRoomButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addRoomButtonMouseClicked
+    private void addRoomButtonMouseClicked() {
         if (editMode && !addingRoom) {
 
             addRoomButton.setIcon(addRoomButtonEnabled);
@@ -424,6 +424,10 @@ public class MainWindow extends javax.swing.JFrame {
             draftPoly = null;
             //
         }
+    }
+        
+    private void addRoomButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addRoomButtonMouseClicked
+        addRoomButtonMouseClicked();
     }//GEN-LAST:event_addRoomButtonMouseClicked
 
     /**
