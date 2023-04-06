@@ -13,6 +13,7 @@ import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.LinkedList;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.Objects;
 
 /**
@@ -21,7 +22,7 @@ import java.util.Objects;
  */
 public class MainWindow extends javax.swing.JFrame {
     private int session = -1; // -1 for guest, 0 for admin, 1 for user
-    
+
     public static Building curBuilding;
     public static Floor curFloor;
     private LinkedList<Floor> floorList;
@@ -48,7 +49,7 @@ public class MainWindow extends javax.swing.JFrame {
         
         //demo code
         if (debug == true) {
-        
+
             // Make Middlesex; add its floors
             curBuilding = new Building("Middlesex College", "MC");
             curBuilding.addFloor("Ground", "assets/MC-BF-1.png");
@@ -66,10 +67,12 @@ public class MainWindow extends javax.swing.JFrame {
         }
         //
 
+
+
         initComponents();
         myInitComponents(); // added
         initMainWindow();
-        initSearchBox();
+        initSearch();
         initButtons();
         renderFrame();
         prepareIcon();
@@ -111,10 +114,10 @@ public class MainWindow extends javax.swing.JFrame {
         filterPanel = new javax.swing.JPanel();
         filterIcon = new javax.swing.JLabel();
         filterText = new javax.swing.JLabel();
-        selectBox = new javax.swing.JComboBox<>();
+        filterBox = new javax.swing.JComboBox<>();
         resultContainer = new javax.swing.JPanel();
-        resultPanel = new javax.swing.JScrollPane();
-        resultList = new javax.swing.JList<>();
+        resultScroll = new javax.swing.JScrollPane();
+        resultPanel = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -205,6 +208,15 @@ public class MainWindow extends javax.swing.JFrame {
                 searchBoxActionPerformed(evt);
             }
         });
+        // add listener to ctrl + a key press
+        searchBox.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if ((e.getKeyCode() == KeyEvent.VK_A) && ((e.getModifiers() & KeyEvent.CTRL_MASK) != 0) || (e.getModifiers() & KeyEvent.META_MASK) != 0) {
+                    searchBox.selectAll();
+                }
+            }
+        });
 
         onSearch.setBorder(null);
         onSearch.addActionListener(new java.awt.event.ActionListener() {
@@ -224,38 +236,39 @@ public class MainWindow extends javax.swing.JFrame {
         filterText.setText("Filter by: ");
         filterPanel.add(filterText);
 
-        selectBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        selectBox.setAutoscrolls(true);
-        selectBox.setBorder(null);
-        selectBox.setMinimumSize(new java.awt.Dimension(80, 23));
-        selectBox.setPreferredSize(new java.awt.Dimension(180, 32));
-        filterPanel.add(selectBox);
+        filterBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Item 1", "Item 2", "Item 3", "Item 4"}));
+        filterBox.setAutoscrolls(true);
+        filterBox.setBorder(null);
+        filterBox.setMinimumSize(new java.awt.Dimension(80, 23));
+        filterBox.setPreferredSize(new java.awt.Dimension(180, 32));
+        filterPanel.add(filterBox);
 
         resultContainer.setBackground(new java.awt.Color(245, 245, 247));
+        resultContainer.setPreferredSize(new java.awt.Dimension(282, 154));
+        resultContainer.setLayout(new javax.swing.BoxLayout(resultContainer, javax.swing.BoxLayout.LINE_AXIS));
 
-        resultList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        resultList.setPreferredSize(new java.awt.Dimension(280, 120));
-        resultPanel.setViewportView(resultList);
+        resultScroll.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
-        resultContainer.add(resultPanel);
+        resultPanel.setBackground(new java.awt.Color(255, 255, 255));
+        resultPanel.setPreferredSize(new java.awt.Dimension(280, 0));
+        resultPanel.setLayout(new java.awt.GridLayout(0, 1));
+        resultScroll.setViewportView(resultPanel);
+
+        resultContainer.add(resultScroll);
 
         javax.swing.GroupLayout dropDownPanelLayout = new javax.swing.GroupLayout(dropDownPanel);
         dropDownPanel.setLayout(dropDownPanelLayout);
         dropDownPanelLayout.setHorizontalGroup(
-            dropDownPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(filterPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(resultContainer, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
+                dropDownPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(filterPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(resultContainer, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         dropDownPanelLayout.setVerticalGroup(
-            dropDownPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(dropDownPanelLayout.createSequentialGroup()
-                .addComponent(filterPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(2, 2, 2)
-                .addComponent(resultContainer, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                dropDownPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(dropDownPanelLayout.createSequentialGroup()
+                                .addComponent(filterPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(2, 2, 2)
+                                .addComponent(resultContainer, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         filterPanel.getAccessibleContext().setAccessibleName("");
@@ -263,25 +276,25 @@ public class MainWindow extends javax.swing.JFrame {
         javax.swing.GroupLayout searchPanelLayout = new javax.swing.GroupLayout(searchPanel);
         searchPanel.setLayout(searchPanelLayout);
         searchPanelLayout.setHorizontalGroup(
-            searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(searchPanelLayout.createSequentialGroup()
-                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(searchPanelLayout.createSequentialGroup()
-                        .addComponent(searchBox, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(onSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(dropDownPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(searchPanelLayout.createSequentialGroup()
+                                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(searchPanelLayout.createSequentialGroup()
+                                                .addComponent(searchBox, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(onSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(dropDownPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         searchPanelLayout.setVerticalGroup(
-            searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(searchPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(onSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(searchBox, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(dropDownPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE))
+                searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(searchPanelLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(onSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(searchBox, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(dropDownPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE))
         );
 
         layerPanel.setLayer(Frame, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -290,22 +303,22 @@ public class MainWindow extends javax.swing.JFrame {
         javax.swing.GroupLayout layerPanelLayout = new javax.swing.GroupLayout(layerPanel);
         layerPanel.setLayout(layerPanelLayout);
         layerPanelLayout.setHorizontalGroup(
-            layerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layerPanelLayout.createSequentialGroup()
-                .addGroup(layerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Frame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layerPanelLayout.createSequentialGroup()
-                        .addGap(915, 915, 915)
-                        .addComponent(searchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(6, 6, 6))
+                layerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layerPanelLayout.createSequentialGroup()
+                                .addGroup(layerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(Frame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(layerPanelLayout.createSequentialGroup()
+                                                .addGap(915, 915, 915)
+                                                .addComponent(searchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(6, 6, 6))
         );
         layerPanelLayout.setVerticalGroup(
-            layerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layerPanelLayout.createSequentialGroup()
-                .addGroup(layerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Frame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(searchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(77, Short.MAX_VALUE))
+                layerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layerPanelLayout.createSequentialGroup()
+                                .addGroup(layerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(Frame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(searchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         getContentPane().add(layerPanel, java.awt.BorderLayout.CENTER);
@@ -330,7 +343,7 @@ public class MainWindow extends javax.swing.JFrame {
         prevFloorButton.setActionCommand("down");
         // Start at lowest floor by default: prev floor doesn't exist
         prevFloorButton.setEnabled(false);
-        
+
         // Action command for smallMapBtn
 //        smallMapBtn.setActionCommand("mapToBuild");
         LayerSelectPanel selectPanel = new LayerSelectPanel();
@@ -340,12 +353,12 @@ public class MainWindow extends javax.swing.JFrame {
         selectPanel.setLocation(this.getSize().width - (int)selectPanel.getPreferredSize().getWidth(),
                 this.getSize().height - (int)selectPanel.getPreferredSize().getHeight());
     }
-    
+
     /**
      * TODO: fix help buttons not existing
      */
     private void helpButtonMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_helpButtonMouseMoved
-        
+
     }//GEN-LAST:event_helpButtonMouseMoved
 
     private void helpButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_helpButtonMouseClicked
@@ -362,7 +375,7 @@ public class MainWindow extends javax.swing.JFrame {
 //        if ("mapToBuild".equals(evt.getActionCommand())) {
 //            //unrender rooms on the floor
 //            unrenderRooms();
-//            
+//
 //            // Render campus map image
 //            ImageIcon pic = new ImageIcon(Objects.requireNonNull(getClass().getResource("assets/campus_map.png")));
 //            canvas.setImage(pic);
@@ -376,7 +389,7 @@ public class MainWindow extends javax.swing.JFrame {
 //            prevFloorBtn.setVisible(false);
 //        }
 //    }
-    
+
     private void searchBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_searchBoxActionPerformed
@@ -393,7 +406,7 @@ public class MainWindow extends javax.swing.JFrame {
         editButtonMousePressed();
     }//GEN-LAST:event_editButtonMousePressed
 
-        private void editButtonMousePressed() {                                        
+        private void editButtonMousePressed() {
         editMode = !editMode;
         if (editMode){
             editButton.setIcon(editButtonEnabled);
@@ -407,10 +420,10 @@ public class MainWindow extends javax.swing.JFrame {
             addRoomButton.setVisible(false);
         }
     }
-        
+
     private void addRoomButtonMouseClicked() {
         if (editMode && !addingRoom) {
-
+            
             addRoomButton.setIcon(addRoomButtonEnabled);
             addingRoom = true;
 
@@ -425,7 +438,7 @@ public class MainWindow extends javax.swing.JFrame {
             //
         }
     }
-        
+
     private void addRoomButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addRoomButtonMouseClicked
         addRoomButtonMouseClicked();
     }//GEN-LAST:event_addRoomButtonMouseClicked
@@ -438,20 +451,20 @@ public class MainWindow extends javax.swing.JFrame {
         if ("up".equals(evt.getActionCommand())) {
             //unrender rooms
             unrenderRooms();
-            //if(editMode) 
-            
+            //if(editMode)
+
             // Load in next floor obejct (next item in floorList)
             curFloor = floorList.get(floorList.indexOf(curFloor) + 1);
             layerList = Map.getLayers();
             roomList = curFloor.getRooms();
-            
+
             //render the next floor's rooms
             renderRooms();
-            
+
             // Render next floor image
             ImageIcon pic = new ImageIcon(Objects.requireNonNull(getClass().getResource(curFloor.getFilePath())));
             canvas.setImage(pic);
-            
+
             // If at max floor, disable. Else, enable
             if (floorList.indexOf(curFloor) == curBuilding.getFloorNum() - 1) {
                 nextFloorButton.setEnabled(false);
@@ -471,7 +484,7 @@ public class MainWindow extends javax.swing.JFrame {
         if ("down".equals(evt.getActionCommand())) {
             //unrender this floors rooms
             unrenderRooms();
-            
+
             // Load in next floor obejct (prev item in floorList)
             curFloor = floorList.get(floorList.indexOf(curFloor) - 1);
             layerList = Map.getLayers();
@@ -479,7 +492,7 @@ public class MainWindow extends javax.swing.JFrame {
 
             //render the new floor's rooms
             renderRooms();
-            
+
             // Render next floor image
             ImageIcon pic = new ImageIcon(Objects.requireNonNull(getClass().getResource(curFloor.getFilePath())));
             canvas.setImage(pic);
@@ -494,7 +507,7 @@ public class MainWindow extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_prevFloorButtonActionPerformed
-           
+
     /**
      * @param args the command line arguments
      */
@@ -543,10 +556,10 @@ public class MainWindow extends javax.swing.JFrame {
         this.setLocation(center.x - this.getWidth() / 2, center.y - this.getHeight() / 2);
         this.setResizable(false);
         this.setBackground(Color.WHITE);
-        
+
         layerPanel.addMouseListener(new MouseHandler());
         layerPanel.addMouseMotionListener(new MouseMotionHandler());
-        
+
         layerPanel.setSize(this.getSize());
         //layerPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 500));
     }
@@ -557,11 +570,12 @@ public class MainWindow extends javax.swing.JFrame {
      * Set placeholder of search box
      * Create hover effect for search button
      */
-    private void initSearchBox() {
+    private void initSearch() {
         int padding = 10;
         // https://stackoverflow.com/questions/10274750/java-swing-setting-margins-on-textarea-with-line-border
         Border defaultBorder = BorderFactory.createLineBorder(Color.decode("#eaeaea")), // create default line border for searchBox
                 focusBorder = BorderFactory.createLineBorder(Color.decode("#666666")); // create focused line border for searchBox
+        Search s = new Search();
         searchPanel.setOpaque(false); // make searchPanel transparent
         dropDownPanel.setVisible(false); // hide dropDownPanel
         searchBox.setText("Search"); // set default text of searchBox
@@ -571,9 +585,29 @@ public class MainWindow extends javax.swing.JFrame {
                         defaultBorder, BorderFactory.createEmptyBorder(0, padding, 0, padding)
                 )
         ); // set inset padding of searchBox
-        selectBox.setBackground(Color.decode("#ffffff")); // set background color of searchBox
-        selectBox.setForeground(Color.decode("#999999")); // set default color of searchBox
-
+        filterBox.setBackground(Color.decode("#ffffff")); // set background color of searchBox
+        filterBox.setForeground(Color.decode("#999999")); // set default color of searchBox
+        filterBox.setFocusable(false);
+        filterBox.setFocusTraversalKeysEnabled(false);
+        filterBox.setRenderer(new DefaultListCellRenderer() {
+            @Override
+            public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+                super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+                setFont(new Font("Inter", Font.PLAIN, 12));
+                if (isSelected) {
+                    setBackground(Color.decode("#eaeaea"));
+                }
+                return this;
+            }
+        });
+        filterBox.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                handleSearch();
+            }
+        });
+        filterBox.setModel(new DefaultComboBoxModel<>(s.getFilters()));
+        resultScroll.setBorder(null);
         searchBox.addKeyListener(new KeyAdapter() { // add key listener to searchBox
             @Override
             public void keyReleased(KeyEvent e) {
@@ -635,25 +669,25 @@ public class MainWindow extends javax.swing.JFrame {
      * Initialise edit and room buttons
      */
     public void initButtons() {
-        
+
         //initialize edit button
         editButtonDisabled = FontIcon.of(RemixiconAL.EDIT_LINE, 24);
         editButtonEnabled = FontIcon.of(RemixiconAL.EDIT_FILL, 24);
-        
+
         editButton.setIcon(editButtonDisabled);
         //
-        
+
         //initialize add room button
         addRoomButtonDisabled = FontIcon.of(RemixiconAL.ADD_BOX_LINE, 24);
         addRoomButtonEnabled = FontIcon.of(RemixiconAL.ADD_BOX_FILL, 24);
-        
+
         addRoomButton.setIcon(addRoomButtonDisabled);
         addRoomButton.setVisible(false);
         addRoomButton.setEnabled(false);
         //
-        
+
     }
-    
+
     /**
      * Render Frame to display CanvasGUI objects
      */
@@ -661,7 +695,7 @@ public class MainWindow extends javax.swing.JFrame {
         // Render main window image
         canvas = new CanvasGUI(curFloor.getFilePath(), this.getWidth(), this.getHeight());
         Frame.add(canvas);
-        
+
         // Render smallMapBtn image
 //        smallMapPic = new CanvasGUI("assets/campus_map.png", 180, 125);
 //        Frame.add(smallMapPic);
@@ -675,7 +709,7 @@ public class MainWindow extends javax.swing.JFrame {
         // get floor ^
 //        db.getData().get("data").getAsJsonArray().get(0).getAsJsonObject().get("layer").getAsJsonArray();
     }
-    
+
     /**
      * Prepare icon for onSearch button
      */
@@ -684,13 +718,15 @@ public class MainWindow extends javax.swing.JFrame {
             // Load icon from font library (currently using RemixIcon)
             FontIcon searchIcon = FontIcon.of(RemixiconMZ.SEARCH_LINE, 20, Color.decode("#828282")),
                     filterIcon = FontIcon.of(RemixiconAL.FILTER_2_LINE, 20, Color.decode("#828282"));
+//                    favIcon = FontIcon.of(RemixiconMZ.STAR_LINE, 20, Color.decode("#828282"));
             onSearch.setIcon(searchIcon);
             this.filterIcon.setIcon(filterIcon);
+//            this.sLabel.setIcon(favIcon);
         } catch (Exception e) {
             System.out.printf("Error: icons failed to load\n%s", e.getMessage());
         }
     }
-    
+
     /**
      * Render selectable room boundaries
      */
@@ -721,50 +757,107 @@ public class MainWindow extends javax.swing.JFrame {
         }
              
     }
-    
+
     public void unrenderRooms() {
         for (Room room : curFloor.getRooms()) {
             detachRoom(room);
         }
     }
 
-    /**
-     * 
-     * @return 
-     */
-    private int handleSearch() {/*
-        JsonDB db; // database instance
-        String query = searchBox.getText(); // get query from searchBox
-        String[] w; // array of words in query
-        StringBuilder sb = new StringBuilder(); // string builder for acronym
-        if (query.isEmpty() || query.equals("Search")) {
-            System.out.println("Empty query");
+    private int handleSearch() {
+        String q = searchBox.getText(), // get query from searchBox
+        f = filterBox.getSelectedItem().toString(), // get filter from filterBox
+        bN = ""; // building name
+        AtomicReference<String> pN;
+        Boolean iB;// whether query is a building name
+                // whether there is any result
+        AtomicReference<Boolean> hasResult = new AtomicReference<>(false);
+        LinkedList<Building> bL = new LinkedList<>(); // get list of buildings
+        Building b = null; // building instance
+        Search s = new Search(); // search instance
+        resultPanel.removeAll();
+        resultPanel.setPreferredSize(new Dimension(resultPanel.getPreferredSize().width, 0));
+        if (q.isEmpty() || q.equals("Search")) {
+            iB = false;
+            bL = Map.getBuildings();
+        } else {
+            b = s.searchBuilding(q);
+            if (b != null) {
+                if(q.toUpperCase().equals(b.getShortName()))
+                {
+                    iB = true;
+                    bN = b.getShortName();
+                } else {
+                    iB = false;
+                }
+                bL.add(b);
+            } else {
+                iB = false;
+                bL = Map.getBuildings();
+            }
+        }
+        if (bL.size() == 0) {
+            resultPanel.add(new ResultLabel());
             return 1;
         }
-        String filter = selectBox.getSelectedItem().toString();
-        db = new JsonDB("poi", query);
-        if(db.getData().get("status").getAsInt() != 200) {
-            w = query.split(" ");
-            for (String word : w) {
-                sb.append(word.charAt(0));
-            }
-            db = new JsonDB("poi", sb.toString().toLowerCase());
-            if(db.getData().get("status").getAsInt() != 200) {
-                System.out.printf("No result found for %s\n", query);
-                return 1;
-            }
-            else {
-                System.out.println(db.getData().toString());
-            }
+
+        if (iB) {
+            resultPanel.setPreferredSize(new Dimension(resultPanel.getPreferredSize().width, resultPanel.getPreferredSize().height + 40));
+            resultPanel.add(new ResultLabel(b));
+            b.getPOIs().forEach(
+                    poi -> {
+                        resultPanel.setPreferredSize(new Dimension(resultPanel.getPreferredSize().width, resultPanel.getPreferredSize().height + 40));
+                        resultPanel.add(new ResultLabel(poi));
+                        hasResult.set(true);
+                    });
         } else {
-            System.out.println(db.getData().toString());
-        }*/
+            // remove building name at the beginning of query
+            String finalQ = q.replaceFirst(bN, "");
+            bL.forEach(building -> {
+                building.getPOIs().forEach(
+                        poi -> {
+                            if (s.searchPOI(poi, finalQ, f) != null) {
+                                resultPanel.setPreferredSize(new Dimension(resultPanel.getPreferredSize().width, resultPanel.getPreferredSize().height + 40));
+                                resultPanel.add(new ResultLabel(poi));
+                                hasResult.set(true);
+                            }
+                        });
+            });
+        }
+        // check if there is any result
+        if (!hasResult.get()) {
+            resultPanel.add(new ResultLabel());
+        }
+//        JsonDB db; // database instance
+//        String[] w; // array of words in query
+//        StringBuilder sb = new StringBuilder(); // string builder for acronym
+//        if (query.isEmpty() || query.equals("Search")) {
+//            System.out.println("Empty query");
+//            return 1;
+//        }
+//        db = new JsonDB("poi", query);
+//        if(db.getData().get("status").getAsInt() != 200) {
+//            w = query.split(" ");
+//            for (String word : w) {
+//                sb.append(word.charAt(0));
+//            }
+//            db = new JsonDB("poi", sb.toString().toLowerCase());
+//            if(db.getData().get("status").getAsInt() != 200) {
+//                System.out.printf("No result found for %s\n", query);
+//                return 1;
+//            }
+//            else {
+//                System.out.println(db.getData().toString());
+//            }
+//        } else {
+//            System.out.println(db.getData().toString());
+//        }
         return 0;
     }
     
     /**
-     * 
-     * @param room 
+     *
+     * @param room
      */
     private void attachRoom(Room room)
     {
@@ -773,9 +866,9 @@ public class MainWindow extends javax.swing.JFrame {
         room.setSize(layerPanel.getSize());
         room.setLocation(canvas.x + room.getSavedLocation().x,
                 canvas.y + room.getSavedLocation().y);
-        
+
     }
-    
+
     private void detachRoom(Room room) {
         layerPanel.remove(room);
     }
@@ -788,28 +881,27 @@ public class MainWindow extends javax.swing.JFrame {
     {
         
         layerPanel.add(comp, JLayeredPane.POPUP_LAYER);
-        
+
     }
-    
+
     /**
-     * 
+     *
      */
     class MouseHandler extends MouseAdapter {
         public void mousePressed(MouseEvent e) {
             initialX = e.getX();
             initialY = e.getY();
-            
+
             if (addingRoom) {
-                
-                
-                if(draftRoom == null) {
+
+
+                if (draftRoom == null) {
                     draftPoly = new Polygon();
                     draftPoly.addPoint(e.getX()-canvas.x, e.getY()-canvas.y);
                     draftRoom = new Room(curBuilding, curFloor, draftPoly);
                     attachRoom(draftRoom);
-                }
-                else {
-                    
+                } else {
+
                     //remove previous iteration of the draft
                     layerPanel.remove(draftRoom);
                     //curFloor.removeRoom(draftRoom);
@@ -826,62 +918,68 @@ public class MainWindow extends javax.swing.JFrame {
             }
             
         }
-        
+
         /**
-         * 
+         *
          * @param e mouse event
          */
         public void mouseEntered(MouseEvent e) {
-            
-            if (curBuilding == null) 
+            if (curBuilding == null)
                 for (Building building : Map.getBuildings()) building.translate(deltaX, deltaY);
             else
                 for (Room room:curFloor.getRooms()) room.mouseEntered(e);
-            
+
         }
-        
+
+
         /**
-         * 
+         *
          * @param e mouse event
          */
         public void mouseExited(MouseEvent e) {
-            
-            if (curBuilding == null) 
+            //e = new MouseEvent(e.getComponent(), e.getID(), e.getWhen(), e.getModifiersEx(), e.getX()-getX(), e.getY()-getY(), e.getClickCount(), e.isPopupTrigger());
+            for (Room room : curFloor.getRooms()) room.mouseExited(e);
+
+
+            if (curBuilding == null)
                 for (Building building : Map.getBuildings()) building.translate(deltaX, deltaY);
             else
                 for (Room room:curFloor.getRooms()) room.mouseExited(e);
-            
+
         }
-        
+
+
         /**
-         * 
+         *
          * @param e mouse event
-         * 
+         *
          */
         public void mouseClicked(MouseEvent e) {
-            
-            if (curBuilding == null) 
+            for (Room room : curFloor.getRooms()) room.mouseClicked(e, layerPanel);
+            dropDownPanel.setVisible(false);
+
+            if (curBuilding == null)
                 for (Building building : Map.getBuildings()) building.translate(deltaX, deltaY);
             else
                 for (Room room:curFloor.getRooms()) room.mouseClicked(e, layerPanel);
-            
+
         }
         
     }
 
     /**
-     * 
+     *
      */
     class MouseMotionHandler extends MouseMotionAdapter {
         public void mouseMoved(MouseEvent e) {
             
-            if (curBuilding == null) 
+            if (curBuilding == null)
                 for (Building building : Map.getBuildings()) building.mouseMoved(e);
             else
                 for (Room room:curFloor.getRooms()) room.mouseMoved(e);
             
         }
-        
+
         public void mouseDragged(MouseEvent e) {
             int currentX = e.getX();
             int currentY = e.getY();
@@ -892,10 +990,10 @@ public class MainWindow extends javax.swing.JFrame {
             y += deltaY;
             
             canvas.translate(deltaX, deltaY);
-            if (curBuilding == null) 
+            if (curBuilding == null)
                 for (Building building : Map.getBuildings()) building.translate(deltaX, deltaY);
             else
-                for (Room room:curFloor.getRooms()) room.translate(deltaX, deltaY);           
+                for (Room room:curFloor.getRooms()) room.translate(deltaX, deltaY);
 
             initialX = currentX;
             initialY = currentY;
@@ -903,12 +1001,13 @@ public class MainWindow extends javax.swing.JFrame {
             repaint();
         }
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Frame;
     private javax.swing.JToggleButton addRoomButton;
     private javax.swing.JPanel dropDownPanel;
     private javax.swing.JToggleButton editButton;
+    private javax.swing.JComboBox<String> filterBox;
     private javax.swing.JLabel filterIcon;
     private javax.swing.JPanel filterPanel;
     private javax.swing.JLabel filterText;
@@ -920,11 +1019,10 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JButton onSearch;
     private javax.swing.JButton prevFloorButton;
     private javax.swing.JPanel resultContainer;
-    private javax.swing.JList<String> resultList;
-    private javax.swing.JScrollPane resultPanel;
+    private javax.swing.JPanel resultPanel;
+    private javax.swing.JScrollPane resultScroll;
     private javax.swing.JTextField searchBox;
     private javax.swing.JPanel searchPanel;
-    private javax.swing.JComboBox<String> selectBox;
     // End of variables declaration//GEN-END:variables
 }
 

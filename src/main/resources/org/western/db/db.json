@@ -1,6 +1,6 @@
 {
   "userCount": 1,
-  "POICount": 2,
+  "POICount": 3,
   "roomCount": 2,
   "layerCount": 1,
   "floorCount": 1,
@@ -67,11 +67,18 @@
                     200,
                     250
                   ],
-                  "count": 1,
+                  "count": 2,
                   "POIs": [
                     {
                       "id": 2,
                       "name": "test2",
+                      "description": "",
+                      "x": 0.0,
+                      "y": 0.0
+                    },
+                    {
+                      "id": 3,
+                      "name": "test3",
                       "description": "",
                       "x": 0.0,
                       "y": 0.0

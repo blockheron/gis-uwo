@@ -31,6 +31,7 @@ public class Map {
         
         for (Building building: getBuildings()) {
             if (building.getName().equals(name)) return building;
+            if (building.getShortName().equals(name)) return building;
         }
         return null;
         
