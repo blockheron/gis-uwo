@@ -91,6 +91,7 @@ public class Login extends javax.swing.JFrame {
         weatherInfo = new javax.swing.JPanel();
         tempUp = new javax.swing.JLabel();
         tempDown = new javax.swing.JLabel();
+        cText = new javax.swing.JLabel();
         dText = new javax.swing.JLabel();
         mask = new javax.swing.JPanel();
         maskBg = new javax.swing.JLabel();
@@ -271,19 +272,25 @@ public class Login extends javax.swing.JFrame {
 
         weatherPanel.add(weatherLayer);
 
+        weatherInfo.setToolTipText("");
         weatherInfo.setOpaque(false);
-        weatherInfo.setPreferredSize(new java.awt.Dimension(200, 60));
+        weatherInfo.setPreferredSize(new java.awt.Dimension(200, 80));
+        weatherInfo.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 5, 0));
 
         tempUp.setText("--°C");
-        tempUp.setPreferredSize(new java.awt.Dimension(80, 32));
+        tempUp.setPreferredSize(new java.awt.Dimension(80, 28));
         weatherInfo.add(tempUp);
 
         tempDown.setText("--°C");
-        tempDown.setPreferredSize(new java.awt.Dimension(80, 32));
+        tempDown.setPreferredSize(new java.awt.Dimension(80, 28));
         weatherInfo.add(tempDown);
 
+        cText.setText("Loading geolocation");
+        cText.setPreferredSize(new java.awt.Dimension(180, 16));
+        weatherInfo.add(cText);
+
         dText.setText("Loading weather data");
-        dText.setPreferredSize(new java.awt.Dimension(180, 20));
+        dText.setPreferredSize(new java.awt.Dimension(180, 16));
         weatherInfo.add(dText);
 
         weatherPanel.add(weatherInfo);
@@ -582,13 +589,47 @@ public class Login extends javax.swing.JFrame {
     }
 
     private void loadWeather() {
+        double lat = 0, lon = 0;
         JsonObject data;
         wText.setForeground(Color.decode("#8e8e93"));
         tempUp.setFont(new Font("Inter", 0, 14));
         tempDown.setFont(new Font("Inter", 0, 14));
+        // get latitude and longitude from API
+        try {
+            String url = "https://freegeoip.app/json/";
+            URL obj = new URL(url);
+            HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+            con.setRequestMethod("GET");
+            con.setRequestProperty("User-Agent", "Mozilla/5.0");
+            int responseCode = con.getResponseCode();
+            System.out.println("GET Response Code :: " + responseCode);
+            if (responseCode == HttpURLConnection.HTTP_OK) { // success
+                BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+                String inputLine;
+                StringBuffer response = new StringBuffer();
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                }
+                in.close();
+                // print result
+                System.out.println(response.toString());
+                // parse JSON
+                data = JsonParser.parseString(response.toString()).getAsJsonObject();
+                lat = data.get("latitude").getAsDouble();
+                lon = data.get("longitude").getAsDouble();
+                cText.setText(data.get("city").getAsString() + ", " + data.get("region_name").getAsString());
+            } else {
+                System.out.println("GET request not worked");
+                return;
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return;
+        }
         // get weather data from API
         try {
-            String url = "https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&daily=weathercode,temperature_2m_max,temperature_2m_min&forecast_days=1&timezone=America%2FNew_York";
+            String url = "https://api.open-meteo.com/v1/forecast?latitude=" + lat + "&longitude=" + lon + "&daily=weathercode,temperature_2m_max,temperature_2m_min&forecast_days=1&timezone=America%2FNew_York";
             URL obj = new URL(url);
             HttpURLConnection con = (HttpURLConnection) obj.openConnection();
             con.setRequestMethod("GET");
@@ -613,7 +654,7 @@ public class Login extends javax.swing.JFrame {
                     wText.setText("Weather data unavailable.");
                 }
             } else {
-                dText.setText("Weather data unavailable.");
+                cText.setText("Weather data unavailable.");
                 System.out.println("GET request not worked.");
             }
         } catch (Exception e) {
@@ -630,10 +671,10 @@ public class Login extends javax.swing.JFrame {
                 if(data != null) {
                     handleWeatherData(data);
                 } else {
-                    wText.setText("Weather data unavailable.");
+                    dText.setText("Weather data unavailable.");
                 }
             } catch (Exception ex) {
-                wText.setText("Weather data unavailable.");
+                dText.setText("Weather data unavailable.");
                 ex.printStackTrace();
             }
         }
@@ -711,7 +752,9 @@ public class Login extends javax.swing.JFrame {
         downTemp.append("°C");
         tempUp.setText(upTemp.toString());
         tempDown.setText(downTemp.toString());
+        dateSB.append("As of ");
         dateSB.append(data.get("daily").getAsJsonObject().get("time").getAsJsonArray().get(0).getAsString());
+        dText.setText(dateSB.toString());
         // store in to json file
         try {
             FileWriter f = new FileWriter(getClass().getResource("db/weather.json").getFile());
@@ -838,6 +881,7 @@ public class Login extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel bg;
     private javax.swing.JPanel bgPanel;
+    private javax.swing.JLabel cText;
     private javax.swing.JLabel condition;
     private javax.swing.JLabel dText;
     private javax.swing.JPanel formPanel;
