@@ -1,8 +1,11 @@
 package org.western;
 
-import org.w3c.dom.Node;
+import com.google.gson.JsonArray;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Set;
 
 public class Search {
     private ArrayList<String> fList; // fL is the filter list
@@ -25,7 +28,8 @@ public class Search {
     private int loadFilter() {
         LinkedList<Building> bL;
         LinkedList<Floor> fL;
-        LinkedList<Layer> lL;
+//        LinkedList<Layer> lL;
+        JsonArray lL;
         try {
 //            if (JsonDB.getBuildings() != null) {
 //                b = JsonDB.getBuildings().getAsJsonArray();
@@ -68,11 +72,14 @@ public class Search {
                 fL = b.getFloors();
                 if (fL.isEmpty()) continue;
                 for (Floor floor : fL) {
-                    lL = floor.getLayers();
+                    lL = JsonDB.getLayers();
                     if (lL.isEmpty()) continue;
-                    for (Layer layer : lL) {
-                        if (layer.getRooms().isEmpty()) continue;
-                        fList.add(layer.getName());
+                    for (int i = 0; i < lL.size(); i++) {
+                        if (lL.get(i) != null && lL.get(i).getAsJsonObject().get("name") != null && lL.get(i).getAsJsonObject().get("name").getAsString().length() > 0) {
+                            fList.add(lL.get(i).getAsJsonObject().get("name").getAsString());
+                        } else {
+                            System.out.println("Layer name is null or empty.");
+                        }
                     }
                 }
             }
@@ -96,14 +103,13 @@ public class Search {
         StringBuilder sb = new StringBuilder();
         s = performRegex(s).toUpperCase();
         b = Map.getBuilding(s);
-        if(b != null) {
+        if (b != null) {
             return b;
         }
-        if(s.length() > 0)
-        {
+        if (s.length() > 0) {
             String[] words = s.split(" ");
             sb = new StringBuilder();
-            for(String word : words) {
+            for (String word : words) {
                 sb.append(word.charAt(0));
             }
         }
@@ -112,15 +118,15 @@ public class Search {
     }
 
     public POI searchPOI(POI p, String s, String l) {
-        if(s.isEmpty() || s.equals("Search")) {
+        if (s.isEmpty() || s.equals("Search")) {
             return p;
         }
-        if(!l.equals("All")) {
-            if(!p.getLayer().getName().equals(l)) {
+        if (!l.equals("All")) {
+            if (!p.getLayer().getName().equals(l)) {
                 return null;
             }
         }
-        if(p.getName().toUpperCase().contains(s.toUpperCase()) || s.toUpperCase().contains(p.getName().toUpperCase())) {
+        if (p.getName().toUpperCase().contains(s.toUpperCase()) || s.toUpperCase().contains(p.getName().toUpperCase())) {
             return p;
         }
         return null;
