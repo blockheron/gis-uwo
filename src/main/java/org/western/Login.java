@@ -25,6 +25,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Objects;
+import java.util.Scanner;
 
 import static java.security.MessageDigest.getInstance;
 
@@ -616,15 +617,33 @@ public class Login extends javax.swing.JFrame {
                 System.out.println("GET request not worked.");
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            try {
+                // get weather data from local file
+                File f = new File(getClass().getResource("db/weather.json").getFile());
+                Scanner s = new Scanner(f);
+                StringBuilder dataStr = new StringBuilder();
+                while (s.hasNextLine()) {
+                    dataStr.append(s.nextLine());
+                }
+                s.close();
+                data = JsonParser.parseString(dataStr.toString()).getAsJsonObject();
+                if(data != null) {
+                    handleWeatherData(data);
+                } else {
+                    wText.setText("Weather data unavailable.");
+                }
+            } catch (Exception ex) {
+                wText.setText("Weather data unavailable.");
+                ex.printStackTrace();
+            }
         }
     }
 
     private int handleWeatherData(JsonObject data) {
         int weatherCode; // weather code
-        Date date = new Date();
         String weatherDesc; // weather description
-        StringBuilder upTemp = new StringBuilder(), downTemp = new StringBuilder(); // temperature
+        StringBuilder upTemp = new StringBuilder(), downTemp = new StringBuilder(), // temperature
+        dateSB = new StringBuilder(); // weather date
         HashMap<Integer, String> wmoWeatherCodes = new HashMap<>() {
             {
                 put(0, "Metar not available");
@@ -692,15 +711,13 @@ public class Login extends javax.swing.JFrame {
         downTemp.append("°C");
         tempUp.setText(upTemp.toString());
         tempDown.setText(downTemp.toString());
-        // format date
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy, HH:mm");
-        String strDate = formatter.format(date);
-        dText.setText("Updated: " + strDate);
+        dateSB.append(data.get("daily").getAsJsonObject().get("time").getAsJsonArray().get(0).getAsString());
         // store in to json file
         try {
-            FileWriter file = new FileWriter(getClass().getResource("db/weather.json").getFile());
-            file.write(data.toString());
-            file.close();
+            FileWriter f = new FileWriter(getClass().getResource("db/weather.json").getFile());
+            BufferedWriter w = new BufferedWriter(f);
+            w.write(data.toString());
+            w.close();
         } catch (IOException e) {
             e.printStackTrace();
             return -1;
