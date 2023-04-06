@@ -91,6 +91,7 @@ public class Login extends javax.swing.JFrame {
         weatherInfo = new javax.swing.JPanel();
         tempUp = new javax.swing.JLabel();
         tempDown = new javax.swing.JLabel();
+        placeholderTemp = new javax.swing.JLabel();
         cText = new javax.swing.JLabel();
         dText = new javax.swing.JLabel();
         mask = new javax.swing.JPanel();
@@ -278,12 +279,15 @@ public class Login extends javax.swing.JFrame {
         weatherInfo.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 5, 0));
 
         tempUp.setText("--°C");
-        tempUp.setPreferredSize(new java.awt.Dimension(80, 28));
+        tempUp.setPreferredSize(new java.awt.Dimension(60, 28));
         weatherInfo.add(tempUp);
 
         tempDown.setText("--°C");
-        tempDown.setPreferredSize(new java.awt.Dimension(80, 28));
+        tempDown.setPreferredSize(new java.awt.Dimension(60, 28));
         weatherInfo.add(tempDown);
+
+        placeholderTemp.setPreferredSize(new java.awt.Dimension(60, 28));
+        weatherInfo.add(placeholderTemp);
 
         cText.setText("Loading geolocation");
         cText.setPreferredSize(new java.awt.Dimension(180, 16));
@@ -898,6 +902,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPasswordField passwordField;
     private javax.swing.JLabel passwordText;
     private javax.swing.JPanel placeholderPanel;
+    private javax.swing.JLabel placeholderTemp;
     private javax.swing.JPanel submitPanel;
     private javax.swing.JLabel tempDown;
     private javax.swing.JLabel tempUp;
