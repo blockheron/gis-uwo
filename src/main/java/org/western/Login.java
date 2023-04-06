@@ -5,7 +5,9 @@
 package org.western;
 
 import com.google.common.io.BaseEncoding;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import org.kordamp.ikonli.remixicon.RemixiconAL;
 import org.kordamp.ikonli.remixicon.RemixiconMZ;
 import org.kordamp.ikonli.swing.FontIcon;
@@ -14,9 +16,16 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.security.NoSuchAlgorithmException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.Objects;
+import java.util.Scanner;
 
 import static java.security.MessageDigest.getInstance;
 
@@ -25,24 +34,25 @@ import static java.security.MessageDigest.getInstance;
  * @author m
  */
 public class Login extends javax.swing.JFrame {
-    
+
     /**
      * Creates new form Login
      */
     public Login(boolean debug) {
-        
+
         if (debug) {
-            
+
             JsonDB db;
             db = new JsonDB(true);
             Map.addUser("test", "1234");
-            
+
         }
-        
-        
+
+
         initComponents();
         initLoginPanel();
         prepareIcon();
+        loadWeather();
     }
 
     /**
@@ -72,6 +82,18 @@ public class Login extends javax.swing.JFrame {
         onLogin = new javax.swing.JButton();
         condition = new javax.swing.JLabel();
         guestLogin = new javax.swing.JButton();
+        weatherPanel = new javax.swing.JPanel();
+        placeholderPanel = new javax.swing.JPanel();
+        weatherLayer = new javax.swing.JLayeredPane();
+        weatherIcon = new javax.swing.JPanel();
+        wIcon = new javax.swing.JLabel();
+        wText = new javax.swing.JLabel();
+        weatherInfo = new javax.swing.JPanel();
+        tempUp = new javax.swing.JLabel();
+        tempDown = new javax.swing.JLabel();
+        placeholderTemp = new javax.swing.JLabel();
+        cText = new javax.swing.JLabel();
+        dText = new javax.swing.JLabel();
         mask = new javax.swing.JPanel();
         maskBg = new javax.swing.JLabel();
 
@@ -193,6 +215,92 @@ public class Login extends javax.swing.JFrame {
 
         loginPanel.add(submitPanel);
 
+        weatherPanel.setOpaque(false);
+        weatherPanel.setPreferredSize(new java.awt.Dimension(280, 60));
+        weatherPanel.setLayout(new javax.swing.BoxLayout(weatherPanel, javax.swing.BoxLayout.LINE_AXIS));
+
+        placeholderPanel.setOpaque(false);
+
+        javax.swing.GroupLayout placeholderPanelLayout = new javax.swing.GroupLayout(placeholderPanel);
+        placeholderPanel.setLayout(placeholderPanelLayout);
+        placeholderPanelLayout.setHorizontalGroup(
+            placeholderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 2, Short.MAX_VALUE)
+        );
+        placeholderPanelLayout.setVerticalGroup(
+            placeholderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 60, Short.MAX_VALUE)
+        );
+
+        weatherPanel.add(placeholderPanel);
+
+        weatherIcon.setOpaque(false);
+        weatherIcon.setPreferredSize(new java.awt.Dimension(60, 60));
+        weatherIcon.setRequestFocusEnabled(false);
+        weatherIcon.setLayout(new java.awt.GridLayout(1, 0, 5, 5));
+        weatherIcon.add(wIcon);
+
+        wText.setText("Loading");
+
+        weatherLayer.setLayer(weatherIcon, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        weatherLayer.setLayer(wText, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout weatherLayerLayout = new javax.swing.GroupLayout(weatherLayer);
+        weatherLayer.setLayout(weatherLayerLayout);
+        weatherLayerLayout.setHorizontalGroup(
+            weatherLayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(weatherLayerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(wText)
+                .addContainerGap(26, Short.MAX_VALUE))
+            .addGroup(weatherLayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(weatherLayerLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(weatherIcon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        weatherLayerLayout.setVerticalGroup(
+            weatherLayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, weatherLayerLayout.createSequentialGroup()
+                .addGap(0, 43, Short.MAX_VALUE)
+                .addComponent(wText))
+            .addGroup(weatherLayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(weatherLayerLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(weatherIcon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        weatherPanel.add(weatherLayer);
+
+        weatherInfo.setToolTipText("");
+        weatherInfo.setOpaque(false);
+        weatherInfo.setPreferredSize(new java.awt.Dimension(200, 80));
+        weatherInfo.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 5, 0));
+
+        tempUp.setText("--°C");
+        tempUp.setPreferredSize(new java.awt.Dimension(60, 28));
+        weatherInfo.add(tempUp);
+
+        tempDown.setText("--°C");
+        tempDown.setPreferredSize(new java.awt.Dimension(60, 28));
+        weatherInfo.add(tempDown);
+
+        placeholderTemp.setPreferredSize(new java.awt.Dimension(60, 28));
+        weatherInfo.add(placeholderTemp);
+
+        cText.setText("Loading geolocation");
+        cText.setPreferredSize(new java.awt.Dimension(180, 16));
+        weatherInfo.add(cText);
+
+        dText.setText("Loading weather data");
+        dText.setPreferredSize(new java.awt.Dimension(180, 16));
+        weatherInfo.add(dText);
+
+        weatherPanel.add(weatherInfo);
+
+        loginPanel.add(weatherPanel);
+
         loginLayer.setLayer(loginPanel, javax.swing.JLayeredPane.POPUP_LAYER);
         loginLayer.add(loginPanel);
 
@@ -240,8 +348,7 @@ public class Login extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(layerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(layerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -268,7 +375,7 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_honeyPotActionPerformed
 
     private void guestLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guestLoginMouseClicked
-        MainWindow mainWindow = new MainWindow(false, null);
+        MainWindow mainWindow = new MainWindow(true, null);
         mainWindow.setVisible(true);
         dispose();
     }//GEN-LAST:event_guestLoginMouseClicked
@@ -460,7 +567,10 @@ public class Login extends javax.swing.JFrame {
                     m = new ImageIcon(Objects.requireNonNull(getClass().getResource("assets/masked_bg.png"))),
                     l = new ImageIcon(Objects.requireNonNull(getClass().getResource("assets/logo.png")));
             FontIcon u = FontIcon.of(RemixiconMZ.USER_3_LINE, 20, Color.decode("#113355")),
-                    p = FontIcon.of(RemixiconAL.LOCK_PASSWORD_LINE, 20, Color.decode("#113355"));
+                    p = FontIcon.of(RemixiconAL.LOCK_PASSWORD_LINE, 20, Color.decode("#113355")),
+                    w = FontIcon.of(RemixiconAL.CLOUD_OFF_FILL, 40, Color.decode("#8e8e93")),
+                    up = FontIcon.of(RemixiconAL.ARROW_UP_S_LINE, 20, Color.decode("#ff3b30")),
+                    down = FontIcon.of(RemixiconAL.ARROW_DOWN_S_LINE, 20, Color.decode("#30d158"));
             b = new ImageIcon(b.getImage().getScaledInstance(600, 400, Image.SCALE_SMOOTH));
             l = new ImageIcon(l.getImage().getScaledInstance(260, 260 * l.getIconHeight() / l.getIconWidth(), Image.SCALE_SMOOTH));
             m = new ImageIcon(m.getImage().getScaledInstance(300, 400, Image.SCALE_SMOOTH));
@@ -469,6 +579,9 @@ public class Login extends javax.swing.JFrame {
             logo.setIcon(l);
             userText.setIcon(u);
             passwordText.setIcon(p);
+            wIcon.setIcon(w);
+            tempUp.setIcon(up);
+            tempDown.setIcon(down);
         } catch (Exception e) {
             // placeholder when icons load failed
             bg.setBackground(Color.decode("#e8d4ff"));
@@ -479,6 +592,186 @@ public class Login extends javax.swing.JFrame {
         }
     }
 
+    private void loadWeather() {
+        double lat = 0, lon = 0;
+        JsonObject data;
+        wText.setForeground(Color.decode("#8e8e93"));
+        tempUp.setFont(new Font("Inter", 0, 14));
+        tempDown.setFont(new Font("Inter", 0, 14));
+        // get latitude and longitude from API
+        try {
+            String url = "https://freegeoip.app/json/";
+            URL obj = new URL(url);
+            HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+            con.setRequestMethod("GET");
+            con.setRequestProperty("User-Agent", "Mozilla/5.0");
+            int responseCode = con.getResponseCode();
+            System.out.println("GET Response Code :: " + responseCode);
+            if (responseCode == HttpURLConnection.HTTP_OK) { // success
+                BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+                String inputLine;
+                StringBuffer response = new StringBuffer();
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                }
+                in.close();
+                // print result
+                System.out.println(response.toString());
+                // parse JSON
+                data = JsonParser.parseString(response.toString()).getAsJsonObject();
+                lat = data.get("latitude").getAsDouble();
+                lon = data.get("longitude").getAsDouble();
+                cText.setText(data.get("city").getAsString() + ", " + data.get("region_name").getAsString());
+            } else {
+                System.out.println("GET request not worked");
+                return;
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            cText.setText("Failed to fetch geolocation.");
+        }
+        // get weather data from API
+        try {
+            String url = "https://api.open-meteo.com/v1/forecast?latitude=" + lat + "&longitude=" + lon + "&daily=weathercode,temperature_2m_max,temperature_2m_min&forecast_days=1&timezone=America%2FNew_York";
+            URL obj = new URL(url);
+            HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+            con.setRequestMethod("GET");
+            con.setRequestProperty("User-Agent", "Mozilla/5.0");
+            int responseCode = con.getResponseCode();
+            System.out.println("GET Response Code :: " + responseCode);
+            if (responseCode == HttpURLConnection.HTTP_OK) { // success
+                BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+                String inputLine;
+                StringBuffer response = new StringBuffer();
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                }
+                in.close();
+                // print result
+                System.out.println(response);
+                // get weather data
+                data = JsonParser.parseString(response.toString()).getAsJsonObject();
+                if(data != null) {
+                    handleWeatherData(data);
+                } else {
+                    wText.setText("Weather data unavailable.");
+                }
+            } else {
+                cText.setText("Weather data unavailable.");
+                System.out.println("GET request not worked.");
+            }
+        } catch (Exception e) {
+            try {
+                // get weather data from local file
+                File f = new File(getClass().getResource("db/weather.json").getFile());
+                Scanner s = new Scanner(f);
+                StringBuilder dataStr = new StringBuilder();
+                while (s.hasNextLine()) {
+                    dataStr.append(s.nextLine());
+                }
+                s.close();
+                data = JsonParser.parseString(dataStr.toString()).getAsJsonObject();
+                if(data != null) {
+                    handleWeatherData(data);
+                } else {
+                    dText.setText("Weather data unavailable.");
+                }
+            } catch (Exception ex) {
+                dText.setText("Weather data unavailable.");
+                ex.printStackTrace();
+            }
+        }
+    }
+
+    private int handleWeatherData(JsonObject data) {
+        int weatherCode; // weather code
+        String weatherDesc; // weather description
+        StringBuilder upTemp = new StringBuilder(), downTemp = new StringBuilder(), // temperature
+        dateSB = new StringBuilder(); // weather date
+        HashMap<Integer, String> wmoWeatherCodes = new HashMap<>() {
+            {
+                put(0, "Metar not available");
+                put(1, "Clear sky");
+                put(2, "Partly cloudy");
+                put(3, "Cloudy");
+                put(4, "Overcast");
+                put(5, "Foggy");
+                put(6, "Light rain");
+                put(7, "Moderate rain");
+                put(8, "Heavy rain");
+                put(9, "Intense rain");
+                put(10, "Freezing rain");
+                put(11, "Light freezing rain");
+                put(12, "Moderate freezing rain");
+                put(13, "Heavy freezing rain");
+                put(14, "Snow shower");
+                put(15, "Light snowfall");
+                put(16, "Moderate snowfall");
+                put(17, "Heavy snowfall");
+                put(18, "Thunderstorm");
+                put(19, "Hailstorm");
+                put(20, "Mist");
+                put(21, "Haze");
+                put(22, "Smoke");
+                put(23, "Dust/sandstorm");
+                put(24, "Windy");
+                put(25, "Blustery");
+                put(26, "Snowstorm");
+                put(27, "Heavy snowstorm");
+                put(28, "Thunderstorms and rain");
+                put(29, "Thunderstorms and snow");
+                put(30, "Tornado");
+            }
+        };
+        weatherCode = data.get("daily").getAsJsonObject().get("weathercode").getAsJsonArray().get(0).getAsInt();
+        // convert wmo code to weather description
+        weatherDesc = wmoWeatherCodes.get(weatherCode);
+        wText.setText(weatherDesc);
+        if (weatherDesc.toUpperCase().contains("RAIN") || weatherDesc.toUpperCase().contains("SNOW") || weatherDesc.toUpperCase().contains("STORM")) {
+            wText.setForeground(Color.decode("#32ade6"));
+            if (weatherDesc.toUpperCase().contains("RAIN")) {
+                wIcon.setIcon(FontIcon.of(RemixiconMZ.RAINY_FILL, 40, Color.decode("#32ade6")));
+            } else if (weatherDesc.toUpperCase().contains("SNOW")) {
+                wIcon.setIcon(FontIcon.of(RemixiconMZ.SNOWY_FILL, 40, Color.decode("#32ade6")));
+            } else if (weatherDesc.toUpperCase().contains("STORM")) {
+                wIcon.setIcon(FontIcon.of(RemixiconMZ.THUNDERSTORMS_FILL, 40, Color.decode("#32ade6")));
+            }
+        } else if(weatherDesc.toUpperCase().contains("FOG") || weatherDesc.toUpperCase().contains("HAZE") || weatherDesc.toUpperCase().contains("SMOKE") || weatherDesc.toUpperCase().contains("DUST")) {
+            wText.setForeground(Color.decode("#5856d6"));
+            wIcon.setIcon(FontIcon.of(RemixiconAL.FOGGY_FILL, 40, Color.decode("#8e8e93")));
+        } else if (weatherDesc.toUpperCase().contains("CLOUDY") || weatherDesc.toUpperCase().contains("OVERCAST")) {
+            wText.setForeground(Color.decode("#40c8e0"));
+            wIcon.setIcon(FontIcon.of(RemixiconAL.CLOUDY_FILL, 40, Color.decode("#40c8e0")));
+        } else if (weatherDesc.toUpperCase().contains("CLEAR")) {
+            wText.setForeground(Color.decode("#ff9500"));
+            wIcon.setIcon(FontIcon.of(RemixiconMZ.SUN_FILL, 40, Color.decode("#ff9500")));
+        } else {
+            wText.setForeground(Color.decode("#63e6e2"));
+            wIcon.setIcon(FontIcon.of(RemixiconMZ.SUN_CLOUDY_FILL, 40, Color.decode("#63e6e2")));
+        }
+        upTemp.append(data.get("daily").getAsJsonObject().get("temperature_2m_max").getAsJsonArray().get(0).getAsInt());
+        downTemp.append(data.get("daily").getAsJsonObject().get("temperature_2m_min").getAsJsonArray().get(0).getAsInt());
+        upTemp.append("°C");
+        downTemp.append("°C");
+        tempUp.setText(upTemp.toString());
+        tempDown.setText(downTemp.toString());
+        dateSB.append("As of ");
+        dateSB.append(data.get("daily").getAsJsonObject().get("time").getAsJsonArray().get(0).getAsString());
+        dText.setText(dateSB.toString());
+        // store in to json file
+        try {
+            FileWriter f = new FileWriter(getClass().getResource("db/weather.json").getFile());
+            BufferedWriter w = new BufferedWriter(f);
+            w.write(data.toString());
+            w.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return -1;
+        }
+        return 0;
+    }
+
     private int handleLogin() {
         int padding = 5;
         byte[] b; // byte array of password
@@ -487,7 +780,7 @@ public class Login extends javax.swing.JFrame {
         JDialog prompt = new JDialog(); // pop up dialog
         JLabel message = new JLabel();
         JButton confirm = new JButton("OK");
-        
+
         Border defaultBorder = BorderFactory.createLineBorder(Color.decode("#eaeaea"));
         prompt.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         prompt.setModal(true);
@@ -533,7 +826,7 @@ public class Login extends javax.swing.JFrame {
         String username = usernameField.getText();
         String password = new String(passwordField.getPassword());
         //
-        
+
         if (!honeyPot.getText().isEmpty() || username.isEmpty() || password.isEmpty()) {
             return -1;
         }
@@ -547,7 +840,7 @@ public class Login extends javax.swing.JFrame {
             prompt.setVisible(true);
             return -2;
         }
-        
+
         //hash input password
         b = password.getBytes(StandardCharsets.UTF_8);
         try {
@@ -556,7 +849,7 @@ public class Login extends javax.swing.JFrame {
             throw new RuntimeException(e);
         }
         //
-        
+
         // https://stackoverflow.com/questions/9655181/how-to-convert-a-byte-array-to-a-hex-string-in-java
         h = BaseEncoding.base16().lowerCase().encode(b);
         if (user.getPassword().equals(h)) { // check hash password
@@ -575,7 +868,7 @@ public class Login extends javax.swing.JFrame {
             MainWindow mainWindow = new MainWindow(user.get("id").getAsInt());
             mainWindow.setVisible(true);
             return 1;*/
-            MainWindow mainWindow = new MainWindow(false, user);
+            MainWindow mainWindow = new MainWindow(true, user);
             mainWindow.setVisible(true);
             return 0;
         } else {
@@ -592,7 +885,9 @@ public class Login extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel bg;
     private javax.swing.JPanel bgPanel;
+    private javax.swing.JLabel cText;
     private javax.swing.JLabel condition;
+    private javax.swing.JLabel dText;
     private javax.swing.JPanel formPanel;
     private javax.swing.JButton guestLogin;
     private javax.swing.JTextField honeyPot;
@@ -606,9 +901,19 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JButton onLogin;
     private javax.swing.JPasswordField passwordField;
     private javax.swing.JLabel passwordText;
+    private javax.swing.JPanel placeholderPanel;
+    private javax.swing.JLabel placeholderTemp;
     private javax.swing.JPanel submitPanel;
+    private javax.swing.JLabel tempDown;
+    private javax.swing.JLabel tempUp;
     private javax.swing.JLabel title;
     private javax.swing.JLabel userText;
     private javax.swing.JTextField usernameField;
+    private javax.swing.JLabel wIcon;
+    private javax.swing.JLabel wText;
+    private javax.swing.JPanel weatherIcon;
+    private javax.swing.JPanel weatherInfo;
+    private javax.swing.JLayeredPane weatherLayer;
+    private javax.swing.JPanel weatherPanel;
     // End of variables declaration//GEN-END:variables
 }

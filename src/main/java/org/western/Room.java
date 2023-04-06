@@ -25,10 +25,12 @@ public class Room extends JComponent
     private static Color DEFAULT_COLOR = new Color(200,200,200,50); //transparent grey
     private static Color DEFAULT_ACTIVE_COLOR = new Color(102, 178, 255, 50);//light blue with transparency
     
+    private LinkedList<Color> highlightLayers = new LinkedList<Color>();
+    
     private int id;
     private Building building;
     private Floor floor;
-    private Layer layer;
+    //private Layer layer;
     
     //private Polygon curShape;
     //private Rectangle curBounds;
@@ -51,7 +53,7 @@ public class Room extends JComponent
     {
         
         //add room in unassigned layer
-        this(building, floor, floor.getLayer("Unassigned"), shape, new Point(0,0));
+        this(building, floor, shape, new Point(0,0));
                
     }
     
@@ -62,41 +64,41 @@ public class Room extends JComponent
      * @param shape the shape of the room
      * @param position the position of the room
      */
-    public Room(Building building, Floor floor, Polygon shape, Point position)
+    /*public Room(Building building, Floor floor, Polygon shape, Point position)
     {
         
         //add room in unassigned layer
-        this(building, floor, floor.getLayer("Unassigned"), shape, position);
+        this(building, floor, Map.getLayer("Unassigned"), shape, position);
                
-    }
+    }*/
     
-    public Room(Building building, Floor floor, Layer layer, Polygon shape, Point position)
+    public Room(Building building, Floor floor, Polygon shape, Point position)
     {
         
         this.building = building;
         this.floor = floor;
-        this.layer = layer;
-        this.id = JsonDB.addRoom(building, floor, layer, shape, position).get("id").getAsInt();
+        this.id = JsonDB.addRoom(building, floor, shape, position).get("id").getAsInt();
         curColor = DEFAULT_COLOR;
         curActiveColor = DEFAULT_ACTIVE_COLOR;
         loadedRooms.put(id, this);
         
     }
     
-    private Room(JsonObject building, JsonObject floor, JsonObject layer, JsonObject room) {
+    private Room(JsonObject building, JsonObject floor, JsonObject room) {
         this.building = Building.getBuilding(building);
         this.floor = Floor.getFloor(building, floor);
-        this.layer = Layer.getLayer(building, floor, layer);
         this.id = room.get("id").getAsInt();
+        curColor = DEFAULT_COLOR;
+        curActiveColor = DEFAULT_ACTIVE_COLOR;
         loadedRooms.put(id, this);
     }
     
-    public static Room getRoom(JsonObject building, JsonObject floor, JsonObject layer, JsonObject room) {
+    public static Room getRoom(JsonObject building, JsonObject floor, JsonObject room) {
         int roomID = room.get("id").getAsInt();
         if (loadedRooms.containsKey(roomID))
             return loadedRooms.get(roomID);
         
-        return new Room(building, floor, layer, room);
+        return new Room(building, floor, room);
         
     }
     
@@ -105,7 +107,7 @@ public class Room extends JComponent
     }
     
     private JsonObject getThis() {
-        return JsonDB.getRoom(building, floor, layer, id);
+        return JsonDB.getRoom(building, floor, id);
     }
     
     public int getID() {
@@ -121,6 +123,33 @@ public class Room extends JComponent
     /*public Point getStartingLocation() {
         return new Point(getThis().get("x").getAsInt(), getThis().get("y").getAsInt());
     }*/
+    
+    public void hightlight(Color color) {
+        this.highlightLayers.add(color);
+        Color cur = new Color(0,0,0,50); 
+        for(Color c : highlightLayers) {
+            cur = new Color(cur.getRed() + c.getRed(),
+                cur.getBlue() + c.getBlue(),
+                cur.getGreen() + c.getGreen(), 50);
+        }
+        curColor = cur;
+        repaint();
+    }
+    
+    public void dehightlight(Color color) {
+        this.highlightLayers.remove(color);
+        if (highlightLayers.isEmpty()) {
+            Color cur = new Color(0,0,0,50); 
+            for(Color c : highlightLayers) {
+                cur = new Color(cur.getRed() + c.getRed(),
+                    cur.getBlue() + c.getBlue(),
+                    cur.getGreen() + c.getGreen(), 50);
+            }
+            curColor = cur;
+        }
+        else curColor = DEFAULT_COLOR;
+        repaint();
+    }
     
     public Polygon getShape() {
         
@@ -171,13 +200,12 @@ public class Room extends JComponent
     
     public LinkedList<POI> getPOIs() {
         
-        JsonArray POIs = JsonDB.getPOIs(building, floor, layer, this);
+        JsonArray POIs = JsonDB.getPOIs(building, floor, this);
         LinkedList<POI> out = new LinkedList<POI>();
         
         for (JsonElement poi:POIs) 
             out.add(POI.getPOI(JsonDB.getBuilding(building.getID()),
                     JsonDB.getFloor(building, floor.getID()),
-                    JsonDB.getLayer(building, floor, layer.getID()),
                     getThis(),
                     poi.getAsJsonObject()
             ));
@@ -195,7 +223,10 @@ public class Room extends JComponent
     }
     
     public POI addPOI(String name, String description, Point position) {
-        return new POI(building, floor, layer, this , name, description, position);
+        return new POI(building, floor, Map.getLayer("unassigned"), this, name, description, position);
+    }
+    public POI addPOI(User user, String name, String description, Point position) {
+        return new POI(building, floor, Map.getLayer("unassigned"), this, user , name, description, position);
     }
     
     /*public Room(Polygon shape, Building building, Floor floor) 
@@ -237,11 +268,6 @@ public class Room extends JComponent
         else g2D.setColor(curActiveColor);
         g2D.fillPolygon(getShape());
         
-        //System.out.println(this.getX() + ", " + this.getY());
-        
-        //g2D.setColor(Color.BLACK);
-        //g2D.drawRect(bounds.x, bounds.y, bounds.width, bounds.height);
-        
     }
     
     public void mouseMoved(MouseEvent e) {
@@ -268,8 +294,6 @@ public class Room extends JComponent
             repaint();
         }
         //
-
-        //main.dispatchEvent(e);
 
     }
 
@@ -308,7 +332,6 @@ public class Room extends JComponent
         
     }*/
     
-    //reimplement when pois implemented
     public void mouseClicked(MouseEvent e, JLayeredPane layerPanel) {
 
         if (active && ListPopup == null) {

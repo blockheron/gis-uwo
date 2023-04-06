@@ -1,5 +1,6 @@
 package org.western;
 import com.google.gson.*;
+import java.awt.*;
 
 import java.util.LinkedList;
 
@@ -65,6 +66,66 @@ public class Map {
     }
     public static User addUser(String username, String password, boolean admin) {
         return new User(username, password, admin);
+    }
+    
+    public static LinkedList<Layer> getLayers() {
+        JsonArray layers = JsonDB.getLayers();
+        LinkedList<Layer> out = new LinkedList<Layer>();
+        
+        for (JsonElement layer:layers) 
+            out.add(Layer.getLayer(layer.getAsJsonObject()));
+        
+        return out;
+        
+    }
+    
+    public static Layer getLayer(String name) {
+        
+        for (Layer layer: getLayers()) {
+            if (layer.getName().equals(name)) return layer;
+        }
+        return null;
+        
+    }
+    public static Layer getLayer(int id) {
+        
+        for (Layer layer: getLayers()) {
+            if (layer.getID() == id) return layer;
+        }
+        return null;
+        
+    }
+    
+    public static Layer addLayer(String name, Color color) {
+        return new Layer(name, color);
+    }
+    
+    /**
+     * gets every poi in the database
+     * @return a linked list of every POI in the database
+     */
+    public static LinkedList<POI> getPOIs() {
+        LinkedList<POI> out = new LinkedList<POI>();
+        for(Building building : getBuildings()) {
+            for (POI poi : building.getPOIs()) {
+                out.add(poi);
+            }
+        }
+        return out;
+    }
+    
+    /**
+     * gets every room in the database
+     * @return a linked list of every room in the database
+     */
+    public static LinkedList<Room> getRooms() {
+        LinkedList<Room> out = new LinkedList<Room>();
+        for(Building building : getBuildings()) {
+            for (Room room : building.getRooms()) {
+                out.add(room);
+            }
+        }
+        return out;
     }
     
 }

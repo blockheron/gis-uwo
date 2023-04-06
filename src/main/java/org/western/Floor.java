@@ -22,7 +22,7 @@ public class Floor {
     public Floor(Building building, String name, String filePath) {
         this.building = building;
         this.id = JsonDB.addFloor(building, name, filePath).get("id").getAsInt();
-        addLayer("Unassigned", new Color(200, 0, 0, 50));
+        //addLayer("Unassigned", new Color(200, 0, 0, 50));
         loadedFloors.put(id, this);
     }
     
@@ -36,7 +36,7 @@ public class Floor {
     public Floor(Building building, String name, String filePath, int prevFloorID) {
         this.building = building;
         this.id = JsonDB.addFloor(building, name, filePath, prevFloorID).get("id").getAsInt();
-        addLayer("Unassigned", new Color(200, 0, 0, 50));
+        //addLayer("Unassigned", new Color(200, 0, 0, 50));
         loadedFloors.put(id, this); 
     }
     
@@ -72,21 +72,34 @@ public class Floor {
     public String getFilePath() {
         return getThis().get("filePath").getAsString();
     }
-    public int getLayerNum() {
+    public int getRoomNum() {
         return getThis().get("count").getAsInt();
     }
     
-    public LinkedList<Layer> getLayers() {
+    public LinkedList<Room> getRooms() {
         
-        JsonArray layers = JsonDB.getLayers(building, this);
-        LinkedList<Layer> out = new LinkedList<Layer>();
+        JsonArray rooms = JsonDB.getRooms(building, this);
+        LinkedList<Room> out = new LinkedList<Room>();
         
-        for (JsonElement layer:layers) 
-            out.add(Layer.getLayer(JsonDB.getBuilding(building.getID()),
+        for (JsonElement room:rooms) 
+            out.add(Room.getRoom(JsonDB.getBuilding(building.getID()),
                     getThis(),
-                    layer.getAsJsonObject()
+                    room.getAsJsonObject()
             ));
         
+        return out;
+        
+    }
+    
+    public LinkedList<POI> getPOIs() {
+        
+        LinkedList<POI> out = new LinkedList<POI>();
+        
+        for(Room room : getRooms()) {
+            for (POI poi : room.getPOIs()) {
+                out.add(poi);
+            }
+        }
         return out;
         
     }
@@ -96,56 +109,79 @@ public class Floor {
      * @param id the id of the layer to get 
      * @return the layer if it exists, otherwise null
      */
-    public Layer getLayer(int id) {
+    /*public Layer getLayer(int id) {
         for (Layer layer: getLayers()) {
             if (layer.getID() == id) return layer;
         }
         return null;
-    }
+    }*/
     
     /**
      * gets a layer in the floor based on the layer's id
      * @param name the name of the layer to get 
      * @return the layer if it exists, otherwise null
      */
-    public Layer getLayer(String name) {
+    /*public Layer getLayer(String name) {
         for (Layer layer: getLayers()) {
             if (layer.getName().equals(name)) return layer;
         }
         return null;
-    }
+    }*/
     
     /**
-     * adds a new layer to the floor
-     * @param name the name of the layer to add
-     * @param color the color of the layer to add
-     * @return the layer on success, otherwise null
+     * 
+     * @return 
      */
-    public Layer addLayer(String name, Color color) {
-        return new Layer(building, this, name, color);
-    }
-    
-    public LinkedList<Room> getRooms() {
-        LinkedList<Room> rooms = new LinkedList<Room>();
-        for (Layer layer : getLayers()) {
-            for(Room room : layer.getRooms())
-                rooms.add(room);
-        }
-        return rooms;
-    }
+    /*public LinkedList<Room> getRooms() {
+        
+        JsonArray rooms = JsonDB.getRooms(building, this);
+        LinkedList<Room> out = new LinkedList<Room>();
+        
+        for(JsonElement room : rooms)
+            out.add(Room.getRoom(JsonDB.getBuilding(building.getID()),
+                    getThis(), room.getAsJsonObject()));
+        
+        return out;
+    }*/
     
     /*public void addRoom(Room room) {
         
     }*/
     
     /**
+     * add a room to the database
+     * @param shape the shape of the room(the polygon defining its outline)
+     * @param position the position of the room
+     * @return the room if successful, otherwise null
+     */
+    public Room addRoom(Polygon shape, Point position) {
+        return new Room(building,this, shape, position);
+    }
+    
+    /**
+     * remove a room from the database
+     * @param room the room to remove
+     */
+    public void remove(Room room) {
+        getThis().get("rooms").getAsJsonArray().remove(
+                JsonDB.getRoom(building, this, room.getID())
+        );
+        int count = getThis().get("count").getAsInt();
+        getThis().addProperty("count", count-1);
+        
+        room.free();
+        JsonDB.save();
+    }
+    
+    /**
      * remove a room from the floor
      * @param room the room to remove
      */
-    public void removeRoom(Room room) {
+    /*public void removeRoom(Room room) {
+        if (getLayers().isEmpty()) return;
         for (Layer layer : getLayers()) {
             layer.remove(room);
         }
-    }
+    }*/
     
 }

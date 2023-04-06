@@ -14,16 +14,22 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.LinkedList;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.Objects;
 
 /**
- * @author m
+ * @author Team 22
+ * A JFrame to display all visual components of this program
  */
 public class MainWindow extends javax.swing.JFrame {
-    //private int session = -1; // -1 for guest, 0 for admin, 1 for user
+    private int session = -1; // -1 for guest, 0 for admin, 1 for user
 
-    private Building curBuilding;
-    private Floor curFloor;
-    private User curUser;
+    public static Building curBuilding;
+    public static Floor curFloor;
+    private LinkedList<Floor> floorList;
+    private LinkedList<Layer> layerList;
+    private LinkedList<Room> roomList;
+    private CanvasGUI canvas;
+//    private CanvasGUI smallMapPic;
 
     private int x, y, initialX, initialY, deltaX, deltaY;
     private boolean editMode = false;
@@ -32,35 +38,39 @@ public class MainWindow extends javax.swing.JFrame {
     private Icon addRoomButtonEnabled, addRoomButtonDisabled;
     private Room draftRoom;
     private Polygon draftPoly;
-
+    
     /**
      * Creates new form MainWindow
      */
     public MainWindow(boolean debug, User user) {
-
-        curUser = user;
-
+        
+        // Print out user session
+        if (user != null) System.out.println("User: " + user.getUsername() + " logged in");
+        
         //demo code
-//        if (debug)
-//        {
-//            JsonDB db;
-//            db = new JsonDB(true);
-//
-//            curBuilding = new Building("Middlesex College", "MC");
-//            curFloor = curBuilding.addFloor("Ground", "Path-to-image");
-//        }
-        JsonDB db = new JsonDB();
-        //curBuilding = new Building("Middlesex College", "MC");
-        //curFloor = curBuilding.addFloor("Ground", "Path-to-image");
-        curBuilding = Map.getBuilding("Middlesex College");
-        curFloor = curBuilding.getFloor("Ground");
-        //building.getPOIs()
+        if (debug == true) {
 
+            // Make Middlesex; add its floors
+            curBuilding = new Building("Middlesex College", "MC");
+            curBuilding.addFloor("Ground", "assets/MC-BF-1.png");
+            curBuilding.addFloor("First", "assets/MC-BF-2.png");
+            curBuilding.addFloor("Second", "assets/MC-BF-3.png");
+            curBuilding.addFloor("Third", "assets/MC-BF-4.png");
+            curBuilding.addFloor("Fourth", "assets/MC-BF-5.png");
+            floorList = curBuilding.getFloors();
+            // Set lowest floor as default landing floor
+            curFloor = floorList.get(0);
+            layerList = Map.getLayers();
+            roomList = curFloor.getRooms();
 
+            System.out.println("curFloor index: " + curBuilding.getFloors().indexOf(curFloor));
+        }
         //
 
 
+
         initComponents();
+        myInitComponents(); // added
         initMainWindow();
         initSearch();
         initButtons();
@@ -68,6 +78,19 @@ public class MainWindow extends javax.swing.JFrame {
         prepareIcon();
         renderRooms();
     }
+
+    /**
+     * Creates new form MainWindow for a specified session
+     * @param session an int representing the current session
+     */
+    /*public MainWindow(int session) {
+        this.session = session;
+        initComponents();
+        initMainWindow();
+        initSearchBox();
+        renderFrame();
+        prepareIcon();
+    }*/
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -82,6 +105,8 @@ public class MainWindow extends javax.swing.JFrame {
         Frame = new javax.swing.JPanel();
         editButton = new javax.swing.JToggleButton();
         addRoomButton = new javax.swing.JToggleButton();
+        nextFloorButton = new javax.swing.JButton();
+        prevFloorButton = new javax.swing.JButton();
         searchPanel = new javax.swing.JPanel();
         searchBox = new javax.swing.JTextField();
         onSearch = new javax.swing.JButton();
@@ -122,25 +147,54 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
+        nextFloorButton.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        nextFloorButton.setText("↑");
+        nextFloorButton.setPreferredSize(new java.awt.Dimension(40, 40));
+        nextFloorButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nextFloorButtonActionPerformed(evt);
+            }
+        });
+
+        prevFloorButton.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        prevFloorButton.setText("↓");
+        prevFloorButton.setPreferredSize(new java.awt.Dimension(40, 40));
+        prevFloorButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                prevFloorButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout FrameLayout = new javax.swing.GroupLayout(Frame);
         Frame.setLayout(FrameLayout);
         FrameLayout.setHorizontalGroup(
-                FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(FrameLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(editButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(addRoomButton)
-                                .addContainerGap(1122, Short.MAX_VALUE))
+            FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(FrameLayout.createSequentialGroup()
+                .addGroup(FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(FrameLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(editButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(addRoomButton))
+                    .addGroup(FrameLayout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addGroup(FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(prevFloorButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nextFloorButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(1122, Short.MAX_VALUE))
         );
         FrameLayout.setVerticalGroup(
-                FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FrameLayout.createSequentialGroup()
-                                .addContainerGap(788, Short.MAX_VALUE)
-                                .addGroup(FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(addRoomButton)
-                                        .addComponent(editButton))
-                                .addContainerGap())
+            FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FrameLayout.createSequentialGroup()
+                .addContainerGap(656, Short.MAX_VALUE)
+                .addComponent(nextFloorButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(prevFloorButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45)
+                .addGroup(FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(addRoomButton)
+                    .addComponent(editButton))
+                .addContainerGap())
         );
 
         searchPanel.setForeground(new java.awt.Color(13, 17, 23));
@@ -280,6 +334,62 @@ public class MainWindow extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Custom initComponents for button action commands
+     */
+    public void myInitComponents() {
+        // Action commands for next/prev floor buttons
+        nextFloorButton.setActionCommand("up");
+        prevFloorButton.setActionCommand("down");
+        // Start at lowest floor by default: prev floor doesn't exist
+        prevFloorButton.setEnabled(false);
+
+        // Action command for smallMapBtn
+//        smallMapBtn.setActionCommand("mapToBuild");
+        LayerSelectPanel selectPanel = new LayerSelectPanel();
+        layerPanel.add(selectPanel, JLayeredPane.PALETTE_LAYER);
+        selectPanel.setVisible(true);
+        selectPanel.setSize(selectPanel.getPreferredSize());
+        selectPanel.setLocation(this.getSize().width - (int)selectPanel.getPreferredSize().getWidth(),
+                this.getSize().height - (int)selectPanel.getPreferredSize().getHeight());
+    }
+
+    /**
+     * TODO: fix help buttons not existing
+     */
+    private void helpButtonMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_helpButtonMouseMoved
+
+    }//GEN-LAST:event_helpButtonMouseMoved
+
+    private void helpButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_helpButtonMouseClicked
+        CustomTip p = new CustomTip();
+        p.run();
+    }//GEN-LAST:event_helpButtonMouseClicked
+
+    /**
+     * smallMapBtn when receiving an ActionEvent to switch from building to map
+     * (except smallMapBtn doesn't exist; pending deletion)
+     * @param evt ActionEvent "mapToBuild" triggered by clicking this button
+     */
+//    private void smallMapBtnActionPerformed(java.awt.event.MouseEvent evt) {
+//        if ("mapToBuild".equals(evt.getActionCommand())) {
+//            //unrender rooms on the floor
+//            unrenderRooms();
+//
+//            // Render campus map image
+//            ImageIcon pic = new ImageIcon(Objects.requireNonNull(getClass().getResource("assets/campus_map.png")));
+//            canvas.setImage(pic);
+//            curBuilding = null;
+//            curFloor = null;
+//
+//            // Hide building floor map buttons
+//            smallMapBtn.setVisible(false);
+//            smallMap.setVisible(false);
+//            nextFloorBtn.setVisible(false);
+//            prevFloorBtn.setVisible(false);
+//        }
+//    }
+
     private void searchBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_searchBoxActionPerformed
@@ -293,26 +403,32 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_editButtonActionPerformed
 
     private void editButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editButtonMousePressed
+        editButtonMousePressed();
+    }//GEN-LAST:event_editButtonMousePressed
+
+        private void editButtonMousePressed() {
         editMode = !editMode;
-        if (editMode) {
+        if (editMode){
             editButton.setIcon(editButtonEnabled);
             addRoomButton.setEnabled(true);
             addRoomButton.setVisible(true);
-        } else {
+        }
+        else {
             editButton.setIcon(editButtonDisabled);
-            addRoomButtonMouseClicked(evt);
+            addRoomButtonMouseClicked();
             addRoomButton.setEnabled(false);
             addRoomButton.setVisible(false);
         }
-    }//GEN-LAST:event_editButtonMousePressed
+    }
 
-    private void addRoomButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addRoomButtonMouseClicked
+    private void addRoomButtonMouseClicked() {
         if (editMode && !addingRoom) {
-
+            
             addRoomButton.setIcon(addRoomButtonEnabled);
             addingRoom = true;
 
-        } else {
+        }
+        else {
 
             addRoomButton.setIcon(addRoomButtonDisabled);
             addingRoom = false;
@@ -321,8 +437,76 @@ public class MainWindow extends javax.swing.JFrame {
             draftPoly = null;
             //
         }
+    }
 
+    private void addRoomButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addRoomButtonMouseClicked
+        addRoomButtonMouseClicked();
     }//GEN-LAST:event_addRoomButtonMouseClicked
+
+    /**
+     * nextFloorButton actions when receiving an ActionEvent to switch floors
+     * @param evt ActionEvent "down" or "up" triggered by clicking nextFloor or prevFloor
+     */
+    private void nextFloorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextFloorButtonActionPerformed
+        if ("up".equals(evt.getActionCommand())) {
+            //unrender rooms
+            unrenderRooms();
+            //if(editMode)
+
+            // Load in next floor obejct (next item in floorList)
+            curFloor = floorList.get(floorList.indexOf(curFloor) + 1);
+            layerList = Map.getLayers();
+            roomList = curFloor.getRooms();
+
+            //render the next floor's rooms
+            renderRooms();
+
+            // Render next floor image
+            ImageIcon pic = new ImageIcon(Objects.requireNonNull(getClass().getResource(curFloor.getFilePath())));
+            canvas.setImage(pic);
+
+            // If at max floor, disable. Else, enable
+            if (floorList.indexOf(curFloor) == curBuilding.getFloorNum() - 1) {
+                nextFloorButton.setEnabled(false);
+                prevFloorButton.setEnabled(true);
+            } else {
+                nextFloorButton.setEnabled(true);
+                prevFloorButton.setEnabled(true);
+            }
+        }
+    }//GEN-LAST:event_nextFloorButtonActionPerformed
+
+    /**
+     * prevFloorButton actions when receiving an ActionEvent to switch floors
+     * @param evt ActionEvent "down" or "up" triggered by clicking nextFloor or prevFloor
+     */
+    private void prevFloorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prevFloorButtonActionPerformed
+        if ("down".equals(evt.getActionCommand())) {
+            //unrender this floors rooms
+            unrenderRooms();
+
+            // Load in next floor obejct (prev item in floorList)
+            curFloor = floorList.get(floorList.indexOf(curFloor) - 1);
+            layerList = Map.getLayers();
+            roomList = curFloor.getRooms();
+
+            //render the new floor's rooms
+            renderRooms();
+
+            // Render next floor image
+            ImageIcon pic = new ImageIcon(Objects.requireNonNull(getClass().getResource(curFloor.getFilePath())));
+            canvas.setImage(pic);
+
+            // If at min floor, disable. Else, enable
+            if (floorList.indexOf(curFloor) == 0) {
+                nextFloorButton.setEnabled(true);
+                prevFloorButton.setEnabled(false);
+            } else {
+                nextFloorButton.setEnabled(true);
+                prevFloorButton.setEnabled(true);
+            }
+        }
+    }//GEN-LAST:event_prevFloorButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -353,7 +537,9 @@ public class MainWindow extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
+                new JsonDB(true);
                 new MainWindow(true, null).setVisible(true);
             }
         });
@@ -477,13 +663,11 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
         onSearch.addActionListener(e -> handleSearch());
-
-
-//        POI testPOI = curFloor.getRooms().get(0).getPOIs().get(0);
-//        ResultLabel test = new ResultLabel(testPOI);
-//        resultPanel.add(test);
     }
 
+    /**
+     * Initialise edit and room buttons
+     */
     public void initButtons() {
 
         //initialize edit button
@@ -505,14 +689,20 @@ public class MainWindow extends javax.swing.JFrame {
     }
 
     /**
-     * Render frame
+     * Render Frame to display CanvasGUI objects
      */
     private void renderFrame() {
-        canvas = new Canvas("assets/MC-BF-1.png", this.getWidth(), this.getHeight());
+        // Render main window image
+        canvas = new CanvasGUI(curFloor.getFilePath(), this.getWidth(), this.getHeight());
         Frame.add(canvas);
+
+        // Render smallMapBtn image
+//        smallMapPic = new CanvasGUI("assets/campus_map.png", 180, 125);
+//        Frame.add(smallMapPic);
         Frame.setFocusable(true);
-        if (curUser != null)
-            System.out.println("User: " + curUser.getUsername() + " logged in");
+//        smallMapBtn.add(smallMapPic);
+//        smallMapBtn.setFocusable(true);
+        System.out.println("User: " + session + " logged in");
 
         //JsonDB db = new JsonDB("poi", "mc");
 //        db.getData().get("data").getAsJsonArray().get(0).getAsJsonObject().get("floor").getAsInt();
@@ -537,32 +727,41 @@ public class MainWindow extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Render selectable room boundaries
+     */
     private void renderRooms() {
-
+        
         //demo code
-        int[] xpoints = {300, 500, 500};
+        /*int[] xpoints = {300, 500, 500};
         int[] ypoints = {50, 100, 200};
         int npoints = 3;
-
+        
         Polygon room1Shape = new Polygon(xpoints, ypoints, npoints);
-
+        
         //Room room1 = new Room(curBuilding, curFloor, room1Shape);
         //room1.addPOI("test", "nothing", room1.getLocation());
-
+        
         int[] xpoints2 = {100, 200, 300};
         int[] ypoints2 = {100, 200, 250};
         int npoints2 = 3;
-
+        
         Polygon room2Shape = new Polygon(xpoints2, ypoints2, npoints2);
-
+        
         //Room room2 = new Room(curBuilding, curFloor, room2Shape);
         //room2.addPOI("test2", "", room2.getLocation());
-        //
-
+        //*/
+        
         for (Room room : curFloor.getRooms()) {
             attachRoom(room);
         }
+             
+    }
 
+    public void unrenderRooms() {
+        for (Room room : curFloor.getRooms()) {
+            detachRoom(room);
+        }
     }
 
     private int handleSearch() {
@@ -655,20 +854,39 @@ public class MainWindow extends javax.swing.JFrame {
 //        }
         return 0;
     }
-
-    private void attachRoom(Room room) {
-
+    
+    /**
+     *
+     * @param room
+     */
+    private void attachRoom(Room room)
+    {
+        
         layerPanel.add(room, JLayeredPane.PALETTE_LAYER);
         room.setSize(layerPanel.getSize());
+        room.setLocation(canvas.x + room.getSavedLocation().x,
+                canvas.y + room.getSavedLocation().y);
 
     }
 
-    public void attachComponent(JComponent comp) {
-
+    private void detachRoom(Room room) {
+        layerPanel.remove(room);
+    }
+    
+    /**
+     * Method to add a component to a JLayeredPane
+     * @param comp component to be added
+     */
+    public void attachComponent(JComponent comp)
+    {
+        
         layerPanel.add(comp, JLayeredPane.POPUP_LAYER);
 
     }
 
+    /**
+     *
+     */
     class MouseHandler extends MouseAdapter {
         public void mousePressed(MouseEvent e) {
             initialX = e.getX();
@@ -679,7 +897,7 @@ public class MainWindow extends javax.swing.JFrame {
 
                 if (draftRoom == null) {
                     draftPoly = new Polygon();
-                    draftPoly.addPoint(e.getX(), e.getY());
+                    draftPoly.addPoint(e.getX()-canvas.x, e.getY()-canvas.y);
                     draftRoom = new Room(curBuilding, curFloor, draftPoly);
                     attachRoom(draftRoom);
                 } else {
@@ -688,48 +906,78 @@ public class MainWindow extends javax.swing.JFrame {
                     layerPanel.remove(draftRoom);
                     //curFloor.removeRoom(draftRoom);
                     //
-
+                    
                     //add new draft of room
-                    draftRoom.addPoint(e.getX() - draftRoom.getX(), e.getY() - draftRoom.getY());
+                    draftRoom.addPoint(e.getX()-draftRoom.getX(), e.getY()-draftRoom.getY());                
                     //draftRoom = new Room(draftPoly, draftRoom.getLocation()); //fix coordinates off  
                     attachRoom(draftRoom);
                     //
-
+                    
                 }
-
+                
             }
-
+            
         }
 
+        /**
+         *
+         * @param e mouse event
+         */
         public void mouseEntered(MouseEvent e) {
-            //e = new MouseEvent(e.getComponent(), e.getID(), e.getWhen(), e.getModifiersEx(), e.getX()-getX(), e.getY()-getY(), e.getClickCount(), e.isPopupTrigger());
-            for (Room room : curFloor.getRooms()) room.mouseEntered(e);
+            if (curBuilding == null)
+                for (Building building : Map.getBuildings()) building.translate(deltaX, deltaY);
+            else
+                for (Room room:curFloor.getRooms()) room.mouseEntered(e);
 
         }
 
+
+        /**
+         *
+         * @param e mouse event
+         */
         public void mouseExited(MouseEvent e) {
             //e = new MouseEvent(e.getComponent(), e.getID(), e.getWhen(), e.getModifiersEx(), e.getX()-getX(), e.getY()-getY(), e.getClickCount(), e.isPopupTrigger());
             for (Room room : curFloor.getRooms()) room.mouseExited(e);
 
+
+            if (curBuilding == null)
+                for (Building building : Map.getBuildings()) building.translate(deltaX, deltaY);
+            else
+                for (Room room:curFloor.getRooms()) room.mouseExited(e);
+
         }
 
+
+        /**
+         *
+         * @param e mouse event
+         *
+         */
         public void mouseClicked(MouseEvent e) {
             for (Room room : curFloor.getRooms()) room.mouseClicked(e, layerPanel);
             dropDownPanel.setVisible(false);
+
+            if (curBuilding == null)
+                for (Building building : Map.getBuildings()) building.translate(deltaX, deltaY);
+            else
+                for (Room room:curFloor.getRooms()) room.mouseClicked(e, layerPanel);
+
         }
-
+        
     }
 
-    private void searchBoxOnClick(java.awt.event.MouseEvent evt) {
-        searchBox.grabFocus();
-        searchPanel.setVisible(true);
-    }
-
+    /**
+     *
+     */
     class MouseMotionHandler extends MouseMotionAdapter {
         public void mouseMoved(MouseEvent e) {
-
-            for (Room room : curFloor.getRooms()) room.mouseMoved(e);
-
+            
+            if (curBuilding == null)
+                for (Building building : Map.getBuildings()) building.mouseMoved(e);
+            else
+                for (Room room:curFloor.getRooms()) room.mouseMoved(e);
+            
         }
 
         public void mouseDragged(MouseEvent e) {
@@ -740,9 +988,12 @@ public class MainWindow extends javax.swing.JFrame {
 
             x += deltaX;
             y += deltaY;
-
+            
             canvas.translate(deltaX, deltaY);
-            for (Room room : curFloor.getRooms()) room.translate(deltaX, deltaY);
+            if (curBuilding == null)
+                for (Building building : Map.getBuildings()) building.translate(deltaX, deltaY);
+            else
+                for (Room room:curFloor.getRooms()) room.translate(deltaX, deltaY);
 
             initialX = currentX;
             initialY = currentY;
@@ -751,7 +1002,6 @@ public class MainWindow extends javax.swing.JFrame {
         }
     }
 
-    private Canvas canvas;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Frame;
     private javax.swing.JToggleButton addRoomButton;
@@ -765,7 +1015,9 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JLayeredPane layerPanel;
+    private javax.swing.JButton nextFloorButton;
     private javax.swing.JButton onSearch;
+    private javax.swing.JButton prevFloorButton;
     private javax.swing.JPanel resultContainer;
     private javax.swing.JPanel resultPanel;
     private javax.swing.JScrollPane resultScroll;
@@ -773,3 +1025,5 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel searchPanel;
     // End of variables declaration//GEN-END:variables
 }
+
+
