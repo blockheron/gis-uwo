@@ -326,10 +326,10 @@ public class MainWindow extends javax.swing.JFrame {
      */
     public void myInitComponents() {
         // Action commands for next/prev floor buttons
-        nextFloorBtn.setActionCommand("up");
-        prevFloorBtn.setActionCommand("down");
+        nextFloorButton.setActionCommand("up");
+        prevFloorButton.setActionCommand("down");
         // Start at lowest floor by default: prev floor doesn't exist
-        prevFloorBtn.setEnabled(false);
+        prevFloorButton.setEnabled(false);
         
         // Action command for smallMapBtn
 //        smallMapBtn.setActionCommand("mapToBuild");
