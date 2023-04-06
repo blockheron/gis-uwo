@@ -26,7 +26,7 @@ public class JsonDB {
     public static void main(String[] args) {
         
         //db testing
-        new Map(true);
+        new Map(false);
         
         Building mc = new Building("Middlesex College", "MC");
         Building pab = new Building("Physics and Astronomy Building", "PANDA");

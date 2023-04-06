@@ -26,10 +26,9 @@ public class MainWindow extends javax.swing.JFrame {
     public static Building curBuilding;
     public static Floor curFloor;
     private LinkedList<Floor> floorList;
-    private LinkedList<Layer> layerList;
-    private LinkedList<Room> roomList;
+    //private LinkedList<Layer> layerList;
+    //private LinkedList<Room> roomList;
     private CanvasGUI canvas;
-//    private CanvasGUI smallMapPic;
 
     private int x, y, initialX, initialY, deltaX, deltaY;
     private boolean editMode = false;
@@ -46,28 +45,74 @@ public class MainWindow extends javax.swing.JFrame {
         
         // Print out user session
         if (user != null) System.out.println("User: " + user.getUsername() + " logged in");
-        
-        //demo code
+        //demo code used to create a new "blank" database
         if (debug == true) {
 
             // Make Middlesex; add its floors
             curBuilding = new Building("Middlesex College", "MC");
             curBuilding.addFloor("Ground", "assets/MC-BF-1.png");
-            curBuilding.addFloor("First", "assets/MC-BF-2.png");
-            curBuilding.addFloor("Second", "assets/MC-BF-3.png");
-            curBuilding.addFloor("Third", "assets/MC-BF-4.png");
-            curBuilding.addFloor("Fourth", "assets/MC-BF-5.png");
+            curBuilding.addFloor("2", "assets/MC-BF-2.png");
+            curBuilding.addFloor("3", "assets/MC-BF-3.png");
+            curBuilding.addFloor("4", "assets/MC-BF-4.png");
+            curBuilding.addFloor("5", "assets/MC-BF-5.png");
             floorList = curBuilding.getFloors();
+            
+            //make PAB and floors
+            Building pab = new Building("Physics and Astronomy Building", "PAB");
+            pab.addFloor("1", "assets/PAB-BF-1.png");
+            pab.addFloor("2", "assets/PAB-BF-2.png");
+            pab.addFloor("3", "assets/PAB-BF-3.png");
+            pab.addFloor("4", "assets/PAB-BF-4.png");
+            //
+            
+            //make WSC and floors
+            Building wsc = new Building("Western Science Center", "WSC");
+            wsc.addFloor("1", "assets/WSC-BF-1.png");
+            wsc.addFloor("2", "assets/WSC-BF-2.png");
+            wsc.addFloor("3", "assets/WSC-BF-3.png");
+            wsc.addFloor("4", "assets/WSC-BF-4.png");
+            //
+            
+            //add layers
+            Map.addLayer("Classrooms", Color.YELLOW);
+            Map.addLayer("Washrooms",Color.CYAN);
+            //
+            
+            //add users
+            Map.addUser("admin", "password", true);
+            Map.addUser("Liam", "1234");
+            Map.addUser("Maxwell", "1234");
+            Map.addUser("Karen", "1234");
+            Map.addUser("Emma", "1234");
+            Map.addUser("Valentina", "1234");
+            //
+            
+            /*int[] xpoints = {300, 500, 500};
+            int[] ypoints = {50, 100, 200};
+            int npoints = 3;
+        
+            Polygon room1Shape = new Polygon(xpoints, ypoints, npoints);
+
+            Room testRoom = ground.addRoom(room1Shape, new Point(0,0));
+            testRoom.addPOI("test", "description", testRoom.getLocation());
+            System.out.println(testRoom.getPOIs());*/
+            
             // Set lowest floor as default landing floor
             curFloor = floorList.get(0);
-            layerList = Map.getLayers();
-            roomList = curFloor.getRooms();
+            //layerList = Map.getLayers();
+            //roomList = curFloor.getRooms();
 
             System.out.println("curFloor index: " + curBuilding.getFloors().indexOf(curFloor));
         }
         //
 
-
+        // start on middlesex college ground floor
+        curBuilding = Map.getBuilding("Middlesex College");
+        curFloor = curBuilding.getFloor("Ground");
+        floorList = curBuilding.getFloors();
+        //layerList = Map.getLayers();
+        //roomList = curFloor.getRooms();
+        //
 
         initComponents();
         myInitComponents(); // added
@@ -78,19 +123,6 @@ public class MainWindow extends javax.swing.JFrame {
         prepareIcon();
         renderRooms();
     }
-
-    /**
-     * Creates new form MainWindow for a specified session
-     * @param session an int representing the current session
-     */
-    /*public MainWindow(int session) {
-        this.session = session;
-        initComponents();
-        initMainWindow();
-        initSearchBox();
-        renderFrame();
-        prepareIcon();
-    }*/
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -344,14 +376,6 @@ public class MainWindow extends javax.swing.JFrame {
         // Start at lowest floor by default: prev floor doesn't exist
         prevFloorButton.setEnabled(false);
 
-        // Action command for smallMapBtn
-//        smallMapBtn.setActionCommand("mapToBuild");
-        LayerSelectPanel selectPanel = new LayerSelectPanel();
-        layerPanel.add(selectPanel, JLayeredPane.PALETTE_LAYER);
-        selectPanel.setVisible(true);
-        selectPanel.setSize(selectPanel.getPreferredSize());
-        selectPanel.setLocation(this.getSize().width - (int)selectPanel.getPreferredSize().getWidth(),
-                this.getSize().height - (int)selectPanel.getPreferredSize().getHeight());
     }
 
     /**
@@ -455,8 +479,8 @@ public class MainWindow extends javax.swing.JFrame {
 
             // Load in next floor obejct (next item in floorList)
             curFloor = floorList.get(floorList.indexOf(curFloor) + 1);
-            layerList = Map.getLayers();
-            roomList = curFloor.getRooms();
+            //layerList = Map.getLayers();
+            //roomList = curFloor.getRooms();
 
             //render the next floor's rooms
             renderRooms();
@@ -487,8 +511,8 @@ public class MainWindow extends javax.swing.JFrame {
 
             // Load in next floor obejct (prev item in floorList)
             curFloor = floorList.get(floorList.indexOf(curFloor) - 1);
-            layerList = Map.getLayers();
-            roomList = curFloor.getRooms();
+            //layerList = Map.getLayers();
+            //roomList = curFloor.getRooms();
 
             //render the new floor's rooms
             renderRooms();
@@ -539,8 +563,8 @@ public class MainWindow extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new JsonDB(true);
-                new MainWindow(true, null).setVisible(true);
+                new JsonDB(false);
+                new MainWindow(false, null).setVisible(true);
             }
         });
     }
@@ -696,18 +720,8 @@ public class MainWindow extends javax.swing.JFrame {
         canvas = new CanvasGUI(curFloor.getFilePath(), this.getWidth(), this.getHeight());
         Frame.add(canvas);
 
-        // Render smallMapBtn image
-//        smallMapPic = new CanvasGUI("assets/campus_map.png", 180, 125);
-//        Frame.add(smallMapPic);
         Frame.setFocusable(true);
-//        smallMapBtn.add(smallMapPic);
-//        smallMapBtn.setFocusable(true);
         System.out.println("User: " + session + " logged in");
-
-        //JsonDB db = new JsonDB("poi", "mc");
-//        db.getData().get("data").getAsJsonArray().get(0).getAsJsonObject().get("floor").getAsInt();
-        // get floor ^
-//        db.getData().get("data").getAsJsonArray().get(0).getAsJsonObject().get("layer").getAsJsonArray();
     }
 
     /**
@@ -741,16 +755,7 @@ public class MainWindow extends javax.swing.JFrame {
         
         //Room room1 = new Room(curBuilding, curFloor, room1Shape);
         //room1.addPOI("test", "nothing", room1.getLocation());
-        
-        int[] xpoints2 = {100, 200, 300};
-        int[] ypoints2 = {100, 200, 250};
-        int npoints2 = 3;
-        
-        Polygon room2Shape = new Polygon(xpoints2, ypoints2, npoints2);
-        
-        //Room room2 = new Room(curBuilding, curFloor, room2Shape);
-        //room2.addPOI("test2", "", room2.getLocation());
-        //*/
+        */
         
         for (Room room : curFloor.getRooms()) {
             attachRoom(room);
@@ -904,12 +909,9 @@ public class MainWindow extends javax.swing.JFrame {
 
                     //remove previous iteration of the draft
                     layerPanel.remove(draftRoom);
-                    //curFloor.removeRoom(draftRoom);
-                    //
                     
                     //add new draft of room
-                    draftRoom.addPoint(e.getX()-draftRoom.getX(), e.getY()-draftRoom.getY());                
-                    //draftRoom = new Room(draftPoly, draftRoom.getLocation()); //fix coordinates off  
+                    draftRoom.addPoint(e.getX()-draftRoom.getX(), e.getY()-draftRoom.getY());    
                     attachRoom(draftRoom);
                     //
                     
