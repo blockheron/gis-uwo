@@ -292,7 +292,6 @@ public class Room extends JComponent
     public void paintComponent(Graphics g)
     {
         Graphics2D g2D = (Graphics2D) g;
-        System.out.println(curColor);
         if (!active) g2D.setColor(curColor);
         else g2D.setColor(curActiveColor);
         g2D.fillPolygon(getShape());
