@@ -5,7 +5,9 @@
 package org.western;
 
 import java.awt.*;
+import javax.swing.Icon;
 import org.kordamp.ikonli.remixicon.RemixiconAL;
+import org.kordamp.ikonli.remixicon.RemixiconMZ;
 import org.kordamp.ikonli.swing.FontIcon;
 
 /**
@@ -15,6 +17,9 @@ import org.kordamp.ikonli.swing.FontIcon;
 public class POIPopup extends javax.swing.JPanel {
 
     private POI POI;
+    private boolean editing;
+    
+    private static Icon favouritedIcon, notFavouritedIcon;
     
     /**
      * Creates new form POIPopup
@@ -22,6 +27,7 @@ public class POIPopup extends javax.swing.JPanel {
     public POIPopup(POI POI) {
         
         this.POI = POI;
+        editing = false;
         initComponents();
         
         fillTextBoxes();
@@ -44,6 +50,27 @@ public class POIPopup extends javax.swing.JPanel {
         //set exit button icons
         ExitButton.setIcon(FontIcon.of(RemixiconAL.CLOSE_FILL, 24));
         ExitButton.setPressedIcon(FontIcon.of(RemixiconAL.CLOSE_FILL, 24, Color.RED));
+        //
+        
+        //set favourite button icons
+        favouritedIcon = FontIcon.of(RemixiconMZ.STAR_FILL, 24);
+        notFavouritedIcon = FontIcon.of(RemixiconMZ.STAR_LINE, 24);
+        
+        System.out.println(MainWindow.curUser);
+        if (MainWindow.curUser != null) {
+            if (POI.isFavourite(MainWindow.curUser)) 
+                favouriteButton.setIcon(favouritedIcon);
+            else favouriteButton.setIcon(notFavouritedIcon);
+        }
+        else favouriteButton.setIcon(notFavouritedIcon);
+        //favouriteButton.setPressedIcon(FontIcon.of(RemixiconMZ.STAR_FILL, 24));
+        //
+        
+        //hide save and delete buttons
+        SaveButton.setVisible(false);
+        SaveButton.setEnabled(false);
+        DeleteButton.setVisible(false);
+        DeleteButton.setEnabled(false);        
         //
         
     }
@@ -72,10 +99,11 @@ public class POIPopup extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         DescriptionTextField = new javax.swing.JTextArea();
         DescriptionLabel = new javax.swing.JLabel();
-        FavouriteButton = new javax.swing.JButton();
         EditButton = new javax.swing.JButton();
         SaveButton = new javax.swing.JButton();
         ExitButton = new javax.swing.JButton();
+        favouriteButton = new javax.swing.JToggleButton();
+        DeleteButton = new javax.swing.JButton();
 
         POINameField.setEditable(false);
         POINameField.setText("POI_NAME");
@@ -94,12 +122,44 @@ public class POIPopup extends javax.swing.JPanel {
         DescriptionLabel.setText("Description:");
 
         EditButton.setText("Edit");
+        EditButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                EditButtonMouseClicked(evt);
+            }
+        });
 
+        SaveButton.setBackground(new java.awt.Color(51, 51, 255));
+        SaveButton.setForeground(new java.awt.Color(255, 255, 255));
         SaveButton.setText("Save");
+        SaveButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                SaveButtonMouseClicked(evt);
+            }
+        });
 
         ExitButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 ExitButtonMouseClicked(evt);
+            }
+        });
+
+        favouriteButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                favouriteButtonMouseClicked(evt);
+            }
+        });
+        favouriteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                favouriteButtonActionPerformed(evt);
+            }
+        });
+
+        DeleteButton.setBackground(new java.awt.Color(255, 51, 51));
+        DeleteButton.setForeground(new java.awt.Color(255, 255, 255));
+        DeleteButton.setText("delete");
+        DeleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeleteButtonActionPerformed(evt);
             }
         });
 
@@ -110,14 +170,6 @@ public class POIPopup extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(SaveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(EditButton, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(FavouriteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -128,10 +180,21 @@ public class POIPopup extends javax.swing.JPanel {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(RoomNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(DescriptionLabel)))
-                            .addComponent(POINameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 155, Short.MAX_VALUE)
-                        .addComponent(ExitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                            .addComponent(POINameField))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(ExitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(DeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(SaveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(EditButton, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(favouriteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -140,19 +203,20 @@ public class POIPopup extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(POINameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ExitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BuildingNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(RoomNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(DescriptionLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(27, 27, 27)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(SaveButton)
-                    .addComponent(EditButton)
-                    .addComponent(FavouriteButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(favouriteButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(SaveButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(EditButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(DeleteButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -161,17 +225,53 @@ public class POIPopup extends javax.swing.JPanel {
         close();
     }//GEN-LAST:event_ExitButtonMouseClicked
 
+    private void DeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DeleteButtonActionPerformed
+
+    private void favouriteButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_favouriteButtonMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_favouriteButtonMouseClicked
+
+    private void favouriteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_favouriteButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_favouriteButtonActionPerformed
+
+    private void EditButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditButtonMouseClicked
+        editing = !editing;
+        
+        //show/hide save and delete buttons
+        SaveButton.setVisible(editing);
+        SaveButton.setEnabled(editing);
+        DeleteButton.setVisible(editing);
+        DeleteButton.setEnabled(editing);        
+        //
+
+        POINameField.setEditable(editing);
+        DescriptionTextField.setEditable(editing);
+        
+    }//GEN-LAST:event_EditButtonMouseClicked
+
+    private void SaveButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SaveButtonMouseClicked
+        
+        POI.setName(POINameField.getText());
+        POI.setDescription(DescriptionTextField.getText());
+        EditButtonMouseClicked(evt);
+        
+    }//GEN-LAST:event_SaveButtonMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField BuildingNameField;
+    private javax.swing.JButton DeleteButton;
     private javax.swing.JLabel DescriptionLabel;
     private javax.swing.JTextArea DescriptionTextField;
     private javax.swing.JButton EditButton;
     private javax.swing.JButton ExitButton;
-    private javax.swing.JButton FavouriteButton;
     private javax.swing.JTextField POINameField;
     private javax.swing.JTextField RoomNameField;
     private javax.swing.JButton SaveButton;
+    private javax.swing.JToggleButton favouriteButton;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

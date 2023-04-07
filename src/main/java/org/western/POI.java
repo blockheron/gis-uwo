@@ -135,6 +135,16 @@ public class POI {
         return user.getID() == getThis().get("user").getAsInt();
     }
     
+    public void setName(String name) {
+        getThis().addProperty("name", name);
+        JsonDB.save();
+    }
+    public void setDescription(String desc) {
+        getThis().addProperty("description", desc);
+        JsonDB.save();
+    }
+    
+    
     public void toggleFavourite(User user) {
         if (user == null) return;
         if (user.isFavorite(this))
