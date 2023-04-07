@@ -234,6 +234,7 @@ public class Room extends JComponent
         for (JsonElement poi:POIs) 
             out.add(POI.getPOI(JsonDB.getBuilding(building.getID()),
                     JsonDB.getFloor(building, floor.getID()),
+                    JsonDB.getLayer(poi.getAsJsonObject().get("layerID").getAsInt()),
                     getThis(),
                     poi.getAsJsonObject()
             ));
@@ -262,6 +263,7 @@ public class Room extends JComponent
         for (JsonElement poi: POIs) {
             if (poi.getAsJsonObject().get("id").getAsInt() == POI.getID()) {
                 POIs.remove(poi);
+                getThis().addProperty("count", getThis().get("count").getAsInt()-1);
                 JsonDB.save();
                 break;
             }

@@ -109,6 +109,7 @@ public class Floor {
         for (JsonElement poi: POIs) {
             if (poi.getAsJsonObject().get("id").getAsInt() == POI.getID()) {
                 POIs.remove(poi);
+                getThis().addProperty("POICount", getThis().get("POICount").getAsInt()-1);
                 JsonDB.save();
                 break;
             }

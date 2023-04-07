@@ -5,6 +5,7 @@
 package org.western;
 
 import java.awt.*;
+import javax.swing.ComboBoxModel;
 import javax.swing.Icon;
 import org.kordamp.ikonli.remixicon.RemixiconAL;
 import org.kordamp.ikonli.remixicon.RemixiconMZ;
@@ -41,7 +42,11 @@ public class POIPopup extends javax.swing.JPanel {
         RoomNameField.setText("Room: " + POI.getRoom().getName());
         BuildingNameField.setText(POI.getBuilding().getName());
         DescriptionTextField.setText(POI.getDescription());
-        //BuildingNameField.setText(POI.getBuilding().getName());
+        
+        for (Layer layer:Map.getLayers()) {
+            LayerSelector.addItem(layer.getName());      
+        }
+        LayerSelector.setSelectedItem(POI.getLayer().getName());
         
     }
     
@@ -72,6 +77,9 @@ public class POIPopup extends javax.swing.JPanel {
         DeleteButton.setVisible(false);
         DeleteButton.setEnabled(false);        
         //
+        
+        //disable layer selection
+        LayerSelector.setEnabled(false);
         
     }
     
@@ -104,6 +112,7 @@ public class POIPopup extends javax.swing.JPanel {
         ExitButton = new javax.swing.JButton();
         favouriteButton = new javax.swing.JToggleButton();
         DeleteButton = new javax.swing.JButton();
+        LayerSelector = new javax.swing.JComboBox<>();
 
         POINameField.setEditable(false);
         POINameField.setText("POI_NAME");
@@ -168,6 +177,17 @@ public class POIPopup extends javax.swing.JPanel {
             }
         });
 
+        LayerSelector.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                LayerSelectorItemStateChanged(evt);
+            }
+        });
+        LayerSelector.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LayerSelectorActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -180,13 +200,15 @@ public class POIPopup extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(6, 6, 6)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(DescriptionLabel)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(BuildingNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(RoomNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(DescriptionLabel)))
+                                        .addComponent(RoomNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(LayerSelector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addComponent(POINameField))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(70, 70, 70)
                         .addComponent(ExitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -198,7 +220,7 @@ public class POIPopup extends javax.swing.JPanel {
                                 .addComponent(EditButton, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(favouriteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
@@ -210,7 +232,8 @@ public class POIPopup extends javax.swing.JPanel {
                     .addComponent(ExitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BuildingNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(RoomNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(RoomNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LayerSelector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(DescriptionLabel)
                 .addGap(27, 27, 27)
@@ -263,6 +286,7 @@ public class POIPopup extends javax.swing.JPanel {
 
         POINameField.setEditable(editing);
         DescriptionTextField.setEditable(editing);
+        LayerSelector.setEnabled(editing);
         
     }//GEN-LAST:event_EditButtonMouseClicked
 
@@ -270,6 +294,12 @@ public class POIPopup extends javax.swing.JPanel {
         
         POI.setName(POINameField.getText());
         POI.setDescription(DescriptionTextField.getText());
+        //switch layers if changed
+        String selected = (String)LayerSelector.getSelectedItem();
+        if (!selected.equals(POI.getLayer().getName())) {
+            POI.switchLayer(Map.getLayer(selected));
+        }
+        //
         EditButtonMouseClicked(evt);
         
     }//GEN-LAST:event_SaveButtonMouseClicked
@@ -281,6 +311,14 @@ public class POIPopup extends javax.swing.JPanel {
         
     }//GEN-LAST:event_DeleteButtonMouseClicked
 
+    private void LayerSelectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LayerSelectorActionPerformed
+        
+    }//GEN-LAST:event_LayerSelectorActionPerformed
+
+    private void LayerSelectorItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_LayerSelectorItemStateChanged
+        
+    }//GEN-LAST:event_LayerSelectorItemStateChanged
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField BuildingNameField;
@@ -289,6 +327,7 @@ public class POIPopup extends javax.swing.JPanel {
     private javax.swing.JTextArea DescriptionTextField;
     private javax.swing.JButton EditButton;
     private javax.swing.JButton ExitButton;
+    private javax.swing.JComboBox<String> LayerSelector;
     private javax.swing.JTextField POINameField;
     private javax.swing.JTextField RoomNameField;
     private javax.swing.JButton SaveButton;

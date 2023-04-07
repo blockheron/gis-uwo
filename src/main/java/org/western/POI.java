@@ -73,13 +73,13 @@ public class POI {
         loadedPOIs.put(id, this);
     }
     
-    public static POI getPOI(JsonObject building, JsonObject floor, JsonObject room, JsonObject POI) {
+    /*public static POI getPOI(JsonObject building, JsonObject floor, JsonObject room, JsonObject POI) {
         int POIID = POI.get("id").getAsInt();
         if (loadedPOIs.containsKey(POIID))
             return loadedPOIs.get(POIID);
         
         return new POI(building, floor, JsonDB.getLayer("unassigned"), room, POI);
-    }
+    }*/
     public static POI getPOI(JsonObject building, JsonObject floor, JsonObject layer, JsonObject room, JsonObject POI) {
         int POIID = POI.get("id").getAsInt();
         if (loadedPOIs.containsKey(POIID))
@@ -127,6 +127,9 @@ public class POI {
     public void switchLayer(Layer layer) {
         this.layer.removePOI(this);
         layer.addPOI(this);
+        getThis().addProperty("layerID", layer.getID());
+        JsonDB.save();
+        this.layer = layer;
     }
     
     public boolean isFavourite(User user) {

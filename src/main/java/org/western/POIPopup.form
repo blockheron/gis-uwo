@@ -24,17 +24,19 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
+                                  <Component id="DescriptionLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
                                       <Component id="BuildingNameField" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="RoomNameField" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="LayerSelector" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="DescriptionLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Component id="POINameField" alignment="0" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
                       <Component id="ExitButton" min="-2" pref="25" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
@@ -48,7 +50,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="favouriteButton" min="-2" pref="24" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="jScrollPane1" alignment="1" pref="387" max="32767" attributes="0"/>
+                          <Component id="jScrollPane1" alignment="1" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -67,6 +69,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="BuildingNameField" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="RoomNameField" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="LayerSelector" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="DescriptionLabel" min="-2" max="-2" attributes="0"/>
@@ -173,6 +176,20 @@
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="DeleteButtonMouseClicked"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DeleteButtonActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="LayerSelector">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="0"/>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="LayerSelectorItemStateChanged"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="LayerSelectorActionPerformed"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>
