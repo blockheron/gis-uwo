@@ -121,6 +121,7 @@ public class MainWindow extends javax.swing.JFrame {
         initButtons();
         renderFrame();
         prepareIcon();
+        initLayers();
         renderRooms();
     }
 
@@ -139,6 +140,14 @@ public class MainWindow extends javax.swing.JFrame {
         addRoomButton = new javax.swing.JToggleButton();
         nextFloorButton = new javax.swing.JButton();
         prevFloorButton = new javax.swing.JButton();
+        layerListDisplay = new javax.swing.JPanel();
+        layerListButton = new javax.swing.JToggleButton();
+        classroomLayerRadio = new javax.swing.JRadioButton();
+        washroomLayerRadio = new javax.swing.JRadioButton();
+        userPOILayerRadio = new javax.swing.JRadioButton();
+        classroomLayer = new javax.swing.JPanel();
+        userPOILayer = new javax.swing.JPanel();
+        washroomLayer = new javax.swing.JPanel();
         searchPanel = new javax.swing.JPanel();
         searchBox = new javax.swing.JTextField();
         onSearch = new javax.swing.JButton();
@@ -161,6 +170,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         Frame.setForeground(new java.awt.Color(130, 130, 130));
         Frame.setPreferredSize(new java.awt.Dimension(1200, 800));
+        Frame.setLayout(null);
 
         editButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -172,12 +182,16 @@ public class MainWindow extends javax.swing.JFrame {
                 editButtonActionPerformed(evt);
             }
         });
+        Frame.add(editButton);
+        editButton.setBounds(6, 787, 30, 7);
 
         addRoomButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 addRoomButtonMouseClicked(evt);
             }
         });
+        Frame.add(addRoomButton);
+        addRoomButton.setBounds(48, 787, 30, 7);
 
         nextFloorButton.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         nextFloorButton.setText("↑");
@@ -213,8 +227,75 @@ public class MainWindow extends javax.swing.JFrame {
                         .addGroup(FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(prevFloorButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(nextFloorButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(1122, Short.MAX_VALUE))
+                .addContainerGap(1122, Short.MAX_VALUE)));
+        layerListDisplay.setBackground(new java.awt.Color(255, 255, 255));
+
+        layerListButton.setBackground(new java.awt.Color(242, 242, 242));
+        layerListButton.setText("Layers");
+        layerListButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                layerListButtonMouseClicked(evt);
+            }
+        });
+        layerListButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                layerListButtonActionPerformed(evt);
+            }
+        });
+
+        classroomLayerRadio.setText("Classrooms");
+        classroomLayerRadio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                classroomLayerRadioMouseClicked(evt);
+            }
+        });
+
+        washroomLayerRadio.setText("Washrooms");
+        washroomLayerRadio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                washroomLayerRadioMouseClicked(evt);
+            }
+        });
+        washroomLayerRadio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                washroomLayerRadioActionPerformed(evt);
+            }
+        });
+
+        userPOILayerRadio.setText("User POIs");
+        userPOILayerRadio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                userPOILayerRadioMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout layerListDisplayLayout = new javax.swing.GroupLayout(layerListDisplay);
+        layerListDisplay.setLayout(layerListDisplayLayout);
+        layerListDisplayLayout.setHorizontalGroup(
+            layerListDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layerListDisplayLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(layerListButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(layerListDisplayLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addGroup(layerListDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(washroomLayerRadio)
+                    .addComponent(classroomLayerRadio)
+                    .addComponent(userPOILayerRadio, javax.swing.GroupLayout.Alignment.LEADING))
+                .addContainerGap(87, Short.MAX_VALUE))
         );
+        layerListDisplayLayout.setVerticalGroup(
+            layerListDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layerListDisplayLayout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(classroomLayerRadio)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(washroomLayerRadio)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(userPOILayerRadio)
+                .addGap(18, 18, 18)
+                .addComponent(layerListButton)));
         FrameLayout.setVerticalGroup(
             FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FrameLayout.createSequentialGroup()
@@ -228,6 +309,51 @@ public class MainWindow extends javax.swing.JFrame {
                     .addComponent(editButton))
                 .addContainerGap())
         );
+
+        Frame.add(layerListDisplay);
+        layerListDisplay.setBounds(990, 500, 190, 146);
+
+        javax.swing.GroupLayout classroomLayerLayout = new javax.swing.GroupLayout(classroomLayer);
+        classroomLayer.setLayout(classroomLayerLayout);
+        classroomLayerLayout.setHorizontalGroup(
+            classroomLayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1200, Short.MAX_VALUE)
+        );
+        classroomLayerLayout.setVerticalGroup(
+            classroomLayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 870, Short.MAX_VALUE)
+        );
+
+        Frame.add(classroomLayer);
+        classroomLayer.setBounds(0, 0, 1200, 870);
+
+        javax.swing.GroupLayout userPOILayerLayout = new javax.swing.GroupLayout(userPOILayer);
+        userPOILayer.setLayout(userPOILayerLayout);
+        userPOILayerLayout.setHorizontalGroup(
+            userPOILayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1200, Short.MAX_VALUE)
+        );
+        userPOILayerLayout.setVerticalGroup(
+            userPOILayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 870, Short.MAX_VALUE)
+        );
+
+        Frame.add(userPOILayer);
+        userPOILayer.setBounds(0, 0, 1200, 870);
+
+        javax.swing.GroupLayout washroomLayerLayout = new javax.swing.GroupLayout(washroomLayer);
+        washroomLayer.setLayout(washroomLayerLayout);
+        washroomLayerLayout.setHorizontalGroup(
+            washroomLayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1200, Short.MAX_VALUE)
+        );
+        washroomLayerLayout.setVerticalGroup(
+            washroomLayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 870, Short.MAX_VALUE)
+        );
+
+        Frame.add(washroomLayer);
+        washroomLayer.setBounds(0, 0, 1200, 870);
 
         searchPanel.setForeground(new java.awt.Color(13, 17, 23));
         searchPanel.setPreferredSize(new java.awt.Dimension(280, 40));
@@ -466,6 +592,45 @@ public class MainWindow extends javax.swing.JFrame {
     private void addRoomButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addRoomButtonMouseClicked
         addRoomButtonMouseClicked();
     }//GEN-LAST:event_addRoomButtonMouseClicked
+
+    private void washroomLayerRadioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_washroomLayerRadioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_washroomLayerRadioActionPerformed
+
+    private void layerListButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_layerListButtonMouseClicked
+
+    }//GEN-LAST:event_layerListButtonMouseClicked
+
+    private void washroomLayerRadioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_washroomLayerRadioMouseClicked
+        // Activate washroomLayer when washroom button is clicked
+        if (washroomLayerRadio.isSelected()){
+            washroomLayer.setVisible(true);   
+        } else {
+            washroomLayer.setVisible(false);
+        }
+    }//GEN-LAST:event_washroomLayerRadioMouseClicked
+
+    private void layerListButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_layerListButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_layerListButtonActionPerformed
+
+    private void classroomLayerRadioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_classroomLayerRadioMouseClicked
+        // Display classroom Layer
+        if (classroomLayerRadio.isSelected()){
+            classroomLayer.setVisible(true);
+        } else {
+            classroomLayer.setVisible(false);
+        }
+    }//GEN-LAST:event_classroomLayerRadioMouseClicked
+
+    private void userPOILayerRadioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userPOILayerRadioMouseClicked
+        // Display userPOI layer
+        if (userPOILayerRadio.isSelected()){
+            userPOILayer.setVisible(true);
+        } else {
+            userPOILayer.setVisible(false);
+        }
+    }//GEN-LAST:event_userPOILayerRadioMouseClicked
 
     /**
      * nextFloorButton actions when receiving an ActionEvent to switch floors
@@ -753,11 +918,78 @@ public class MainWindow extends javax.swing.JFrame {
         
         Polygon room1Shape = new Polygon(xpoints, ypoints, npoints);
         
-        //Room room1 = new Room(curBuilding, curFloor, room1Shape);
-        //room1.addPOI("test", "nothing", room1.getLocation());
-        */
+        Room room1 = new Room(curBuilding, curFloor, room1Shape);
+        room1.addPOI("test", "nothing", room1.getLocation());
         
-        for (Room room : curFloor.getRooms()) {
+        int[] xpoints2 = {100, 200, 300};
+        int[] ypoints2 = {100, 200, 250};
+        int npoints2 = 3;
+        
+        Polygon room2Shape = new Polygon(xpoints2, ypoints2, npoints2);
+        
+        Room room2 = new Room(curBuilding, curFloor, room2Shape);
+        room2.addPOI("test2", "", room2.getLocation());
+        //
+         */
+        // Default POI(Grad Club Servery)
+        int[] xpoints3 = {460, 420, 510, 510};
+        int[] ypoints3 = {330, 265, 245, 280};
+        
+        Polygon room3Shape = new Polygon(xpoints3, ypoints3, 4);
+        Layer mcGradServLayer = new Layer("userPOILayer", new java.awt.Color(51,51,51,200));
+     
+        Room mcRoom = new Room(curBuilding, curFloor, room3Shape, new Point(100,100), mcGradServLayer);
+        mcRoom.addPOI("Grad Club Servery", "Place to eat in Grad Club", mcRoom.getLocation());
+        
+        // Default POI(Male washroom)
+        int[] xpoints4 = {560, 520, 500, 540};
+        int[] ypoints4 = {410, 330, 360, 425};
+        
+        Polygon room4Shape = new Polygon(xpoints4, ypoints4, 4);
+        
+        //Polygon room4Shape = new Polygon(xpoints4, ypoints4, npoints2);
+        Layer mcMaleWashLayer = new Layer("washroomLayer", new java.awt.Color(51,51,51,200));
+     
+        Room mcMRoom = new Room(curBuilding, curFloor, room4Shape, new Point(100,100), mcMaleWashLayer);
+        mcMRoom.addPOI("Male Washroom", "Washroom for males", mcMRoom.getLocation());
+        
+      // Default POI(Female washroom)
+        int[] xpoints5 = {600, 590, 540, 555};
+        int[] ypoints5 = {390, 355, 360, 395};
+        
+        Polygon room5Shape = new Polygon(xpoints5, ypoints5, 4);
+        
+        //Polygon room4Shape = new Polygon(xpoints4, ypoints4, npoints2);
+        Layer mcFemWashLayer = new Layer("washroomLayer", new java.awt.Color(51,51,51,200));
+     
+        Room mcFRoom = new Room(curBuilding, curFloor, room5Shape, new Point(100,100), mcFemWashLayer);
+        mcFRoom.addPOI("Female Washroom", "Washroom for females", mcFRoom.getLocation());  
+        
+        // Default POI(Classroom)
+        int[] xpoints6 = {400, 350, 300, 340};
+        int[] ypoints6 = {365, 325, 350, 395};
+        
+        Polygon room6Shape = new Polygon(xpoints6, ypoints6, 4);
+        
+        //Polygon room4Shape = new Polygon(xpoints4, ypoints4, npoints2);
+        Layer mcclass1Layer = new Layer("classroomLayer", new java.awt.Color(51,51,51,200));
+     
+        Room mcclass1Room = new Room(curBuilding, curFloor, room6Shape, new Point(100,100), mcclass1Layer);
+        mcclass1Room.addPOI("Classroom 17", "Classroom", mcclass1Room.getLocation());      
+        
+        // Default POI(Classroom 2)
+        int[] xpoints7 = {310, 280, 240, 290};
+        int[] ypoints7 = {385, 345, 370, 430};
+        
+        Polygon room7Shape = new Polygon(xpoints7, ypoints7, 4);
+        
+        //Polygon room4Shape = new Polygon(xpoints4, ypoints4, npoints2);
+        Layer mcclass2Layer = new Layer("classroomLayer", new java.awt.Color(51,51,51,200));
+     
+        Room mcclass2Room = new Room(curBuilding, curFloor, room7Shape, new Point(100,100), mcclass2Layer);
+        mcclass2Room.addPOI("Classroom 16B", "Classroom", mcclass2Room.getLocation());      
+        
+        for (Room room : curFloor.getRooms()) {             
             attachRoom(room);
         }
              
@@ -860,33 +1092,38 @@ public class MainWindow extends javax.swing.JFrame {
         return 0;
     }
     
-    /**
-     *
-     * @param room
-     */
-    private void attachRoom(Room room)
-    {
-        
-        layerPanel.add(room, JLayeredPane.PALETTE_LAYER);
-        room.setSize(layerPanel.getSize());
-        room.setLocation(canvas.x + room.getSavedLocation().x,
-                canvas.y + room.getSavedLocation().y);
-
-    }
+ 
 
     private void detachRoom(Room room) {
         layerPanel.remove(room);
+    }
+    
+       /**
+     *
+     * @param room
+     */
+    private void attachRoom(Room room) {
+        if (room.getLayer().equals("washroomLayer")){
+            washroomLayer.add(room);
+            room.setSize(washroomLayer.getSize());
+        } else if (room.getLayer().equals("classroomLayer")){
+            classroomLayer.add(room);
+            room.setSize(classroomLayer.getSize());
+        } else if (room.getLayer().equals("userPOILayer")) {
+            userPOILayer.add(room);
+            room.setSize(userPOILayer.getSize());
+        }
+         room.setLocation(canvas.x + room.getSavedLocation().x,
+                canvas.y + room.getSavedLocation().y);
+            
     }
     
     /**
      * Method to add a component to a JLayeredPane
      * @param comp component to be added
      */
-    public void attachComponent(JComponent comp)
-    {
-        
+    public void attachComponent(JComponent comp)   {   
         layerPanel.add(comp, JLayeredPane.POPUP_LAYER);
-
     }
 
     /**
@@ -1003,10 +1240,23 @@ public class MainWindow extends javax.swing.JFrame {
             repaint();
         }
     }
+    
+    //Initialize layers
+    private void initLayers(){
+        //Hide layers
+        washroomLayer.setVisible(false);
+        classroomLayer.setVisible(false);
+        userPOILayer.setVisible(false);
+        classroomLayer.setBackground(new java.awt.Color(255,51,102,20));
+        washroomLayer.setBackground(new java.awt.Color(255,255,255,50));
+        userPOILayer.setBackground(new java.awt.Color(0,204,0,20));
+    } 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Frame;
     private javax.swing.JToggleButton addRoomButton;
+    private javax.swing.JPanel classroomLayer;
+    private javax.swing.JRadioButton classroomLayerRadio;
     private javax.swing.JPanel dropDownPanel;
     private javax.swing.JToggleButton editButton;
     private javax.swing.JComboBox<String> filterBox;
@@ -1016,6 +1266,8 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JToggleButton layerListButton;
+    private javax.swing.JPanel layerListDisplay;
     private javax.swing.JLayeredPane layerPanel;
     private javax.swing.JButton nextFloorButton;
     private javax.swing.JButton onSearch;
@@ -1025,7 +1277,13 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JScrollPane resultScroll;
     private javax.swing.JTextField searchBox;
     private javax.swing.JPanel searchPanel;
+    private javax.swing.JComboBox<String> selectBox;
+    private javax.swing.JPanel userPOILayer;
+    private javax.swing.JRadioButton userPOILayerRadio;
+    private javax.swing.JPanel washroomLayer;
+    private javax.swing.JRadioButton washroomLayerRadio;
     // End of variables declaration//GEN-END:variables
+
 }
 
 
