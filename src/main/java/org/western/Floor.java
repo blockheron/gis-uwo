@@ -104,6 +104,17 @@ public class Floor {
         
     }
     
+    public void removePOI(POI POI) {
+        JsonArray POIs = getThis().get("POIs").getAsJsonArray();
+        for (JsonElement poi: POIs) {
+            if (poi.getAsJsonObject().get("id").getAsInt() == POI.getID()) {
+                POIs.remove(poi);
+                JsonDB.save();
+                break;
+            }
+        }
+    }
+    
     /**
      * gets a layer in the floor based on the layer's id
      * @param id the id of the layer to get 
