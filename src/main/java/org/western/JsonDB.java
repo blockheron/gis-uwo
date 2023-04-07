@@ -391,8 +391,10 @@ public class JsonDB {
         floor.addProperty("id", incrementCount("floorCount"));
         floor.addProperty("name", name);
         floor.addProperty("filePath", filePath);
-        floor.addProperty("count", 0);
+        floor.addProperty("roomCount", 0);
         floor.add("rooms", new JsonArray());
+        floor.addProperty("POICount", 0);
+        floor.add("miscPOIs", new JsonArray());
         
         jsonBuilding.get("floors").getAsJsonArray().add(floor);
         
@@ -618,8 +620,8 @@ public class JsonDB {
         
         jsonFloor.get("rooms").getAsJsonArray().add(room);
         
-        int count = jsonFloor.get("count").getAsInt();
-        jsonFloor.addProperty("count", count+1);
+        int count = jsonFloor.get("roomCount").getAsInt();
+        jsonFloor.addProperty("roomCount", count+1);
         save();
         
         return room;
@@ -723,7 +725,11 @@ public class JsonDB {
      */
     public static JsonObject addPOI(Building building, Floor floor, Layer layer, Room room, User user, String name, String description, Point position) {
         
-        JsonObject jsonRoom = getRoom(building, floor, room.getID());
+        JsonObject container;
+        if (room != null)
+            container = getRoom(building, floor, room.getID());
+        else
+            container = getFloor(building, floor.getID());
         
         JsonObject POI = new JsonObject();
         POI.addProperty("id", incrementCount("POICount"));
@@ -737,10 +743,19 @@ public class JsonDB {
         else
             POI.addProperty("user", user.getID());
         
-        jsonRoom.get("POIs").getAsJsonArray().add(POI);
-        
-        int count = jsonRoom.get("count").getAsInt();
-        jsonRoom.addProperty("count", count+1);
+        if (room != null)
+        {
+            container.get("POIs").getAsJsonArray().add(POI);
+
+            int count = container.get("count").getAsInt();
+            container.addProperty("count", count+1);
+        }
+        else {
+            container.get("miscPOIs").getAsJsonArray().add(POI);
+
+            int count = container.get("POICount").getAsInt();
+            container.addProperty("POICount", count+1);
+        }
         save();
         
         return POI;

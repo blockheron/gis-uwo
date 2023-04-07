@@ -73,7 +73,7 @@ public class Floor {
         return getThis().get("filePath").getAsString();
     }
     public int getRoomNum() {
-        return getThis().get("count").getAsInt();
+        return getThis().get("roomCount").getAsInt();
     }
     
     public LinkedList<Room> getRooms() {

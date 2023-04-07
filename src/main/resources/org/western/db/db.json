@@ -41,36 +41,46 @@
           "id": 1,
           "name": "Ground",
           "filePath": "assets/MC-BF-1.png",
-          "count": 0,
-          "rooms": []
+          "roomCount": 0,
+          "rooms": [],
+          "POICount": 0,
+          "miscPOIs" : []
         },
         {
           "id": 2,
           "name": "2",
           "filePath": "assets/MC-BF-2.png",
-          "count": 0,
-          "rooms": []
+          "roomCount": 0,
+          "rooms": [],
+          "POICount": 0,
+          "miscPOIs" : []
         },
         {
           "id": 3,
           "name": "3",
           "filePath": "assets/MC-BF-3.png",
-          "count": 0,
-          "rooms": []
+          "roomCount": 0,
+          "rooms": [],
+          "POICount": 0,
+          "miscPOIs" : []
         },
         {
           "id": 4,
           "name": "4",
           "filePath": "assets/MC-BF-4.png",
-          "count": 0,
-          "rooms": []
+          "roomCount": 0,
+          "rooms": [],
+          "POICount": 0,
+          "miscPOIs" : []
         },
         {
           "id": 5,
           "name": "5",
           "filePath": "assets/MC-BF-5.png",
-          "count": 0,
-          "rooms": []
+          "roomCount": 0,
+          "rooms": [],
+          "POICount": 0,
+          "miscPOIs" : []
         }
       ],
       "x": 0.0,
@@ -99,29 +109,37 @@
           "id": 6,
           "name": "1",
           "filePath": "assets/PAB-BF-1.png",
-          "count": 0,
-          "rooms": []
+          "roomCount": 0,
+          "rooms": [],
+          "POICount": 0,
+          "miscPOIs" : []
         },
         {
           "id": 7,
           "name": "2",
           "filePath": "assets/PAB-BF-2.png",
-          "count": 0,
-          "rooms": []
+          "roomCount": 0,
+          "rooms": [],
+          "POICount": 0,
+          "miscPOIs" : []
         },
         {
           "id": 8,
           "name": "3",
           "filePath": "assets/PAB-BF-3.png",
-          "count": 0,
-          "rooms": []
+          "roomCount": 0,
+          "rooms": [],
+          "POICount": 0,
+          "miscPOIs" : []
         },
         {
           "id": 9,
           "name": "4",
           "filePath": "assets/PAB-BF-4.png",
-          "count": 0,
-          "rooms": []
+          "roomCount": 0,
+          "rooms": [],
+          "POICount": 0,
+          "miscPOIs" : []
         }
       ],
       "x": 0.0,
@@ -150,29 +168,37 @@
           "id": 10,
           "name": "1",
           "filePath": "assets/WSC-BF-1.png",
-          "count": 0,
-          "rooms": []
+          "roomCount": 0,
+          "rooms": [],
+          "POICount": 0,
+          "miscPOIs" : []
         },
         {
           "id": 11,
           "name": "2",
           "filePath": "assets/WSC-BF-2.png",
-          "count": 0,
-          "rooms": []
+          "roomCount": 0,
+          "rooms": [],
+          "POICount": 0,
+          "miscPOIs" : []
         },
         {
           "id": 12,
           "name": "3",
           "filePath": "assets/WSC-BF-3.png",
-          "count": 0,
-          "rooms": []
+          "roomCount": 0,
+          "rooms": [],
+          "POICount": 0,
+          "miscPOIs" : []
         },
         {
           "id": 13,
           "name": "4",
           "filePath": "assets/WSC-BF-4.png",
-          "count": 0,
-          "rooms": []
+          "roomCount": 0,
+          "rooms": [],
+          "POICount": 0,
+          "miscPOIs" : []
         }
       ],
       "x": 0.0,
