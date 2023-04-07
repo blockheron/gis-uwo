@@ -30,7 +30,7 @@ public class Room extends JComponent
     private int id;
     private Building building;
     private Floor floor;
-    private Layer layer;
+    //private Layer layer;
     
     //private Polygon curShape;
     //private Rectangle curBounds;
@@ -52,7 +52,7 @@ public class Room extends JComponent
     public Room(Building building, Floor floor, Polygon shape)
     {
         this(building, floor, shape, new Point(0,0));
-        this.layer = new Layer("userPOILayer", new Color(0,204,0));
+        //this.layer = new Layer("userPOILayer", new Color(0,204,0));
         //add room in unassigned layer
    
                
@@ -75,7 +75,7 @@ public class Room extends JComponent
     
     public Room(Building building, Floor floor, Polygon shape, Point position)
     {
-        this.layer = new Layer("userPOILayer", new Color(0,204,0));
+        //this.layer = new Layer("userPOILayer", new Color(0,204,0));
         this.building = building;
         this.floor = floor;
         this.id = JsonDB.addRoom(building, floor, shape, position).get("id").getAsInt();
@@ -86,7 +86,7 @@ public class Room extends JComponent
     }
     
     private Room(JsonObject building, JsonObject floor, JsonObject room) {
-        this.layer = new Layer("userPOILayer", new Color(0,204,0));
+        //this.layer = new Layer("userPOILayer", new Color(0,204,0));
         this.building = Building.getBuilding(building);
         this.floor = Floor.getFloor(building, floor);
         this.id = room.get("id").getAsInt();
@@ -95,35 +95,28 @@ public class Room extends JComponent
         loadedRooms.put(id, this);
     }
     
-    /**
-     * create a new room on the defined layer
-     * @param building the building the room is in
-     * @param floor the floor the room is on
-     * @param shape the shape of the room
-     * @param position the position of the room
-     * @param layer the layer of the room
-     */
-     public Room(Building building, Floor floor, Polygon shape, Point position, Layer layer)
+
+    /*public Room(Building building, Floor floor, Polygon shape, Point position, Layer layer)
     {
-        this.layer = new Layer("userPOILayer", new Color(0,204,0));
+        //this.layer = new Layer("userPOILayer", new Color(0,204,0));
         this.building = building;
         this.floor = floor;
-        this.layer = layer;
+        //this.layer = layer;
         this.id = JsonDB.addRoom(building, floor, shape, position).get("id").getAsInt();
         curColor = DEFAULT_COLOR;
         curActiveColor = DEFAULT_ACTIVE_COLOR;
         loadedRooms.put(id, this);
         
-    }
+    }*/
     
     /*
      *  Get name of layer
      *  @param: none
      *  @return: string
      */
-    public String getLayer(){
+    /*public String getLayer(){
         return this.layer.getName();
-    }
+    }*/
     
     public static Room getRoom(JsonObject building, JsonObject floor, JsonObject room) {
         int roomID = room.get("id").getAsInt();
@@ -299,7 +292,7 @@ public class Room extends JComponent
     public void paintComponent(Graphics g)
     {
         Graphics2D g2D = (Graphics2D) g;
-        
+        System.out.println(curColor);
         if (!active) g2D.setColor(curColor);
         else g2D.setColor(curActiveColor);
         g2D.fillPolygon(getShape());

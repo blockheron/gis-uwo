@@ -591,7 +591,6 @@ public class JsonDB {
      * adds a room to the database
      * @param building the building the room is in
      * @param floor the floor the room is on
-     * @param layer the layer the room is in
      * @param shape the shape of the building
      * @param position the position of the building
      * @return the JsonObject representing the room on success, null on failure

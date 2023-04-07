@@ -76,6 +76,7 @@ public class MainWindow extends javax.swing.JFrame {
             //add layers
             Map.addLayer("Classrooms", Color.YELLOW);
             Map.addLayer("Washrooms",Color.CYAN);
+            Map.addLayer("unassigned", Color.RED);
             //
             
             //add users
@@ -932,7 +933,7 @@ public class MainWindow extends javax.swing.JFrame {
         //
          */
         // Default POI(Grad Club Servery)
-        int[] xpoints3 = {460, 420, 510, 510};
+        /*int[] xpoints3 = {460, 420, 510, 510};
         int[] ypoints3 = {330, 265, 245, 280};
         
         Polygon room3Shape = new Polygon(xpoints3, ypoints3, 4);
@@ -987,9 +988,9 @@ public class MainWindow extends javax.swing.JFrame {
         Layer mcclass2Layer = new Layer("classroomLayer", new java.awt.Color(51,51,51,200));
      
         Room mcclass2Room = new Room(curBuilding, curFloor, room7Shape, new Point(100,100), mcclass2Layer);
-        mcclass2Room.addPOI("Classroom 16B", "Classroom", mcclass2Room.getLocation());      
+        mcclass2Room.addPOI("Classroom 16B", "Classroom", mcclass2Room.getLocation());*/    
         
-        for (Room room : curFloor.getRooms()) {             
+        for (Room room : curFloor.getRooms()) {  
             attachRoom(room);
         }
              
@@ -1103,7 +1104,7 @@ public class MainWindow extends javax.swing.JFrame {
      * @param room
      */
     private void attachRoom(Room room) {
-        if (room.getLayer().equals("washroomLayer")){
+        /*if (room.getLayer().equals("washroomLayer")){
             washroomLayer.add(room);
             room.setSize(washroomLayer.getSize());
         } else if (room.getLayer().equals("classroomLayer")){
@@ -1112,8 +1113,10 @@ public class MainWindow extends javax.swing.JFrame {
         } else if (room.getLayer().equals("userPOILayer")) {
             userPOILayer.add(room);
             room.setSize(userPOILayer.getSize());
-        }
-         room.setLocation(canvas.x + room.getSavedLocation().x,
+        }*/
+        layerPanel.add(room, JLayeredPane.PALETTE_LAYER);
+        room.setSize(layerPanel.getSize());
+        room.setLocation(canvas.x + room.getSavedLocation().x,
                 canvas.y + room.getSavedLocation().y);
             
     }
@@ -1138,12 +1141,13 @@ public class MainWindow extends javax.swing.JFrame {
 
 
                 if (draftRoom == null) {
+                    System.out.println("new draft");
                     draftPoly = new Polygon();
                     draftPoly.addPoint(e.getX()-canvas.x, e.getY()-canvas.y);
                     draftRoom = new Room(curBuilding, curFloor, draftPoly);
                     attachRoom(draftRoom);
                 } else {
-
+                    System.out.println("add point to draft");
                     //remove previous iteration of the draft
                     layerPanel.remove(draftRoom);
                     
