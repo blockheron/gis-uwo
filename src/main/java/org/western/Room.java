@@ -243,6 +243,24 @@ public class Room extends JComponent
         
     }
     
+    public LinkedList<POI> getPOIs(User user) {
+        
+        JsonArray POIs = JsonDB.getPOIs(building, floor, this);
+        LinkedList<POI> out = new LinkedList<POI>();
+        
+        for (JsonElement poi:POIs) 
+            if (poi.getAsJsonObject().get("user").getAsInt() == -1 || poi.getAsJsonObject().get("user").getAsInt() == user.getID())
+                out.add(POI.getPOI(JsonDB.getBuilding(building.getID()),
+                        JsonDB.getFloor(building, floor.getID()),
+                        JsonDB.getLayer(poi.getAsJsonObject().get("layerID").getAsInt()),
+                        getThis(),
+                        poi.getAsJsonObject()
+                ));
+        
+        return out;
+        
+    }
+    
     public POI getPOI(int id) {
         
         for (POI poi: getPOIs()) {
@@ -380,7 +398,7 @@ public class Room extends JComponent
 
         if (active && ListPopup == null) {
           
-            ListPopup = new POIListPopup(this, getPOIs());
+            ListPopup = new POIListPopup(this, getPOIs(MainWindow.curUser));
             layerPanel.add(ListPopup, JLayeredPane.POPUP_LAYER);
             ListPopup.setSize(ListPopup.getPreferredSize());
             ListPopup.setLocation(e.getPoint());

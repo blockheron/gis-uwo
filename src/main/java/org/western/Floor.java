@@ -104,6 +104,20 @@ public class Floor {
         
     }
     
+    public LinkedList<POI> getPOIs(User user) {
+        
+        LinkedList<POI> out = new LinkedList<POI>();
+        
+        for(Room room : getRooms()) {
+            for (POI poi : room.getPOIs()) {
+                if (poi.getUser() == null || poi.getUser().getID() == user.getID())
+                    out.add(poi);
+            }
+        }
+        return out;
+        
+    }
+    
     public void removePOI(POI POI) {
         JsonArray POIs = getThis().get("POIs").getAsJsonArray();
         for (JsonElement poi: POIs) {
