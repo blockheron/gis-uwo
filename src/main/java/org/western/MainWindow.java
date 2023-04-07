@@ -33,6 +33,7 @@ public class MainWindow extends javax.swing.JFrame {
     private int x, y, initialX, initialY, deltaX, deltaY;
     private boolean editMode = false;
     private boolean addingRoom = false;
+    private boolean addingPOI = false;
     private Icon editButtonEnabled, editButtonDisabled;
     private Icon addRoomButtonEnabled, addRoomButtonDisabled;
     private Icon addPOIButtonEnabled, addPOIButtonDisabled;
@@ -585,6 +586,7 @@ public class MainWindow extends javax.swing.JFrame {
             addRoomButtonMouseClicked();
             addRoomButton.setEnabled(false);
             addRoomButton.setVisible(false);
+            addPOIButtonMouseClicked();
             addPOIButton.setEnabled(false);
             addPOIButton.setVisible(false);
         }
@@ -593,6 +595,7 @@ public class MainWindow extends javax.swing.JFrame {
     private void addRoomButtonMouseClicked() {
         if (editMode && !addingRoom) {
             
+            if(addingPOI) addPOIButtonMouseClicked();
             addRoomButton.setIcon(addRoomButtonEnabled);
             addingRoom = true;
 
@@ -716,8 +719,24 @@ public class MainWindow extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_prevFloorButtonActionPerformed
 
+    private void addPOIButtonMouseClicked() {
+        if (editMode && !addingPOI) {
+            
+            if(addingRoom) addRoomButtonMouseClicked();
+            addPOIButton.setIcon(addPOIButtonEnabled);
+            addingPOI = true;
+
+        }
+        else {
+
+            addPOIButton.setIcon(addPOIButtonDisabled);
+            addingPOI = false;
+
+        }
+    }
+    
     private void addPOIButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addPOIButtonMouseClicked
-        // TODO add your handling code here:
+        addPOIButtonMouseClicked();
     }//GEN-LAST:event_addPOIButtonMouseClicked
 
     /**
@@ -752,7 +771,7 @@ public class MainWindow extends javax.swing.JFrame {
             @Override
             public void run() {
                 new JsonDB(false);
-                new MainWindow(false, null).setVisible(true);
+                new MainWindow(false, Map.getUser("admin")).setVisible(true);
             }
         });
     }
@@ -1170,24 +1189,36 @@ public class MainWindow extends javax.swing.JFrame {
 
             if (addingRoom) {
 
-
-                if (draftRoom == null) {
-                    System.out.println("new draft");
-                    draftPoly = new Polygon();
-                    draftPoly.addPoint(e.getX()-canvas.x, e.getY()-canvas.y);
-                    draftRoom = new Room(curBuilding, curFloor, draftPoly);
-                    attachRoom(draftRoom);
-                } else {
-                    System.out.println("add point to draft");
-                    //remove previous iteration of the draft
-                    layerPanel.remove(draftRoom);
-                    
-                    //add new draft of room
-                    draftRoom.addPoint(e.getX()-draftRoom.getX(), e.getY()-draftRoom.getY());    
-                    attachRoom(draftRoom);
-                    //
-                    
+                boolean overlapping = false;
+                for (Room room: curFloor.getRooms()) {
+                    if(room.isActive() && (draftRoom == null || room.getID() != draftRoom.getID()))
+                        overlapping = true;
                 }
+
+                if (!overlapping) {
+                    
+                    if (draftRoom == null) {
+
+                        draftPoly = new Polygon();
+                        draftPoly.addPoint(e.getX()-canvas.x, e.getY()-canvas.y);
+                        draftRoom = new Room(curBuilding, curFloor, draftPoly);
+                        attachRoom(draftRoom);
+                    } else {
+
+                        //remove previous iteration of the draft
+                        layerPanel.remove(draftRoom);
+
+                        //add new draft of room
+                        draftRoom.addPoint(e.getX()-draftRoom.getX(), e.getY()-draftRoom.getY());    
+                        attachRoom(draftRoom);
+                        //
+
+                    }
+                
+                }
+                
+            }
+            else if (addingPOI) {
                 
             }
             
@@ -1229,13 +1260,10 @@ public class MainWindow extends javax.swing.JFrame {
          *
          */
         public void mouseClicked(MouseEvent e) {
-            for (Room room : curFloor.getRooms()) room.mouseClicked(e, layerPanel);
+            
+            if (!addingRoom)
+                for (Room room : curFloor.getRooms()) room.mouseClicked(e, layerPanel);
             dropDownPanel.setVisible(false);
-
-            if (curBuilding == null)
-                for (Building building : Map.getBuildings()) building.translate(deltaX, deltaY);
-            else
-                for (Room room:curFloor.getRooms()) room.mouseClicked(e, layerPanel);
 
         }
         

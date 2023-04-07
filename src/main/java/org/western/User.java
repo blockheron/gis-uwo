@@ -35,9 +35,9 @@ public class User {
         
     }
     public static User getUser(JsonObject user) {
-        int buildingID = user.get("id").getAsInt();
-        if (loadedUsers.containsKey(buildingID))
-            return loadedUsers.get(buildingID);
+        int userID = user.get("id").getAsInt();
+        if (loadedUsers.containsKey(userID))
+            return loadedUsers.get(userID);
         
         return new User(user);
     }

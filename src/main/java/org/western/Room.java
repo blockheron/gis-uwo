@@ -144,6 +144,9 @@ public class Room extends JComponent
     public Point getSavedLocation() {
         return new Point(getThis().get("x").getAsInt(), getThis().get("y").getAsInt());
     }
+    public boolean isActive() {
+        return active;
+    }
     
     /*public Point getStartingLocation() {
         return new Point(getThis().get("x").getAsInt(), getThis().get("y").getAsInt());
