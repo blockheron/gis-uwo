@@ -25,6 +25,7 @@ public class MainWindow extends javax.swing.JFrame {
 
     public static Building curBuilding;
     public static Floor curFloor;
+    public static User curUser;
     private LinkedList<Floor> floorList;
     //private LinkedList<Layer> layerList;
     //private LinkedList<Room> roomList;
@@ -112,6 +113,7 @@ public class MainWindow extends javax.swing.JFrame {
         // start on middlesex college ground floor
         curBuilding = Map.getBuilding("Middlesex College");
         curFloor = curBuilding.getFloor("Ground");
+        curUser = user;
         floorList = curBuilding.getFloors();
         //layerList = Map.getLayers();
         //roomList = curFloor.getRooms();
@@ -1220,6 +1222,18 @@ public class MainWindow extends javax.swing.JFrame {
             }
             else if (addingPOI) {
                 
+                Room overlappingRoom = null;
+                for (Room room: curFloor.getRooms()) {
+                    if(room.isActive()) overlappingRoom = room;
+                }
+                
+                if (overlappingRoom != null) {
+                    if(curUser.isAdmin())
+                        overlappingRoom.addPOI(null, "new POI", "add your description here!", e.getPoint());
+                    else
+                        overlappingRoom.addPOI(curUser, "new POI", "add your description here!", e.getPoint());
+                }
+                
             }
             
         }
@@ -1261,7 +1275,7 @@ public class MainWindow extends javax.swing.JFrame {
          */
         public void mouseClicked(MouseEvent e) {
             
-            if (!addingRoom)
+            if (!addingRoom && !addingPOI)
                 for (Room room : curFloor.getRooms()) room.mouseClicked(e, layerPanel);
             dropDownPanel.setVisible(false);
 

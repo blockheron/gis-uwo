@@ -493,7 +493,7 @@ public class JsonDB {
             
             JsonObject _layer = layers.get(i).getAsJsonObject();
             
-            if (_layer.get("id").getAsString().compareTo(name) == 0)
+            if (_layer.get("name").getAsString().compareTo(name) == 0)
                 return _layer;
             
         }

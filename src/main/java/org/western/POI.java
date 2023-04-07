@@ -26,7 +26,7 @@ public class POI {
         this.id = JsonDB.addPOI(building, floor, layer, room, user, name, description, location).get("id").getAsInt();
         loadedPOIs.put(id, this);
         layer.addPOI(this);
-        user.addPOI(this);
+        if (user != null) user.addPOI(this);
         
     }
     public POI(Building building, Floor floor, Layer layer, Room room, String name, String description, Point location) {
@@ -66,7 +66,7 @@ public class POI {
         this.floor = Floor.getFloor(building, floor);
         this.layer = Layer.getLayer(layer);
         this.room = Room.getRoom(building, floor, room);
-        this.id = room.get("id").getAsInt();
+        this.id = POI.get("id").getAsInt();
         loadedPOIs.put(id, this);
     }
     

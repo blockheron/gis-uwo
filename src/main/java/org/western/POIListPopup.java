@@ -73,18 +73,7 @@ public class POIListPopup extends javax.swing.JPanel {
         ScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         ButtonContainer.setMinimumSize(new java.awt.Dimension(386, 60));
-
-        javax.swing.GroupLayout ButtonContainerLayout = new javax.swing.GroupLayout(ButtonContainer);
-        ButtonContainer.setLayout(ButtonContainerLayout);
-        ButtonContainerLayout.setHorizontalGroup(
-            ButtonContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 386, Short.MAX_VALUE)
-        );
-        ButtonContainerLayout.setVerticalGroup(
-            ButtonContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 134, Short.MAX_VALUE)
-        );
-
+        ButtonContainer.setLayout(new java.awt.GridLayout(0, 1));
         ScrollPane.setViewportView(ButtonContainer);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
