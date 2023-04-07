@@ -157,6 +157,11 @@ public class POIPopup extends javax.swing.JPanel {
         DeleteButton.setBackground(new java.awt.Color(255, 51, 51));
         DeleteButton.setForeground(new java.awt.Color(255, 255, 255));
         DeleteButton.setText("delete");
+        DeleteButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                DeleteButtonMouseClicked(evt);
+            }
+        });
         DeleteButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 DeleteButtonActionPerformed(evt);
@@ -230,7 +235,16 @@ public class POIPopup extends javax.swing.JPanel {
     }//GEN-LAST:event_DeleteButtonActionPerformed
 
     private void favouriteButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_favouriteButtonMouseClicked
-        // TODO add your handling code here:
+        if (MainWindow.curUser != null) {
+            if (POI.isFavourite(MainWindow.curUser)) {
+                MainWindow.curUser.removeFavouritePOI(POI);
+                favouriteButton.setIcon(notFavouritedIcon);
+            }
+            else {
+                MainWindow.curUser.addFavouritePOI(POI);
+                favouriteButton.setIcon(favouritedIcon);
+            }
+        }
     }//GEN-LAST:event_favouriteButtonMouseClicked
 
     private void favouriteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_favouriteButtonActionPerformed
@@ -259,6 +273,13 @@ public class POIPopup extends javax.swing.JPanel {
         EditButtonMouseClicked(evt);
         
     }//GEN-LAST:event_SaveButtonMouseClicked
+
+    private void DeleteButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DeleteButtonMouseClicked
+        
+        POI.delete();
+        close();
+        
+    }//GEN-LAST:event_DeleteButtonMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

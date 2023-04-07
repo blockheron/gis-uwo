@@ -738,7 +738,7 @@ public class JsonDB {
         POI.addProperty("layerID", layer.getID());
         POI.addProperty("x", position.getX());
         POI.addProperty("y", position.getY());
-        if (user == null)
+        if (user == null || user.isAdmin())
             POI.addProperty("user", -1);
         else
             POI.addProperty("user", user.getID());

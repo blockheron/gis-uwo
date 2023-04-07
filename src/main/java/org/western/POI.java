@@ -10,6 +10,7 @@ public class POI {
     private Floor floor;
     private Layer layer;
     private Room room;
+    private User user;
     //private String name;
     //private String description;
     //private String building;
@@ -26,6 +27,7 @@ public class POI {
         this.id = JsonDB.addPOI(building, floor, layer, room, user, name, description, location).get("id").getAsInt();
         loadedPOIs.put(id, this);
         layer.addPOI(this);
+        this.user = user;
         if (user != null) user.addPOI(this);
         
     }
@@ -47,6 +49,7 @@ public class POI {
         this.id = JsonDB.addPOI(building, floor, this.layer, room, user, name, description, location).get("id").getAsInt();
         loadedPOIs.put(id, this);
         layer.addPOI(this);
+        this.user = user;
         user.addPOI(this);
         
     }
@@ -135,6 +138,14 @@ public class POI {
         return user.getID() == getThis().get("user").getAsInt();
     }
     
+    public boolean isUser() {
+        return getThis().get("user").getAsInt() != -1;
+    }
+    
+    public User getUser() {
+        return user;
+    }
+    
     public void setName(String name) {
         getThis().addProperty("name", name);
         JsonDB.save();
@@ -144,6 +155,25 @@ public class POI {
         JsonDB.save();
     }
     
+    public void delete() {
+        //remove references in users/layers
+        for(User user : Map.getUsers()) {
+            user.removeFavouritePOI(this);
+        }
+        if (isUser()) {
+            getUser().removePOI(this);
+        }
+        if (layer != null) {
+            layer.removePOI(this);
+        }
+        //
+        //remove actual database entry
+        if (room != null) 
+            room.removePOI(this);
+        else 
+            floor.removePOI(this);
+        //
+    }
     
     public void toggleFavourite(User user) {
         if (user == null) return;

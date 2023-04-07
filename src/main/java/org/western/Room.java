@@ -257,6 +257,17 @@ public class Room extends JComponent
         return new POI(building, floor, Map.getLayer("unassigned"), this, user , name, description, position);
     }
     
+    public void removePOI(POI POI) {
+        JsonArray POIs = getThis().get("POIs").getAsJsonArray();
+        for (JsonElement poi: POIs) {
+            if (poi.getAsJsonObject().get("id").getAsInt() == POI.getID()) {
+                POIs.remove(poi);
+                JsonDB.save();
+                break;
+            }
+        }
+    }
+    
    // public POI addPOI(String name, String description, Layer layer, Point position) {
      //   return new POI(building, floor, layer, this, name, description, position);
     //}
