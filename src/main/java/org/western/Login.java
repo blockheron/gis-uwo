@@ -28,6 +28,7 @@ import java.util.Objects;
 import java.util.Scanner;
 
 import static java.security.MessageDigest.getInstance;
+import javax.imageio.ImageIO;
 
 
 /**
@@ -35,6 +36,8 @@ import static java.security.MessageDigest.getInstance;
  */
 public class Login extends javax.swing.JFrame {
 
+    private static String weatherPath = System.getProperty("user.home") + "/weather.json";
+    
     /**
      * Creates new form Login
      */
@@ -565,9 +568,9 @@ public class Login extends javax.swing.JFrame {
     private void prepareIcon() {
         try {
             // set images as icons
-            ImageIcon b = new ImageIcon(Objects.requireNonNull(getClass().getResource("assets/bg.jpg"))),
-                    m = new ImageIcon(Objects.requireNonNull(getClass().getResource("assets/masked_bg.png"))),
-                    l = new ImageIcon(Objects.requireNonNull(getClass().getResource("assets/logo.png")));
+            ImageIcon b = new ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("assets/bg.jpg")))),
+                    m = new ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("assets/masked_bg.png")))),
+                    l = new ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("assets/logo.png"))));
             FontIcon u = FontIcon.of(RemixiconMZ.USER_3_LINE, 20, Color.decode("#113355")),
                     p = FontIcon.of(RemixiconAL.LOCK_PASSWORD_LINE, 20, Color.decode("#113355")),
                     w = FontIcon.of(RemixiconAL.CLOUD_OFF_FILL, 40, Color.decode("#8e8e93")),
@@ -666,7 +669,7 @@ public class Login extends javax.swing.JFrame {
         } catch (Exception e) {
             try {
                 // get weather data from local file
-                File f = new File(getClass().getResource("db/weather.json").getFile());
+                File f = new File(weatherPath);
                 Scanner s = new Scanner(f);
                 StringBuilder dataStr = new StringBuilder();
                 while (s.hasNextLine()) {
@@ -763,7 +766,7 @@ public class Login extends javax.swing.JFrame {
         dText.setText(dateSB.toString());
         // store in to json file
         try {
-            FileWriter f = new FileWriter(getClass().getResource("db/weather.json").getFile());
+            FileWriter f = new FileWriter(weatherPath);
             BufferedWriter w = new BufferedWriter(f);
             w.write(data.toString());
             w.close();

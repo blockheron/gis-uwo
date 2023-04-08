@@ -10,6 +10,8 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import static java.security.MessageDigest.getInstance;
@@ -20,7 +22,8 @@ import java.util.LinkedList;
 public class JsonDB {
     
     private static Gson gson;
-    private static String filePath;
+    private static Reader initFile;
+    private static String dbFilePath = System.getProperty("user.home") + "/db.json";
     private static JsonObject db;
     
     public static void main(String[] args) {
@@ -124,13 +127,13 @@ public class JsonDB {
             cleanDB.add("buildings", new JsonArray());
             cleanDB.add("users", new JsonArray());
             
-            filePath = getClass().getResource("db/test_db.json").getFile();
+            //filePath = getClass().getResource("db/test_db.json").getFile();
             db = cleanDB;
             save();
-            addLayer("unassigned", Color.RED);
+            //addLayer("unassigned", Color.RED);
         }
         else {
-            filePath = getClass().getResource("db/db.json").getFile();
+            initFile = new InputStreamReader(getClass().getResourceAsStream("db/db.json"));
         }
         
         load();
@@ -149,11 +152,14 @@ public class JsonDB {
         
             try {
                 //System.out.println(filePath);
-                reader = new BufferedReader(new FileReader(filePath));
+                reader = new BufferedReader(new FileReader(dbFilePath));
                 db = JsonParser.parseReader(reader).getAsJsonObject();
+                
             }
             catch (FileNotFoundException e) {
-                System.out.println("database not found");
+                System.out.println("database not found, creating new db at: " + dbFilePath);
+                db = JsonParser.parseReader(initFile).getAsJsonObject();
+                save();
                 return false;
             }
             finally {
@@ -180,7 +186,7 @@ public class JsonDB {
     public static boolean save() {
         
         try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter(filePath));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(dbFilePath));
             gson.toJson(db, writer);
             writer.close();
         }

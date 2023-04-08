@@ -12,9 +12,13 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.Objects;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 
 /**
  * @author Team 22
@@ -718,7 +722,12 @@ public class MainWindow extends javax.swing.JFrame {
             enableLayers();
 
             // Render next floor image
-            ImageIcon pic = new ImageIcon(Objects.requireNonNull(getClass().getResource(curFloor.getFilePath())));
+            ImageIcon pic = null;
+            try {
+                pic = new ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream(curFloor.getFilePath()))));
+            } catch (IOException ex) {
+                Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+            }
             canvas.setImage(pic);
 
             // If at max floor, disable. Else, enable
@@ -752,7 +761,12 @@ public class MainWindow extends javax.swing.JFrame {
             enableLayers();
 
             // Render next floor image
-            ImageIcon pic = new ImageIcon(Objects.requireNonNull(getClass().getResource(curFloor.getFilePath())));
+            ImageIcon pic = null;
+            try {
+                pic = new ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream(curFloor.getFilePath()))));
+            } catch (IOException ex) {
+                Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+            }
             canvas.setImage(pic);
 
             // If at min floor, disable. Else, enable
