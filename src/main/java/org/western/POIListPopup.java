@@ -168,7 +168,8 @@ public class POIListPopup extends javax.swing.JPanel {
     }//GEN-LAST:event_ChangeNameButtonActionPerformed
 
     private void DeleteButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DeleteButtonMouseClicked
-        // TODO add your handling code here:
+        room.delete();
+        close();
     }//GEN-LAST:event_DeleteButtonMouseClicked
 
     private void DeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteButtonActionPerformed

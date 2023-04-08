@@ -61,6 +61,15 @@ public class Map {
         
     }
     
+    public static User getUser(int id) {
+        
+        for (User user: getUsers()) {
+            if (user.getID() == id) return user;
+        }
+        return null;
+        
+    }
+    
     public static User addUser(String username, String password) {
         return new User(username, password, false);
     }

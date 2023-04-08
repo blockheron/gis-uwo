@@ -146,7 +146,7 @@ public class POI {
     }
     
     public User getUser() {
-        return user;
+        return Map.getUser(getThis().get("user").getAsInt());
     }
     
     public void setName(String name) {

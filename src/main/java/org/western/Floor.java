@@ -192,8 +192,8 @@ public class Floor {
         getThis().get("rooms").getAsJsonArray().remove(
                 JsonDB.getRoom(building, this, room.getID())
         );
-        int count = getThis().get("count").getAsInt();
-        getThis().addProperty("count", count-1);
+        int count = getThis().get("roomCount").getAsInt();
+        getThis().addProperty("roomCount", count-1);
         
         room.free();
         JsonDB.save();

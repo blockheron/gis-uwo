@@ -191,6 +191,13 @@ public class Room extends JComponent
         repaint();
     }
     
+    public void delete() {
+        for(POI poi : getPOIs()) {
+            poi.delete();
+        }
+        floor.remove(this);
+    }
+    
     public Polygon getShape() {
         
         //if (curShape == null)
@@ -337,10 +344,13 @@ public class Room extends JComponent
     
     public void paintComponent(Graphics g)
     {
-        Graphics2D g2D = (Graphics2D) g;
-        if (!active) g2D.setColor(curColor);
-        else g2D.setColor(curActiveColor);
-        g2D.fillPolygon(getShape());
+        if (getThis() != null)
+        {
+            Graphics2D g2D = (Graphics2D) g;
+            if (!active) g2D.setColor(curColor);
+            else g2D.setColor(curActiveColor);
+            g2D.fillPolygon(getShape());
+        }
         
     }
     

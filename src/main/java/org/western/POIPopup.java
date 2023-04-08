@@ -78,6 +78,13 @@ public class POIPopup extends javax.swing.JPanel {
         DeleteButton.setEnabled(false);        
         //
         
+        //disable editing if admin POI and user is not admin
+        if (!POI.isUser() && !MainWindow.curUser.isAdmin()) {
+            EditButton.setVisible(false);
+            EditButton.setEnabled(false);
+        }
+        //
+        
         //disable layer selection
         LayerSelector.setEnabled(false);
         
