@@ -162,26 +162,28 @@ public class Room extends JComponent
         return new Point(getThis().get("x").getAsInt(), getThis().get("y").getAsInt());
     }*/
     
-    public void hightlight(Color color) {
+    public void highlight(Color color) {
         this.highlightLayers.add(color);
         Color cur = new Color(0,0,0,50); 
         for(Color c : highlightLayers) {
-            cur = new Color(cur.getRed() + c.getRed(),
-                cur.getBlue() + c.getBlue(),
-                cur.getGreen() + c.getGreen(), 50);
+            cur = new Color((cur.getRed() + c.getRed())/highlightLayers.size(),
+                (cur.getGreen() + c.getGreen())/highlightLayers.size(), 
+                (cur.getBlue() + c.getBlue())/highlightLayers.size(),                
+                50);
         }
         curColor = cur;
         repaint();
     }
     
-    public void dehightlight(Color color) {
+    public void dehighlight(Color color) {
         this.highlightLayers.remove(color);
-        if (highlightLayers.isEmpty()) {
+        if (!highlightLayers.isEmpty()) {
             Color cur = new Color(0,0,0,50); 
             for(Color c : highlightLayers) {
-                cur = new Color(cur.getRed() + c.getRed(),
-                    cur.getBlue() + c.getBlue(),
-                    cur.getGreen() + c.getGreen(), 50);
+                cur = new Color((cur.getRed() + c.getRed())/highlightLayers.size(),
+                    (cur.getGreen() + c.getGreen())/highlightLayers.size(), 
+                    (cur.getBlue() + c.getBlue())/highlightLayers.size(),
+                  50);
             }
             curColor = cur;
         }

@@ -47,8 +47,10 @@ public class Login extends javax.swing.JFrame {
             Map.addUser("test", "1234");
 
         }
-
-
+        else {
+            new JsonDB(false);
+        }
+        
         initComponents();
         initLoginPanel();
         prepareIcon();
@@ -410,7 +412,7 @@ public class Login extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Login(true).setVisible(true);
+                new Login(false).setVisible(true);
             }
         });
     }

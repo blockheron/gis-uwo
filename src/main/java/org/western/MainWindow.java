@@ -578,8 +578,10 @@ public class MainWindow extends javax.swing.JFrame {
         editMode = !editMode;
         if (editMode){
             editButton.setIcon(editButtonEnabled);
-            addRoomButton.setEnabled(true);
-            addRoomButton.setVisible(true);
+            if (curUser.isAdmin()) {
+                addRoomButton.setEnabled(true);
+                addRoomButton.setVisible(true);
+            }
             addPOIButton.setEnabled(true);
             addPOIButton.setVisible(true);
         }
@@ -627,11 +629,24 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void washroomLayerRadioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_washroomLayerRadioMouseClicked
         // Activate washroomLayer when washroom button is clicked
-        if (washroomLayerRadio.isSelected()){
+        /*if (washroomLayerRadio.isSelected()){
             washroomLayer.setVisible(true);   
         } else {
             washroomLayer.setVisible(false);
+        }*/
+        Layer washrooms = Map.getLayer("Washrooms");
+        
+        if (washroomLayerRadio.isSelected()) {
+            for (Room room : washrooms.getRooms(curFloor)) {
+                room.highlight(washrooms.getColor());
+            }
         }
+        else {
+            for (Room room : washrooms.getRooms(curFloor)) {
+                room.dehighlight(washrooms.getColor());
+            }
+        }
+        
     }//GEN-LAST:event_washroomLayerRadioMouseClicked
 
     private void layerListButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_layerListButtonActionPerformed
@@ -640,22 +655,48 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void classroomLayerRadioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_classroomLayerRadioMouseClicked
         // Display classroom Layer
-        if (classroomLayerRadio.isSelected()){
+        /*if (classroomLayerRadio.isSelected()){
             classroomLayer.setVisible(true);
         } else {
             classroomLayer.setVisible(false);
+        }*/
+        Layer classrooms = Map.getLayer("Classrooms");
+        
+        if (classroomLayerRadio.isSelected()) {
+            for (Room room : classrooms.getRooms(curFloor)) {
+                room.highlight(classrooms.getColor());
+            }
         }
+        else {
+            for (Room room : classrooms.getRooms(curFloor)) {
+                room.dehighlight(classrooms.getColor());
+            }
+        }
+        
     }//GEN-LAST:event_classroomLayerRadioMouseClicked
 
     private void userPOILayerRadioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userPOILayerRadioMouseClicked
         // Display userPOI layer
-        if (userPOILayerRadio.isSelected()){
+        /*if (userPOILayerRadio.isSelected()){
             userPOILayer.setVisible(true);
         } else {
             userPOILayer.setVisible(false);
+        }*/
+        if(curUser == null) return;
+        
+        if (userPOILayerRadio.isSelected()) {
+            for (Room room : curUser.getRooms(curFloor)) {
+                room.highlight(Color.MAGENTA);
+            }
         }
+        else {
+            for (Room room : curUser.getRooms(curFloor)) {
+                room.dehighlight(Color.MAGENTA);
+            }
+        }
+        
     }//GEN-LAST:event_userPOILayerRadioMouseClicked
-
+    
     /**
      * nextFloorButton actions when receiving an ActionEvent to switch floors
      * @param evt ActionEvent "down" or "up" triggered by clicking nextFloor or prevFloor
@@ -664,6 +705,7 @@ public class MainWindow extends javax.swing.JFrame {
         if ("up".equals(evt.getActionCommand())) {
             //unrender rooms
             unrenderRooms();
+            disableLayers();
             //if(editMode)
 
             // Load in next floor obejct (next item in floorList)
@@ -673,6 +715,7 @@ public class MainWindow extends javax.swing.JFrame {
 
             //render the next floor's rooms
             renderRooms();
+            enableLayers();
 
             // Render next floor image
             ImageIcon pic = new ImageIcon(Objects.requireNonNull(getClass().getResource(curFloor.getFilePath())));
@@ -697,6 +740,7 @@ public class MainWindow extends javax.swing.JFrame {
         if ("down".equals(evt.getActionCommand())) {
             //unrender this floors rooms
             unrenderRooms();
+            disableLayers();
 
             // Load in next floor obejct (prev item in floorList)
             curFloor = floorList.get(floorList.indexOf(curFloor) - 1);
@@ -705,6 +749,7 @@ public class MainWindow extends javax.swing.JFrame {
 
             //render the new floor's rooms
             renderRooms();
+            enableLayers();
 
             // Render next floor image
             ImageIcon pic = new ImageIcon(Objects.requireNonNull(getClass().getResource(curFloor.getFilePath())));
@@ -962,86 +1007,7 @@ public class MainWindow extends javax.swing.JFrame {
     /**
      * Render selectable room boundaries
      */
-    private void renderRooms() {
-        
-        //demo code
-        /*int[] xpoints = {300, 500, 500};
-        int[] ypoints = {50, 100, 200};
-        int npoints = 3;
-        
-        Polygon room1Shape = new Polygon(xpoints, ypoints, npoints);
-        
-        Room room1 = new Room(curBuilding, curFloor, room1Shape);
-        room1.addPOI("test", "nothing", room1.getLocation());
-        
-        int[] xpoints2 = {100, 200, 300};
-        int[] ypoints2 = {100, 200, 250};
-        int npoints2 = 3;
-        
-        Polygon room2Shape = new Polygon(xpoints2, ypoints2, npoints2);
-        
-        Room room2 = new Room(curBuilding, curFloor, room2Shape);
-        room2.addPOI("test2", "", room2.getLocation());
-        //
-         */
-        // Default POI(Grad Club Servery)
-        /*int[] xpoints3 = {460, 420, 510, 510};
-        int[] ypoints3 = {330, 265, 245, 280};
-        
-        Polygon room3Shape = new Polygon(xpoints3, ypoints3, 4);
-        Layer mcGradServLayer = new Layer("userPOILayer", new java.awt.Color(51,51,51,200));
-     
-        Room mcRoom = new Room(curBuilding, curFloor, room3Shape, new Point(100,100), mcGradServLayer);
-        mcRoom.addPOI("Grad Club Servery", "Place to eat in Grad Club", mcRoom.getLocation());
-        
-        // Default POI(Male washroom)
-        int[] xpoints4 = {560, 520, 500, 540};
-        int[] ypoints4 = {410, 330, 360, 425};
-        
-        Polygon room4Shape = new Polygon(xpoints4, ypoints4, 4);
-        
-        //Polygon room4Shape = new Polygon(xpoints4, ypoints4, npoints2);
-        Layer mcMaleWashLayer = new Layer("washroomLayer", new java.awt.Color(51,51,51,200));
-     
-        Room mcMRoom = new Room(curBuilding, curFloor, room4Shape, new Point(100,100), mcMaleWashLayer);
-        mcMRoom.addPOI("Male Washroom", "Washroom for males", mcMRoom.getLocation());
-        
-      // Default POI(Female washroom)
-        int[] xpoints5 = {600, 590, 540, 555};
-        int[] ypoints5 = {390, 355, 360, 395};
-        
-        Polygon room5Shape = new Polygon(xpoints5, ypoints5, 4);
-        
-        //Polygon room4Shape = new Polygon(xpoints4, ypoints4, npoints2);
-        Layer mcFemWashLayer = new Layer("washroomLayer", new java.awt.Color(51,51,51,200));
-     
-        Room mcFRoom = new Room(curBuilding, curFloor, room5Shape, new Point(100,100), mcFemWashLayer);
-        mcFRoom.addPOI("Female Washroom", "Washroom for females", mcFRoom.getLocation());  
-        
-        // Default POI(Classroom)
-        int[] xpoints6 = {400, 350, 300, 340};
-        int[] ypoints6 = {365, 325, 350, 395};
-        
-        Polygon room6Shape = new Polygon(xpoints6, ypoints6, 4);
-        
-        //Polygon room4Shape = new Polygon(xpoints4, ypoints4, npoints2);
-        Layer mcclass1Layer = new Layer("classroomLayer", new java.awt.Color(51,51,51,200));
-     
-        Room mcclass1Room = new Room(curBuilding, curFloor, room6Shape, new Point(100,100), mcclass1Layer);
-        mcclass1Room.addPOI("Classroom 17", "Classroom", mcclass1Room.getLocation());      
-        
-        // Default POI(Classroom 2)
-        int[] xpoints7 = {310, 280, 240, 290};
-        int[] ypoints7 = {385, 345, 370, 430};
-        
-        Polygon room7Shape = new Polygon(xpoints7, ypoints7, 4);
-        
-        //Polygon room4Shape = new Polygon(xpoints4, ypoints4, npoints2);
-        Layer mcclass2Layer = new Layer("classroomLayer", new java.awt.Color(51,51,51,200));
-     
-        Room mcclass2Room = new Room(curBuilding, curFloor, room7Shape, new Point(100,100), mcclass2Layer);
-        mcclass2Room.addPOI("Classroom 16B", "Classroom", mcclass2Room.getLocation());*/    
-        
+    private void renderRooms() {       
         for (Room room : curFloor.getRooms()) {  
             attachRoom(room);
         }
@@ -1052,6 +1018,96 @@ public class MainWindow extends javax.swing.JFrame {
         for (Room room : curFloor.getRooms()) {
             detachRoom(room);
         }
+    }
+    
+    private void disableLayers() {
+        
+        if(curUser != null) {
+        
+            if (userPOILayerRadio.isSelected()) {
+                for (Room room : curUser.getRooms(curFloor)) {
+                    room.dehighlight(Color.MAGENTA);
+                }
+            }
+            else {
+                for (Room room : curUser.getRooms(curFloor)) {
+                    room.highlight(Color.MAGENTA);
+                }
+            }
+                        
+        }
+        
+        Layer washrooms = Map.getLayer("Washrooms");
+        
+        if (washroomLayerRadio.isSelected()) {
+            for (Room room : washrooms.getRooms(curFloor)) {
+                room.dehighlight(washrooms.getColor());
+            }
+        }
+        else {
+            for (Room room : washrooms.getRooms(curFloor)) {
+                room.highlight(washrooms.getColor());
+            }
+        }
+        
+        Layer classrooms = Map.getLayer("Classrooms");
+        
+        if (classroomLayerRadio.isSelected()) {
+            for (Room room : classrooms.getRooms(curFloor)) {
+                room.dehighlight(classrooms.getColor());
+            }
+        }
+        else {
+            for (Room room : classrooms.getRooms(curFloor)) {
+                room.highlight(classrooms.getColor());
+            }
+        }
+        
+    }
+    
+    private void enableLayers() {
+        
+        if(curUser != null) {
+        
+            if (userPOILayerRadio.isSelected()) {
+                for (Room room : curUser.getRooms(curFloor)) {
+                    room.highlight(Color.MAGENTA);
+                }
+            }
+            else {
+                for (Room room : curUser.getRooms(curFloor)) {
+                    room.dehighlight(Color.MAGENTA);
+                }
+            }
+                        
+        }
+        
+        Layer washrooms = Map.getLayer("Washrooms");
+        
+        if (washroomLayerRadio.isSelected()) {
+            for (Room room : washrooms.getRooms(curFloor)) {
+                room.highlight(washrooms.getColor());
+            }
+        }
+        else {
+            for (Room room : washrooms.getRooms(curFloor)) {
+                room.dehighlight(washrooms.getColor());
+            }
+        }
+        
+        Layer classrooms = Map.getLayer("Classrooms");
+        
+        if (classroomLayerRadio.isSelected()) {
+            for (Room room : classrooms.getRooms(curFloor)) {
+                room.highlight(classrooms.getColor());
+            }
+        }
+        else {
+            for (Room room : classrooms.getRooms(curFloor)) {
+                room.dehighlight(classrooms.getColor());
+            }
+        }
+        
     }
 
     private int handleSearch() {
