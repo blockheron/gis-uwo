@@ -59,12 +59,12 @@
     <dependencies>
         <dependency>
             <groupId>org.kordamp.ikonli</groupId>
-            <artifactId>ikonli-swing</artifactId>
+            <artifactId>ikonli-remixicon-pack</artifactId>
             <version>12.3.1</version>
         </dependency>
         <dependency>
             <groupId>org.kordamp.ikonli</groupId>
-            <artifactId>ikonli-remixicon-pack</artifactId>
+            <artifactId>ikonli-swing</artifactId>
             <version>12.3.1</version>
         </dependency>
         <dependency>
