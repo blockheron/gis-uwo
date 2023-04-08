@@ -144,6 +144,16 @@ public class Room extends JComponent
     public Point getSavedLocation() {
         return new Point(getThis().get("x").getAsInt(), getThis().get("y").getAsInt());
     }
+    public String getRoomNumber() {
+        return getThis().get("roomNumber").getAsString();
+    }
+    public void setRoomNumber(String number) {
+        getThis().addProperty("roomNumber", number);
+        JsonDB.save();
+    }
+    public Building getBuilding() {
+        return building;
+    }
     public boolean isActive() {
         return active;
     }

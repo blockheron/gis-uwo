@@ -34,6 +34,7 @@ public class POIListPopup extends javax.swing.JPanel {
         initComponents();
         //ButtonContainer.setSize(ButtonContainer.getParent().getSize());
         
+        setLabel();
         initButtons();
         
     }
@@ -51,12 +52,15 @@ public class POIListPopup extends javax.swing.JPanel {
         ExitButton = new javax.swing.JButton();
         ScrollPane = new javax.swing.JScrollPane();
         ButtonContainer = new javax.swing.JPanel();
+        ChangeNameButton = new javax.swing.JButton();
+        DeleteButton = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel1.setText("POIs:");
+        jLabel1.setText("ROOM# POIs:");
         jLabel1.setMaximumSize(new java.awt.Dimension(352, 16));
+        jLabel1.setMinimumSize(new java.awt.Dimension(170, 16));
 
         ExitButton.setBorder(null);
         ExitButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -76,6 +80,34 @@ public class POIListPopup extends javax.swing.JPanel {
         ButtonContainer.setLayout(new java.awt.GridLayout(0, 1));
         ScrollPane.setViewportView(ButtonContainer);
 
+        ChangeNameButton.setBackground(new java.awt.Color(51, 51, 255));
+        ChangeNameButton.setForeground(new java.awt.Color(255, 255, 255));
+        ChangeNameButton.setText("Change Name");
+        ChangeNameButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ChangeNameButtonMouseClicked(evt);
+            }
+        });
+        ChangeNameButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ChangeNameButtonActionPerformed(evt);
+            }
+        });
+
+        DeleteButton.setBackground(new java.awt.Color(255, 51, 51));
+        DeleteButton.setForeground(new java.awt.Color(255, 255, 255));
+        DeleteButton.setText("Delete");
+        DeleteButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                DeleteButtonMouseClicked(evt);
+            }
+        });
+        DeleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeleteButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -85,10 +117,13 @@ public class POIListPopup extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(ScrollPane)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ChangeNameButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(DeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(ExitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(ExitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -97,10 +132,12 @@ public class POIListPopup extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(ExitButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ChangeNameButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(DeleteButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(7, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -114,6 +151,29 @@ public class POIListPopup extends javax.swing.JPanel {
                
     }//GEN-LAST:event_ExitButtonMouseClicked
 
+    private void ChangeNameButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChangeNameButtonMouseClicked
+        String name = JOptionPane.showInputDialog(this, "New room name:");
+        room.setRoomNumber(name);
+        setLabel();
+        
+    }//GEN-LAST:event_ChangeNameButtonMouseClicked
+
+    private void ChangeNameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChangeNameButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ChangeNameButtonActionPerformed
+
+    private void DeleteButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DeleteButtonMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DeleteButtonMouseClicked
+
+    private void DeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DeleteButtonActionPerformed
+
+    private void setLabel() {
+        jLabel1.setText(room.getBuilding().getShortName() + " " + room.getRoomNumber()+" POIs:");
+    }
+    
     //closes the popup
     public void close() {
         
@@ -142,6 +202,16 @@ public class POIListPopup extends javax.swing.JPanel {
         }
         //
         
+        if (!MainWindow.curUser.isAdmin())
+        {
+            
+            DeleteButton.setVisible(false);
+            DeleteButton.setEnabled(false);
+            ChangeNameButton.setVisible(false);
+            ChangeNameButton.setEnabled(false);
+            
+        }
+        
     }
     
     public void translate (int x, int y) {
@@ -151,6 +221,8 @@ public class POIListPopup extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ButtonContainer;
+    private javax.swing.JButton ChangeNameButton;
+    private javax.swing.JButton DeleteButton;
     private javax.swing.JButton ExitButton;
     private javax.swing.JScrollPane ScrollPane;
     private javax.swing.JLabel jLabel1;

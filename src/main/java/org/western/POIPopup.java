@@ -39,7 +39,7 @@ public class POIPopup extends javax.swing.JPanel {
     private void fillTextBoxes() {
         
         POINameField.setText(POI.getName());
-        RoomNameField.setText("Room: " + POI.getRoom().getName());
+        RoomNameField.setText("Room: " + POI.getRoom().getRoomNumber());
         BuildingNameField.setText(POI.getBuilding().getName());
         DescriptionTextField.setText(POI.getDescription());
         
