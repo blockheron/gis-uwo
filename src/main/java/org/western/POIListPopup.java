@@ -23,20 +23,20 @@ public class POIListPopup extends javax.swing.JPanel {
 
     private Room room;
     private LinkedList<POI> POIs;
-    
+
     /**
      * Creates new form POIListPopup
      */
     public POIListPopup(Room room, LinkedList<POI> POIs) {
-        
+
         this.room = room;
         this.POIs = POIs;
         initComponents();
         //ButtonContainer.setSize(ButtonContainer.getParent().getSize());
-        
+
         setLabel();
         initButtons();
-        
+
     }
 
     /**
@@ -113,36 +113,36 @@ public class POIListPopup extends javax.swing.JPanel {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ScrollPane)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(194, 194, 194)
-                        .addComponent(ExitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(ChangeNameButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(DeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(ScrollPane)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(194, 194, 194)
+                                                .addComponent(ExitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(0, 0, Short.MAX_VALUE))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addComponent(ChangeNameButton)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(DeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addContainerGap())
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(ExitButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ChangeNameButton)
-                    .addComponent(DeleteButton))
-                .addContainerGap(8, Short.MAX_VALUE))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(ExitButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(ScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(ChangeNameButton)
+                                        .addComponent(DeleteButton))
+                                .addContainerGap(8, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -151,9 +151,9 @@ public class POIListPopup extends javax.swing.JPanel {
     }//GEN-LAST:event_ExitButtonActionPerformed
 
     private void ExitButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExitButtonMouseClicked
-        
+
         close();
-               
+
     }//GEN-LAST:event_ExitButtonMouseClicked
 
     private void ChangeNameButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChangeNameButtonMouseClicked
@@ -161,7 +161,7 @@ public class POIListPopup extends javax.swing.JPanel {
         if (name == null) return;
         room.setRoomNumber(name);
         setLabel();
-        
+
     }//GEN-LAST:event_ChangeNameButtonMouseClicked
 
     private void ChangeNameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChangeNameButtonActionPerformed
@@ -180,51 +180,51 @@ public class POIListPopup extends javax.swing.JPanel {
     private void setLabel() {
         jLabel1.setText(room.getBuilding().getShortName() + " " + room.getRoomNumber()+" POIs:");
     }
-    
+
     //closes the popup
     public void close() {
-        
+
         Container parent = this.getParent();
         parent.remove(this);
         parent.revalidate();
         parent.repaint();
         room.deletePopup();
-        
+
     }
-    
+
     private void initButtons() {
-        
+
         //set exit button icons
         ExitButton.setIcon(FontIcon.of(RemixiconAL.CLOSE_FILL, 24));
         ExitButton.setPressedIcon(FontIcon.of(RemixiconAL.CLOSE_FILL, 24, Color.RED));
         //
-        
+
         //create buttons for POIs in list
         for (POI poi:POIs) {
-                       
+
             JButton button = new POIButton(poi, this);
             ButtonContainer.add(button);
             button.setSize(ScrollPane.getPreferredSize().width, POIButton.HEIGHT);
-            
+
         }
         //
-        
+
         if (MainWindow.curUser == null || !MainWindow.curUser.isAdmin())
         {
-            
+
             DeleteButton.setVisible(false);
             DeleteButton.setEnabled(false);
             ChangeNameButton.setVisible(false);
             ChangeNameButton.setEnabled(false);
-            
+
         }
-        
+
     }
-    
+
     public void translate (int x, int y) {
         setLocation(getX()+x, getY()+y);
     }
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ButtonContainer;
