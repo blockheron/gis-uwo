@@ -72,10 +72,18 @@ public class Floor {
     public String getFilePath() {
         return getThis().get("filePath").getAsString();
     }
+    /**
+     * gets the number of rooms on the floor
+     * @return the number of rooms on the floor
+     */
     public int getRoomNum() {
         return getThis().get("roomCount").getAsInt();
     }
     
+    /**
+     * gets all the rooms on a floor
+     * @return a LinkedList<Floor> where each element represents a floor
+     */
     public LinkedList<Room> getRooms() {
         
         JsonArray rooms = JsonDB.getRooms(building, this);
@@ -91,6 +99,10 @@ public class Floor {
         
     }
     
+    /**
+     * gets all the POIs on a floor
+     * @return a LinkedList<POI> of all the POIs on the floor
+     */
     public LinkedList<POI> getPOIs() {
         
         LinkedList<POI> out = new LinkedList<POI>();
@@ -104,6 +116,11 @@ public class Floor {
         
     }
     
+    /**
+     * gets all the POIs on the floor belonging to a given user
+     * @param user the user who's POIs to get
+     * @return a LinkedList<POI> where each element represents a POI
+     */
     public LinkedList<POI> getPOIs(User user) {
         
         LinkedList<POI> out = new LinkedList<POI>();
@@ -118,6 +135,10 @@ public class Floor {
         
     }
     
+    /**
+     * removes a POI from the floor
+     * @param POI the POI to remove
+     */
     public void removePOI(POI POI) {
         JsonArray POIs = getThis().get("POIs").getAsJsonArray();
         for (JsonElement poi: POIs) {
@@ -130,49 +151,6 @@ public class Floor {
         }
     }
     
-    /**
-     * gets a layer in the floor based on the layer's id
-     * @param id the id of the layer to get 
-     * @return the layer if it exists, otherwise null
-     */
-    /*public Layer getLayer(int id) {
-        for (Layer layer: getLayers()) {
-            if (layer.getID() == id) return layer;
-        }
-        return null;
-    }*/
-    
-    /**
-     * gets a layer in the floor based on the layer's id
-     * @param name the name of the layer to get 
-     * @return the layer if it exists, otherwise null
-     */
-    /*public Layer getLayer(String name) {
-        for (Layer layer: getLayers()) {
-            if (layer.getName().equals(name)) return layer;
-        }
-        return null;
-    }*/
-    
-    /**
-     * 
-     * @return 
-     */
-    /*public LinkedList<Room> getRooms() {
-        
-        JsonArray rooms = JsonDB.getRooms(building, this);
-        LinkedList<Room> out = new LinkedList<Room>();
-        
-        for(JsonElement room : rooms)
-            out.add(Room.getRoom(JsonDB.getBuilding(building.getID()),
-                    getThis(), room.getAsJsonObject()));
-        
-        return out;
-    }*/
-    
-    /*public void addRoom(Room room) {
-        
-    }*/
     
     /**
      * add a room to the database
@@ -198,16 +176,5 @@ public class Floor {
         room.free();
         JsonDB.save();
     }
-    
-    /**
-     * remove a room from the floor
-     * @param room the room to remove
-     */
-    /*public void removeRoom(Room room) {
-        if (getLayers().isEmpty()) return;
-        for (Layer layer : getLayers()) {
-            layer.remove(room);
-        }
-    }*/
     
 }

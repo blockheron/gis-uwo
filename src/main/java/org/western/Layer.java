@@ -40,16 +40,32 @@ public class Layer {
         return JsonDB.getLayer(id);
     }
     
+    /**
+     * gets the ID of this layer
+     * @return the ID of this layer
+     */
     public int getID() {
         return id;
     }
 
+    /**
+     * gets the name of this layer
+     * @return the name of the layer as a string
+     */
     public String getName() {
         return getThis().get("name").getAsString();
     }
+    /**
+     * gets the color rooms of this layer are highlighted
+     * @return the color the rooms of this layer are highlighted
+     */
     public Color getColor() {
         return new Color(getThis().get("color").getAsInt());
     }
+    /**
+     * gets the number of rooms in this layer
+     * @return the number of rooms in this layer
+     */
     public int getRoomNum() {
         return getThis().get("count").getAsInt();
     }
@@ -229,30 +245,5 @@ public class Layer {
         }
         
     }
-    
-    /**
-     * add a room to the database
-     * @param shape the shape of the room(the polygon defining its outline)
-     * @param position the position of the room
-     * @return the room if successful, otherwise null
-     */
-    //public Room addRoom(Polygon shape, Point position) {
-    //    return new Room(building, floor, this, shape, position);
-    //}
-    
-    /**
-     * remove a room from the database
-     * @param room the room to remove
-     */
-    /*public void remove(Room room) {
-        getThis().get("rooms").getAsJsonArray().remove(
-                JsonDB.getRoom(building, floor, this, room.getID())
-        );
-        int count = getThis().get("count").getAsInt();
-        getThis().addProperty("count", count-1);
-        
-        room.free();
-        JsonDB.save();
-    }*/
     
 }
