@@ -36,8 +36,16 @@ public class ResultLabel extends JPanel {
         pField.setEditable(false);
         pField.setBorder(null);
         pField.setBackground(new java.awt.Color(234, 234, 234));
-        pField.setText(String.format("Building %s", building.getName()));
-        this.add(pField);
+        if(building == null)
+        {
+            pField.setText("Unknown Building");
+            this.add(pField);
+            return;
+        }
+        else {
+            pField.setText(String.format("Building %s", building.getName()));
+            this.add(pField);
+        }
         sLabel.setPreferredSize(new java.awt.Dimension(40, 40));
         sLabel.setIcon(unfavIcon);
         sLabel.addMouseListener(new java.awt.event.MouseAdapter() {
