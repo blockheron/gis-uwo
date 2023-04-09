@@ -1,6 +1,6 @@
 {
   "userCount": 6,
-  "POICount": 313,
+  "POICount": 325,
   "roomCount": 486,
   "layerCount": 10,
   "curLayerCount": 9,
@@ -12,33 +12,12 @@
       "id": 1,
       "name": "unassigned",
       "color": -65536,
-      "count": 50,
+      "count": 28,
       "POIs": [
         18,
         34,
         49,
         98,
-        125,
-        126,
-        127,
-        128,
-        129,
-        130,
-        131,
-        132,
-        133,
-        134,
-        135,
-        136,
-        137,
-        138,
-        139,
-        140,
-        141,
-        142,
-        143,
-        163,
-        164,
         165,
         166,
         167,
@@ -54,7 +33,6 @@
         177,
         180,
         181,
-        183,
         198,
         199,
         200,
@@ -70,7 +48,7 @@
       "id": 2,
       "name": "Classrooms",
       "color": -256,
-      "count": 117,
+      "count": 151,
       "POIs": [
         119,
         122,
@@ -188,7 +166,41 @@
         312,
         120,
         121,
-        313
+        313,
+        314,
+        315,
+        316,
+        317,
+        318,
+        319,
+        320,
+        143,
+        142,
+        141,
+        140,
+        139,
+        138,
+        137,
+        136,
+        135,
+        134,
+        132,
+        131,
+        130,
+        129,
+        128,
+        127,
+        126,
+        125,
+        321,
+        133,
+        163,
+        164,
+        183,
+        322,
+        323,
+        325,
+        324
       ]
     },
     {
@@ -532,9 +544,9 @@
               "POIs": [
                 {
                   "id": 125,
-                  "name": "new POI",
+                  "name": "Classroom",
                   "description": "add your description here!",
-                  "layerID": 1,
+                  "layerID": 2,
                   "x": 885.0,
                   "y": 239.0,
                   "user": -1
@@ -563,9 +575,9 @@
               "POIs": [
                 {
                   "id": 126,
-                  "name": "new POI",
+                  "name": "Classroom",
                   "description": "add your description here!",
-                  "layerID": 1,
+                  "layerID": 2,
                   "x": 909.0,
                   "y": 250.0,
                   "user": -1
@@ -594,9 +606,9 @@
               "POIs": [
                 {
                   "id": 127,
-                  "name": "new POI",
+                  "name": "Classroom",
                   "description": "add your description here!",
-                  "layerID": 1,
+                  "layerID": 2,
                   "x": 933.0,
                   "y": 259.0,
                   "user": -1
@@ -625,9 +637,9 @@
               "POIs": [
                 {
                   "id": 128,
-                  "name": "new POI",
+                  "name": "Classroom",
                   "description": "add your description here!",
-                  "layerID": 1,
+                  "layerID": 2,
                   "x": 954.0,
                   "y": 281.0,
                   "user": -1
@@ -656,9 +668,9 @@
               "POIs": [
                 {
                   "id": 129,
-                  "name": "new POI",
+                  "name": "Classroom",
                   "description": "add your description here!",
-                  "layerID": 1,
+                  "layerID": 2,
                   "x": 977.0,
                   "y": 296.0,
                   "user": -1
@@ -687,9 +699,9 @@
               "POIs": [
                 {
                   "id": 130,
-                  "name": "new POI",
+                  "name": "Classroom",
                   "description": "add your description here!",
-                  "layerID": 1,
+                  "layerID": 2,
                   "x": 998.0,
                   "y": 309.0,
                   "user": -1
@@ -718,9 +730,9 @@
               "POIs": [
                 {
                   "id": 131,
-                  "name": "new POI",
+                  "name": "Classroom",
                   "description": "add your description here!",
-                  "layerID": 1,
+                  "layerID": 2,
                   "x": 1026.0,
                   "y": 319.0,
                   "user": -1
@@ -749,9 +761,9 @@
               "POIs": [
                 {
                   "id": 132,
-                  "name": "new POI",
+                  "name": "Classroom",
                   "description": "add your description here!",
-                  "layerID": 1,
+                  "layerID": 2,
                   "x": 1038.0,
                   "y": 326.0,
                   "user": -1
@@ -780,9 +792,9 @@
               "POIs": [
                 {
                   "id": 133,
-                  "name": "new POI",
+                  "name": "Classroom",
                   "description": "add your description here!",
-                  "layerID": 1,
+                  "layerID": 2,
                   "x": 1065.0,
                   "y": 341.0,
                   "user": -1
@@ -811,9 +823,9 @@
               "POIs": [
                 {
                   "id": 134,
-                  "name": "new POI",
+                  "name": "Classroom",
                   "description": "add your description here!",
-                  "layerID": 1,
+                  "layerID": 2,
                   "x": 1088.0,
                   "y": 352.0,
                   "user": -1
@@ -842,9 +854,9 @@
               "POIs": [
                 {
                   "id": 135,
-                  "name": "new POI",
+                  "name": "Classroom",
                   "description": "add your description here!",
-                  "layerID": 1,
+                  "layerID": 2,
                   "x": 1105.0,
                   "y": 364.0,
                   "user": -1
@@ -873,9 +885,9 @@
               "POIs": [
                 {
                   "id": 136,
-                  "name": "new POI",
+                  "name": "Classroom",
                   "description": "add your description here!",
-                  "layerID": 1,
+                  "layerID": 2,
                   "x": 1124.0,
                   "y": 370.0,
                   "user": -1
@@ -900,8 +912,18 @@
                 501,
                 515
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 315,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 238.0,
+                  "y": 501.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 24,
@@ -952,8 +974,18 @@
                 517,
                 502
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 314,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 199.0,
+                  "y": 511.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 26,
@@ -1035,8 +1067,18 @@
                 393,
                 344
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 316,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 490.0,
+                  "y": 401.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 29,
@@ -1056,8 +1098,18 @@
                 349,
                 323
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 317,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 375.0,
+                  "y": 159.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 30,
@@ -1123,9 +1175,9 @@
               "POIs": [
                 {
                   "id": 143,
-                  "name": "new POI",
+                  "name": "Classroom",
                   "description": "add your description here!",
-                  "layerID": 1,
+                  "layerID": 2,
                   "x": 941.0,
                   "y": 345.0,
                   "user": -1
@@ -1162,9 +1214,9 @@
               "POIs": [
                 {
                   "id": 142,
-                  "name": "new POI",
+                  "name": "Classroom",
                   "description": "add your description here!",
-                  "layerID": 1,
+                  "layerID": 2,
                   "x": 976.0,
                   "y": 353.0,
                   "user": -1
@@ -1193,9 +1245,9 @@
               "POIs": [
                 {
                   "id": 141,
-                  "name": "new POI",
+                  "name": "Classroom",
                   "description": "add your description here!",
-                  "layerID": 1,
+                  "layerID": 2,
                   "x": 993.0,
                   "y": 368.0,
                   "user": -1
@@ -1224,9 +1276,9 @@
               "POIs": [
                 {
                   "id": 140,
-                  "name": "new POI",
+                  "name": "Classroom",
                   "description": "add your description here!",
-                  "layerID": 1,
+                  "layerID": 2,
                   "x": 1032.0,
                   "y": 391.0,
                   "user": -1
@@ -1255,9 +1307,9 @@
               "POIs": [
                 {
                   "id": 139,
-                  "name": "new POI",
+                  "name": "Classroom",
                   "description": "add your description here!",
-                  "layerID": 1,
+                  "layerID": 2,
                   "x": 1054.0,
                   "y": 403.0,
                   "user": -1
@@ -1286,9 +1338,9 @@
               "POIs": [
                 {
                   "id": 138,
-                  "name": "new POI",
+                  "name": "Classroom",
                   "description": "add your description here!",
-                  "layerID": 1,
+                  "layerID": 2,
                   "x": 1074.0,
                   "y": 408.0,
                   "user": -1
@@ -1325,9 +1377,9 @@
               "POIs": [
                 {
                   "id": 137,
-                  "name": "new POI",
+                  "name": "Classroom",
                   "description": "add your description here!",
-                  "layerID": 1,
+                  "layerID": 2,
                   "x": 1095.0,
                   "y": 435.0,
                   "user": -1
@@ -1575,8 +1627,18 @@
                 345,
                 337
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 318,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 415.0,
+                  "y": 151.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 47,
@@ -1596,8 +1658,18 @@
                 352,
                 348
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 319,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 440.0,
+                  "y": 154.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 48,
@@ -1617,8 +1689,18 @@
                 341,
                 341
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 320,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 471.0,
+                  "y": 147.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 49,
@@ -1646,8 +1728,18 @@
                 385,
                 0
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 321,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 379.0,
+                  "y": 208.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 50,
@@ -2265,9 +2357,9 @@
               "POIs": [
                 {
                   "id": 163,
-                  "name": "new POI",
+                  "name": "Classroom",
                   "description": "add your description here!",
-                  "layerID": 1,
+                  "layerID": 2,
                   "x": 231.0,
                   "y": 362.0,
                   "user": -1
@@ -2296,9 +2388,9 @@
               "POIs": [
                 {
                   "id": 164,
-                  "name": "new POI",
+                  "name": "Classroom",
                   "description": "add your description here!",
-                  "layerID": 1,
+                  "layerID": 2,
                   "x": 301.0,
                   "y": 316.0,
                   "user": -1
@@ -3283,8 +3375,18 @@
                 564,
                 547
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 322,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 485.0,
+                  "y": 339.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 97,
@@ -3335,8 +3437,18 @@
                 593,
                 595
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 324,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 551.0,
+                  "y": 394.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 99,
@@ -3356,8 +3468,18 @@
                 565,
                 597
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 325,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 575.0,
+                  "y": 382.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 100,
@@ -3381,9 +3503,9 @@
               "POIs": [
                 {
                   "id": 183,
-                  "name": "new POI",
+                  "name": "Classroom",
                   "description": "add your description here!",
-                  "layerID": 1,
+                  "layerID": 2,
                   "x": 1039.0,
                   "y": 315.0,
                   "user": -1
@@ -3945,8 +4067,18 @@
                 0,
                 0
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 323,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 550.0,
+                  "y": 324.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 326,
