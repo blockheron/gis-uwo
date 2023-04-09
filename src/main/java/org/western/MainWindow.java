@@ -45,6 +45,8 @@ public class MainWindow extends javax.swing.JFrame {
     
     /**
      * Creates new form MainWindow
+     * @param debug
+     * @param user
      */
     public MainWindow(boolean debug, User user) {
         
@@ -117,14 +119,16 @@ public class MainWindow extends javax.swing.JFrame {
         // start on middlesex college ground floor
         curBuilding = Map.getBuilding("Middlesex College");
         curFloor = curBuilding.getFloor("Ground");
-        curUser = user;
+        if (user != null) {
+            curUser = Map.getUser(user.getUsername());
+        }
         floorList = curBuilding.getFloors();
         //layerList = Map.getLayers();
         //roomList = curFloor.getRooms();
         //
 
         initComponents();
-//        myInitComponents();
+        myInitComponents();
         initMainWindow();
         initSearch();
         initButtons();
@@ -132,9 +136,7 @@ public class MainWindow extends javax.swing.JFrame {
         prepareIcon();
         initLayers();
         renderRooms();
-        
-        // Default floor is min floor; can't go lower
-        prevFloorButton.setEnabled(false);
+
     }
 
     /**
@@ -150,6 +152,9 @@ public class MainWindow extends javax.swing.JFrame {
         Frame = new javax.swing.JPanel();
         editButton = new javax.swing.JToggleButton();
         addRoomButton = new javax.swing.JToggleButton();
+        nextFloorButton = new javax.swing.JButton();
+        prevFloorButton = new javax.swing.JButton();
+        addPOIButton = new javax.swing.JToggleButton();
         layerListDisplay = new javax.swing.JPanel();
         layerListButton = new javax.swing.JToggleButton();
         classroomLayerRadio = new javax.swing.JRadioButton();
@@ -158,9 +163,6 @@ public class MainWindow extends javax.swing.JFrame {
         classroomLayer = new javax.swing.JPanel();
         userPOILayer = new javax.swing.JPanel();
         washroomLayer = new javax.swing.JPanel();
-        nextFloorButton = new javax.swing.JButton();
-        prevFloorButton = new javax.swing.JButton();
-        addPOIButton = new javax.swing.JToggleButton();
         searchPanel = new javax.swing.JPanel();
         filterBox = new javax.swing.JTextField();
         onSearch = new javax.swing.JButton();
@@ -172,20 +174,6 @@ public class MainWindow extends javax.swing.JFrame {
         resultContainer = new javax.swing.JPanel();
         resultScroll = new javax.swing.JScrollPane();
         resultPanel = new javax.swing.JPanel();
-        Frame1 = new javax.swing.JPanel();
-        editButton1 = new javax.swing.JToggleButton();
-        addRoomButton1 = new javax.swing.JToggleButton();
-        layerListDisplay1 = new javax.swing.JPanel();
-        layerListButton1 = new javax.swing.JToggleButton();
-        classroomLayerRadio1 = new javax.swing.JRadioButton();
-        washroomLayerRadio1 = new javax.swing.JRadioButton();
-        userPOILayerRadio1 = new javax.swing.JRadioButton();
-        classroomLayer1 = new javax.swing.JPanel();
-        userPOILayer1 = new javax.swing.JPanel();
-        washroomLayer1 = new javax.swing.JPanel();
-        nextFloorButton1 = new javax.swing.JButton();
-        prevFloorButton1 = new javax.swing.JButton();
-        addPOIButton1 = new javax.swing.JToggleButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         editMenu = new javax.swing.JMenu();
@@ -216,6 +204,31 @@ public class MainWindow extends javax.swing.JFrame {
         addRoomButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 addRoomButtonMouseClicked(evt);
+            }
+        });
+
+        nextFloorButton.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        nextFloorButton.setText("↑");
+        nextFloorButton.setPreferredSize(new java.awt.Dimension(40, 40));
+        nextFloorButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nextFloorButtonActionPerformed(evt);
+            }
+        });
+
+        prevFloorButton.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        prevFloorButton.setText("↓");
+        prevFloorButton.setEnabled(false);
+        prevFloorButton.setPreferredSize(new java.awt.Dimension(40, 40));
+        prevFloorButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                prevFloorButtonActionPerformed(evt);
+            }
+        });
+
+        addPOIButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                addPOIButtonMouseClicked(evt);
             }
         });
 
@@ -260,36 +273,6 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout layerListDisplayLayout = new javax.swing.GroupLayout(layerListDisplay);
-        layerListDisplay.setLayout(layerListDisplayLayout);
-        layerListDisplayLayout.setHorizontalGroup(
-            layerListDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layerListDisplayLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(layerListButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(layerListDisplayLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addGroup(layerListDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(washroomLayerRadio)
-                    .addComponent(classroomLayerRadio)
-                    .addComponent(userPOILayerRadio, javax.swing.GroupLayout.Alignment.LEADING))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layerListDisplayLayout.setVerticalGroup(
-            layerListDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layerListDisplayLayout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(classroomLayerRadio)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(washroomLayerRadio)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(userPOILayerRadio)
-                .addGap(18, 18, 18)
-                .addComponent(layerListButton)
-                .addContainerGap())
-        );
-
         javax.swing.GroupLayout classroomLayerLayout = new javax.swing.GroupLayout(classroomLayer);
         classroomLayer.setLayout(classroomLayerLayout);
         classroomLayerLayout.setHorizontalGroup(
@@ -323,58 +306,100 @@ public class MainWindow extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        nextFloorButton.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        nextFloorButton.setText("↑");
-        nextFloorButton.setPreferredSize(new java.awt.Dimension(40, 40));
-        nextFloorButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nextFloorButtonActionPerformed(evt);
-            }
-        });
-
-        prevFloorButton.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        prevFloorButton.setText("↓");
-        prevFloorButton.setPreferredSize(new java.awt.Dimension(40, 40));
-        prevFloorButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                prevFloorButtonActionPerformed(evt);
-            }
-        });
-
-        addPOIButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                addPOIButtonMouseClicked(evt);
-            }
-        });
+        javax.swing.GroupLayout layerListDisplayLayout = new javax.swing.GroupLayout(layerListDisplay);
+        layerListDisplay.setLayout(layerListDisplayLayout);
+        layerListDisplayLayout.setHorizontalGroup(
+            layerListDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layerListDisplayLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(layerListButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(layerListDisplayLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addGroup(layerListDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(washroomLayerRadio)
+                    .addComponent(classroomLayerRadio)
+                    .addComponent(userPOILayerRadio, javax.swing.GroupLayout.Alignment.LEADING))
+                .addContainerGap(47, Short.MAX_VALUE))
+            .addGroup(layerListDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layerListDisplayLayout.createSequentialGroup()
+                    .addGap(0, 8, Short.MAX_VALUE)
+                    .addComponent(classroomLayer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 140, Short.MAX_VALUE)))
+            .addGroup(layerListDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layerListDisplayLayout.createSequentialGroup()
+                    .addGap(0, 8, Short.MAX_VALUE)
+                    .addComponent(userPOILayer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 140, Short.MAX_VALUE)))
+            .addGroup(layerListDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layerListDisplayLayout.createSequentialGroup()
+                    .addGap(0, 8, Short.MAX_VALUE)
+                    .addComponent(washroomLayer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 140, Short.MAX_VALUE)))
+        );
+        layerListDisplayLayout.setVerticalGroup(
+            layerListDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layerListDisplayLayout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(classroomLayerRadio)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(washroomLayerRadio)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(userPOILayerRadio)
+                .addGap(18, 18, 18)
+                .addComponent(layerListButton)
+                .addContainerGap())
+            .addGroup(layerListDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layerListDisplayLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(classroomLayer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layerListDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layerListDisplayLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(userPOILayer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layerListDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layerListDisplayLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(washroomLayer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
 
         javax.swing.GroupLayout FrameLayout = new javax.swing.GroupLayout(Frame);
         Frame.setLayout(FrameLayout);
         FrameLayout.setHorizontalGroup(
             FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(FrameLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(editButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(addRoomButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(addPOIButton)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(FrameLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
                 .addGroup(FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(FrameLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(editButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(addRoomButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(addPOIButton))
-                    .addGroup(FrameLayout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addGroup(FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(prevFloorButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(nextFloorButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(1080, Short.MAX_VALUE))
+                    .addComponent(prevFloorButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nextFloorButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 964, Short.MAX_VALUE)
+                .addComponent(layerListDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26))
         );
         FrameLayout.setVerticalGroup(
             FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FrameLayout.createSequentialGroup()
-                .addContainerGap(656, Short.MAX_VALUE)
-                .addComponent(nextFloorButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(prevFloorButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
+                .addContainerGap(636, Short.MAX_VALUE)
+                .addGroup(FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FrameLayout.createSequentialGroup()
+                        .addComponent(nextFloorButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(prevFloorButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(45, 45, 45))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FrameLayout.createSequentialGroup()
+                        .addComponent(layerListDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(5, 5, 5)))
                 .addGroup(FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(addPOIButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(addRoomButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -478,211 +503,26 @@ public class MainWindow extends javax.swing.JFrame {
                 .addComponent(dropDownPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE))
         );
 
-        Frame1.setForeground(new java.awt.Color(130, 130, 130));
-        Frame1.setPreferredSize(new java.awt.Dimension(1200, 800));
-
-        editButton1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                editButton1MousePressed(evt);
-            }
-        });
-        editButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editButton1ActionPerformed(evt);
-            }
-        });
-
-        addRoomButton1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                addRoomButton1MouseClicked(evt);
-            }
-        });
-
-        layerListDisplay1.setBackground(new java.awt.Color(255, 255, 255));
-
-        layerListButton1.setBackground(new java.awt.Color(242, 242, 242));
-        layerListButton1.setText("Layers");
-        layerListButton1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                layerListButton1MouseClicked(evt);
-            }
-        });
-        layerListButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                layerListButton1ActionPerformed(evt);
-            }
-        });
-
-        classroomLayerRadio1.setText("Classrooms");
-        classroomLayerRadio1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                classroomLayerRadio1MouseClicked(evt);
-            }
-        });
-
-        washroomLayerRadio1.setText("Washrooms");
-        washroomLayerRadio1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                washroomLayerRadio1MouseClicked(evt);
-            }
-        });
-        washroomLayerRadio1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                washroomLayerRadio1ActionPerformed(evt);
-            }
-        });
-
-        userPOILayerRadio1.setText("User POIs");
-        userPOILayerRadio1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                userPOILayerRadio1MouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout layerListDisplay1Layout = new javax.swing.GroupLayout(layerListDisplay1);
-        layerListDisplay1.setLayout(layerListDisplay1Layout);
-        layerListDisplay1Layout.setHorizontalGroup(
-            layerListDisplay1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layerListDisplay1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(layerListButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(layerListDisplay1Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addGroup(layerListDisplay1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(washroomLayerRadio1)
-                    .addComponent(classroomLayerRadio1)
-                    .addComponent(userPOILayerRadio1, javax.swing.GroupLayout.Alignment.LEADING))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layerListDisplay1Layout.setVerticalGroup(
-            layerListDisplay1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layerListDisplay1Layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(classroomLayerRadio1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(washroomLayerRadio1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(userPOILayerRadio1)
-                .addGap(18, 18, 18)
-                .addComponent(layerListButton1)
-                .addContainerGap())
-        );
-
-        javax.swing.GroupLayout classroomLayer1Layout = new javax.swing.GroupLayout(classroomLayer1);
-        classroomLayer1.setLayout(classroomLayer1Layout);
-        classroomLayer1Layout.setHorizontalGroup(
-            classroomLayer1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        classroomLayer1Layout.setVerticalGroup(
-            classroomLayer1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout userPOILayer1Layout = new javax.swing.GroupLayout(userPOILayer1);
-        userPOILayer1.setLayout(userPOILayer1Layout);
-        userPOILayer1Layout.setHorizontalGroup(
-            userPOILayer1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        userPOILayer1Layout.setVerticalGroup(
-            userPOILayer1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout washroomLayer1Layout = new javax.swing.GroupLayout(washroomLayer1);
-        washroomLayer1.setLayout(washroomLayer1Layout);
-        washroomLayer1Layout.setHorizontalGroup(
-            washroomLayer1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        washroomLayer1Layout.setVerticalGroup(
-            washroomLayer1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        nextFloorButton1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        nextFloorButton1.setText("↑");
-        nextFloorButton1.setPreferredSize(new java.awt.Dimension(40, 40));
-        nextFloorButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nextFloorButton1ActionPerformed(evt);
-            }
-        });
-
-        prevFloorButton1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        prevFloorButton1.setText("↓");
-        prevFloorButton1.setPreferredSize(new java.awt.Dimension(40, 40));
-        prevFloorButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                prevFloorButton1ActionPerformed(evt);
-            }
-        });
-
-        addPOIButton1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                addPOIButton1MouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout Frame1Layout = new javax.swing.GroupLayout(Frame1);
-        Frame1.setLayout(Frame1Layout);
-        Frame1Layout.setHorizontalGroup(
-            Frame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Frame1Layout.createSequentialGroup()
-                .addGroup(Frame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(Frame1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(editButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(addRoomButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(addPOIButton1))
-                    .addGroup(Frame1Layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addGroup(Frame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(prevFloorButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(nextFloorButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(1080, Short.MAX_VALUE))
-        );
-        Frame1Layout.setVerticalGroup(
-            Frame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Frame1Layout.createSequentialGroup()
-                .addContainerGap(656, Short.MAX_VALUE)
-                .addComponent(nextFloorButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(prevFloorButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
-                .addGroup(Frame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(addPOIButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(addRoomButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(editButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-
         layerPanel.setLayer(Frame, javax.swing.JLayeredPane.DEFAULT_LAYER);
         layerPanel.setLayer(searchPanel, javax.swing.JLayeredPane.POPUP_LAYER);
-        layerPanel.setLayer(Frame1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layerPanelLayout = new javax.swing.GroupLayout(layerPanel);
         layerPanel.setLayout(layerPanelLayout);
         layerPanelLayout.setHorizontalGroup(
             layerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Frame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(layerPanelLayout.createSequentialGroup()
-                .addGap(915, 915, 915)
-                .addComponent(searchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(Frame1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Frame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layerPanelLayout.createSequentialGroup()
+                        .addGap(915, 915, 915)
+                        .addComponent(searchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(12, 12, 12))
         );
         layerPanelLayout.setVerticalGroup(
             layerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layerPanelLayout.createSequentialGroup()
                 .addGroup(layerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layerPanelLayout.createSequentialGroup()
-                        .addComponent(Frame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Frame1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Frame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(searchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -731,14 +571,12 @@ public class MainWindow extends javax.swing.JFrame {
     /**
      * Custom initComponents for button action commands
      */
-//    private void myInitComponents() {
-//        // Action commands for next/prev floor buttons
-//        nextFloorButton.setActionCommand("up");
-//        prevFloorButton.setActionCommand("down");
-//        // Start at lowest floor by default: prev floor doesn't exist
-//        prevFloorButton.setEnabled(false);
-//
-//    }
+    private void myInitComponents() {
+        // Allow editing mode only if user is admin
+        if (curUser == null || !curUser.isAdmin()) {
+            editButton.setVisible(false);
+        }
+    }
 
     /**
      * Switch to a given building, landing on the first floor by default
@@ -1077,54 +915,6 @@ public class MainWindow extends javax.swing.JFrame {
     private void selectBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_selectBoxActionPerformed
-
-    private void editButton1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editButton1MousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_editButton1MousePressed
-
-    private void editButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_editButton1ActionPerformed
-
-    private void addRoomButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addRoomButton1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_addRoomButton1MouseClicked
-
-    private void layerListButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_layerListButton1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_layerListButton1MouseClicked
-
-    private void layerListButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_layerListButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_layerListButton1ActionPerformed
-
-    private void classroomLayerRadio1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_classroomLayerRadio1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_classroomLayerRadio1MouseClicked
-
-    private void washroomLayerRadio1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_washroomLayerRadio1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_washroomLayerRadio1MouseClicked
-
-    private void washroomLayerRadio1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_washroomLayerRadio1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_washroomLayerRadio1ActionPerformed
-
-    private void userPOILayerRadio1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userPOILayerRadio1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_userPOILayerRadio1MouseClicked
-
-    private void nextFloorButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextFloorButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nextFloorButton1ActionPerformed
-
-    private void prevFloorButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prevFloorButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_prevFloorButton1ActionPerformed
-
-    private void addPOIButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addPOIButton1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_addPOIButton1MouseClicked
 
     /**
      * A menu button that switches building to MC
@@ -1757,19 +1547,13 @@ public class MainWindow extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Frame;
-    private javax.swing.JPanel Frame1;
     private javax.swing.JToggleButton addPOIButton;
-    private javax.swing.JToggleButton addPOIButton1;
     private javax.swing.JToggleButton addRoomButton;
-    private javax.swing.JToggleButton addRoomButton1;
     private javax.swing.JMenu buildMenu;
     private javax.swing.JPanel classroomLayer;
-    private javax.swing.JPanel classroomLayer1;
     private javax.swing.JRadioButton classroomLayerRadio;
-    private javax.swing.JRadioButton classroomLayerRadio1;
     private javax.swing.JPanel dropDownPanel;
     private javax.swing.JToggleButton editButton;
-    private javax.swing.JToggleButton editButton1;
     private javax.swing.JMenu editMenu;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JTextField filterBox;
@@ -1778,32 +1562,25 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JLabel filterText;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JToggleButton layerListButton;
-    private javax.swing.JToggleButton layerListButton1;
     private javax.swing.JPanel layerListDisplay;
-    private javax.swing.JPanel layerListDisplay1;
     private javax.swing.JLayeredPane layerPanel;
     private javax.swing.JMenuItem mcMenu;
     private javax.swing.JButton nextFloorButton;
-    private javax.swing.JButton nextFloorButton1;
     private javax.swing.JButton onSearch;
     private javax.swing.JMenuItem pabMenu;
     private javax.swing.JButton prevFloorButton;
-    private javax.swing.JButton prevFloorButton1;
     private javax.swing.JPanel resultContainer;
     private javax.swing.JPanel resultPanel;
     private javax.swing.JScrollPane resultScroll;
     private javax.swing.JPanel searchPanel;
     private javax.swing.JComboBox<String> selectBox;
     private javax.swing.JPanel userPOILayer;
-    private javax.swing.JPanel userPOILayer1;
     private javax.swing.JRadioButton userPOILayerRadio;
-    private javax.swing.JRadioButton userPOILayerRadio1;
     private javax.swing.JPanel washroomLayer;
-    private javax.swing.JPanel washroomLayer1;
     private javax.swing.JRadioButton washroomLayerRadio;
-    private javax.swing.JRadioButton washroomLayerRadio1;
     private javax.swing.JMenuItem wscMenu;
     // End of variables declaration//GEN-END:variables
 
 }
+
 
