@@ -201,7 +201,7 @@ public class Login extends javax.swing.JFrame {
         condition.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         condition.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         condition.setText("or");
-        condition.setPreferredSize(new java.awt.Dimension(72, 20));
+        condition.setPreferredSize(new java.awt.Dimension(86, 20));
         submitPanel.add(condition, new java.awt.GridBagConstraints());
 
         signupButton.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
@@ -390,6 +390,7 @@ public class Login extends javax.swing.JFrame {
             dispose();
         }
         else {
+            condition.setPreferredSize(new java.awt.Dimension(60, 20));
             onLogin.setText("Signup");
             signupButton.setText("Continue as Guest");
             signingup = true;
