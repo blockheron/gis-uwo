@@ -1,7 +1,7 @@
 {
   "userCount": 6,
-  "POICount": 20,
-  "roomCount": 316,
+  "POICount": 57,
+  "roomCount": 332,
   "layerCount": 10,
   "curLayerCount": 9,
   "floorCount": 13,
@@ -15,8 +15,8 @@
       "count": 3,
       "POIs": [
         18,
-        19,
-        20
+        34,
+        49
       ]
     },
     {
@@ -30,8 +30,16 @@
       "id": 3,
       "name": "Washrooms",
       "color": -16711681,
-      "count": 0,
-      "POIs": []
+      "count": 7,
+      "POIs": [
+        30,
+        31,
+        29,
+        39,
+        43,
+        53,
+        54
+      ]
     },
     {
       "id": 4,
@@ -58,8 +66,34 @@
       "id": 8,
       "name": "Navigation",
       "color": -14336,
-      "count": 0,
-      "POIs": []
+      "count": 25,
+      "POIs": [
+        21,
+        22,
+        24,
+        25,
+        26,
+        32,
+        33,
+        37,
+        35,
+        38,
+        36,
+        40,
+        42,
+        41,
+        44,
+        45,
+        46,
+        47,
+        48,
+        52,
+        50,
+        51,
+        56,
+        55,
+        57
+      ]
     },
     {
       "id": 9,
@@ -87,7 +121,7 @@
           "id": 1,
           "name": "Ground",
           "filePath": "assets/MC-BF-1.png",
-          "roomCount": 58,
+          "roomCount": 61,
           "rooms": [
             {
               "id": 1,
@@ -1142,8 +1176,18 @@
                 507,
                 518
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 22,
+                  "name": "Stair",
+                  "description": "add your description here!",
+                  "layerID": 8,
+                  "x": 636.0,
+                  "y": 279.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 305,
@@ -1163,8 +1207,18 @@
                 551,
                 532
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 21,
+                  "name": "Stair",
+                  "description": "add your description here!",
+                  "layerID": 8,
+                  "x": 104.0,
+                  "y": 533.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 306,
@@ -1247,8 +1301,18 @@
                 386,
                 381
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 25,
+                  "name": "Stair",
+                  "description": "add your description here!",
+                  "layerID": 8,
+                  "x": 710.0,
+                  "y": 190.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 311,
@@ -1289,67 +1353,15 @@
                 562,
                 550
               ],
-              "count": 0,
-              "POIs": []
-            },
-            {
-              "id": 313,
-              "roomNumber": "",
-              "x": 0.0,
-              "y": 0.0,
-              "npoints": 4,
-              "xpoints": [
-                498,
-                516,
-                546,
-                523
-              ],
-              "ypoints": [
-                354,
-                347,
-                400,
-                408
-              ],
               "count": 1,
               "POIs": [
                 {
-                  "id": 19,
-                  "name": "new POI",
+                  "id": 26,
+                  "name": "Stair",
                   "description": "add your description here!",
-                  "layerID": 1,
-                  "x": 401.0,
-                  "y": 293.0,
-                  "user": -1
-                }
-              ]
-            },
-            {
-              "id": 314,
-              "roomNumber": "",
-              "x": 0.0,
-              "y": 0.0,
-              "npoints": 4,
-              "xpoints": [
-                535,
-                582,
-                582,
-                551
-              ],
-              "ypoints": [
-                351,
-                356,
-                384,
-                388
-              ],
-              "count": 1,
-              "POIs": [
-                {
-                  "id": 20,
-                  "name": "new POI",
-                  "description": "add your description here!",
-                  "layerID": 1,
-                  "x": 446.0,
-                  "y": 276.0,
+                  "layerID": 8,
+                  "x": 1066.0,
+                  "y": 369.0,
                   "user": -1
                 }
               ]
@@ -1382,6 +1394,169 @@
               ],
               "count": 0,
               "POIs": []
+            },
+            {
+              "id": 318,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                165,
+                179,
+                190,
+                179
+              ],
+              "ypoints": [
+                517,
+                511,
+                536,
+                543
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 24,
+                  "name": "stair",
+                  "description": "add your description here!",
+                  "layerID": 8,
+                  "x": 538.0,
+                  "y": 311.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 319,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                1004,
+                1020,
+                1014,
+                993
+              ],
+              "ypoints": [
+                484,
+                500,
+                514,
+                509
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 29,
+                  "name": "Washroom",
+                  "description": "add your description here!",
+                  "layerID": 3,
+                  "x": 962.0,
+                  "y": 321.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 320,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 6,
+              "xpoints": [
+                481,
+                490,
+                500,
+                518,
+                546,
+                524,
+                0,
+                0
+              ],
+              "ypoints": [
+                331,
+                331,
+                352,
+                346,
+                396,
+                408,
+                0,
+                0
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 30,
+                  "name": "Washroom",
+                  "description": "add your description here!",
+                  "layerID": 3,
+                  "x": 478.0,
+                  "y": 197.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 321,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                538,
+                552,
+                579,
+                580
+              ],
+              "ypoints": [
+                353,
+                386,
+                386,
+                356
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 31,
+                  "name": "Washroom",
+                  "description": "add your description here!",
+                  "layerID": 3,
+                  "x": 521.0,
+                  "y": 192.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 322,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                385,
+                393,
+                404,
+                398
+              ],
+              "ypoints": [
+                277,
+                275,
+                290,
+                292
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 32,
+                  "name": "Stair",
+                  "description": "add your description here!",
+                  "layerID": 8,
+                  "x": 281.0,
+                  "y": 192.0,
+                  "user": -1
+                }
+              ]
             }
           ],
           "POICount": 0,
@@ -1391,7 +1566,7 @@
           "id": 2,
           "name": "2",
           "filePath": "assets/MC-BF-2.png",
-          "roomCount": 68,
+          "roomCount": 71,
           "rooms": [
             {
               "id": 51,
@@ -1431,27 +1606,6 @@
                 382,
                 425,
                 444
-              ],
-              "count": 0,
-              "POIs": []
-            },
-            {
-              "id": 53,
-              "roomNumber": "",
-              "x": 0.0,
-              "y": 0.0,
-              "npoints": 4,
-              "xpoints": [
-                94,
-                162,
-                178,
-                111
-              ],
-              "ypoints": [
-                562,
-                522,
-                550,
-                587
               ],
               "count": 0,
               "POIs": []
@@ -2632,8 +2786,18 @@
                 509,
                 518
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 33,
+                  "name": "Stair",
+                  "description": "add your description here!",
+                  "layerID": 8,
+                  "x": 446.0,
+                  "y": 347.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 293,
@@ -2695,8 +2859,18 @@
                 409,
                 396
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 35,
+                  "name": "Stair",
+                  "description": "add your description here!",
+                  "layerID": 8,
+                  "x": 921.0,
+                  "y": 223.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 297,
@@ -2716,8 +2890,18 @@
                 501,
                 488
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 38,
+                  "name": "Elevator",
+                  "description": "add your description here!",
+                  "layerID": 8,
+                  "x": 924.0,
+                  "y": 344.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 298,
@@ -2737,8 +2921,18 @@
                 562,
                 550
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 36,
+                  "name": "Stair",
+                  "description": "add your description here!",
+                  "layerID": 8,
+                  "x": 1054.0,
+                  "y": 416.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 299,
@@ -2808,8 +3002,18 @@
                 409,
                 361
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 34,
+                  "name": "new POI",
+                  "description": "add your description here!",
+                  "layerID": 1,
+                  "x": 687.0,
+                  "y": 230.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 302,
@@ -2860,6 +3064,142 @@
               ],
               "count": 0,
               "POIs": []
+            },
+            {
+              "id": 324,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 7,
+              "xpoints": [
+                77,
+                122,
+                133,
+                90,
+                128,
+                128,
+                132,
+                0
+              ],
+              "ypoints": [
+                531,
+                510,
+                521,
+                555,
+                520,
+                520,
+                599,
+                0
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 326,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                1005,
+                1024,
+                1016,
+                996
+              ],
+              "ypoints": [
+                486,
+                502,
+                514,
+                510
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 39,
+                  "name": "Washroom",
+                  "description": "add your description here!",
+                  "layerID": 3,
+                  "x": 701.0,
+                  "y": 421.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 327,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 2,
+              "xpoints": [
+                688,
+                706,
+                0,
+                0
+              ],
+              "ypoints": [
+                332,
+                333,
+                0,
+                0
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 328,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 9,
+              "xpoints": [
+                685,
+                707,
+                689,
+                696,
+                696,
+                696,
+                689,
+                689,
+                689,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "ypoints": [
+                331,
+                336,
+                347,
+                346,
+                346,
+                346,
+                348,
+                348,
+                348,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 37,
+                  "name": "Elevator",
+                  "description": "add your description here!",
+                  "layerID": 8,
+                  "x": 636.0,
+                  "y": 204.0,
+                  "user": -1
+                }
+              ]
             }
           ],
           "POICount": 0,
@@ -2869,7 +3209,7 @@
           "id": 3,
           "name": "3",
           "filePath": "assets/MC-BF-3.png",
-          "roomCount": 75,
+          "roomCount": 77,
           "rooms": [
             {
               "id": 112,
@@ -4394,8 +4734,18 @@
                 534,
                 553
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 40,
+                  "name": "Stair",
+                  "description": "add your description here!",
+                  "layerID": 8,
+                  "x": 223.0,
+                  "y": 490.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 286,
@@ -4436,8 +4786,18 @@
                 412,
                 395
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 41,
+                  "name": "Stair",
+                  "description": "add your description here!",
+                  "layerID": 8,
+                  "x": 851.0,
+                  "y": 346.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 288,
@@ -4457,8 +4817,18 @@
                 550,
                 564
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 45,
+                  "name": "Stair",
+                  "description": "add your description here!",
+                  "layerID": 8,
+                  "x": 711.0,
+                  "y": 417.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 290,
@@ -4478,8 +4848,18 @@
                 504,
                 490
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 44,
+                  "name": "Elevator",
+                  "description": "add your description here!",
+                  "layerID": 8,
+                  "x": 591.0,
+                  "y": 359.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 316,
@@ -4509,6 +4889,68 @@
               ],
               "count": 0,
               "POIs": []
+            },
+            {
+              "id": 329,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                255,
+                275,
+                300,
+                279
+              ],
+              "ypoints": [
+                477,
+                465,
+                508,
+                518
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 42,
+                  "name": "Stair",
+                  "description": "add your description here!",
+                  "layerID": 8,
+                  "x": 384.0,
+                  "y": 458.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 330,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                499,
+                523,
+                550,
+                525
+              ],
+              "ypoints": [
+                357,
+                346,
+                398,
+                406
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 43,
+                  "name": "Washroom",
+                  "description": "add your description here!",
+                  "layerID": 3,
+                  "x": 533.0,
+                  "y": 232.0,
+                  "user": -1
+                }
+              ]
             }
           ],
           "POICount": 0,
@@ -4518,7 +4960,7 @@
           "id": 4,
           "name": "4",
           "filePath": "assets/MC-BF-4.png",
-          "roomCount": 74,
+          "roomCount": 76,
           "rooms": [
             {
               "id": 185,
@@ -5999,8 +6441,18 @@
                 524,
                 552
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 46,
+                  "name": "Stair",
+                  "description": "add your description here!",
+                  "layerID": 8,
+                  "x": 118.0,
+                  "y": 404.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 276,
@@ -6020,8 +6472,18 @@
                 508,
                 521
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 47,
+                  "name": "Stair",
+                  "description": "add your description here!",
+                  "layerID": 8,
+                  "x": 291.0,
+                  "y": 372.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 278,
@@ -6062,8 +6524,18 @@
                 399,
                 410
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 53,
+                  "name": "Washroom",
+                  "description": "add your description here!",
+                  "layerID": 3,
+                  "x": 529.0,
+                  "y": 246.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 280,
@@ -6083,8 +6555,18 @@
                 410,
                 397
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 48,
+                  "name": "Stair",
+                  "description": "add your description here!",
+                  "layerID": 8,
+                  "x": 766.0,
+                  "y": 259.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 281,
@@ -6112,8 +6594,18 @@
                 0,
                 0
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 54,
+                  "name": "Washroom",
+                  "description": "add your description here!",
+                  "layerID": 3,
+                  "x": 615.0,
+                  "y": 201.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 282,
@@ -6154,8 +6646,18 @@
                 547,
                 564
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 51,
+                  "name": "Stair",
+                  "description": "add your description here!",
+                  "layerID": 8,
+                  "x": 1118.0,
+                  "y": 426.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 284,
@@ -6175,8 +6677,80 @@
                 500,
                 490
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 50,
+                  "name": "Elevator",
+                  "description": "add your description here!",
+                  "layerID": 8,
+                  "x": 988.0,
+                  "y": 366.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 331,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                683,
+                707,
+                706,
+                689
+              ],
+              "ypoints": [
+                331,
+                331,
+                346,
+                348
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 49,
+                  "name": "new POI",
+                  "description": "add your description here!",
+                  "layerID": 1,
+                  "x": 711.0,
+                  "y": 216.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 332,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                749,
+                761,
+                745,
+                737
+              ],
+              "ypoints": [
+                319,
+                327,
+                349,
+                346
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 52,
+                  "name": "Stair",
+                  "description": "add your description here!",
+                  "layerID": 8,
+                  "x": 760.0,
+                  "y": 209.0,
+                  "user": -1
+                }
+              ]
             }
           ],
           "POICount": 0,
@@ -6579,8 +7153,18 @@
                 411,
                 397
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 56,
+                  "name": "Stair",
+                  "description": "add your description here!",
+                  "layerID": 8,
+                  "x": 485.0,
+                  "y": 241.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 272,
@@ -6621,8 +7205,18 @@
                 560,
                 547
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 57,
+                  "name": "Stair",
+                  "description": "add your description here!",
+                  "layerID": 8,
+                  "x": 504.0,
+                  "y": 319.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 274,
@@ -6642,8 +7236,18 @@
                 493,
                 479
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 55,
+                  "name": "Elevator",
+                  "description": "add your description here!",
+                  "layerID": 8,
+                  "x": 719.0,
+                  "y": 346.0,
+                  "user": -1
+                }
+              ]
             }
           ],
           "POICount": 0,
