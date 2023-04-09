@@ -1,5 +1,31 @@
 # Campus Map Application
-## How to Run
+## Description
+This software is a map viewer for western university. It allows you to add and find points of interest in Middlesex College, Western Science Center, and the Physics and Astronomy building.
+## Dependencies and 3rd party software
+1. the iknoli remixicon pack version 12.3.1
+2. iknoli-swing version 12.3.1 (the order of this and the last item in the pom.xml file is important)
+3. gson version 2.10
+4. guava version 18.0
+5. The AbsoluteLayout from netbeans.external Release160
+6. The maven-jar-plugin version 2.4
+7. The maven-shade-plugin version 2.2
+## How to build
+1. Clone/Download the project into NetBeans
+2. Open the project
+3. Click the clean and build project option from the menu (this will obtain any dependencies automatically)
+4. The resulting jar executable will be in the project folder under target with the name group22-1.0-SNAPSHOT.jar
+## How to run
+1. Locate the executable compiled in the last step or go to group22/target if already compiled
+2. If java is configured correctly you should be able to just double click the jar file
+3. Otherwise, run java -jar /path/to/jar
+
+## User guide
+
+
+## Account information/Edit mode
+The edit mode is accessed through the admin user which has the username "admin" and the password "password". There is one user for each group member with usernames Liam, Karen, Maxwell, Denise, Valentina and the password for each of those users is "1234"
+
+## How to run
 1. Clone the repository
 ```bash
 git clone https://repo.csd.uwo.ca/scm/compsci2212_w2023/group22.git
