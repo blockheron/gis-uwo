@@ -23,25 +23,25 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Liam
  */
 public class JsonDBTest {
-    
+
     public JsonDBTest() {
     }
-    
+
     @BeforeAll
     public static void setUpClass() {
         new File(JsonDB.dbFilePath).delete();
     }
-    
+
     @AfterAll
     public static void tearDownClass() {
         new File(JsonDB.dbFilePath).delete();
     }
-    
+
     @BeforeEach
     public void setUp() {
         new JsonDB(true);
     }
-    
+
     @AfterEach
     public void tearDown() {
     }
@@ -82,7 +82,7 @@ public class JsonDBTest {
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
-    }*/ 
+    }*/
 
     /**
      * Test of getBuildings method, of class JsonDB.
@@ -227,5 +227,5 @@ public class JsonDBTest {
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }
-    
+
 }
