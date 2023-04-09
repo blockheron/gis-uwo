@@ -88,7 +88,6 @@ public class MainWindow extends javax.swing.JFrame {
             Map.addLayer("unassigned", Color.RED);
             Map.addLayer("Accessibility", Color.BLUE);
             Map.addLayer("Computer Science Related",Color.GREEN);
-            Map.addLayer("Favourites", Color.darkGray);
             Map.addLayer("GenLabs", Color.MAGENTA);
             Map.addLayer("Navigation",Color.ORANGE);
             Map.addLayer("Restaurants", Color.PINK);
@@ -697,9 +696,10 @@ public class MainWindow extends javax.swing.JFrame {
      * Custom initComponents for button action commands
      */
     private void myInitComponents() {
-        // Allow editing mode only if user is admin
-        if (curUser == null || !curUser.isAdmin()) {
+        // Allow editing mode only if user is not guest
+        if (curUser == null) {
             editButton.setVisible(false);
+            editButton.setEnabled(false);
         }
     }
 
@@ -1127,26 +1127,26 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_entryExitLayerRadioMouseClicked
 
     private void favLayerRadioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_favLayerRadioMouseClicked
-        // Activate and deactivate favourite layer
+       
+        if(curUser == null) return;
         
-        Layer fav = Map.getLayer("Favourites");
-        
-        if ( favLayerRadio.isSelected()) {
-            for (Room room : fav.getRooms(curFloor)) {
-                room.highlight(fav.getColor());
+        if (favLayerRadio.isSelected()) {
+            for (Room room : curUser.getFavoriteRooms()) {
+                room.highlight(Color.YELLOW);
             }
         }
         else {
-            for (Room room : fav.getRooms(curFloor)) {
-                room.dehighlight(fav.getColor());
+            for (Room room : curUser.getFavoriteRooms()) {
+                room.dehighlight(Color.YELLOW);
             }
         }
+        
     }//GEN-LAST:event_favLayerRadioMouseClicked
 
     private void genLabLayerRadioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_genLabLayerRadioMouseClicked
         // Activate and deactivate genLab layer
         
-        Layer genLab = Map.getLayer("GenLabs/Exit");
+        Layer genLab = Map.getLayer("GenLabs");
         
         if ( genLabLayerRadio.isSelected()) {
             for (Room room : genLab.getRooms(curFloor)) {

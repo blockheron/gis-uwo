@@ -158,6 +158,7 @@ public class POIListPopup extends javax.swing.JPanel {
 
     private void ChangeNameButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChangeNameButtonMouseClicked
         String name = JOptionPane.showInputDialog(this, "New room name:");
+        if (name == null) return;
         room.setRoomNumber(name);
         setLabel();
         

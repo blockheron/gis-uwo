@@ -23,7 +23,7 @@ public class JsonDB {
     
     private static Gson gson;
     private static Reader initFile;
-    private static String dbFilePath = System.getProperty("user.home") + "/db.json";
+    public static String dbFilePath = System.getProperty("user.home") + "/db.json";
     private static JsonObject db;
     
     public static void main(String[] args) {
@@ -352,6 +352,7 @@ public class JsonDB {
      * @return the JsonArray representing the floors
      */
     public static JsonArray getFloors(Building building) {
+        if (building == null) return null;
         return getBuilding(building.getID()).get("floors").getAsJsonArray();
     }
     public static JsonArray getFloors (JsonObject building) {
@@ -366,6 +367,7 @@ public class JsonDB {
      */
     public static JsonObject getFloor (Building building, int id) {
         
+        if (building == null) return null;
         int floorCount = building.getFloorNum();
         JsonArray floors = getFloors(building);
         
