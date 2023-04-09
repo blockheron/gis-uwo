@@ -1,9 +1,9 @@
 {
   "userCount": 6,
-  "POICount": 0,
-  "roomCount": 0,
-  "layerCount": 10,
-  "curLayerCount": 9,
+  "POICount": 20,
+  "roomCount": 316,
+  "layerCount": 3,
+  "curLayerCount": 3,
   "floorCount": 13,
   "buildingCount": 3,
   "curBuildingCount": 3,
@@ -12,8 +12,12 @@
       "id": 1,
       "name": "unassigned",
       "color": -65536,
-      "count": 0,
-      "POIs": []
+      "count": 3,
+      "POIs": [
+        18,
+        19,
+        20
+      ]
     },
     {
       "id": 2,
@@ -40,6 +44,13 @@
       "id": 5,
       "name": "Computer Science Related",
       "color": -16711936,
+      "count": 0,
+      "POIs": []
+    },
+    {
+      "id": 6,
+      "name": "Favourites",
+      "color": -12566464,
       "count": 0,
       "POIs": []
     },
@@ -83,46 +94,6567 @@
           "id": 1,
           "name": "Ground",
           "filePath": "assets/MC-BF-1.png",
-          "roomCount": 0,
-          "rooms": [],
+          "roomCount": 58,
+          "rooms": [
+            {
+              "id": 1,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                67,
+                125,
+                177,
+                109
+              ],
+              "ypoints": [
+                428,
+                382,
+                471,
+                494
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 2,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                129,
+                174,
+                213,
+                178
+              ],
+              "ypoints": [
+                383,
+                367,
+                434,
+                469
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 3,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                206,
+                243,
+                273,
+                236
+              ],
+              "ypoints": [
+                397,
+                376,
+                421,
+                444
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 4,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                240,
+                285,
+                314,
+                276
+              ],
+              "ypoints": [
+                371,
+                347,
+                394,
+                419
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 5,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                295,
+                357,
+                386,
+                318
+              ],
+              "ypoints": [
+                348,
+                311,
+                355,
+                394
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 6,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                758,
+                790,
+                751,
+                722
+              ],
+              "ypoints": [
+                200,
+                219,
+                280,
+                265
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 7,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                725,
+                750,
+                731,
+                710
+              ],
+              "ypoints": [
+                269,
+                286,
+                304,
+                289
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 8,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                761,
+                786,
+                769,
+                741
+              ],
+              "ypoints": [
+                280,
+                295,
+                322,
+                305
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 9,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                791,
+                809,
+                790,
+                773
+              ],
+              "ypoints": [
+                296,
+                308,
+                334,
+                326
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 10,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                810,
+                827,
+                813,
+                792
+              ],
+              "ypoints": [
+                313,
+                324,
+                347,
+                338
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 11,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                829,
+                847,
+                835,
+                815
+              ],
+              "ypoints": [
+                324,
+                338,
+                355,
+                353
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 12,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                849,
+                868,
+                855,
+                834
+              ],
+              "ypoints": [
+                338,
+                347,
+                370,
+                365
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 13,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                876,
+                893,
+                876,
+                858
+              ],
+              "ypoints": [
+                344,
+                355,
+                382,
+                374
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 14,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                893,
+                915,
+                899,
+                875
+              ],
+              "ypoints": [
+                357,
+                369,
+                394,
+                388
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 15,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                919,
+                934,
+                914,
+                901
+              ],
+              "ypoints": [
+                369,
+                378,
+                410,
+                394
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 16,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                934,
+                953,
+                936,
+                921
+              ],
+              "ypoints": [
+                386,
+                397,
+                421,
+                409
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 17,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                954,
+                973,
+                955,
+                943
+              ],
+              "ypoints": [
+                396,
+                407,
+                433,
+                420
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 18,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                977,
+                993,
+                976,
+                961
+              ],
+              "ypoints": [
+                410,
+                420,
+                445,
+                431
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 21,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                212,
+                237,
+                250,
+                224
+              ],
+              "ypoints": [
+                494,
+                484,
+                501,
+                515
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 23,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                93,
+                110,
+                177,
+                163
+              ],
+              "ypoints": [
+                560,
+                589,
+                548,
+                522
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 24,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                183,
+                199,
+                271,
+                252
+              ],
+              "ypoints": [
+                544,
+                576,
+                536,
+                505
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 25,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                183,
+                196,
+                220,
+                209
+              ],
+              "ypoints": [
+                512,
+                531,
+                517,
+                502
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 26,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                305,
+                334,
+                396,
+                360
+              ],
+              "ypoints": [
+                445,
+                496,
+                467,
+                410
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 27,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                368,
+                402,
+                448,
+                416
+              ],
+              "ypoints": [
+                407,
+                466,
+                439,
+                381
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 28,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                421,
+                453,
+                514,
+                480
+              ],
+              "ypoints": [
+                377,
+                430,
+                393,
+                344
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 29,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                561,
+                559,
+                584,
+                592
+              ],
+              "ypoints": [
+                322,
+                351,
+                349,
+                323
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 30,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 1,
+              "xpoints": [
+                602,
+                0,
+                0,
+                0
+              ],
+              "ypoints": [
+                357,
+                0,
+                0,
+                0
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 31,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                735,
+                726,
+                745,
+                753
+              ],
+              "ypoints": [
+                382,
+                396,
+                408,
+                395
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 32,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                785,
+                770,
+                795,
+                802
+              ],
+              "ypoints": [
+                362,
+                383,
+                400,
+                390
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 33,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 5,
+              "xpoints": [
+                804,
+                807,
+                800,
+                825,
+                839,
+                0,
+                0,
+                0
+              ],
+              "ypoints": [
+                372,
+                388,
+                406,
+                419,
+                398,
+                0,
+                0,
+                0
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 34,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                848,
+                828,
+                843,
+                858
+              ],
+              "ypoints": [
+                394,
+                427,
+                437,
+                412
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 35,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                866,
+                847,
+                885,
+                903
+              ],
+              "ypoints": [
+                407,
+                439,
+                459,
+                430
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 36,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                906,
+                894,
+                909,
+                922
+              ],
+              "ypoints": [
+                433,
+                459,
+                466,
+                442
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 37,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                926,
+                912,
+                927,
+                942
+              ],
+              "ypoints": [
+                447,
+                468,
+                478,
+                452
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 38,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 6,
+              "xpoints": [
+                945,
+                933,
+                951,
+                982,
+                985,
+                951,
+                0,
+                0
+              ],
+              "ypoints": [
+                462,
+                480,
+                492,
+                502,
+                497,
+                461,
+                0,
+                0
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 39,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 5,
+              "xpoints": [
+                986,
+                997,
+                1029,
+                1026,
+                1024,
+                0,
+                0,
+                0
+              ],
+              "ypoints": [
+                518,
+                564,
+                544,
+                533,
+                523,
+                0,
+                0,
+                0
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 40,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                1019,
+                1042,
+                1064,
+                1064
+              ],
+              "ypoints": [
+                458,
+                489,
+                476,
+                446
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 41,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                1074,
+                1066,
+                1091,
+                1116
+              ],
+              "ypoints": [
+                448,
+                482,
+                498,
+                476
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 42,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                1035,
+                1001,
+                1044,
+                1055
+              ],
+              "ypoints": [
+                550,
+                571,
+                597,
+                560
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 43,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                1061,
+                1054,
+                1103,
+                1107
+              ],
+              "ypoints": [
+                556,
+                594,
+                588,
+                564
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 44,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 5,
+              "xpoints": [
+                1124,
+                1098,
+                1101,
+                1123,
+                1138,
+                0,
+                0,
+                0
+              ],
+              "ypoints": [
+                482,
+                495,
+                527,
+                546,
+                522,
+                0,
+                0,
+                0
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 45,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                673,
+                672,
+                698,
+                700
+              ],
+              "ypoints": [
+                261,
+                281,
+                283,
+                265
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 46,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                601,
+                625,
+                625,
+                598
+              ],
+              "ypoints": [
+                322,
+                322,
+                345,
+                337
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 47,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                630,
+                656,
+                660,
+                632
+              ],
+              "ypoints": [
+                328,
+                319,
+                352,
+                348
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 48,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                667,
+                679,
+                677,
+                664
+              ],
+              "ypoints": [
+                319,
+                322,
+                341,
+                341
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 49,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 7,
+              "xpoints": [
+                692,
+                716,
+                737,
+                752,
+                733,
+                704,
+                688,
+                0
+              ],
+              "ypoints": [
+                357,
+                355,
+                329,
+                341,
+                376,
+                387,
+                385,
+                0
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 50,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 7,
+              "xpoints": [
+                482,
+                742,
+                697,
+                657,
+                599,
+                558,
+                520,
+                0
+              ],
+              "ypoints": [
+                212,
+                195,
+                256,
+                284,
+                267,
+                268,
+                290,
+                0
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 304,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                251,
+                277,
+                298,
+                276
+              ],
+              "ypoints": [
+                473,
+                464,
+                507,
+                518
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 305,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                119,
+                79,
+                88,
+                132
+              ],
+              "ypoints": [
+                507,
+                531,
+                551,
+                532
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 306,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                398,
+                420,
+                448,
+                425
+              ],
+              "ypoints": [
+                272,
+                271,
+                315,
+                334
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 308,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                428,
+                492,
+                514,
+                456
+              ],
+              "ypoints": [
+                268,
+                234,
+                288,
+                316
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 309,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                605,
+                673,
+                669,
+                604
+              ],
+              "ypoints": [
+                353,
+                359,
+                422,
+                422
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 310,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                752,
+                779,
+                763,
+                739
+              ],
+              "ypoints": [
+                348,
+                360,
+                386,
+                381
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 311,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                1056,
+                1092,
+                1092,
+                1052
+              ],
+              "ypoints": [
+                485,
+                504,
+                521,
+                501
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 312,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                1096,
+                1123,
+                1118,
+                1086
+              ],
+              "ypoints": [
+                537,
+                550,
+                562,
+                550
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 313,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                498,
+                516,
+                546,
+                523
+              ],
+              "ypoints": [
+                354,
+                347,
+                400,
+                408
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 19,
+                  "name": "new POI",
+                  "description": "add your description here!",
+                  "layerID": 1,
+                  "x": 401.0,
+                  "y": 293.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 314,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                535,
+                582,
+                582,
+                551
+              ],
+              "ypoints": [
+                351,
+                356,
+                384,
+                388
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 20,
+                  "name": "new POI",
+                  "description": "add your description here!",
+                  "layerID": 1,
+                  "x": 446.0,
+                  "y": 276.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 315,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 6,
+              "xpoints": [
+                354,
+                374,
+                396,
+                385,
+                387,
+                388,
+                0,
+                0
+              ],
+              "ypoints": [
+                280,
+                273,
+                301,
+                310,
+                328,
+                351,
+                0,
+                0
+              ],
+              "count": 0,
+              "POIs": []
+            }
+          ],
           "POICount": 0,
-          "miscPOIs" : []
+          "miscPOIs": []
         },
         {
           "id": 2,
           "name": "2",
           "filePath": "assets/MC-BF-2.png",
-          "roomCount": 0,
-          "rooms": [],
+          "roomCount": 68,
+          "rooms": [
+            {
+              "id": 51,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                69,
+                178,
+                215,
+                110
+              ],
+              "ypoints": [
+                427,
+                367,
+                435,
+                497
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 52,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                207,
+                230,
+                254,
+                237
+              ],
+              "ypoints": [
+                397,
+                382,
+                425,
+                444
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 53,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                94,
+                162,
+                178,
+                111
+              ],
+              "ypoints": [
+                562,
+                522,
+                550,
+                587
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 55,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                168,
+                238,
+                274,
+                200
+              ],
+              "ypoints": [
+                521,
+                484,
+                535,
+                578
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 56,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                275,
+                302,
+                334,
+                311
+              ],
+              "ypoints": [
+                461,
+                447,
+                500,
+                514
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 57,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                307,
+                336,
+                353,
+                318
+              ],
+              "ypoints": [
+                448,
+                426,
+                443,
+                468
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 58,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                321,
+                334,
+                359,
+                335
+              ],
+              "ypoints": [
+                470,
+                462,
+                486,
+                500
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 59,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                232,
+                287,
+                315,
+                260
+              ],
+              "ypoints": [
+                376,
+                343,
+                395,
+                428
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 60,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                294,
+                359,
+                385,
+                321
+              ],
+              "ypoints": [
+                347,
+                307,
+                355,
+                392
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 61,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                344,
+                375,
+                389,
+                353
+              ],
+              "ypoints": [
+                425,
+                404,
+                424,
+                446
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 62,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                350,
+                383,
+                395,
+                362
+              ],
+              "ypoints": [
+                469,
+                451,
+                470,
+                486
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 63,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                383,
+                406,
+                428,
+                399
+              ],
+              "ypoints": [
+                448,
+                435,
+                452,
+                470
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 64,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                362,
+                413,
+                446,
+                394
+              ],
+              "ypoints": [
+                303,
+                270,
+                324,
+                347
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 66,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                422,
+                460,
+                484,
+                451
+              ],
+              "ypoints": [
+                272,
+                252,
+                296,
+                320
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 67,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                462,
+                491,
+                515,
+                491
+              ],
+              "ypoints": [
+                251,
+                236,
+                280,
+                295
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 68,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                495,
+                505,
+                553,
+                536
+              ],
+              "ypoints": [
+                231,
+                224,
+                297,
+                306
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 69,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                392,
+                434,
+                448,
+                407
+              ],
+              "ypoints": [
+                392,
+                370,
+                390,
+                416
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 71,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 10,
+              "xpoints": [
+                379,
+                387,
+                406,
+                443,
+                449,
+                418,
+                408,
+                400,
+                354,
+                342,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "ypoints": [
+                398,
+                393,
+                420,
+                400,
+                417,
+                424,
+                433,
+                434,
+                465,
+                461,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 72,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                417,
+                441,
+                459,
+                431
+              ],
+              "ypoints": [
+                432,
+                421,
+                430,
+                451
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 73,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                434,
+                452,
+                465,
+                450
+              ],
+              "ypoints": [
+                369,
+                361,
+                383,
+                387
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 74,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                451,
+                466,
+                482,
+                463
+              ],
+              "ypoints": [
+                396,
+                388,
+                416,
+                426
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 75,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                452,
+                483,
+                518,
+                482
+              ],
+              "ypoints": [
+                360,
+                343,
+                397,
+                409
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 76,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                502,
+                772,
+                696,
+                581
+              ],
+              "ypoints": [
+                209,
+                209,
+                316,
+                319
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 77,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                516,
+                528,
+                556,
+                550
+              ],
+              "ypoints": [
+                324,
+                319,
+                352,
+                381
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 78,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                560,
+                587,
+                588,
+                552
+              ],
+              "ypoints": [
+                355,
+                354,
+                386,
+                386
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 79,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                603,
+                670,
+                674,
+                604
+              ],
+              "ypoints": [
+                356,
+                358,
+                418,
+                421
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 80,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                659,
+                671,
+                674,
+                653
+              ],
+              "ypoints": [
+                323,
+                322,
+                344,
+                348
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 81,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                763,
+                780,
+                764,
+                743
+              ],
+              "ypoints": [
+                279,
+                289,
+                316,
+                309
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 83,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                784,
+                809,
+                798,
+                767
+              ],
+              "ypoints": [
+                291,
+                306,
+                335,
+                317
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 84,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                811,
+                836,
+                822,
+                792
+              ],
+              "ypoints": [
+                309,
+                330,
+                355,
+                336
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 85,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                843,
+                869,
+                854,
+                824
+              ],
+              "ypoints": [
+                334,
+                347,
+                367,
+                354
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 86,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                782,
+                799,
+                786,
+                768
+              ],
+              "ypoints": [
+                360,
+                373,
+                395,
+                386
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 87,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                803,
+                821,
+                804,
+                788
+              ],
+              "ypoints": [
+                371,
+                383,
+                411,
+                398
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 88,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                826,
+                837,
+                827,
+                810
+              ],
+              "ypoints": [
+                387,
+                401,
+                419,
+                412
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 89,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                844,
+                859,
+                852,
+                842
+              ],
+              "ypoints": [
+                399,
+                406,
+                423,
+                412
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 90,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                836,
+                850,
+                844,
+                828
+              ],
+              "ypoints": [
+                414,
+                423,
+                436,
+                427
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 91,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                861,
+                884,
+                866,
+                849
+              ],
+              "ypoints": [
+                414,
+                417,
+                451,
+                442
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 92,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                888,
+                904,
+                887,
+                871
+              ],
+              "ypoints": [
+                420,
+                437,
+                459,
+                451
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 93,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 2,
+              "xpoints": [
+                939,
+                919,
+                0,
+                0
+              ],
+              "ypoints": [
+                449,
+                474,
+                0,
+                0
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 94,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                906,
+                936,
+                922,
+                894
+              ],
+              "ypoints": [
+                437,
+                449,
+                477,
+                459
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 95,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                938,
+                968,
+                950,
+                923
+              ],
+              "ypoints": [
+                451,
+                467,
+                492,
+                476
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 96,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                1021,
+                987,
+                999,
+                1030
+              ],
+              "ypoints": [
+                520,
+                517,
+                564,
+                547
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 97,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                1031,
+                1056,
+                1051,
+                1003
+              ],
+              "ypoints": [
+                550,
+                564,
+                595,
+                574
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 98,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                1056,
+                1070,
+                1078,
+                1054
+              ],
+              "ypoints": [
+                566,
+                565,
+                593,
+                595
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 99,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                1071,
+                1089,
+                1111,
+                1080
+              ],
+              "ypoints": [
+                565,
+                553,
+                565,
+                597
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 100,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                1021,
+                1067,
+                1066,
+                1043
+              ],
+              "ypoints": [
+                463,
+                453,
+                487,
+                492
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 101,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                1076,
+                1117,
+                1094,
+                1068
+              ],
+              "ypoints": [
+                451,
+                472,
+                497,
+                482
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 102,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                1122,
+                1131,
+                1103,
+                1094
+              ],
+              "ypoints": [
+                479,
+                499,
+                511,
+                497
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 103,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                1130,
+                1123,
+                1101,
+                1099
+              ],
+              "ypoints": [
+                504,
+                541,
+                533,
+                514
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 104,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                689,
+                725,
+                730,
+                681
+              ],
+              "ypoints": [
+                349,
+                349,
+                387,
+                379
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 105,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                737,
+                750,
+                747,
+                727
+              ],
+              "ypoints": [
+                330,
+                337,
+                354,
+                344
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 106,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                769,
+                779,
+                742,
+                728
+              ],
+              "ypoints": [
+                228,
+                232,
+                303,
+                293
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 107,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                875,
+                893,
+                876,
+                860
+              ],
+              "ypoints": [
+                341,
+                354,
+                385,
+                377
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 108,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                894,
+                936,
+                913,
+                883
+              ],
+              "ypoints": [
+                356,
+                379,
+                411,
+                388
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 109,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                935,
+                954,
+                938,
+                922
+              ],
+              "ypoints": [
+                384,
+                395,
+                421,
+                410
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 110,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                957,
+                972,
+                960,
+                945
+              ],
+              "ypoints": [
+                397,
+                409,
+                434,
+                422
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 111,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                978,
+                995,
+                978,
+                963
+              ],
+              "ypoints": [
+                409,
+                419,
+                446,
+                434
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 292,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                256,
+                273,
+                298,
+                279
+              ],
+              "ypoints": [
+                471,
+                462,
+                509,
+                518
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 293,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                483,
+                511,
+                521,
+                497
+              ],
+              "ypoints": [
+                333,
+                321,
+                339,
+                355
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 294,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                600,
+                652,
+                652,
+                614
+              ],
+              "ypoints": [
+                323,
+                323,
+                343,
+                347
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 295,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                756,
+                775,
+                749,
+                728
+              ],
+              "ypoints": [
+                348,
+                361,
+                409,
+                396
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 297,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                975,
+                1000,
+                983,
+                960
+              ],
+              "ypoints": [
+                465,
+                479,
+                501,
+                488
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 298,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                1102,
+                1088,
+                1118,
+                1123
+              ],
+              "ypoints": [
+                538,
+                548,
+                562,
+                550
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 299,
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                83,
+                121,
+                135,
+                93
+              ],
+              "ypoints": [
+                531,
+                511,
+                534,
+                553
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 18,
+                  "name": "new POI",
+                  "description": "add your description here!",
+                  "layerID": 1,
+                  "x": 177.0,
+                  "y": 409.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 300,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 1,
+              "xpoints": [
+                -118,
+                0,
+                0,
+                0
+              ],
+              "ypoints": [
+                747,
+                0,
+                0,
+                0
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 301,
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                523,
+                549,
+                528,
+                502
+              ],
+              "ypoints": [
+                348,
+                397,
+                409,
+                361
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 302,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 3,
+              "xpoints": [
+                80,
+                121,
+                89,
+                0
+              ],
+              "ypoints": [
+                533,
+                510,
+                555,
+                0
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 303,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 5,
+              "xpoints": [
+                1063,
+                1043,
+                1058,
+                1080,
+                1079,
+                0,
+                0,
+                0
+              ],
+              "ypoints": [
+                504,
+                519,
+                545,
+                526,
+                513,
+                0,
+                0,
+                0
+              ],
+              "count": 0,
+              "POIs": []
+            }
+          ],
           "POICount": 0,
-          "miscPOIs" : []
+          "miscPOIs": []
         },
         {
           "id": 3,
           "name": "3",
           "filePath": "assets/MC-BF-3.png",
-          "roomCount": 0,
-          "rooms": [],
+          "roomCount": 75,
+          "rooms": [
+            {
+              "id": 112,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 7,
+              "xpoints": [
+                94,
+                213,
+                230,
+                267,
+                272,
+                206,
+                109,
+                0
+              ],
+              "ypoints": [
+                557,
+                496,
+                533,
+                523,
+                538,
+                573,
+                586,
+                0
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 113,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 6,
+              "xpoints": [
+                69,
+                116,
+                163,
+                148,
+                130,
+                107,
+                0,
+                0
+              ],
+              "ypoints": [
+                425,
+                388,
+                474,
+                488,
+                481,
+                492,
+                0,
+                0
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 114,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                120,
+                177,
+                215,
+                174
+              ],
+              "ypoints": [
+                391,
+                366,
+                433,
+                475
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 115,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 8,
+              "xpoints": [
+                211,
+                222,
+                254,
+                278,
+                289,
+                401,
+                420,
+                390
+              ],
+              "ypoints": [
+                393,
+                422,
+                408,
+                409,
+                413,
+                348,
+                334,
+                281
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 116,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                219,
+                237,
+                260,
+                242
+              ],
+              "ypoints": [
+                492,
+                488,
+                519,
+                527
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 117,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                281,
+                296,
+                311,
+                292
+              ],
+              "ypoints": [
+                458,
+                445,
+                473,
+                479
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 118,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                294,
+                312,
+                327,
+                310
+              ],
+              "ypoints": [
+                483,
+                473,
+                503,
+                515
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 119,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                302,
+                361,
+                405,
+                334
+              ],
+              "ypoints": [
+                441,
+                412,
+                466,
+                501
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 120,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                364,
+                388,
+                403,
+                378
+              ],
+              "ypoints": [
+                408,
+                398,
+                418,
+                430
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 121,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                383,
+                419,
+                448,
+                413
+              ],
+              "ypoints": [
+                392,
+                379,
+                440,
+                463
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 122,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                395,
+                418,
+                433,
+                413
+              ],
+              "ypoints": [
+                278,
+                268,
+                294,
+                302
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 123,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                412,
+                432,
+                448,
+                428
+              ],
+              "ypoints": [
+                308,
+                300,
+                322,
+                332
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 124,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                223,
+                252,
+                259,
+                238
+              ],
+              "ypoints": [
+                431,
+                412,
+                426,
+                440
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 125,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 6,
+              "xpoints": [
+                423,
+                438,
+                457,
+                499,
+                514,
+                453,
+                0,
+                0
+              ],
+              "ypoints": [
+                378,
+                367,
+                395,
+                372,
+                397,
+                429,
+                0,
+                0
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 126,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                446,
+                481,
+                494,
+                465
+              ],
+              "ypoints": [
+                367,
+                339,
+                370,
+                388
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 127,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                422,
+                460,
+                466,
+                434
+              ],
+              "ypoints": [
+                271,
+                252,
+                269,
+                290
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 128,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                437,
+                458,
+                475,
+                451
+              ],
+              "ypoints": [
+                301,
+                284,
+                304,
+                318
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 129,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                462,
+                476,
+                491,
+                477
+              ],
+              "ypoints": [
+                279,
+                271,
+                295,
+                304
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 130,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                459,
+                492,
+                505,
+                483
+              ],
+              "ypoints": [
+                250,
+                233,
+                258,
+                271
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 131,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                484,
+                502,
+                518,
+                498
+              ],
+              "ypoints": [
+                271,
+                260,
+                281,
+                290
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 132,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                482,
+                544,
+                559,
+                502
+              ],
+              "ypoints": [
+                214,
+                188,
+                252,
+                240
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 133,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                504,
+                546,
+                546,
+                523
+              ],
+              "ypoints": [
+                252,
+                253,
+                266,
+                278
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 134,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                606,
+                606,
+                553,
+                543
+              ],
+              "ypoints": [
+                180,
+                206,
+                215,
+                187
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 135,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                555,
+                608,
+                607,
+                569
+              ],
+              "ypoints": [
+                222,
+                214,
+                260,
+                263
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 136,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                611,
+                633,
+                635,
+                615
+              ],
+              "ypoints": [
+                176,
+                179,
+                199,
+                202
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 137,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 6,
+              "xpoints": [
+                615,
+                736,
+                728,
+                662,
+                661,
+                621,
+                0,
+                0
+              ],
+              "ypoints": [
+                213,
+                228,
+                238,
+                226,
+                259,
+                262,
+                0,
+                0
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 138,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                669,
+                709,
+                705,
+                669
+              ],
+              "ypoints": [
+                230,
+                240,
+                258,
+                262
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 139,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                640,
+                665,
+                658,
+                640
+              ],
+              "ypoints": [
+                177,
+                177,
+                209,
+                200
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 140,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                667,
+                718,
+                717,
+                668
+              ],
+              "ypoints": [
+                178,
+                190,
+                216,
+                204
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 141,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                730,
+                753,
+                742,
+                722
+              ],
+              "ypoints": [
+                191,
+                194,
+                225,
+                213
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 142,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                714,
+                733,
+                723,
+                712
+              ],
+              "ypoints": [
+                238,
+                243,
+                261,
+                255
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 143,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                766,
+                789,
+                754,
+                728
+              ],
+              "ypoints": [
+                199,
+                215,
+                277,
+                263
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 144,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                596,
+                674,
+                681,
+                598
+              ],
+              "ypoints": [
+                286,
+                284,
+                337,
+                336
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 145,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                570,
+                584,
+                593,
+                571
+              ],
+              "ypoints": [
+                282,
+                282,
+                316,
+                315
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 146,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                540,
+                566,
+                565,
+                538
+              ],
+              "ypoints": [
+                291,
+                280,
+                315,
+                315
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 147,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 5,
+              "xpoints": [
+                530,
+                513,
+                552,
+                585,
+                584,
+                0,
+                0,
+                0
+              ],
+              "ypoints": [
+                305,
+                315,
+                387,
+                386,
+                355,
+                0,
+                0,
+                0
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 148,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                594,
+                683,
+                683,
+                602
+              ],
+              "ypoints": [
+                358,
+                362,
+                376,
+                388
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 149,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                596,
+                625,
+                639,
+                604
+              ],
+              "ypoints": [
+                389,
+                390,
+                420,
+                427
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 150,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                636,
+                670,
+                673,
+                639
+              ],
+              "ypoints": [
+                398,
+                393,
+                427,
+                427
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 151,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                687,
+                731,
+                715,
+                682
+              ],
+              "ypoints": [
+                281,
+                289,
+                318,
+                318
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 152,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 7,
+              "xpoints": [
+                689,
+                721,
+                722,
+                737,
+                744,
+                725,
+                688,
+                0
+              ],
+              "ypoints": [
+                350,
+                353,
+                326,
+                325,
+                355,
+                387,
+                387,
+                0
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 153,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                762,
+                783,
+                770,
+                745
+              ],
+              "ypoints": [
+                278,
+                289,
+                321,
+                308
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 154,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                787,
+                806,
+                791,
+                771
+              ],
+              "ypoints": [
+                293,
+                305,
+                331,
+                325
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 155,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                811,
+                834,
+                823,
+                796
+              ],
+              "ypoints": [
+                314,
+                326,
+                345,
+                337
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 156,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                839,
+                862,
+                848,
+                830
+              ],
+              "ypoints": [
+                324,
+                342,
+                366,
+                357
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 157,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                865,
+                889,
+                878,
+                852
+              ],
+              "ypoints": [
+                344,
+                355,
+                377,
+                373
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 158,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                782,
+                807,
+                789,
+                769
+              ],
+              "ypoints": [
+                357,
+                375,
+                399,
+                386
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 159,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                809,
+                835,
+                820,
+                796
+              ],
+              "ypoints": [
+                377,
+                393,
+                418,
+                406
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 160,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                839,
+                860,
+                842,
+                824
+              ],
+              "ypoints": [
+                391,
+                410,
+                438,
+                419
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 161,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                884,
+                866,
+                849,
+                860
+              ],
+              "ypoints": [
+                418,
+                450,
+                438,
+                417
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 162,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                889,
+                910,
+                899,
+                873
+              ],
+              "ypoints": [
+                419,
+                437,
+                460,
+                454
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 163,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                913,
+                940,
+                928,
+                902
+              ],
+              "ypoints": [
+                442,
+                450,
+                478,
+                465
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 165,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                893,
+                916,
+                898,
+                875
+              ],
+              "ypoints": [
+                353,
+                368,
+                390,
+                385
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 166,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                915,
+                937,
+                921,
+                904
+              ],
+              "ypoints": [
+                367,
+                385,
+                413,
+                395
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 167,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                938,
+                965,
+                952,
+                923
+              ],
+              "ypoints": [
+                386,
+                400,
+                422,
+                416
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 168,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                968,
+                993,
+                974,
+                957
+              ],
+              "ypoints": [
+                403,
+                419,
+                444,
+                426
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 169,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                946,
+                970,
+                951,
+                931
+              ],
+              "ypoints": [
+                452,
+                468,
+                489,
+                475
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 170,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                1019,
+                1042,
+                1050,
+                1040
+              ],
+              "ypoints": [
+                464,
+                454,
+                482,
+                487
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 171,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                1022,
+                984,
+                991,
+                1022
+              ],
+              "ypoints": [
+                520,
+                520,
+                540,
+                531
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 173,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                1024,
+                990,
+                1001,
+                1028
+              ],
+              "ypoints": [
+                533,
+                543,
+                568,
+                546
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 174,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                1029,
+                1040,
+                1024,
+                1006
+              ],
+              "ypoints": [
+                548,
+                558,
+                590,
+                568
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 175,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                1042,
+                1056,
+                1050,
+                1028
+              ],
+              "ypoints": [
+                558,
+                567,
+                598,
+                589
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 176,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                1060,
+                1069,
+                1077,
+                1055
+              ],
+              "ypoints": [
+                565,
+                565,
+                592,
+                596
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 178,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                1072,
+                1091,
+                1116,
+                1087
+              ],
+              "ypoints": [
+                562,
+                554,
+                565,
+                592
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 179,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                1046,
+                1068,
+                1066,
+                1056
+              ],
+              "ypoints": [
+                449,
+                449,
+                484,
+                485
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 180,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                1072,
+                1098,
+                1082,
+                1070
+              ],
+              "ypoints": [
+                455,
+                460,
+                488,
+                481
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 181,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                1101,
+                1119,
+                1094,
+                1087
+              ],
+              "ypoints": [
+                459,
+                476,
+                494,
+                489
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 182,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                1127,
+                1133,
+                1100,
+                1092
+              ],
+              "ypoints": [
+                476,
+                502,
+                512,
+                498
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 184,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                1133,
+                1103,
+                1104,
+                1125
+              ],
+              "ypoints": [
+                507,
+                513,
+                536,
+                545
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 285,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                81,
+                120,
+                135,
+                95
+              ],
+              "ypoints": [
+                531,
+                512,
+                534,
+                553
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 286,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                483,
+                510,
+                521,
+                496
+              ],
+              "ypoints": [
+                334,
+                323,
+                341,
+                353
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 287,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                751,
+                777,
+                749,
+                725
+              ],
+              "ypoints": [
+                349,
+                362,
+                412,
+                395
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 288,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                1085,
+                1100,
+                1124,
+                1117
+              ],
+              "ypoints": [
+                546,
+                531,
+                550,
+                564
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 290,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                974,
+                998,
+                983,
+                959
+              ],
+              "ypoints": [
+                463,
+                477,
+                504,
+                490
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 316,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 6,
+              "xpoints": [
+                1067,
+                1082,
+                1079,
+                1066,
+                1050,
+                1044,
+                0,
+                0
+              ],
+              "ypoints": [
+                500,
+                510,
+                526,
+                541,
+                538,
+                526,
+                0,
+                0
+              ],
+              "count": 0,
+              "POIs": []
+            }
+          ],
           "POICount": 0,
-          "miscPOIs" : []
+          "miscPOIs": []
         },
         {
           "id": 4,
           "name": "4",
           "filePath": "assets/MC-BF-4.png",
-          "roomCount": 0,
-          "rooms": [],
+          "roomCount": 74,
+          "rooms": [
+            {
+              "id": 185,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                93,
+                160,
+                179,
+                112
+              ],
+              "ypoints": [
+                560,
+                522,
+                547,
+                585
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 186,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                170,
+                240,
+                268,
+                205
+              ],
+              "ypoints": [
+                517,
+                484,
+                536,
+                575
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 187,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 6,
+              "xpoints": [
+                93,
+                177,
+                208,
+                219,
+                183,
+                133,
+                0,
+                0
+              ],
+              "ypoints": [
+                403,
+                369,
+                421,
+                441,
+                434,
+                461,
+                0,
+                0
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 188,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                71,
+                89,
+                104,
+                84
+              ],
+              "ypoints": [
+                424,
+                414,
+                436,
+                447
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 189,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                84,
+                106,
+                115,
+                96
+              ],
+              "ypoints": [
+                450,
+                439,
+                458,
+                471
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 190,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                99,
+                123,
+                147,
+                116
+              ],
+              "ypoints": [
+                474,
+                465,
+                485,
+                498
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 191,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                139,
+                162,
+                171,
+                152
+              ],
+              "ypoints": [
+                466,
+                449,
+                471,
+                482
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 192,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                169,
+                185,
+                197,
+                174
+              ],
+              "ypoints": [
+                447,
+                437,
+                456,
+                467
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 193,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                128,
+                216,
+                242,
+                146
+              ],
+              "ypoints": [
+                495,
+                454,
+                469,
+                521
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 194,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                210,
+                232,
+                257,
+                234
+              ],
+              "ypoints": [
+                399,
+                385,
+                431,
+                442
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 195,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                232,
+                290,
+                314,
+                264
+              ],
+              "ypoints": [
+                375,
+                345,
+                395,
+                429
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 196,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                277,
+                353,
+                384,
+                309
+              ],
+              "ypoints": [
+                461,
+                418,
+                478,
+                515
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 197,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                359,
+                407,
+                440,
+                392
+              ],
+              "ypoints": [
+                415,
+                385,
+                450,
+                474
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 198,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                293,
+                346,
+                377,
+                319
+              ],
+              "ypoints": [
+                341,
+                321,
+                360,
+                395
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 199,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                349,
+                380,
+                404,
+                373
+              ],
+              "ypoints": [
+                316,
+                291,
+                336,
+                349
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 200,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                387,
+                420,
+                446,
+                414
+              ],
+              "ypoints": [
+                291,
+                268,
+                319,
+                340
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 201,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                411,
+                460,
+                485,
+                444
+              ],
+              "ypoints": [
+                380,
+                357,
+                415,
+                447
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 202,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                463,
+                484,
+                516,
+                491
+              ],
+              "ypoints": [
+                356,
+                342,
+                400,
+                411
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 203,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                423,
+                489,
+                513,
+                451
+              ],
+              "ypoints": [
+                271,
+                237,
+                283,
+                319
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 204,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                486,
+                514,
+                525,
+                494
+              ],
+              "ypoints": [
+                215,
+                199,
+                212,
+                230
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 205,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                497,
+                524,
+                538,
+                511
+              ],
+              "ypoints": [
+                233,
+                214,
+                241,
+                258
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 206,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                513,
+                541,
+                547,
+                520
+              ],
+              "ypoints": [
+                263,
+                243,
+                260,
+                274
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 207,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                521,
+                553,
+                558,
+                530
+              ],
+              "ypoints": [
+                276,
+                256,
+                284,
+                299
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 208,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                508,
+                529,
+                555,
+                543
+              ],
+              "ypoints": [
+                315,
+                304,
+                347,
+                370
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 209,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 5,
+              "xpoints": [
+                558,
+                590,
+                587,
+                559,
+                547,
+                0,
+                0,
+                0
+              ],
+              "ypoints": [
+                350,
+                351,
+                388,
+                387,
+                369,
+                0,
+                0,
+                0
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 210,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                524,
+                567,
+                568,
+                531
+              ],
+              "ypoints": [
+                192,
+                184,
+                212,
+                217
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 211,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                570,
+                607,
+                607,
+                573
+              ],
+              "ypoints": [
+                182,
+                175,
+                211,
+                209
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 212,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                560,
+                592,
+                595,
+                564
+              ],
+              "ypoints": [
+                228,
+                228,
+                261,
+                267
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 213,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 5,
+              "xpoints": [
+                562,
+                593,
+                590,
+                543,
+                537,
+                0,
+                0,
+                0
+              ],
+              "ypoints": [
+                285,
+                286,
+                316,
+                319,
+                302,
+                0,
+                0,
+                0
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 214,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                612,
+                640,
+                640,
+                614
+              ],
+              "ypoints": [
+                174,
+                174,
+                208,
+                214
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 215,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                644,
+                688,
+                688,
+                646
+              ],
+              "ypoints": [
+                176,
+                177,
+                216,
+                226
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 216,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                694,
+                714,
+                716,
+                692
+              ],
+              "ypoints": [
+                176,
+                185,
+                217,
+                226
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 217,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                719,
+                762,
+                744,
+                721
+              ],
+              "ypoints": [
+                187,
+                200,
+                230,
+                227
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 218,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                767,
+                795,
+                770,
+                750
+              ],
+              "ypoints": [
+                202,
+                214,
+                247,
+                227
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 219,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 7,
+              "xpoints": [
+                666,
+                767,
+                753,
+                724,
+                695,
+                691,
+                671,
+                0
+              ],
+              "ypoints": [
+                225,
+                251,
+                277,
+                263,
+                270,
+                317,
+                315,
+                0
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 220,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                697,
+                747,
+                735,
+                698
+              ],
+              "ypoints": [
+                275,
+                280,
+                319,
+                316
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 221,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 7,
+              "xpoints": [
+                596,
+                661,
+                663,
+                679,
+                655,
+                616,
+                597,
+                0
+              ],
+              "ypoints": [
+                232,
+                230,
+                317,
+                342,
+                350,
+                344,
+                337,
+                0
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 222,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 5,
+              "xpoints": [
+                594,
+                686,
+                685,
+                603,
+                590,
+                0,
+                0,
+                0
+              ],
+              "ypoints": [
+                357,
+                352,
+                378,
+                387,
+                378,
+                0,
+                0,
+                0
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 223,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                604,
+                674,
+                674,
+                599
+              ],
+              "ypoints": [
+                391,
+                395,
+                420,
+                423
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 224,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                764,
+                784,
+                766,
+                739
+              ],
+              "ypoints": [
+                277,
+                292,
+                325,
+                307
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 225,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                785,
+                813,
+                793,
+                776
+              ],
+              "ypoints": [
+                294,
+                314,
+                337,
+                313
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 226,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                815,
+                837,
+                822,
+                802
+              ],
+              "ypoints": [
+                315,
+                332,
+                358,
+                339
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 227,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                841,
+                871,
+                858,
+                828
+              ],
+              "ypoints": [
+                331,
+                348,
+                368,
+                358
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 228,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                878,
+                896,
+                876,
+                858
+              ],
+              "ypoints": [
+                343,
+                356,
+                386,
+                376
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 229,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                898,
+                919,
+                899,
+                882
+              ],
+              "ypoints": [
+                359,
+                373,
+                405,
+                381
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 230,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                922,
+                952,
+                939,
+                904
+              ],
+              "ypoints": [
+                366,
+                397,
+                417,
+                403
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 231,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                955,
+                972,
+                957,
+                943
+              ],
+              "ypoints": [
+                395,
+                406,
+                433,
+                418
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 232,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                980,
+                996,
+                978,
+                966
+              ],
+              "ypoints": [
+                407,
+                423,
+                448,
+                434
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 233,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                803,
+                821,
+                816,
+                798
+              ],
+              "ypoints": [
+                367,
+                379,
+                393,
+                386
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 234,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                826,
+                840,
+                824,
+                797
+              ],
+              "ypoints": [
+                384,
+                398,
+                420,
+                404
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 235,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                844,
+                875,
+                856,
+                829
+              ],
+              "ypoints": [
+                395,
+                411,
+                445,
+                428
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 236,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                876,
+                905,
+                885,
+                859
+              ],
+              "ypoints": [
+                412,
+                430,
+                466,
+                447
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 237,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                908,
+                938,
+                922,
+                894
+              ],
+              "ypoints": [
+                429,
+                449,
+                479,
+                458
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 238,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                939,
+                973,
+                954,
+                925
+              ],
+              "ypoints": [
+                450,
+                462,
+                490,
+                479
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 239,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                1016,
+                1061,
+                1064,
+                1039
+              ],
+              "ypoints": [
+                460,
+                447,
+                483,
+                494
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 240,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                1074,
+                1119,
+                1091,
+                1072
+              ],
+              "ypoints": [
+                451,
+                472,
+                499,
+                487
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 241,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                1025,
+                983,
+                1000,
+                1030
+              ],
+              "ypoints": [
+                521,
+                519,
+                566,
+                545
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 242,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 8,
+              "xpoints": [
+                1056,
+                1081,
+                1095,
+                1085,
+                1071,
+                1048,
+                1033,
+                1023
+              ],
+              "ypoints": [
+                490,
+                497,
+                521,
+                535,
+                555,
+                554,
+                544,
+                519
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 243,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                1034,
+                1053,
+                1047,
+                1003
+              ],
+              "ypoints": [
+                545,
+                562,
+                597,
+                568
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 244,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 6,
+              "xpoints": [
+                1052,
+                1087,
+                1111,
+                1102,
+                1076,
+                1053,
+                0,
+                0
+              ],
+              "ypoints": [
+                560,
+                557,
+                569,
+                587,
+                593,
+                598,
+                0,
+                0
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 245,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 5,
+              "xpoints": [
+                1096,
+                1128,
+                1139,
+                1127,
+                1098,
+                0,
+                0,
+                0
+              ],
+              "ypoints": [
+                501,
+                480,
+                524,
+                541,
+                527,
+                0,
+                0,
+                0
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 246,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                1007,
+                1024,
+                1016,
+                994
+              ],
+              "ypoints": [
+                482,
+                500,
+                515,
+                508
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 247,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 6,
+              "xpoints": [
+                691,
+                735,
+                744,
+                739,
+                724,
+                686,
+                0,
+                0
+              ],
+              "ypoints": [
+                352,
+                344,
+                359,
+                367,
+                389,
+                385,
+                0,
+                0
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 251,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 5,
+              "xpoints": [
+                536,
+                639,
+                633,
+                559,
+                554,
+                0,
+                0,
+                0
+              ],
+              "ypoints": [
+                219,
+                210,
+                225,
+                226,
+                254,
+                0,
+                0,
+                0
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 252,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 6,
+              "xpoints": [
+                771,
+                962,
+                771,
+                963,
+                954,
+                764,
+                0,
+                0
+              ],
+              "ypoints": [
+                320,
+                436,
+                329,
+                443,
+                455,
+                342,
+                0,
+                0
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 275,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                80,
+                124,
+                135,
+                95
+              ],
+              "ypoints": [
+                533,
+                511,
+                524,
+                552
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 276,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                251,
+                277,
+                301,
+                278
+              ],
+              "ypoints": [
+                478,
+                464,
+                508,
+                521
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 278,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                482,
+                510,
+                522,
+                496
+              ],
+              "ypoints": [
+                333,
+                320,
+                342,
+                353
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 279,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                495,
+                524,
+                550,
+                524
+              ],
+              "ypoints": [
+                360,
+                343,
+                399,
+                410
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 280,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                756,
+                776,
+                749,
+                727
+              ],
+              "ypoints": [
+                346,
+                364,
+                410,
+                397
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 281,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 6,
+              "xpoints": [
+                786,
+                799,
+                792,
+                804,
+                796,
+                768,
+                0,
+                0
+              ],
+              "ypoints": [
+                361,
+                368,
+                382,
+                392,
+                403,
+                386,
+                0,
+                0
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 282,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                722,
+                736,
+                738,
+                722
+              ],
+              "ypoints": [
+                326,
+                329,
+                333,
+                344
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 283,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                1082,
+                1092,
+                1124,
+                1115
+              ],
+              "ypoints": [
+                546,
+                530,
+                547,
+                564
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 284,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                974,
+                998,
+                983,
+                960
+              ],
+              "ypoints": [
+                464,
+                479,
+                500,
+                490
+              ],
+              "count": 0,
+              "POIs": []
+            }
+          ],
           "POICount": 0,
-          "miscPOIs" : []
+          "miscPOIs": []
         },
         {
           "id": 5,
           "name": "5",
           "filePath": "assets/MC-BF-5.png",
-          "roomCount": 0,
-          "rooms": [],
+          "roomCount": 21,
+          "rooms": [
+            {
+              "id": 253,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                763,
+                811,
+                790,
+                743
+              ],
+              "ypoints": [
+                280,
+                307,
+                339,
+                309
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 254,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                816,
+                977,
+                961,
+                808
+              ],
+              "ypoints": [
+                314,
+                411,
+                421,
+                329
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 255,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                808,
+                961,
+                956,
+                796
+              ],
+              "ypoints": [
+                336,
+                425,
+                470,
+                374
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 256,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                974,
+                989,
+                976,
+                961
+              ],
+              "ypoints": [
+                416,
+                421,
+                446,
+                436
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 257,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 5,
+              "xpoints": [
+                1033,
+                1073,
+                1072,
+                1056,
+                1038,
+                0,
+                0,
+                0
+              ],
+              "ypoints": [
+                469,
+                461,
+                476,
+                497,
+                496,
+                0,
+                0,
+                0
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 258,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                1078,
+                1110,
+                1075,
+                1060
+              ],
+              "ypoints": [
+                467,
+                485,
+                513,
+                498
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 259,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                768,
+                798,
+                793,
+                766
+              ],
+              "ypoints": [
+                332,
+                349,
+                360,
+                347
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 260,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                777,
+                958,
+                952,
+                771
+              ],
+              "ypoints": [
+                372,
+                479,
+                494,
+                386
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 261,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 5,
+              "xpoints": [
+                1007,
+                1034,
+                1036,
+                1018,
+                998,
+                0,
+                0,
+                0
+              ],
+              "ypoints": [
+                502,
+                521,
+                535,
+                565,
+                514,
+                0,
+                0,
+                0
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 262,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                1039,
+                1060,
+                1054,
+                1025
+              ],
+              "ypoints": [
+                534,
+                537,
+                580,
+                564
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 263,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                1061,
+                1081,
+                1104,
+                1059
+              ],
+              "ypoints": [
+                547,
+                544,
+                565,
+                583
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 264,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                1111,
+                1123,
+                1089,
+                1086
+              ],
+              "ypoints": [
+                487,
+                535,
+                521,
+                509
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 266,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                1016,
+                1096,
+                1084,
+                1011
+              ],
+              "ypoints": [
+                489,
+                532,
+                544,
+                501
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 267,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                786,
+                795,
+                789,
+                778
+              ],
+              "ypoints": [
+                357,
+                368,
+                375,
+                371
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 268,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                803,
+                807,
+                801,
+                796
+              ],
+              "ypoints": [
+                331,
+                334,
+                344,
+                341
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 269,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                1002,
+                1014,
+                1005,
+                994
+              ],
+              "ypoints": [
+                477,
+                489,
+                501,
+                494
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 270,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                1015,
+                1033,
+                1034,
+                1013
+              ],
+              "ypoints": [
+                472,
+                483,
+                494,
+                484
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 271,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                758,
+                780,
+                748,
+                727
+              ],
+              "ypoints": [
+                341,
+                359,
+                411,
+                397
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 272,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 2,
+              "xpoints": [
+                1115,
+                1106,
+                0,
+                0
+              ],
+              "ypoints": [
+                544,
+                559,
+                0,
+                0
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 273,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                1096,
+                1115,
+                1107,
+                1091
+              ],
+              "ypoints": [
+                533,
+                544,
+                560,
+                547
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 274,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                976,
+                1012,
+                990,
+                966
+              ],
+              "ypoints": [
+                451,
+                469,
+                493,
+                479
+              ],
+              "count": 0,
+              "POIs": []
+            }
+          ],
           "POICount": 0,
-          "miscPOIs" : []
+          "miscPOIs": []
         }
       ],
       "x": 0.0,
@@ -154,7 +6686,7 @@
           "roomCount": 0,
           "rooms": [],
           "POICount": 0,
-          "miscPOIs" : []
+          "miscPOIs": []
         },
         {
           "id": 7,
@@ -163,7 +6695,7 @@
           "roomCount": 0,
           "rooms": [],
           "POICount": 0,
-          "miscPOIs" : []
+          "miscPOIs": []
         },
         {
           "id": 8,
@@ -172,7 +6704,7 @@
           "roomCount": 0,
           "rooms": [],
           "POICount": 0,
-          "miscPOIs" : []
+          "miscPOIs": []
         },
         {
           "id": 9,
@@ -181,7 +6713,7 @@
           "roomCount": 0,
           "rooms": [],
           "POICount": 0,
-          "miscPOIs" : []
+          "miscPOIs": []
         }
       ],
       "x": 0.0,
@@ -213,7 +6745,7 @@
           "roomCount": 0,
           "rooms": [],
           "POICount": 0,
-          "miscPOIs" : []
+          "miscPOIs": []
         },
         {
           "id": 11,
@@ -222,7 +6754,7 @@
           "roomCount": 0,
           "rooms": [],
           "POICount": 0,
-          "miscPOIs" : []
+          "miscPOIs": []
         },
         {
           "id": 12,
@@ -231,7 +6763,7 @@
           "roomCount": 0,
           "rooms": [],
           "POICount": 0,
-          "miscPOIs" : []
+          "miscPOIs": []
         },
         {
           "id": 13,
@@ -240,7 +6772,7 @@
           "roomCount": 0,
           "rooms": [],
           "POICount": 0,
-          "miscPOIs" : []
+          "miscPOIs": []
         }
       ],
       "x": 0.0,
