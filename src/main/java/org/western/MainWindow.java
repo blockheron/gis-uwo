@@ -155,6 +155,13 @@ public class MainWindow extends javax.swing.JFrame {
         classroomLayerRadio = new javax.swing.JRadioButton();
         washroomLayerRadio = new javax.swing.JRadioButton();
         userPOILayerRadio = new javax.swing.JRadioButton();
+        accessLayerRadio = new javax.swing.JRadioButton();
+        restaurantLayerRadio = new javax.swing.JRadioButton();
+        favLayerRadio = new javax.swing.JRadioButton();
+        navLayerRadio = new javax.swing.JRadioButton();
+        entryExitLayerRadio = new javax.swing.JRadioButton();
+        genLabLayerRadio = new javax.swing.JRadioButton();
+        compSciLayerRadio = new javax.swing.JRadioButton();
         classroomLayer = new javax.swing.JPanel();
         userPOILayer = new javax.swing.JPanel();
         washroomLayer = new javax.swing.JPanel();
@@ -253,10 +260,39 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
-        userPOILayerRadio.setText("User POIs");
+        userPOILayerRadio.setText("User Defined POIs");
         userPOILayerRadio.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 userPOILayerRadioMouseClicked(evt);
+            }
+        });
+        userPOILayerRadio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                userPOILayerRadioActionPerformed(evt);
+            }
+        });
+
+        accessLayerRadio.setText("Accessibility");
+        accessLayerRadio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                accessLayerRadioActionPerformed(evt);
+            }
+        });
+
+        restaurantLayerRadio.setText("Restaurants");
+
+        favLayerRadio.setText("Favourites");
+
+        navLayerRadio.setText("Navigation");
+
+        entryExitLayerRadio.setText("Entry/Exit Point");
+
+        genLabLayerRadio.setText("GenLab");
+
+        compSciLayerRadio.setText("Computer Science Related");
+        compSciLayerRadio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                compSciLayerRadioActionPerformed(evt);
             }
         });
 
@@ -266,26 +302,50 @@ public class MainWindow extends javax.swing.JFrame {
             layerListDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layerListDisplayLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(layerListButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(layerListButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layerListDisplayLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addGroup(layerListDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(washroomLayerRadio)
-                    .addComponent(classroomLayerRadio)
-                    .addComponent(userPOILayerRadio, javax.swing.GroupLayout.Alignment.LEADING))
+                .addGap(19, 19, 19)
+                .addGroup(layerListDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(accessLayerRadio)
+                    .addGroup(layerListDisplayLayout.createSequentialGroup()
+                        .addGroup(layerListDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(classroomLayerRadio)
+                            .addComponent(compSciLayerRadio))
+                        .addGap(18, 18, 18)
+                        .addGroup(layerListDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(userPOILayerRadio)
+                            .addComponent(restaurantLayerRadio)
+                            .addComponent(washroomLayerRadio)
+                            .addComponent(navLayerRadio)
+                            .addComponent(genLabLayerRadio)))
+                    .addComponent(entryExitLayerRadio)
+                    .addComponent(favLayerRadio))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layerListDisplayLayout.setVerticalGroup(
             layerListDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layerListDisplayLayout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(classroomLayerRadio)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(washroomLayerRadio)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(userPOILayerRadio)
                 .addGap(18, 18, 18)
+                .addGroup(layerListDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(accessLayerRadio)
+                    .addComponent(genLabLayerRadio))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layerListDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(navLayerRadio)
+                    .addComponent(classroomLayerRadio))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layerListDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(restaurantLayerRadio)
+                    .addComponent(compSciLayerRadio))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layerListDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(entryExitLayerRadio)
+                    .addComponent(userPOILayerRadio))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layerListDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(favLayerRadio)
+                    .addComponent(washroomLayerRadio))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(layerListButton)
                 .addContainerGap())
         );
@@ -1156,6 +1216,18 @@ public class MainWindow extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_wscMenuActionPerformed
 
+    private void accessLayerRadioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accessLayerRadioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_accessLayerRadioActionPerformed
+
+    private void userPOILayerRadioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userPOILayerRadioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_userPOILayerRadioActionPerformed
+
+    private void compSciLayerRadioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_compSciLayerRadioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_compSciLayerRadioActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1758,6 +1830,7 @@ public class MainWindow extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Frame;
     private javax.swing.JPanel Frame1;
+    private javax.swing.JRadioButton accessLayerRadio;
     private javax.swing.JToggleButton addPOIButton;
     private javax.swing.JToggleButton addPOIButton1;
     private javax.swing.JToggleButton addRoomButton;
@@ -1767,15 +1840,19 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel classroomLayer1;
     private javax.swing.JRadioButton classroomLayerRadio;
     private javax.swing.JRadioButton classroomLayerRadio1;
+    private javax.swing.JRadioButton compSciLayerRadio;
     private javax.swing.JPanel dropDownPanel;
     private javax.swing.JToggleButton editButton;
     private javax.swing.JToggleButton editButton1;
     private javax.swing.JMenu editMenu;
+    private javax.swing.JRadioButton entryExitLayerRadio;
+    private javax.swing.JRadioButton favLayerRadio;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JTextField filterBox;
     private javax.swing.JLabel filterIcon;
     private javax.swing.JPanel filterPanel;
     private javax.swing.JLabel filterText;
+    private javax.swing.JRadioButton genLabLayerRadio;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JToggleButton layerListButton;
     private javax.swing.JToggleButton layerListButton1;
@@ -1783,12 +1860,14 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel layerListDisplay1;
     private javax.swing.JLayeredPane layerPanel;
     private javax.swing.JMenuItem mcMenu;
+    private javax.swing.JRadioButton navLayerRadio;
     private javax.swing.JButton nextFloorButton;
     private javax.swing.JButton nextFloorButton1;
     private javax.swing.JButton onSearch;
     private javax.swing.JMenuItem pabMenu;
     private javax.swing.JButton prevFloorButton;
     private javax.swing.JButton prevFloorButton1;
+    private javax.swing.JRadioButton restaurantLayerRadio;
     private javax.swing.JPanel resultContainer;
     private javax.swing.JPanel resultPanel;
     private javax.swing.JScrollPane resultScroll;

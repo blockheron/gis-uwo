@@ -192,14 +192,27 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="layerListButton" max="32767" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="washroomLayerRadio" min="-2" max="-2" attributes="0"/>
-                              <Component id="classroomLayerRadio" min="-2" max="-2" attributes="0"/>
-                              <Component id="userPOILayerRadio" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="accessLayerRadio" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="classroomLayerRadio" min="-2" max="-2" attributes="0"/>
+                                      <Component id="compSciLayerRadio" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="userPOILayerRadio" min="-2" max="-2" attributes="0"/>
+                                      <Component id="restaurantLayerRadio" min="-2" max="-2" attributes="0"/>
+                                      <Component id="washroomLayerRadio" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="navLayerRadio" min="-2" max="-2" attributes="0"/>
+                                      <Component id="genLabLayerRadio" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Component id="entryExitLayerRadio" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="favLayerRadio" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
@@ -208,13 +221,32 @@
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                          <Component id="classroomLayerRadio" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="washroomLayerRadio" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="32767" attributes="0"/>
-                          <Component id="userPOILayerRadio" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="accessLayerRadio" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="genLabLayerRadio" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="navLayerRadio" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="classroomLayerRadio" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="restaurantLayerRadio" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="compSciLayerRadio" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="entryExitLayerRadio" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="userPOILayerRadio" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="favLayerRadio" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="washroomLayerRadio" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="32767" attributes="0"/>
                           <Component id="layerListButton" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -253,10 +285,52 @@
                 </Component>
                 <Component class="javax.swing.JRadioButton" name="userPOILayerRadio">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="User POIs"/>
+                    <Property name="text" type="java.lang.String" value="User Defined POIs"/>
                   </Properties>
                   <Events>
                     <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="userPOILayerRadioMouseClicked"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="userPOILayerRadioActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JRadioButton" name="accessLayerRadio">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Accessibility"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="accessLayerRadioActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JRadioButton" name="restaurantLayerRadio">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Restaurants"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JRadioButton" name="favLayerRadio">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Favourites"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JRadioButton" name="navLayerRadio">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Navigation"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JRadioButton" name="entryExitLayerRadio">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Entry/Exit Point"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JRadioButton" name="genLabLayerRadio">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="GenLab"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JRadioButton" name="compSciLayerRadio">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Computer Science Related"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="compSciLayerRadioActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>
@@ -763,4 +837,3 @@
     </Container>
   </SubComponents>
 </Form>
-
