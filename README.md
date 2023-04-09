@@ -24,7 +24,10 @@ This software is a map viewer for western university. It allows you to add and f
 3. Otherwise, run java -jar /path/to/jar
 
 ## User guide
-
+Logging in: you can use any of the users given below or sign up a new account. Alternatively, you login as guest by clicking signup and then continue as guest.
+Once you're logged in you can add POIs by clicking the edit button in the bottom right corner and then circle button that shows up. Clicking on a room will then add a POI to that room
+If you wish to add information to the POI click on the room and then select the POI. Use the edit and save buttons to alter the information in the POI and then save it.
+you can switch floors using the up and down arrows on the left and switch buildings using the top menu.
 
 ## Account information/Edit mode
 The edit mode is accessed through the admin user which has the username "admin" and the password "password". There is one user for each group member with usernames Liam, Karen, Maxwell, Emma, Valentina and the password for each of those users is "1234"
