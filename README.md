@@ -25,14 +25,6 @@ This software is a map viewer for western university. It allows you to add and f
 ## Account information/Edit mode
 The edit mode is accessed through the admin user which has the username "admin" and the password "password". There is one user for each group member with usernames Liam, Karen, Maxwell, Denise, Valentina and the password for each of those users is "1234"
 
-## How to run
-1. Clone the repository
-```bash
-git clone https://repo.csd.uwo.ca/scm/compsci2212_w2023/group22.git
-```
-2. Open the project using your favourite IDE
-3. Run the project
-
 ## Screenshots
 ### Login Window
 ![Login Window](https://res.cloudinary.com/alt/image/upload/v1679891964/assets/Capture_d_e%CC%81cran_le_2023-03-27_a%CC%80_00.36.05_oyxu6w.png)
