@@ -79,7 +79,7 @@ public class POIPopup extends javax.swing.JPanel {
         //
         
         //disable editing if admin POI and user is not admin
-        if (!POI.isUser() && !MainWindow.curUser.isAdmin()) {
+        if (MainWindow.curUser == null || !POI.isUser() && !MainWindow.curUser.isAdmin()) {
             EditButton.setVisible(false);
             EditButton.setEnabled(false);
         }
