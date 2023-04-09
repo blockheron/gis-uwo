@@ -249,7 +249,7 @@
                                       <Component id="favLayerRadio" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="accessRadioLayer" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="accessLayerRadio" alignment="0" min="-2" max="-2" attributes="0"/>
                                               <Component id="compSciLayerRadio" min="-2" max="-2" attributes="0"/>
                                               <Component id="entryExitLayerRadio" alignment="0" min="-2" max="-2" attributes="0"/>
                                               <Component id="classroomLayerRadio" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -309,7 +309,7 @@
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="accessRadioLayer" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="accessLayerRadio" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jRadioButton1" alignment="1" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -443,10 +443,13 @@
                     </DimensionLayout>
                   </Layout>
                 </Container>
-                <Component class="javax.swing.JRadioButton" name="accessRadioLayer">
+                <Component class="javax.swing.JRadioButton" name="accessLayerRadio">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Accessibility"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="accessLayerRadioMouseClicked"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JRadioButton" name="compSciLayerRadio">
                   <Properties>

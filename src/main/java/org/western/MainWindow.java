@@ -86,6 +86,13 @@ public class MainWindow extends javax.swing.JFrame {
             Map.addLayer("Classrooms", Color.YELLOW);
             Map.addLayer("Washrooms",Color.CYAN);
             Map.addLayer("unassigned", Color.RED);
+            Map.addLayer("Accessibility", Color.BLUE);
+            Map.addLayer("Computer Science Related",Color.GREEN);
+            Map.addLayer("Favourites", Color.RED);
+            Map.addLayer("GenLabs", Color.YELLOW);
+            Map.addLayer("Navigation",Color.CYAN);
+            Map.addLayer("Restaurants", Color.RED);
+            Map.addLayer("Entry/Exit", Color.RED);
             //
             
             //add users
@@ -163,7 +170,7 @@ public class MainWindow extends javax.swing.JFrame {
         classroomLayer = new javax.swing.JPanel();
         userPOILayer = new javax.swing.JPanel();
         washroomLayer = new javax.swing.JPanel();
-        accessRadioLayer = new javax.swing.JRadioButton();
+        accessLayerRadio = new javax.swing.JRadioButton();
         compSciLayerRadio = new javax.swing.JRadioButton();
         entryExitLayerRadio = new javax.swing.JRadioButton();
         favLayerRadio = new javax.swing.JRadioButton();
@@ -314,7 +321,12 @@ public class MainWindow extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        accessRadioLayer.setText("Accessibility");
+        accessLayerRadio.setText("Accessibility");
+        accessLayerRadio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                accessLayerRadioMouseClicked(evt);
+            }
+        });
 
         compSciLayerRadio.setText("Computer Science Related");
         compSciLayerRadio.addActionListener(new java.awt.event.ActionListener() {
@@ -348,7 +360,7 @@ public class MainWindow extends javax.swing.JFrame {
                             .addComponent(favLayerRadio, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layerListDisplayLayout.createSequentialGroup()
                                 .addGroup(layerListDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(accessRadioLayer)
+                                    .addComponent(accessLayerRadio)
                                     .addComponent(compSciLayerRadio)
                                     .addComponent(entryExitLayerRadio)
                                     .addComponent(classroomLayerRadio))
@@ -389,7 +401,7 @@ public class MainWindow extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layerListDisplayLayout.createSequentialGroup()
                 .addGap(7, 7, 7)
                 .addGroup(layerListDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(accessRadioLayer)
+                    .addComponent(accessLayerRadio)
                     .addComponent(jRadioButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layerListDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -1028,6 +1040,23 @@ public class MainWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_compSciLayerRadioActionPerformed
 
+    private void accessLayerRadioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_accessLayerRadioMouseClicked
+        // Actiate and deactivate POI list
+        
+        Layer accessibility = Map.getLayer("Accessibility");
+        
+        if (accessLayerRadio.isSelected()) {
+            for (Room room : accessibility.getRooms(curFloor)) {
+                room.highlight(accessibility.getColor());
+            }
+        }
+        else {
+            for (Room room : accessibility.getRooms(curFloor)) {
+                room.dehighlight(accessibility.getColor());
+            }
+        }
+    }//GEN-LAST:event_accessLayerRadioMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -1629,7 +1658,7 @@ public class MainWindow extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Frame;
-    private javax.swing.JRadioButton accessRadioLayer;
+    private javax.swing.JRadioButton accessLayerRadio;
     private javax.swing.JToggleButton addPOIButton;
     private javax.swing.JToggleButton addRoomButton;
     private javax.swing.JMenu buildMenu;
