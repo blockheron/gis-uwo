@@ -1,7 +1,7 @@
 {
   "userCount": 6,
-  "POICount": 57,
-  "roomCount": 332,
+  "POICount": 313,
+  "roomCount": 486,
   "layerCount": 10,
   "curLayerCount": 9,
   "floorCount": 13,
@@ -12,25 +12,190 @@
       "id": 1,
       "name": "unassigned",
       "color": -65536,
-      "count": 3,
+      "count": 50,
       "POIs": [
         18,
         34,
-        49
+        49,
+        98,
+        125,
+        126,
+        127,
+        128,
+        129,
+        130,
+        131,
+        132,
+        133,
+        134,
+        135,
+        136,
+        137,
+        138,
+        139,
+        140,
+        141,
+        142,
+        143,
+        163,
+        164,
+        165,
+        166,
+        167,
+        168,
+        169,
+        170,
+        171,
+        172,
+        173,
+        174,
+        175,
+        176,
+        177,
+        180,
+        181,
+        183,
+        198,
+        199,
+        200,
+        201,
+        202,
+        209,
+        221,
+        250,
+        307
       ]
     },
     {
       "id": 2,
       "name": "Classrooms",
       "color": -256,
-      "count": 0,
-      "POIs": []
+      "count": 117,
+      "POIs": [
+        119,
+        122,
+        124,
+        151,
+        160,
+        161,
+        149,
+        147,
+        144,
+        148,
+        150,
+        146,
+        145,
+        162,
+        178,
+        179,
+        187,
+        186,
+        185,
+        184,
+        182,
+        195,
+        196,
+        207,
+        197,
+        203,
+        204,
+        205,
+        206,
+        210,
+        213,
+        214,
+        212,
+        211,
+        208,
+        222,
+        223,
+        224,
+        220,
+        219,
+        218,
+        217,
+        216,
+        215,
+        226,
+        225,
+        232,
+        235,
+        234,
+        233,
+        236,
+        237,
+        238,
+        239,
+        240,
+        241,
+        242,
+        243,
+        244,
+        245,
+        246,
+        247,
+        248,
+        249,
+        251,
+        252,
+        258,
+        259,
+        260,
+        261,
+        262,
+        267,
+        264,
+        268,
+        269,
+        270,
+        271,
+        272,
+        278,
+        274,
+        275,
+        279,
+        280,
+        281,
+        282,
+        283,
+        284,
+        286,
+        285,
+        288,
+        289,
+        290,
+        291,
+        292,
+        293,
+        294,
+        296,
+        297,
+        298,
+        299,
+        295,
+        300,
+        301,
+        302,
+        303,
+        228,
+        304,
+        305,
+        306,
+        231,
+        308,
+        309,
+        310,
+        312,
+        120,
+        121,
+        313
+      ]
     },
     {
       "id": 3,
       "name": "Washrooms",
       "color": -16711681,
-      "count": 7,
+      "count": 19,
       "POIs": [
         30,
         31,
@@ -38,15 +203,29 @@
         39,
         43,
         53,
-        54
+        54,
+        84,
+        83,
+        61,
+        62,
+        68,
+        69,
+        94,
+        95,
+        99,
+        100,
+        113,
+        114
       ]
     },
     {
       "id": 4,
       "name": "Accessibility",
       "color": -16776961,
-      "count": 0,
-      "POIs": []
+      "count": 1,
+      "POIs": [
+        87
+      ]
     },
     {
       "id": 5,
@@ -66,7 +245,7 @@
       "id": 8,
       "name": "Navigation",
       "color": -14336,
-      "count": 25,
+      "count": 58,
       "POIs": [
         21,
         22,
@@ -92,22 +271,75 @@
         51,
         56,
         55,
-        57
+        57,
+        59,
+        72,
+        74,
+        77,
+        76,
+        79,
+        81,
+        82,
+        80,
+        86,
+        75,
+        64,
+        60,
+        63,
+        67,
+        70,
+        66,
+        65,
+        88,
+        89,
+        90,
+        91,
+        92,
+        96,
+        93,
+        109,
+        103,
+        102,
+        101,
+        104,
+        116,
+        117,
+        287
       ]
     },
     {
       "id": 9,
       "name": "Restaurants",
       "color": -20561,
-      "count": 0,
-      "POIs": []
+      "count": 1,
+      "POIs": [
+        123
+      ]
     },
     {
       "id": 10,
       "name": "Entry/Exit",
       "color": -8355712,
-      "count": 0,
-      "POIs": []
+      "count": 17,
+      "POIs": [
+        58,
+        73,
+        78,
+        85,
+        71,
+        115,
+        110,
+        112,
+        111,
+        188,
+        189,
+        190,
+        191,
+        192,
+        193,
+        194,
+        311
+      ]
     }
   ],
   "buildings": [
@@ -121,29 +353,8 @@
           "id": 1,
           "name": "Ground",
           "filePath": "assets/MC-BF-1.png",
-          "roomCount": 61,
+          "roomCount": 62,
           "rooms": [
-            {
-              "id": 1,
-              "roomNumber": "",
-              "x": 0.0,
-              "y": 0.0,
-              "npoints": 4,
-              "xpoints": [
-                67,
-                125,
-                177,
-                109
-              ],
-              "ypoints": [
-                428,
-                382,
-                471,
-                494
-              ],
-              "count": 0,
-              "POIs": []
-            },
             {
               "id": 2,
               "roomNumber": "",
@@ -162,8 +373,18 @@
                 434,
                 469
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 119,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 325.0,
+                  "y": 374.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 3,
@@ -183,8 +404,18 @@
                 421,
                 444
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 120,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 381.0,
+                  "y": 374.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 4,
@@ -204,8 +435,18 @@
                 394,
                 419
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 121,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 423.0,
+                  "y": 339.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 5,
@@ -225,8 +466,18 @@
                 355,
                 394
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 122,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 483.0,
+                  "y": 304.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 6,
@@ -246,8 +497,18 @@
                 280,
                 265
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 124,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 907.0,
+                  "y": 198.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 7,
@@ -267,8 +528,18 @@
                 304,
                 289
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 125,
+                  "name": "new POI",
+                  "description": "add your description here!",
+                  "layerID": 1,
+                  "x": 885.0,
+                  "y": 239.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 8,
@@ -288,8 +559,18 @@
                 322,
                 305
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 126,
+                  "name": "new POI",
+                  "description": "add your description here!",
+                  "layerID": 1,
+                  "x": 909.0,
+                  "y": 250.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 9,
@@ -309,8 +590,18 @@
                 334,
                 326
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 127,
+                  "name": "new POI",
+                  "description": "add your description here!",
+                  "layerID": 1,
+                  "x": 933.0,
+                  "y": 259.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 10,
@@ -330,8 +621,18 @@
                 347,
                 338
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 128,
+                  "name": "new POI",
+                  "description": "add your description here!",
+                  "layerID": 1,
+                  "x": 954.0,
+                  "y": 281.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 11,
@@ -351,8 +652,18 @@
                 355,
                 353
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 129,
+                  "name": "new POI",
+                  "description": "add your description here!",
+                  "layerID": 1,
+                  "x": 977.0,
+                  "y": 296.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 12,
@@ -372,8 +683,18 @@
                 370,
                 365
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 130,
+                  "name": "new POI",
+                  "description": "add your description here!",
+                  "layerID": 1,
+                  "x": 998.0,
+                  "y": 309.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 13,
@@ -393,8 +714,18 @@
                 382,
                 374
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 131,
+                  "name": "new POI",
+                  "description": "add your description here!",
+                  "layerID": 1,
+                  "x": 1026.0,
+                  "y": 319.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 14,
@@ -414,8 +745,18 @@
                 394,
                 388
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 132,
+                  "name": "new POI",
+                  "description": "add your description here!",
+                  "layerID": 1,
+                  "x": 1038.0,
+                  "y": 326.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 15,
@@ -435,8 +776,18 @@
                 410,
                 394
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 133,
+                  "name": "new POI",
+                  "description": "add your description here!",
+                  "layerID": 1,
+                  "x": 1065.0,
+                  "y": 341.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 16,
@@ -456,8 +807,18 @@
                 421,
                 409
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 134,
+                  "name": "new POI",
+                  "description": "add your description here!",
+                  "layerID": 1,
+                  "x": 1088.0,
+                  "y": 352.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 17,
@@ -477,8 +838,18 @@
                 433,
                 420
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 135,
+                  "name": "new POI",
+                  "description": "add your description here!",
+                  "layerID": 1,
+                  "x": 1105.0,
+                  "y": 364.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 18,
@@ -498,8 +869,18 @@
                 445,
                 431
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 136,
+                  "name": "new POI",
+                  "description": "add your description here!",
+                  "layerID": 1,
+                  "x": 1124.0,
+                  "y": 370.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 21,
@@ -523,27 +904,6 @@
               "POIs": []
             },
             {
-              "id": 23,
-              "roomNumber": "",
-              "x": 0.0,
-              "y": 0.0,
-              "npoints": 4,
-              "xpoints": [
-                93,
-                110,
-                177,
-                163
-              ],
-              "ypoints": [
-                560,
-                589,
-                548,
-                522
-              ],
-              "count": 0,
-              "POIs": []
-            },
-            {
               "id": 24,
               "roomNumber": "",
               "x": 0.0,
@@ -561,8 +921,18 @@
                 536,
                 505
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 151,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 285.0,
+                  "y": 406.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 25,
@@ -603,8 +973,18 @@
                 467,
                 410
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 160,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 310.0,
+                  "y": 187.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 27,
@@ -624,8 +1004,18 @@
                 439,
                 381
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 161,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 375.0,
+                  "y": 163.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 28,
@@ -729,8 +1119,18 @@
                 400,
                 390
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 143,
+                  "name": "new POI",
+                  "description": "add your description here!",
+                  "layerID": 1,
+                  "x": 941.0,
+                  "y": 345.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 33,
@@ -758,8 +1158,18 @@
                 0,
                 0
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 142,
+                  "name": "new POI",
+                  "description": "add your description here!",
+                  "layerID": 1,
+                  "x": 976.0,
+                  "y": 353.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 34,
@@ -779,8 +1189,18 @@
                 437,
                 412
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 141,
+                  "name": "new POI",
+                  "description": "add your description here!",
+                  "layerID": 1,
+                  "x": 993.0,
+                  "y": 368.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 35,
@@ -800,8 +1220,18 @@
                 459,
                 430
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 140,
+                  "name": "new POI",
+                  "description": "add your description here!",
+                  "layerID": 1,
+                  "x": 1032.0,
+                  "y": 391.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 36,
@@ -821,8 +1251,18 @@
                 466,
                 442
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 139,
+                  "name": "new POI",
+                  "description": "add your description here!",
+                  "layerID": 1,
+                  "x": 1054.0,
+                  "y": 403.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 37,
@@ -842,8 +1282,18 @@
                 478,
                 452
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 138,
+                  "name": "new POI",
+                  "description": "add your description here!",
+                  "layerID": 1,
+                  "x": 1074.0,
+                  "y": 408.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 38,
@@ -871,8 +1321,18 @@
                 0,
                 0
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 137,
+                  "name": "new POI",
+                  "description": "add your description here!",
+                  "layerID": 1,
+                  "x": 1095.0,
+                  "y": 435.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 39,
@@ -900,8 +1360,18 @@
                 0,
                 0
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 150,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 824.0,
+                  "y": 430.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 40,
@@ -921,8 +1391,18 @@
                 476,
                 446
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 144,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 858.0,
+                  "y": 366.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 41,
@@ -942,8 +1422,18 @@
                 498,
                 476
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 145,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 900.0,
+                  "y": 366.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 42,
@@ -963,8 +1453,18 @@
                 597,
                 560
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 149,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 849.0,
+                  "y": 474.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 43,
@@ -984,8 +1484,18 @@
                 588,
                 564
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 148,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 889.0,
+                  "y": 475.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 44,
@@ -1013,8 +1523,18 @@
                 0,
                 0
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 147,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 926.0,
+                  "y": 398.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 45,
@@ -1155,8 +1675,18 @@
                 290,
                 0
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 123,
+                  "name": "Grad Club",
+                  "description": "add your description here!",
+                  "layerID": 9,
+                  "x": 731.0,
+                  "y": 189.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 304,
@@ -1332,8 +1862,18 @@
                 521,
                 501
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 146,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 893.0,
+                  "y": 394.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 312,
@@ -1557,6 +2097,89 @@
                   "user": -1
                 }
               ]
+            },
+            {
+              "id": 391,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 1,
+              "xpoints": [
+                142,
+                0,
+                0,
+                0
+              ],
+              "ypoints": [
+                894,
+                0,
+                0,
+                0
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 485,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                71,
+                124,
+                175,
+                112
+              ],
+              "ypoints": [
+                425,
+                389,
+                472,
+                493
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 312,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 195.0,
+                  "y": 474.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 486,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                97,
+                162,
+                176,
+                113
+              ],
+              "ypoints": [
+                558,
+                524,
+                549,
+                584
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 313,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 226.0,
+                  "y": 573.0,
+                  "user": -1
+                }
+              ]
             }
           ],
           "POICount": 0,
@@ -1566,7 +2189,7 @@
           "id": 2,
           "name": "2",
           "filePath": "assets/MC-BF-2.png",
-          "roomCount": 71,
+          "roomCount": 77,
           "rooms": [
             {
               "id": 51,
@@ -1586,8 +2209,18 @@
                 435,
                 497
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 162,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 131.0,
+                  "y": 289.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 52,
@@ -1628,8 +2261,18 @@
                 535,
                 578
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 163,
+                  "name": "new POI",
+                  "description": "add your description here!",
+                  "layerID": 1,
+                  "x": 231.0,
+                  "y": 362.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 56,
@@ -1649,8 +2292,18 @@
                 500,
                 514
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 164,
+                  "name": "new POI",
+                  "description": "add your description here!",
+                  "layerID": 1,
+                  "x": 301.0,
+                  "y": 316.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 57,
@@ -1670,8 +2323,18 @@
                 443,
                 468
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 166,
+                  "name": "new POI",
+                  "description": "add your description here!",
+                  "layerID": 1,
+                  "x": 318.0,
+                  "y": 286.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 58,
@@ -1691,8 +2354,18 @@
                 486,
                 500
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 165,
+                  "name": "new POI",
+                  "description": "add your description here!",
+                  "layerID": 1,
+                  "x": 329.0,
+                  "y": 316.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 59,
@@ -1712,8 +2385,18 @@
                 395,
                 428
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 178,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 274.0,
+                  "y": 204.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 60,
@@ -1733,8 +2416,18 @@
                 355,
                 392
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 177,
+                  "name": "new POI",
+                  "description": "add your description here!",
+                  "layerID": 1,
+                  "x": 310.0,
+                  "y": 202.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 61,
@@ -1754,8 +2447,18 @@
                 424,
                 446
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 168,
+                  "name": "new POI",
+                  "description": "add your description here!",
+                  "layerID": 1,
+                  "x": 339.0,
+                  "y": 262.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 62,
@@ -1775,8 +2478,18 @@
                 470,
                 486
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 170,
+                  "name": "new POI",
+                  "description": "add your description here!",
+                  "layerID": 1,
+                  "x": 376.0,
+                  "y": 301.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 63,
@@ -1796,8 +2509,18 @@
                 452,
                 470
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 169,
+                  "name": "new POI",
+                  "description": "add your description here!",
+                  "layerID": 1,
+                  "x": 399.0,
+                  "y": 293.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 64,
@@ -1817,8 +2540,18 @@
                 324,
                 347
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 176,
+                  "name": "new POI",
+                  "description": "add your description here!",
+                  "layerID": 1,
+                  "x": 388.0,
+                  "y": 138.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 66,
@@ -1838,8 +2571,18 @@
                 296,
                 320
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 181,
+                  "name": "new POI",
+                  "description": "add your description here!",
+                  "layerID": 1,
+                  "x": 439.0,
+                  "y": 116.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 67,
@@ -1859,8 +2602,18 @@
                 280,
                 295
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 180,
+                  "name": "new POI",
+                  "description": "add your description here!",
+                  "layerID": 1,
+                  "x": 485.0,
+                  "y": 107.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 68,
@@ -1901,8 +2654,18 @@
                 390,
                 416
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 173,
+                  "name": "new POI",
+                  "description": "add your description here!",
+                  "layerID": 1,
+                  "x": 416.0,
+                  "y": 223.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 71,
@@ -1946,8 +2709,18 @@
                 0,
                 0
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 167,
+                  "name": "new POI",
+                  "description": "add your description here!",
+                  "layerID": 1,
+                  "x": 358.0,
+                  "y": 268.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 72,
@@ -1967,8 +2740,18 @@
                 430,
                 451
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 171,
+                  "name": "new POI",
+                  "description": "add your description here!",
+                  "layerID": 1,
+                  "x": 428.0,
+                  "y": 265.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 73,
@@ -1988,8 +2771,18 @@
                 383,
                 387
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 174,
+                  "name": "new POI",
+                  "description": "add your description here!",
+                  "layerID": 1,
+                  "x": 445.0,
+                  "y": 207.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 74,
@@ -2009,8 +2802,18 @@
                 416,
                 426
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 172,
+                  "name": "new POI",
+                  "description": "add your description here!",
+                  "layerID": 1,
+                  "x": 458.0,
+                  "y": 245.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 75,
@@ -2030,8 +2833,18 @@
                 397,
                 409
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 175,
+                  "name": "new POI",
+                  "description": "add your description here!",
+                  "layerID": 1,
+                  "x": 472.0,
+                  "y": 209.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 76,
@@ -2051,8 +2864,18 @@
                 316,
                 319
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 179,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 602.0,
+                  "y": 98.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 77,
@@ -2198,8 +3021,18 @@
                 355,
                 336
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 182,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 806.0,
+                  "y": 172.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 85,
@@ -2471,8 +3304,18 @@
                 595,
                 574
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 187,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 1026.0,
+                  "y": 401.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 98,
@@ -2534,8 +3377,18 @@
                 487,
                 492
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 183,
+                  "name": "new POI",
+                  "description": "add your description here!",
+                  "layerID": 1,
+                  "x": 1039.0,
+                  "y": 315.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 101,
@@ -2555,8 +3408,18 @@
                 497,
                 482
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 184,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 1076.0,
+                  "y": 312.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 102,
@@ -2576,8 +3439,18 @@
                 511,
                 497
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 185,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 1097.0,
+                  "y": 330.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 103,
@@ -2597,8 +3470,18 @@
                 533,
                 514
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 186,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 1099.0,
+                  "y": 362.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 104,
@@ -3066,35 +3949,6 @@
               "POIs": []
             },
             {
-              "id": 324,
-              "roomNumber": "",
-              "x": 0.0,
-              "y": 0.0,
-              "npoints": 7,
-              "xpoints": [
-                77,
-                122,
-                133,
-                90,
-                128,
-                128,
-                132,
-                0
-              ],
-              "ypoints": [
-                531,
-                510,
-                521,
-                555,
-                520,
-                520,
-                599,
-                0
-              ],
-              "count": 0,
-              "POIs": []
-            },
-            {
               "id": 326,
               "roomNumber": "",
               "x": 0.0,
@@ -3200,6 +4054,223 @@
                   "user": -1
                 }
               ]
+            },
+            {
+              "id": 392,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                611,
+                662,
+                662,
+                614
+              ],
+              "ypoints": [
+                432,
+                439,
+                449,
+                449
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 190,
+                  "name": "Entry/Exit",
+                  "description": "add your description here!",
+                  "layerID": 10,
+                  "x": 703.0,
+                  "y": 288.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 393,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                692,
+                711,
+                711,
+                695
+              ],
+              "ypoints": [
+                418,
+                418,
+                436,
+                436
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 191,
+                  "name": "Entry/Exit",
+                  "description": "add your description here!",
+                  "layerID": 10,
+                  "x": 761.0,
+                  "y": 265.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 394,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                758,
+                772,
+                765,
+                755
+              ],
+              "ypoints": [
+                398,
+                400,
+                417,
+                412
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 192,
+                  "name": "Entry/Exit",
+                  "description": "add your description here!",
+                  "layerID": 10,
+                  "x": 817.0,
+                  "y": 250.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 395,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                956,
+                977,
+                977,
+                957
+              ],
+              "ypoints": [
+                493,
+                501,
+                511,
+                503
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 193,
+                  "name": "Entry/Exit",
+                  "description": "add your description here!",
+                  "layerID": 10,
+                  "x": 1024.0,
+                  "y": 342.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 396,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                1116,
+                1130,
+                1141,
+                1132
+              ],
+              "ypoints": [
+                567,
+                552,
+                559,
+                567
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 194,
+                  "name": "Entry/Exit",
+                  "description": "add your description here!",
+                  "layerID": 10,
+                  "x": 1185.0,
+                  "y": 402.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 397,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                278,
+                305,
+                310,
+                284
+              ],
+              "ypoints": [
+                528,
+                514,
+                527,
+                534
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 189,
+                  "name": "Entry/Exit",
+                  "description": "add your description here!",
+                  "layerID": 10,
+                  "x": 350.0,
+                  "y": 368.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 398,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                69,
+                80,
+                92,
+                85
+              ],
+              "ypoints": [
+                531,
+                531,
+                563,
+                566
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 188,
+                  "name": "Entry/Exit",
+                  "description": "add your description here!",
+                  "layerID": 10,
+                  "x": 139.0,
+                  "y": 388.0,
+                  "user": -1
+                }
+              ]
             }
           ],
           "POICount": 0,
@@ -3237,8 +4308,18 @@
                 586,
                 0
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 207,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 310.0,
+                  "y": 337.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 113,
@@ -3266,8 +4347,18 @@
                 0,
                 0
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 195,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 228.0,
+                  "y": 259.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 114,
@@ -3287,8 +4378,18 @@
                 433,
                 475
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 196,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 284.0,
+                  "y": 232.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 115,
@@ -3316,8 +4417,18 @@
                 334,
                 281
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 197,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 435.0,
+                  "y": 168.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 116,
@@ -3400,8 +4511,18 @@
                 466,
                 501
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 199,
+                  "name": "new POI",
+                  "description": "add your description here!",
+                  "layerID": 1,
+                  "x": 460.0,
+                  "y": 267.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 120,
@@ -3920,8 +5041,18 @@
                 277,
                 263
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 202,
+                  "name": "new POI",
+                  "description": "add your description here!",
+                  "layerID": 1,
+                  "x": 871.0,
+                  "y": 45.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 144,
@@ -3941,8 +5072,18 @@
                 337,
                 336
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 198,
+                  "name": "new POI",
+                  "description": "add your description here!",
+                  "layerID": 1,
+                  "x": 749.0,
+                  "y": 117.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 145,
@@ -4230,8 +5371,18 @@
                 377,
                 373
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 201,
+                  "name": "new POI",
+                  "description": "add your description here!",
+                  "layerID": 1,
+                  "x": 989.0,
+                  "y": 175.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 158,
@@ -4293,8 +5444,18 @@
                 438,
                 419
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 200,
+                  "name": "new POI",
+                  "description": "add your description here!",
+                  "layerID": 1,
+                  "x": 957.0,
+                  "y": 223.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 161,
@@ -4503,8 +5664,18 @@
                 540,
                 531
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 203,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 1121.0,
+                  "y": 339.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 173,
@@ -4524,8 +5695,18 @@
                 568,
                 546
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 204,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 1123.0,
+                  "y": 361.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 174,
@@ -4545,8 +5726,18 @@
                 590,
                 568
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 205,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 1133.0,
+                  "y": 374.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 175,
@@ -4566,8 +5757,18 @@
                 598,
                 589
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 206,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 1156.0,
+                  "y": 389.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 176,
@@ -4980,8 +6181,18 @@
                 547,
                 585
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 209,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 1,
+                  "x": 97.0,
+                  "y": 425.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 186,
@@ -5001,8 +6212,18 @@
                 536,
                 575
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 208,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 200.0,
+                  "y": 404.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 187,
@@ -5030,8 +6251,18 @@
                 0,
                 0
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 210,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 105.0,
+                  "y": 287.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 188,
@@ -5198,8 +6429,18 @@
                 395,
                 429
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 211,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 244.0,
+                  "y": 261.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 196,
@@ -5219,8 +6460,18 @@
                 478,
                 515
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 213,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 311.0,
+                  "y": 328.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 197,
@@ -5240,8 +6491,18 @@
                 450,
                 474
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 214,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 356.0,
+                  "y": 289.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 198,
@@ -5261,8 +6522,18 @@
                 360,
                 395
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 212,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 312.0,
+                  "y": 225.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 199,
@@ -6780,8 +8051,18 @@
                 339,
                 309
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 224,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 354.0,
+                  "y": 118.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 254,
@@ -6801,8 +8082,18 @@
                 421,
                 329
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 223,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 489.0,
+                  "y": 192.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 255,
@@ -6843,8 +8134,18 @@
                 446,
                 436
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 221,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 1,
+                  "x": 546.0,
+                  "y": 232.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 257,
@@ -6872,8 +8173,18 @@
                 0,
                 0
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 220,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 623.0,
+                  "y": 284.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 258,
@@ -6893,8 +8204,18 @@
                 513,
                 498
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 219,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 672.0,
+                  "y": 289.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 259,
@@ -6935,8 +8256,18 @@
                 494,
                 386
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 222,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 447.0,
+                  "y": 252.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 261,
@@ -6964,8 +8295,18 @@
                 0,
                 0
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 215,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 596.0,
+                  "y": 348.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 262,
@@ -6985,8 +8326,18 @@
                 580,
                 564
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 216,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 622.0,
+                  "y": 369.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 263,
@@ -7006,8 +8357,18 @@
                 565,
                 583
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 217,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 641.0,
+                  "y": 369.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 264,
@@ -7027,8 +8388,18 @@
                 521,
                 509
               ],
-              "count": 0,
-              "POIs": []
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 218,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 683.0,
+                  "y": 322.0,
+                  "user": -1
+                }
+              ]
             },
             {
               "id": 266,
@@ -7280,8 +8651,1436 @@
           "id": 6,
           "name": "1",
           "filePath": "assets/PAB-BF-1.png",
-          "roomCount": 0,
-          "rooms": [],
+          "roomCount": 46,
+          "rooms": [
+            {
+              "id": 348,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                245,
+                339,
+                337,
+                242
+              ],
+              "ypoints": [
+                504,
+                505,
+                526,
+                529
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 72,
+                  "name": "Stair",
+                  "description": "add your description here!",
+                  "layerID": 8,
+                  "x": 276.0,
+                  "y": 518.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 349,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                228,
+                240,
+                241,
+                232
+              ],
+              "ypoints": [
+                501,
+                501,
+                524,
+                531
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 73,
+                  "name": "Entry/Exit",
+                  "description": "add your description here!",
+                  "layerID": 10,
+                  "x": 264.0,
+                  "y": 374.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 350,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                488,
+                523,
+                524,
+                495
+              ],
+              "ypoints": [
+                533,
+                533,
+                558,
+                559
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 74,
+                  "name": "Stair",
+                  "description": "add your description here!",
+                  "layerID": 8,
+                  "x": 465.0,
+                  "y": 517.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 351,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                544,
+                581,
+                580,
+                546
+              ],
+              "ypoints": [
+                491,
+                496,
+                502,
+                502
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 75,
+                  "name": "Stair",
+                  "description": "add your description here!",
+                  "layerID": 8,
+                  "x": 516.0,
+                  "y": 469.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 352,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                584,
+                605,
+                606,
+                585
+              ],
+              "ypoints": [
+                486,
+                487,
+                502,
+                505
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 76,
+                  "name": "Elevator",
+                  "description": "add your description here!",
+                  "layerID": 8,
+                  "x": 554.0,
+                  "y": 461.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 353,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                677,
+                747,
+                747,
+                684
+              ],
+              "ypoints": [
+                502,
+                505,
+                525,
+                527
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 77,
+                  "name": "Stair",
+                  "description": "add your description here!",
+                  "layerID": 8,
+                  "x": 688.0,
+                  "y": 484.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 354,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                762,
+                782,
+                782,
+                770
+              ],
+              "ypoints": [
+                505,
+                508,
+                528,
+                529
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 78,
+                  "name": "Entry/Exit",
+                  "description": "add your description here!",
+                  "layerID": 10,
+                  "x": 729.0,
+                  "y": 485.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 355,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                513,
+                534,
+                531,
+                515
+              ],
+              "ypoints": [
+                397,
+                396,
+                416,
+                416
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 79,
+                  "name": "Stair",
+                  "description": "add your description here!",
+                  "layerID": 8,
+                  "x": 476.0,
+                  "y": 375.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 356,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                490,
+                516,
+                517,
+                493
+              ],
+              "ypoints": [
+                226,
+                227,
+                269,
+                272
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 83,
+                  "name": "Washroom",
+                  "description": "add your description here!",
+                  "layerID": 3,
+                  "x": 465.0,
+                  "y": 224.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 357,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                520,
+                549,
+                548,
+                525
+              ],
+              "ypoints": [
+                228,
+                229,
+                275,
+                271
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 84,
+                  "name": "Washroom",
+                  "description": "add your description here!",
+                  "layerID": 3,
+                  "x": 495.0,
+                  "y": 225.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 358,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                432,
+                459,
+                459,
+                434
+              ],
+              "ypoints": [
+                235,
+                236,
+                262,
+                261
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 81,
+                  "name": "Elevator",
+                  "description": "add your description here!",
+                  "layerID": 8,
+                  "x": 403.0,
+                  "y": 212.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 359,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                432,
+                456,
+                456,
+                430
+              ],
+              "ypoints": [
+                263,
+                265,
+                280,
+                278
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 82,
+                  "name": "Stair",
+                  "description": "add your description here!",
+                  "layerID": 8,
+                  "x": 399.0,
+                  "y": 242.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 360,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                672,
+                728,
+                721,
+                678
+              ],
+              "ypoints": [
+                204,
+                207,
+                223,
+                224
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 80,
+                  "name": "Stair",
+                  "description": "add your description here!",
+                  "layerID": 8,
+                  "x": 654.0,
+                  "y": 182.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 361,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                732,
+                740,
+                740,
+                732
+              ],
+              "ypoints": [
+                208,
+                208,
+                220,
+                225
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 311,
+                  "name": "Entry/Exit",
+                  "description": "add your description here!",
+                  "layerID": 10,
+                  "x": 647.0,
+                  "y": 234.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 362,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                266,
+                286,
+                284,
+                273
+              ],
+              "ypoints": [
+                203,
+                203,
+                226,
+                225
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 85,
+                  "name": "Entry/Exit",
+                  "description": "add your description here!",
+                  "layerID": 10,
+                  "x": 232.0,
+                  "y": 183.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 363,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                673,
+                711,
+                712,
+                685
+              ],
+              "ypoints": [
+                187,
+                189,
+                200,
+                201
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 86,
+                  "name": "Stair",
+                  "description": "add your description here!",
+                  "layerID": 8,
+                  "x": 649.0,
+                  "y": 163.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 401,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                276,
+                336,
+                336,
+                278
+              ],
+              "ypoints": [
+                345,
+                348,
+                393,
+                394
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 296,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 320.0,
+                  "y": 430.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 402,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                277,
+                330,
+                334,
+                281
+              ],
+              "ypoints": [
+                398,
+                402,
+                471,
+                472
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 403,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                356,
+                404,
+                404,
+                366
+              ],
+              "ypoints": [
+                532,
+                535,
+                589,
+                590
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 404,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                407,
+                439,
+                440,
+                412
+              ],
+              "ypoints": [
+                534,
+                535,
+                586,
+                590
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 405,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                656,
+                719,
+                719,
+                656
+              ],
+              "ypoints": [
+                554,
+                554,
+                642,
+                641
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 226,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 599.0,
+                  "y": 581.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 406,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                532,
+                608,
+                611,
+                535
+              ],
+              "ypoints": [
+                538,
+                541,
+                587,
+                588
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 225,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 457.0,
+                  "y": 541.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 407,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                559,
+                593,
+                592,
+                560
+              ],
+              "ypoints": [
+                113,
+                115,
+                198,
+                198
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 228,
+                  "name": "Lab",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 516.0,
+                  "y": 73.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 409,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                413,
+                432,
+                433,
+                416
+              ],
+              "ypoints": [
+                149,
+                149,
+                198,
+                198
+              ],
+              "count": 2,
+              "POIs": [
+                {
+                  "id": 231,
+                  "name": "Lab",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 344.0,
+                  "y": 108.0,
+                  "user": -1
+                },
+                {
+                  "id": 307,
+                  "name": "new POI",
+                  "description": "add your description here!",
+                  "layerID": 1,
+                  "x": 388.0,
+                  "y": 138.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 463,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                615,
+                647,
+                648,
+                616
+              ],
+              "ypoints": [
+                534,
+                535,
+                587,
+                589
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 288,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 458.0,
+                  "y": 494.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 464,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                726,
+                752,
+                752,
+                725
+              ],
+              "ypoints": [
+                561,
+                560,
+                642,
+                645
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 289,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 519.0,
+                  "y": 376.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 465,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 5,
+              "xpoints": [
+                715,
+                772,
+                774,
+                761,
+                722,
+                0,
+                0,
+                0
+              ],
+              "ypoints": [
+                532,
+                532,
+                547,
+                555,
+                553,
+                0,
+                0,
+                0
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 290,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 539.0,
+                  "y": 318.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 466,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                679,
+                725,
+                725,
+                686
+              ],
+              "ypoints": [
+                103,
+                103,
+                142,
+                145
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 293,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 461.0,
+                  "y": 195.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 467,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                686,
+                730,
+                728,
+                677
+              ],
+              "ypoints": [
+                148,
+                152,
+                188,
+                186
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 294,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 471.0,
+                  "y": 234.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 468,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                598,
+                646,
+                647,
+                601
+              ],
+              "ypoints": [
+                117,
+                117,
+                155,
+                156
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 291,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 385.0,
+                  "y": 205.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 469,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                598,
+                647,
+                648,
+                597
+              ],
+              "ypoints": [
+                162,
+                160,
+                197,
+                197
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 292,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 390.0,
+                  "y": 239.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 470,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                278,
+                330,
+                330,
+                281
+              ],
+              "ypoints": [
+                238,
+                233,
+                275,
+                274
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 299,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 308.0,
+                  "y": 331.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 471,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                278,
+                329,
+                329,
+                278
+              ],
+              "ypoints": [
+                281,
+                280,
+                305,
+                314
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 298,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 308.0,
+                  "y": 357.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 472,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                281,
+                327,
+                337,
+                277
+              ],
+              "ypoints": [
+                316,
+                317,
+                339,
+                341
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 297,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 318.0,
+                  "y": 403.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 473,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                370,
+                427,
+                431,
+                376
+              ],
+              "ypoints": [
+                464,
+                464,
+                494,
+                503
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 295,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 419.0,
+                  "y": 556.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 474,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                594,
+                644,
+                650,
+                593
+              ],
+              "ypoints": [
+                233,
+                233,
+                283,
+                283
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 302,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 449.0,
+                  "y": 203.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 475,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                488,
+                560,
+                557,
+                498
+              ],
+              "ypoints": [
+                293,
+                290,
+                320,
+                319
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 303,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 393.0,
+                  "y": 260.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 476,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                594,
+                650,
+                649,
+                592
+              ],
+              "ypoints": [
+                287,
+                288,
+                338,
+                338
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 301,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 442.0,
+                  "y": 265.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 477,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                613,
+                643,
+                648,
+                609
+              ],
+              "ypoints": [
+                462,
+                463,
+                501,
+                503
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 300,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 456.0,
+                  "y": 438.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 478,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                296,
+                411,
+                412,
+                297
+              ],
+              "ypoints": [
+                109,
+                111,
+                132,
+                134
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 310,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 342.0,
+                  "y": 90.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 479,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                291,
+                319,
+                316,
+                292
+              ],
+              "ypoints": [
+                136,
+                138,
+                183,
+                184
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 304,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 272.0,
+                  "y": 125.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 480,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                329,
+                370,
+                369,
+                333
+              ],
+              "ypoints": [
+                152,
+                154,
+                184,
+                183
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 305,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 328.0,
+                  "y": 139.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 481,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                406,
+                410,
+                373,
+                371
+              ],
+              "ypoints": [
+                155,
+                185,
+                180,
+                156
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 306,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 351.0,
+                  "y": 139.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 482,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                453,
+                539,
+                539,
+                458
+              ],
+              "ypoints": [
+                114,
+                115,
+                133,
+                136
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 309,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 464.0,
+                  "y": 91.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 483,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 14,
+              "xpoints": [
+                521,
+                520,
+                467,
+                465,
+                438,
+                435,
+                413,
+                328,
+                326,
+                320,
+                321,
+                414,
+                417,
+                445,
+                0,
+                0
+              ],
+              "ypoints": [
+                159,
+                187,
+                186,
+                165,
+                162,
+                150,
+                144,
+                149,
+                162,
+                162,
+                139,
+                137,
+                115,
+                109,
+                0,
+                0
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 308,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 440.0,
+                  "y": 112.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 484,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 3,
+              "xpoints": [
+                732,
+                742,
+                742,
+                0
+              ],
+              "ypoints": [
+                204,
+                205,
+                225,
+                0
+              ],
+              "count": 0,
+              "POIs": []
+            }
+          ],
           "POICount": 0,
           "miscPOIs": []
         },
@@ -7289,8 +10088,460 @@
           "id": 7,
           "name": "2",
           "filePath": "assets/PAB-BF-2.png",
-          "roomCount": 0,
-          "rooms": [],
+          "roomCount": 14,
+          "rooms": [
+            {
+              "id": 333,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                233,
+                294,
+                296,
+                235
+              ],
+              "ypoints": [
+                527,
+                533,
+                555,
+                552
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 64,
+                  "name": "Stair",
+                  "description": "add your description here!",
+                  "layerID": 8,
+                  "x": 268.0,
+                  "y": 486.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 334,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                465,
+                496,
+                498,
+                464
+              ],
+              "ypoints": [
+                564,
+                566,
+                616,
+                616
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 59,
+                  "name": "Stair",
+                  "description": "add your description here!",
+                  "layerID": 8,
+                  "x": 480.0,
+                  "y": 546.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 335,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                465,
+                496,
+                496,
+                466
+              ],
+              "ypoints": [
+                622,
+                628,
+                657,
+                657
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 58,
+                  "name": "Entry/Exit",
+                  "description": "add your description here!",
+                  "layerID": 10,
+                  "x": 477.0,
+                  "y": 588.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 337,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                499,
+                519,
+                519,
+                502
+              ],
+              "ypoints": [
+                491,
+                495,
+                507,
+                507
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 61,
+                  "name": "Washroom",
+                  "description": "add your description here!",
+                  "layerID": 3,
+                  "x": 506.0,
+                  "y": 448.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 338,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                482,
+                494,
+                496,
+                481
+              ],
+              "ypoints": [
+                504,
+                506,
+                517,
+                517
+              ],
+              "count": 2,
+              "POIs": [
+                {
+                  "id": 62,
+                  "name": "Washroom",
+                  "description": "add your description here!",
+                  "layerID": 3,
+                  "x": 481.0,
+                  "y": 461.0,
+                  "user": -1
+                },
+                {
+                  "id": 87,
+                  "name": "Washroom",
+                  "description": "add your description here!",
+                  "layerID": 4,
+                  "x": 413.0,
+                  "y": 412.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 339,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                560,
+                579,
+                580,
+                561
+              ],
+              "ypoints": [
+                496,
+                495,
+                529,
+                529
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 63,
+                  "name": "Elevator",
+                  "description": "add your description here!",
+                  "layerID": 8,
+                  "x": 567.0,
+                  "y": 464.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 340,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                662,
+                723,
+                726,
+                665
+              ],
+              "ypoints": [
+                534,
+                532,
+                552,
+                550
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 60,
+                  "name": "Stair",
+                  "description": "add your description here!",
+                  "layerID": 8,
+                  "x": 694.0,
+                  "y": 493.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 341,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                486,
+                506,
+                505,
+                491
+              ],
+              "ypoints": [
+                386,
+                386,
+                419,
+                427
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 65,
+                  "name": "Stair",
+                  "description": "add your description here!",
+                  "layerID": 8,
+                  "x": 491.0,
+                  "y": 354.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 342,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                518,
+                540,
+                542,
+                521
+              ],
+              "ypoints": [
+                382,
+                381,
+                392,
+                395
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 66,
+                  "name": "Stair",
+                  "description": "add your description here!",
+                  "layerID": 8,
+                  "x": 521.0,
+                  "y": 336.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 343,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 5,
+              "xpoints": [
+                648,
+                648,
+                700,
+                700,
+                646,
+                0,
+                0,
+                0
+              ],
+              "ypoints": [
+                230,
+                230,
+                228,
+                252,
+                249,
+                0,
+                0,
+                0
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 67,
+                  "name": "Stair",
+                  "description": "add your description here!",
+                  "layerID": 8,
+                  "x": 674.0,
+                  "y": 197.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 344,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                532,
+                565,
+                565,
+                534
+              ],
+              "ypoints": [
+                105,
+                111,
+                129,
+                131
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 71,
+                  "name": "Entry/Exit",
+                  "description": "add your description here!",
+                  "layerID": 10,
+                  "x": 540.0,
+                  "y": 68.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 345,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                499,
+                520,
+                523,
+                499
+              ],
+              "ypoints": [
+                261,
+                261,
+                298,
+                297
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 68,
+                  "name": "Washroom",
+                  "description": "add your description here!",
+                  "layerID": 3,
+                  "x": 508.0,
+                  "y": 235.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 346,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                462,
+                490,
+                492,
+                465
+              ],
+              "ypoints": [
+                258,
+                260,
+                301,
+                298
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 69,
+                  "name": "Washroom",
+                  "description": "add your description here!",
+                  "layerID": 3,
+                  "x": 478.0,
+                  "y": 233.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 347,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                399,
+                432,
+                433,
+                407
+              ],
+              "ypoints": [
+                259,
+                259,
+                288,
+                284
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 70,
+                  "name": "Elevator",
+                  "description": "add your description here!",
+                  "layerID": 8,
+                  "x": 418.0,
+                  "y": 223.0,
+                  "user": -1
+                }
+              ]
+            }
+          ],
           "POICount": 0,
           "miscPOIs": []
         },
@@ -7298,8 +10549,296 @@
           "id": 8,
           "name": "3",
           "filePath": "assets/PAB-BF-3.png",
-          "roomCount": 0,
-          "rooms": [],
+          "roomCount": 9,
+          "rooms": [
+            {
+              "id": 364,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                235,
+                294,
+                299,
+                234
+              ],
+              "ypoints": [
+                504,
+                504,
+                525,
+                528
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 88,
+                  "name": "Stair",
+                  "description": "add your description here!",
+                  "layerID": 8,
+                  "x": 180.0,
+                  "y": 495.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 366,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                558,
+                580,
+                579,
+                564
+              ],
+              "ypoints": [
+                462,
+                463,
+                504,
+                504
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 90,
+                  "name": "Elevator",
+                  "description": "add your description here!",
+                  "layerID": 8,
+                  "x": 479.0,
+                  "y": 464.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 367,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                663,
+                730,
+                730,
+                661
+              ],
+              "ypoints": [
+                505,
+                507,
+                527,
+                524
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 89,
+                  "name": "Stair",
+                  "description": "add your description here!",
+                  "layerID": 8,
+                  "x": 602.0,
+                  "y": 494.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 368,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                408,
+                427,
+                431,
+                406
+              ],
+              "ypoints": [
+                235,
+                235,
+                256,
+                256
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 96,
+                  "name": "Elevator",
+                  "description": "add your description here!",
+                  "layerID": 8,
+                  "x": 331.0,
+                  "y": 233.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 369,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                457,
+                488,
+                489,
+                468
+              ],
+              "ypoints": [
+                230,
+                231,
+                271,
+                271
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 95,
+                  "name": "Washroom",
+                  "description": "add your description here!",
+                  "layerID": 3,
+                  "x": 380.0,
+                  "y": 241.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 370,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                497,
+                521,
+                523,
+                498
+              ],
+              "ypoints": [
+                233,
+                233,
+                271,
+                271
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 94,
+                  "name": "Washroom",
+                  "description": "add your description here!",
+                  "layerID": 3,
+                  "x": 420.0,
+                  "y": 243.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 371,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                645,
+                701,
+                701,
+                653
+              ],
+              "ypoints": [
+                202,
+                205,
+                223,
+                223
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 93,
+                  "name": "Stair",
+                  "description": "add your description here!",
+                  "layerID": 8,
+                  "x": 583.0,
+                  "y": 201.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 372,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 6,
+              "xpoints": [
+                488,
+                521,
+                523,
+                501,
+                499,
+                490,
+                0,
+                0
+              ],
+              "ypoints": [
+                355,
+                356,
+                368,
+                369,
+                393,
+                392,
+                0,
+                0
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 92,
+                  "name": "Stair",
+                  "description": "add your description here!",
+                  "layerID": 8,
+                  "x": 404.0,
+                  "y": 352.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 373,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                484,
+                504,
+                498,
+                488
+              ],
+              "ypoints": [
+                406,
+                406,
+                426,
+                429
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 91,
+                  "name": "Stair",
+                  "description": "add your description here!",
+                  "layerID": 8,
+                  "x": 400.0,
+                  "y": 395.0,
+                  "user": -1
+                }
+              ]
+            }
+          ],
           "POICount": 0,
           "miscPOIs": []
         },
@@ -7307,8 +10846,265 @@
           "id": 9,
           "name": "4",
           "filePath": "assets/PAB-BF-4.png",
-          "roomCount": 0,
-          "rooms": [],
+          "roomCount": 8,
+          "rooms": [
+            {
+              "id": 374,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 6,
+              "xpoints": [
+                488,
+                498,
+                499,
+                545,
+                544,
+                488,
+                0,
+                0
+              ],
+              "ypoints": [
+                423,
+                423,
+                436,
+                438,
+                448,
+                447,
+                0,
+                0
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 104,
+                  "name": "Stair",
+                  "description": "add your description here!",
+                  "layerID": 8,
+                  "x": 450.0,
+                  "y": 305.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 376,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                290,
+                310,
+                311,
+                292
+              ],
+              "ypoints": [
+                500,
+                503,
+                512,
+                513
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 98,
+                  "name": "new POI",
+                  "description": "add your description here!",
+                  "layerID": 1,
+                  "x": 253.0,
+                  "y": 370.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 377,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                310,
+                330,
+                332,
+                313
+              ],
+              "ypoints": [
+                546,
+                546,
+                567,
+                564
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 99,
+                  "name": "Washroom",
+                  "description": "add your description here!",
+                  "layerID": 3,
+                  "x": 275.0,
+                  "y": 418.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 378,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                309,
+                333,
+                332,
+                314
+              ],
+              "ypoints": [
+                577,
+                572,
+                596,
+                596
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 100,
+                  "name": "Washroom",
+                  "description": "add your description here!",
+                  "layerID": 3,
+                  "x": 271.0,
+                  "y": 455.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 379,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                675,
+                724,
+                724,
+                681
+              ],
+              "ypoints": [
+                500,
+                502,
+                526,
+                527
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 103,
+                  "name": "Stair",
+                  "description": "add your description here!",
+                  "layerID": 8,
+                  "x": 656.0,
+                  "y": 377.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 380,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                644,
+                668,
+                669,
+                648
+              ],
+              "ypoints": [
+                505,
+                504,
+                512,
+                512
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 102,
+                  "name": "Stair",
+                  "description": "add your description here!",
+                  "layerID": 8,
+                  "x": 605.0,
+                  "y": 373.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 381,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                557,
+                580,
+                580,
+                560
+              ],
+              "ypoints": [
+                462,
+                465,
+                502,
+                503
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 101,
+                  "name": "Elevator",
+                  "description": "add your description here!",
+                  "layerID": 8,
+                  "x": 521.0,
+                  "y": 350.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 382,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                230,
+                287,
+                287,
+                236
+              ],
+              "ypoints": [
+                503,
+                508,
+                530,
+                527
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 109,
+                  "name": "Stair",
+                  "description": "add your description here!",
+                  "layerID": 8,
+                  "x": 198.0,
+                  "y": 383.0,
+                  "user": -1
+                }
+              ]
+            }
+          ],
           "POICount": 0,
           "miscPOIs": []
         }
@@ -7339,8 +11135,1792 @@
           "id": 10,
           "name": "1",
           "filePath": "assets/WSC-BF-1.png",
-          "roomCount": 0,
-          "rooms": [],
+          "roomCount": 54,
+          "rooms": [
+            {
+              "id": 383,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                481,
+                526,
+                527,
+                484
+              ],
+              "ypoints": [
+                249,
+                245,
+                256,
+                267
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 117,
+                  "name": "Stair",
+                  "description": "add your description here!",
+                  "layerID": 8,
+                  "x": 461.0,
+                  "y": 262.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 384,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                521,
+                547,
+                548,
+                529
+              ],
+              "ypoints": [
+                262,
+                261,
+                292,
+                292
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 116,
+                  "name": "Elevator",
+                  "description": "add your description here!",
+                  "layerID": 8,
+                  "x": 495.0,
+                  "y": 282.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 385,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                546,
+                626,
+                626,
+                545
+              ],
+              "ypoints": [
+                464,
+                465,
+                489,
+                498
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 114,
+                  "name": "Washroom",
+                  "description": "add your description here!",
+                  "layerID": 3,
+                  "x": 540.0,
+                  "y": 490.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 386,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                662,
+                752,
+                756,
+                666
+              ],
+              "ypoints": [
+                506,
+                496,
+                529,
+                528
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 113,
+                  "name": "Washroom",
+                  "description": "add your description here!",
+                  "layerID": 3,
+                  "x": 672.0,
+                  "y": 520.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 387,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                680,
+                691,
+                697,
+                680
+              ],
+              "ypoints": [
+                297,
+                302,
+                312,
+                313
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 115,
+                  "name": "Entry/Exit",
+                  "description": "add your description here!",
+                  "layerID": 10,
+                  "x": 643.0,
+                  "y": 318.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 388,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                186,
+                207,
+                205,
+                189
+              ],
+              "ypoints": [
+                383,
+                388,
+                409,
+                412
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 110,
+                  "name": "Entry/Exit",
+                  "description": "add your description here!",
+                  "layerID": 10,
+                  "x": 152.0,
+                  "y": 415.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 389,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                564,
+                590,
+                591,
+                574
+              ],
+              "ypoints": [
+                587,
+                586,
+                602,
+                605
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 111,
+                  "name": "Entry/Exit",
+                  "description": "add your description here!",
+                  "layerID": 10,
+                  "x": 538.0,
+                  "y": 605.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 390,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                621,
+                651,
+                651,
+                621
+              ],
+              "ypoints": [
+                585,
+                586,
+                600,
+                599
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 112,
+                  "name": "Entry/Exit",
+                  "description": "add your description here!",
+                  "layerID": 10,
+                  "x": 598.0,
+                  "y": 605.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 410,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 18,
+              "xpoints": [
+                206,
+                298,
+                327,
+                387,
+                386,
+                398,
+                430,
+                466,
+                467,
+                405,
+                391,
+                387,
+                347,
+                344,
+                334,
+                240,
+                226,
+                206,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "ypoints": [
+                124,
+                122,
+                210,
+                258,
+                284,
+                289,
+                288,
+                288,
+                311,
+                309,
+                312,
+                321,
+                324,
+                336,
+                352,
+                354,
+                311,
+                310,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 232,
+                  "name": "Lab",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 351.0,
+                  "y": 242.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 411,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                699,
+                893,
+                899,
+                699
+              ],
+              "ypoints": [
+                334,
+                326,
+                489,
+                485
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 412,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 6,
+              "xpoints": [
+                671,
+                756,
+                756,
+                694,
+                680,
+                665,
+                0,
+                0
+              ],
+              "ypoints": [
+                536,
+                537,
+                590,
+                589,
+                572,
+                572,
+                0,
+                0
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 283,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 639.0,
+                  "y": 504.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 414,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 5,
+              "xpoints": [
+                211,
+                224,
+                237,
+                236,
+                205,
+                0,
+                0,
+                0
+              ],
+              "ypoints": [
+                316,
+                316,
+                350,
+                355,
+                351,
+                0,
+                0,
+                0
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 235,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 251.0,
+                  "y": 338.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 415,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                248,
+                323,
+                325,
+                262
+              ],
+              "ypoints": [
+                359,
+                359,
+                407,
+                405
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 233,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 303.0,
+                  "y": 382.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 416,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 5,
+              "xpoints": [
+                481,
+                559,
+                569,
+                541,
+                489,
+                0,
+                0,
+                0
+              ],
+              "ypoints": [
+                345,
+                344,
+                397,
+                410,
+                403,
+                0,
+                0,
+                0
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 240,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 478.0,
+                  "y": 365.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 417,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                204,
+                248,
+                245,
+                205
+              ],
+              "ypoints": [
+                360,
+                362,
+                384,
+                386
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 234,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 259.0,
+                  "y": 366.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 418,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 6,
+              "xpoints": [
+                399,
+                455,
+                454,
+                426,
+                404,
+                395,
+                0,
+                0
+              ],
+              "ypoints": [
+                375,
+                377,
+                443,
+                445,
+                405,
+                408,
+                0,
+                0
+              ],
+              "count": 2,
+              "POIs": [
+                {
+                  "id": 236,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 459.0,
+                  "y": 407.0,
+                  "user": -1
+                },
+                {
+                  "id": 250,
+                  "name": "new POI",
+                  "description": "add your description here!",
+                  "layerID": 1,
+                  "x": 510.0,
+                  "y": 312.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 419,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                573,
+                633,
+                633,
+                572
+              ],
+              "ypoints": [
+                350,
+                348,
+                407,
+                401
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 241,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 580.0,
+                  "y": 360.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 420,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                546,
+                633,
+                633,
+                549
+              ],
+              "ypoints": [
+                414,
+                414,
+                457,
+                455
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 244,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 515.0,
+                  "y": 425.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 421,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                479,
+                515,
+                517,
+                484
+              ],
+              "ypoints": [
+                412,
+                413,
+                502,
+                499
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 242,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 440.0,
+                  "y": 465.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 422,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                523,
+                543,
+                541,
+                522
+              ],
+              "ypoints": [
+                431,
+                434,
+                502,
+                501
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 243,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 482.0,
+                  "y": 455.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 423,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                347,
+                383,
+                383,
+                347
+              ],
+              "ypoints": [
+                327,
+                328,
+                355,
+                355
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 237,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 403.0,
+                  "y": 332.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 424,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                388,
+                416,
+                417,
+                394
+              ],
+              "ypoints": [
+                321,
+                314,
+                352,
+                353
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 238,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 359.0,
+                  "y": 319.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 425,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                388,
+                475,
+                474,
+                389
+              ],
+              "ypoints": [
+                264,
+                267,
+                285,
+                283
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 239,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 385.0,
+                  "y": 259.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 426,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                208,
+                240,
+                240,
+                206
+              ],
+              "ypoints": [
+                404,
+                406,
+                436,
+                435
+              ],
+              "count": 0,
+              "POIs": []
+            },
+            {
+              "id": 427,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                203,
+                240,
+                240,
+                207
+              ],
+              "ypoints": [
+                443,
+                443,
+                470,
+                469
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 245,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 171.0,
+                  "y": 439.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 428,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                207,
+                240,
+                241,
+                206
+              ],
+              "ypoints": [
+                475,
+                473,
+                500,
+                500
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 246,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 173.0,
+                  "y": 472.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 429,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                209,
+                234,
+                237,
+                209
+              ],
+              "ypoints": [
+                504,
+                506,
+                529,
+                529
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 247,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 174.0,
+                  "y": 494.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 430,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                211,
+                235,
+                233,
+                206
+              ],
+              "ypoints": [
+                535,
+                535,
+                563,
+                562
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 248,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 181.0,
+                  "y": 538.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 431,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                204,
+                231,
+                232,
+                209
+              ],
+              "ypoints": [
+                569,
+                567,
+                592,
+                592
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 249,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 179.0,
+                  "y": 558.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 432,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                346,
+                390,
+                390,
+                343
+              ],
+              "ypoints": [
+                408,
+                408,
+                438,
+                445
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 251,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 440.0,
+                  "y": 352.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 433,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                292,
+                333,
+                335,
+                291
+              ],
+              "ypoints": [
+                428,
+                427,
+                461,
+                463
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 252,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 369.0,
+                  "y": 363.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 435,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                260,
+                305,
+                306,
+                268
+              ],
+              "ypoints": [
+                468,
+                473,
+                502,
+                502
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 258,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 357.0,
+                  "y": 402.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 436,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                259,
+                292,
+                292,
+                265
+              ],
+              "ypoints": [
+                503,
+                505,
+                525,
+                533
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 259,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 355.0,
+                  "y": 435.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 437,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                307,
+                342,
+                352,
+                317
+              ],
+              "ypoints": [
+                468,
+                469,
+                492,
+                494
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 261,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 409.0,
+                  "y": 400.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 438,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                311,
+                352,
+                353,
+                315
+              ],
+              "ypoints": [
+                502,
+                502,
+                524,
+                531
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 260,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 414.0,
+                  "y": 434.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 439,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                352,
+                387,
+                386,
+                359
+              ],
+              "ypoints": [
+                478,
+                472,
+                529,
+                528
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 262,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 447.0,
+                  "y": 418.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 441,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 7,
+              "xpoints": [
+                441,
+                477,
+                478,
+                486,
+                486,
+                453,
+                441,
+                0
+              ],
+              "ypoints": [
+                471,
+                471,
+                502,
+                508,
+                534,
+                534,
+                525,
+                0
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 264,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 541.0,
+                  "y": 420.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 442,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                389,
+                433,
+                435,
+                396
+              ],
+              "ypoints": [
+                472,
+                473,
+                531,
+                532
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 267,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 475.0,
+                  "y": 413.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 444,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                238,
+                266,
+                265,
+                239
+              ],
+              "ypoints": [
+                554,
+                554,
+                591,
+                586
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 268,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 324.0,
+                  "y": 487.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 445,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                270,
+                295,
+                294,
+                270
+              ],
+              "ypoints": [
+                558,
+                558,
+                585,
+                590
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 269,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 360.0,
+                  "y": 489.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 446,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                294,
+                329,
+                327,
+                305
+              ],
+              "ypoints": [
+                556,
+                555,
+                593,
+                593
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 270,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 380.0,
+                  "y": 490.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 447,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                327,
+                362,
+                357,
+                330
+              ],
+              "ypoints": [
+                553,
+                553,
+                588,
+                590
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 271,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 412.0,
+                  "y": 490.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 448,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                362,
+                385,
+                386,
+                365
+              ],
+              "ypoints": [
+                558,
+                558,
+                587,
+                592
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 272,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 452.0,
+                  "y": 494.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 451,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                423,
+                447,
+                450,
+                425
+              ],
+              "ypoints": [
+                556,
+                554,
+                591,
+                590
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 274,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 331.0,
+                  "y": 374.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 452,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                454,
+                522,
+                520,
+                455
+              ],
+              "ypoints": [
+                561,
+                555,
+                593,
+                591
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 275,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 357.0,
+                  "y": 374.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 453,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                389,
+                414,
+                419,
+                397
+              ],
+              "ypoints": [
+                554,
+                554,
+                589,
+                591
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 278,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 295.0,
+                  "y": 372.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 454,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                494,
+                537,
+                540,
+                500
+              ],
+              "ypoints": [
+                510,
+                509,
+                532,
+                533
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 279,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 409.0,
+                  "y": 320.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 455,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                541,
+                579,
+                579,
+                543
+              ],
+              "ypoints": [
+                505,
+                510,
+                527,
+                531
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 280,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 439.0,
+                  "y": 313.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 456,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                579,
+                614,
+                613,
+                582
+              ],
+              "ypoints": [
+                504,
+                507,
+                532,
+                532
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 281,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 494.0,
+                  "y": 316.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 457,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 5,
+              "xpoints": [
+                662,
+                675,
+                688,
+                687,
+                665,
+                0,
+                0,
+                0
+              ],
+              "ypoints": [
+                448,
+                448,
+                474,
+                500,
+                499,
+                0,
+                0,
+                0
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 282,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 560.0,
+                  "y": 276.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 459,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                574,
+                610,
+                597,
+                577
+              ],
+              "ypoints": [
+                253,
+                249,
+                277,
+                281
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 284,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 364.0,
+                  "y": 265.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 460,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 5,
+              "xpoints": [
+                617,
+                639,
+                687,
+                670,
+                626,
+                0,
+                0,
+                0
+              ],
+              "ypoints": [
+                248,
+                244,
+                247,
+                273,
+                278,
+                0,
+                0,
+                0
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 286,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 414.0,
+                  "y": 270.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 461,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 5,
+              "xpoints": [
+                553,
+                620,
+                658,
+                658,
+                561,
+                0,
+                0,
+                0
+              ],
+              "ypoints": [
+                292,
+                280,
+                281,
+                312,
+                314,
+                0,
+                0,
+                0
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 285,
+                  "name": "Classroom",
+                  "description": "add your description here!",
+                  "layerID": 2,
+                  "x": 382.0,
+                  "y": 309.0,
+                  "user": -1
+                }
+              ]
+            },
+            {
+              "id": 462,
+              "roomNumber": "",
+              "x": 0.0,
+              "y": 0.0,
+              "npoints": 4,
+              "xpoints": [
+                522,
+                564,
+                564,
+                525
+              ],
+              "ypoints": [
+                570,
+                570,
+                611,
+                610
+              ],
+              "count": 1,
+              "POIs": [
+                {
+                  "id": 287,
+                  "name": "Stair",
+                  "description": "add your description here!",
+                  "layerID": 8,
+                  "x": 587.0,
+                  "y": 598.0,
+                  "user": -1
+                }
+              ]
+            }
+          ],
           "POICount": 0,
           "miscPOIs": []
         },
