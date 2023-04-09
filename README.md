@@ -35,6 +35,9 @@ The edit mode is accessed through the admin user which has the username "admin" 
 ### Login Window (Strong Password Indicator)
 ![Login Window (Strong Password Indicator)](https://res.cloudinary.com/alt/image/upload/v1679892153/assets/Capture_d_e%CC%81cran_le_2023-03-27_a%CC%80_00.42.18_a5p8hh.png)
 
+### Login Window (Sign Up)
+![Login Window (Sign Up)](https://res.cloudinary.com/alt/image/upload/v1681072145/assets/Capture_d_e%CC%81cran_le_2023-04-09_a%CC%80_16.28.33_vrsvoi.png)
+
 ### Login Window (Error)
 ![Login Window (Error)](https://res.cloudinary.com/alt/image/upload/v1679891963/assets/Capture_d_e%CC%81cran_le_2023-03-27_a%CC%80_00.36.45_yxafqu.png)
 
@@ -55,5 +58,11 @@ The edit mode is accessed through the admin user which has the username "admin" 
 
 ### Main Window (Search POIs)
 ![Main Window (Search POIs)](https://res.cloudinary.com/alt/image/upload/v1679891964/assets/Capture_d_e%CC%81cran_le_2023-03-27_a%CC%80_00.37.22_nsmmsd.png)
+
+### Switching Buildings
+![Switching Buildings](https://res.cloudinary.com/alt/image/upload/v1681072289/assets/Capture_d_e%CC%81cran_le_2023-04-09_a%CC%80_16.31.20_ul8lcm.png)
+
+### Switching floors
+![Switching floors](https://res.cloudinary.com/alt/image/upload/v1681072376/assets/Capture_d_e%CC%81cran_le_2023-04-09_a%CC%80_16.32.48_nwkhxw.png)
 
 (Hosted on Cloudinary)
