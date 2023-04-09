@@ -215,12 +215,14 @@ public class JsonDBTest {
         Building pab = Map.addBuilding("Panda", "PAB");
         Building wsc = Map.addBuilding("WSC", "WSC");
         result = JsonDB.getFloors(mc);
-        assertNull(result);
-        pab.addFloor("l0", "");
-        pab.addFloor("l1", "");
-        pab.addFloor("l2", "");
+        assertTrue(result.isEmpty());
+        Floor l0 = pab.addFloor("l0", "");
+        Floor l1 = pab.addFloor("l1", "");
+        Floor l2 = pab.addFloor("l2", "");
         result = JsonDB.getFloors(pab);
-        //assertEqual()
+        assertEquals(l0.getName(), result.get(0).getAsJsonObject().get("name").getAsString());
+        assertEquals(l1.getName(), result.get(1).getAsJsonObject().get("name").getAsString());
+        assertEquals(l2.getName(), result.get(2).getAsJsonObject().get("name").getAsString());
         //assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");

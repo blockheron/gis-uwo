@@ -37,6 +37,7 @@ import javax.imageio.ImageIO;
 public class Login extends javax.swing.JFrame {
 
     private static String weatherPath = System.getProperty("user.home") + "/weather.json";
+    private static boolean signingup = false;
     
     /**
      * Creates new form Login
@@ -86,7 +87,7 @@ public class Login extends javax.swing.JFrame {
         submitPanel = new javax.swing.JPanel();
         onLogin = new javax.swing.JButton();
         condition = new javax.swing.JLabel();
-        guestLogin = new javax.swing.JButton();
+        signupButton = new javax.swing.JButton();
         weatherPanel = new javax.swing.JPanel();
         placeholderPanel = new javax.swing.JPanel();
         weatherLayer = new javax.swing.JLayeredPane();
@@ -203,20 +204,20 @@ public class Login extends javax.swing.JFrame {
         condition.setPreferredSize(new java.awt.Dimension(72, 20));
         submitPanel.add(condition, new java.awt.GridBagConstraints());
 
-        guestLogin.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        guestLogin.setText("Continue as guest");
-        guestLogin.setBorder(null);
-        guestLogin.addMouseListener(new java.awt.event.MouseAdapter() {
+        signupButton.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        signupButton.setText("Create Account");
+        signupButton.setBorder(null);
+        signupButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                guestLoginMouseClicked(evt);
+                signupButtonMouseClicked(evt);
             }
         });
-        guestLogin.addActionListener(new java.awt.event.ActionListener() {
+        signupButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                guestLoginActionPerformed(evt);
+                signupButtonActionPerformed(evt);
             }
         });
-        submitPanel.add(guestLogin, new java.awt.GridBagConstraints());
+        submitPanel.add(signupButton, new java.awt.GridBagConstraints());
 
         loginPanel.add(submitPanel);
 
@@ -368,22 +369,32 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_passwordFieldActionPerformed
 
     private void onLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onLoginActionPerformed
-        handleLogin();
+        if (!signingup) handleLogin();
+        else {
+            handleSignup();
+        }
     }//GEN-LAST:event_onLoginActionPerformed
 
-    private void guestLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guestLoginActionPerformed
+    private void signupButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signupButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_guestLoginActionPerformed
+    }//GEN-LAST:event_signupButtonActionPerformed
 
     private void honeyPotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_honeyPotActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_honeyPotActionPerformed
 
-    private void guestLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guestLoginMouseClicked
-        MainWindow mainWindow = new MainWindow(false, null);
-        mainWindow.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_guestLoginMouseClicked
+    private void signupButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signupButtonMouseClicked
+        if (signingup) {
+            MainWindow mainWindow = new MainWindow(false, null);
+            mainWindow.setVisible(true);
+            dispose();
+        }
+        else {
+            onLogin.setText("Signup");
+            signupButton.setText("Continue as Guest");
+            signingup = true;
+        }
+    }//GEN-LAST:event_signupButtonMouseClicked
 
     /**
      * @param args the command line arguments
@@ -436,10 +447,10 @@ public class Login extends javax.swing.JFrame {
         onLogin.setContentAreaFilled(false); // remove background of onLogin button
         onLogin.setOpaque(true); // make onLogin button opaque
         onLogin.setCursor(new Cursor(Cursor.HAND_CURSOR)); // set cursor to hand cursor
-        guestLogin.setForeground(Color.decode("#2470cc")); // set text color of guestLogin button
-        guestLogin.setBorder(BorderFactory.createEmptyBorder()); // remove border of guestLogin button
-        guestLogin.setContentAreaFilled(false); // remove background of guestLogin button
-        guestLogin.setOpaque(false); // make guestLogin button opaque
+        signupButton.setForeground(Color.decode("#2470cc")); // set text color of guestLogin button
+        signupButton.setBorder(BorderFactory.createEmptyBorder()); // remove border of guestLogin button
+        signupButton.setContentAreaFilled(false); // remove background of guestLogin button
+        signupButton.setOpaque(false); // make guestLogin button opaque
         usernameField.setForeground(Color.decode("#666666"));
         usernameField.setBorder(
                 BorderFactory.createCompoundBorder(
@@ -456,7 +467,7 @@ public class Login extends javax.swing.JFrame {
                         defaultBorder, BorderFactory.createEmptyBorder(padding, 2 * padding, padding, 2 * padding)
                 )
         );
-        guestLogin.setBorder(underlineBorder);
+        signupButton.setBorder(underlineBorder);
 
         // add hover effect to onSearch button
         onLogin.addMouseListener(new MouseAdapter() {
@@ -550,17 +561,17 @@ public class Login extends javax.swing.JFrame {
             }
         });
         // add underline effect to guestLogin button
-        guestLogin.addMouseListener(new MouseAdapter() {
+        signupButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                guestLogin.setForeground(Color.decode("#666666"));
-                guestLogin.setBorder(underlineFocusBorder);
+                signupButton.setForeground(Color.decode("#666666"));
+                signupButton.setBorder(underlineFocusBorder);
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                guestLogin.setForeground(Color.decode("#2470cc"));
-                guestLogin.setBorder(underlineBorder);
+                signupButton.setForeground(Color.decode("#2470cc"));
+                signupButton.setBorder(underlineBorder);
             }
         });
     }
@@ -777,6 +788,15 @@ public class Login extends javax.swing.JFrame {
         return 0;
     }
 
+    private void handleSignup() {
+        String username = usernameField.getText();
+        String password = String.valueOf(passwordField.getPassword());
+        if (Map.getUser(username) == null) {
+            new User(username, password);
+            handleLogin();
+        }
+    }
+    
     private int handleLogin() {
         int padding = 5;
         byte[] b; // byte array of password
@@ -894,7 +914,6 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel condition;
     private javax.swing.JLabel dText;
     private javax.swing.JPanel formPanel;
-    private javax.swing.JButton guestLogin;
     private javax.swing.JTextField honeyPot;
     private javax.swing.JLayeredPane layerPanel;
     private javax.swing.JLayeredPane loginLayer;
@@ -908,6 +927,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel passwordText;
     private javax.swing.JPanel placeholderPanel;
     private javax.swing.JLabel placeholderTemp;
+    private javax.swing.JButton signupButton;
     private javax.swing.JPanel submitPanel;
     private javax.swing.JLabel tempDown;
     private javax.swing.JLabel tempUp;
