@@ -7,8 +7,12 @@ This software is a map viewer for western university. It allows you to add and f
 3. gson version 2.10
 4. guava version 18.0
 5. The AbsoluteLayout from netbeans.external Release160
-6. The maven-jar-plugin version 2.4
-7. The maven-shade-plugin version 2.2
+6. The junit-platform version 1.1.0
+7. junit-jupiter version 5.6.0
+8. mockito version 4.1.0
+9. The maven-jar-plugin version 2.4
+10. The maven-shade-plugin version 2.2
+11. The maven-surefire-plugin version 2.19.1
 ## How to build
 1. Clone/Download the project into NetBeans
 2. Open the project
@@ -23,7 +27,7 @@ This software is a map viewer for western university. It allows you to add and f
 
 
 ## Account information/Edit mode
-The edit mode is accessed through the admin user which has the username "admin" and the password "password". There is one user for each group member with usernames Liam, Karen, Maxwell, Denise, Valentina and the password for each of those users is "1234"
+The edit mode is accessed through the admin user which has the username "admin" and the password "password". There is one user for each group member with usernames Liam, Karen, Maxwell, Emma, Valentina and the password for each of those users is "1234"
 
 ## Screenshots
 ### Login Window
