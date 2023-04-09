@@ -163,6 +163,14 @@ public class MainWindow extends javax.swing.JFrame {
         classroomLayer = new javax.swing.JPanel();
         userPOILayer = new javax.swing.JPanel();
         washroomLayer = new javax.swing.JPanel();
+        accessRadioLayer = new javax.swing.JRadioButton();
+        compSciLayerRadio = new javax.swing.JRadioButton();
+        entryExitLayerRadio = new javax.swing.JRadioButton();
+        favLayerRadio = new javax.swing.JRadioButton();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        jRadioButton2 = new javax.swing.JRadioButton();
+        jRadioButton3 = new javax.swing.JRadioButton();
+        helpButton = new javax.swing.JButton();
         searchPanel = new javax.swing.JPanel();
         filterBox = new javax.swing.JTextField();
         onSearch = new javax.swing.JButton();
@@ -266,7 +274,7 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
-        userPOILayerRadio.setText("User POIs");
+        userPOILayerRadio.setText("User Defined POIs");
         userPOILayerRadio.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 userPOILayerRadioMouseClicked(evt);
@@ -306,105 +314,175 @@ public class MainWindow extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
+        accessRadioLayer.setText("Accessibility");
+
+        compSciLayerRadio.setText("Computer Science Related");
+        compSciLayerRadio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                compSciLayerRadioActionPerformed(evt);
+            }
+        });
+
+        entryExitLayerRadio.setText("Entry/Exit Points");
+
+        favLayerRadio.setText("Favourites");
+
+        jRadioButton1.setText("GenLab");
+
+        jRadioButton2.setText("Navigation");
+
+        jRadioButton3.setText("Restaurants");
+
         javax.swing.GroupLayout layerListDisplayLayout = new javax.swing.GroupLayout(layerListDisplay);
         layerListDisplay.setLayout(layerListDisplayLayout);
         layerListDisplayLayout.setHorizontalGroup(
             layerListDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layerListDisplayLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(layerListButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layerListDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layerListDisplayLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(layerListButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layerListDisplayLayout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addGroup(layerListDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(favLayerRadio, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layerListDisplayLayout.createSequentialGroup()
+                                .addGroup(layerListDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(accessRadioLayer)
+                                    .addComponent(compSciLayerRadio)
+                                    .addComponent(entryExitLayerRadio)
+                                    .addComponent(classroomLayerRadio))
+                                .addGroup(layerListDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layerListDisplayLayout.createSequentialGroup()
+                                        .addGap(16, 16, 16)
+                                        .addGroup(layerListDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jRadioButton1)
+                                            .addComponent(jRadioButton2)))
+                                    .addGroup(layerListDisplayLayout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jRadioButton3))
+                                    .addGroup(layerListDisplayLayout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layerListDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(washroomLayerRadio)
+                                            .addComponent(userPOILayerRadio))))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(layerListDisplayLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addGroup(layerListDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(washroomLayerRadio)
-                    .addComponent(classroomLayerRadio)
-                    .addComponent(userPOILayerRadio, javax.swing.GroupLayout.Alignment.LEADING))
-                .addContainerGap(47, Short.MAX_VALUE))
             .addGroup(layerListDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layerListDisplayLayout.createSequentialGroup()
-                    .addGap(0, 8, Short.MAX_VALUE)
+                    .addGap(0, 97, Short.MAX_VALUE)
                     .addComponent(classroomLayer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 140, Short.MAX_VALUE)))
+                    .addGap(0, 226, Short.MAX_VALUE)))
             .addGroup(layerListDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layerListDisplayLayout.createSequentialGroup()
-                    .addGap(0, 8, Short.MAX_VALUE)
+                    .addGap(0, 97, Short.MAX_VALUE)
                     .addComponent(userPOILayer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 140, Short.MAX_VALUE)))
+                    .addGap(0, 226, Short.MAX_VALUE)))
             .addGroup(layerListDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layerListDisplayLayout.createSequentialGroup()
-                    .addGap(0, 8, Short.MAX_VALUE)
+                    .addGap(0, 97, Short.MAX_VALUE)
                     .addComponent(washroomLayer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 140, Short.MAX_VALUE)))
+                    .addGap(0, 226, Short.MAX_VALUE)))
         );
         layerListDisplayLayout.setVerticalGroup(
             layerListDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layerListDisplayLayout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(classroomLayerRadio)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(washroomLayerRadio)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(userPOILayerRadio)
-                .addGap(18, 18, 18)
+                .addGap(7, 7, 7)
+                .addGroup(layerListDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(accessRadioLayer)
+                    .addComponent(jRadioButton1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layerListDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(classroomLayerRadio)
+                    .addComponent(jRadioButton2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layerListDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(compSciLayerRadio)
+                    .addComponent(jRadioButton3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layerListDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(entryExitLayerRadio)
+                    .addComponent(userPOILayerRadio))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layerListDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(favLayerRadio)
+                    .addComponent(washroomLayerRadio))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(layerListButton)
                 .addContainerGap())
             .addGroup(layerListDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layerListDisplayLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGap(0, 86, Short.MAX_VALUE)
                     .addComponent(classroomLayer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addGap(0, 85, Short.MAX_VALUE)))
             .addGroup(layerListDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layerListDisplayLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGap(0, 86, Short.MAX_VALUE)
                     .addComponent(userPOILayer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addGap(0, 85, Short.MAX_VALUE)))
             .addGroup(layerListDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layerListDisplayLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGap(0, 86, Short.MAX_VALUE)
                     .addComponent(washroomLayer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addGap(0, 85, Short.MAX_VALUE)))
         );
+
+        helpButton.setText("?");
+        helpButton.setToolTipText("help page ");
+        helpButton.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                helpButtonMouseMoved(evt);
+            }
+        });
+        helpButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                helpButtonMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout FrameLayout = new javax.swing.GroupLayout(Frame);
         Frame.setLayout(FrameLayout);
         FrameLayout.setHorizontalGroup(
             FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(FrameLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(editButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(addRoomButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(addPOIButton)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(FrameLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
                 .addGroup(FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(prevFloorButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nextFloorButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 964, Short.MAX_VALUE)
+                    .addGroup(FrameLayout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addGroup(FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(nextFloorButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(FrameLayout.createSequentialGroup()
+                                .addComponent(prevFloorButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(helpButton))))
+                    .addGroup(FrameLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(editButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(addRoomButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(addPOIButton)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 763, Short.MAX_VALUE)
                 .addComponent(layerListDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26))
+                .addContainerGap())
         );
         FrameLayout.setVerticalGroup(
             FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FrameLayout.createSequentialGroup()
-                .addContainerGap(636, Short.MAX_VALUE)
+            .addGroup(FrameLayout.createSequentialGroup()
+                .addContainerGap(490, Short.MAX_VALUE)
                 .addGroup(FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FrameLayout.createSequentialGroup()
                         .addComponent(nextFloorButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(prevFloorButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(45, 45, 45))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FrameLayout.createSequentialGroup()
-                        .addComponent(layerListDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(5, 5, 5)))
-                .addGroup(FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(addPOIButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(addRoomButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(editButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                        .addGroup(FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(prevFloorButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(helpButton))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(FrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(editButton)
+                            .addComponent(addRoomButton)
+                            .addComponent(addPOIButton)))
+                    .addComponent(layerListDisplay, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(149, 149, 149))
         );
 
         searchPanel.setForeground(new java.awt.Color(13, 17, 23));
@@ -945,6 +1023,10 @@ public class MainWindow extends javax.swing.JFrame {
             switchToBuild(Map.getBuilding("Western Science Center"));
         }
     }//GEN-LAST:event_wscMenuActionPerformed
+
+    private void compSciLayerRadioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_compSciLayerRadioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_compSciLayerRadioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1547,20 +1629,28 @@ public class MainWindow extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Frame;
+    private javax.swing.JRadioButton accessRadioLayer;
     private javax.swing.JToggleButton addPOIButton;
     private javax.swing.JToggleButton addRoomButton;
     private javax.swing.JMenu buildMenu;
     private javax.swing.JPanel classroomLayer;
     private javax.swing.JRadioButton classroomLayerRadio;
+    private javax.swing.JRadioButton compSciLayerRadio;
     private javax.swing.JPanel dropDownPanel;
     private javax.swing.JToggleButton editButton;
     private javax.swing.JMenu editMenu;
+    private javax.swing.JRadioButton entryExitLayerRadio;
+    private javax.swing.JRadioButton favLayerRadio;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JTextField filterBox;
     private javax.swing.JLabel filterIcon;
     private javax.swing.JPanel filterPanel;
     private javax.swing.JLabel filterText;
+    private javax.swing.JButton helpButton;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JToggleButton layerListButton;
     private javax.swing.JPanel layerListDisplay;
     private javax.swing.JLayeredPane layerPanel;
