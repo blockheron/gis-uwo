@@ -14,9 +14,7 @@
             <Property name="text" type="java.lang.String" value="Edit"/>
           </Properties>
         </Menu>
-      </SubComponents>
-    </Menu>
-    <Menu class="javax.swing.JMenu" name="buildMenu">
+        <Menu class="javax.swing.JMenu" name="buildMenu">
           <Properties>
             <Property name="text" type="java.lang.String" value="Buildings"/>
           </Properties>
@@ -47,6 +45,8 @@
             </MenuItem>
           </SubComponents>
         </Menu>
+      </SubComponents>
+    </Menu>
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
@@ -528,3 +528,4 @@
     </Container>
   </SubComponents>
 </Form>
+
