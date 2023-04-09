@@ -88,11 +88,11 @@ public class MainWindow extends javax.swing.JFrame {
             Map.addLayer("unassigned", Color.RED);
             Map.addLayer("Accessibility", Color.BLUE);
             Map.addLayer("Computer Science Related",Color.GREEN);
-            Map.addLayer("Favourites", Color.RED);
-            Map.addLayer("GenLabs", Color.YELLOW);
-            Map.addLayer("Navigation",Color.CYAN);
-            Map.addLayer("Restaurants", Color.RED);
-            Map.addLayer("Entry/Exit", Color.RED);
+            Map.addLayer("Favourites", Color.darkGray);
+            Map.addLayer("GenLabs", Color.MAGENTA);
+            Map.addLayer("Navigation",Color.ORANGE);
+            Map.addLayer("Restaurants", Color.PINK);
+            Map.addLayer("Entry/Exit", Color.GRAY);
             //
             
             //add users
@@ -174,9 +174,9 @@ public class MainWindow extends javax.swing.JFrame {
         compSciLayerRadio = new javax.swing.JRadioButton();
         entryExitLayerRadio = new javax.swing.JRadioButton();
         favLayerRadio = new javax.swing.JRadioButton();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
+        genLabLayerRadio = new javax.swing.JRadioButton();
+        navLayerRadio = new javax.swing.JRadioButton();
+        restLayerRadio = new javax.swing.JRadioButton();
         helpButton = new javax.swing.JButton();
         searchPanel = new javax.swing.JPanel();
         filterBox = new javax.swing.JTextField();
@@ -329,6 +329,11 @@ public class MainWindow extends javax.swing.JFrame {
         });
 
         compSciLayerRadio.setText("Computer Science Related");
+        compSciLayerRadio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                compSciLayerRadioMouseClicked(evt);
+            }
+        });
         compSciLayerRadio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 compSciLayerRadioActionPerformed(evt);
@@ -336,14 +341,44 @@ public class MainWindow extends javax.swing.JFrame {
         });
 
         entryExitLayerRadio.setText("Entry/Exit Points");
+        entryExitLayerRadio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                entryExitLayerRadioMouseClicked(evt);
+            }
+        });
 
         favLayerRadio.setText("Favourites");
+        favLayerRadio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                favLayerRadioMouseClicked(evt);
+            }
+        });
 
-        jRadioButton1.setText("GenLab");
+        genLabLayerRadio.setText("GenLab");
+        genLabLayerRadio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                genLabLayerRadioMouseClicked(evt);
+            }
+        });
 
-        jRadioButton2.setText("Navigation");
+        navLayerRadio.setText("Navigation");
+        navLayerRadio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                navLayerRadioMouseClicked(evt);
+            }
+        });
+        navLayerRadio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                navLayerRadioActionPerformed(evt);
+            }
+        });
 
-        jRadioButton3.setText("Restaurants");
+        restLayerRadio.setText("Restaurants");
+        restLayerRadio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                restLayerRadioMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layerListDisplayLayout = new javax.swing.GroupLayout(layerListDisplay);
         layerListDisplay.setLayout(layerListDisplayLayout);
@@ -368,11 +403,11 @@ public class MainWindow extends javax.swing.JFrame {
                                     .addGroup(layerListDisplayLayout.createSequentialGroup()
                                         .addGap(16, 16, 16)
                                         .addGroup(layerListDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jRadioButton1)
-                                            .addComponent(jRadioButton2)))
+                                            .addComponent(genLabLayerRadio)
+                                            .addComponent(navLayerRadio)))
                                     .addGroup(layerListDisplayLayout.createSequentialGroup()
                                         .addGap(18, 18, 18)
-                                        .addComponent(jRadioButton3))
+                                        .addComponent(restLayerRadio))
                                     .addGroup(layerListDisplayLayout.createSequentialGroup()
                                         .addGap(18, 18, 18)
                                         .addGroup(layerListDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -402,15 +437,15 @@ public class MainWindow extends javax.swing.JFrame {
                 .addGap(7, 7, 7)
                 .addGroup(layerListDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(accessLayerRadio)
-                    .addComponent(jRadioButton1))
+                    .addComponent(genLabLayerRadio))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layerListDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(classroomLayerRadio)
-                    .addComponent(jRadioButton2))
+                    .addComponent(navLayerRadio))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layerListDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(compSciLayerRadio)
-                    .addComponent(jRadioButton3))
+                    .addComponent(restLayerRadio))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layerListDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(entryExitLayerRadio)
@@ -1041,7 +1076,7 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_compSciLayerRadioActionPerformed
 
     private void accessLayerRadioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_accessLayerRadioMouseClicked
-        // Actiate and deactivate POI list
+        // Activate and deactivate accessibility layer
         
         Layer accessibility = Map.getLayer("Accessibility");
         
@@ -1056,6 +1091,112 @@ public class MainWindow extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_accessLayerRadioMouseClicked
+
+    private void compSciLayerRadioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_compSciLayerRadioMouseClicked
+         // Activate and deactivate compSci layer
+        
+        Layer compSci = Map.getLayer("Computer Science Related");
+        
+        if (compSciLayerRadio.isSelected()) {
+            for (Room room : compSci.getRooms(curFloor)) {
+                room.highlight(compSci.getColor());
+            }
+        }
+        else {
+            for (Room room : compSci.getRooms(curFloor)) {
+                room.dehighlight(compSci.getColor());
+            }
+        }
+    }//GEN-LAST:event_compSciLayerRadioMouseClicked
+
+    private void entryExitLayerRadioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_entryExitLayerRadioMouseClicked
+        // Activate and deactivate entry and exit layer
+        
+        Layer entryExit = Map.getLayer("Entry/Exit");
+        
+        if ( entryExitLayerRadio.isSelected()) {
+            for (Room room : entryExit.getRooms(curFloor)) {
+                room.highlight(entryExit.getColor());
+            }
+        }
+        else {
+            for (Room room : entryExit.getRooms(curFloor)) {
+                room.dehighlight(entryExit.getColor());
+            }
+        }
+    }//GEN-LAST:event_entryExitLayerRadioMouseClicked
+
+    private void favLayerRadioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_favLayerRadioMouseClicked
+        // Activate and deactivate favourite layer
+        
+        Layer fav = Map.getLayer("Favourites");
+        
+        if ( favLayerRadio.isSelected()) {
+            for (Room room : fav.getRooms(curFloor)) {
+                room.highlight(fav.getColor());
+            }
+        }
+        else {
+            for (Room room : fav.getRooms(curFloor)) {
+                room.dehighlight(fav.getColor());
+            }
+        }
+    }//GEN-LAST:event_favLayerRadioMouseClicked
+
+    private void genLabLayerRadioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_genLabLayerRadioMouseClicked
+        // Activate and deactivate genLab layer
+        
+        Layer genLab = Map.getLayer("GenLabs/Exit");
+        
+        if ( genLabLayerRadio.isSelected()) {
+            for (Room room : genLab.getRooms(curFloor)) {
+                room.highlight(genLab.getColor());
+            }
+        }
+        else {
+            for (Room room : genLab.getRooms(curFloor)) {
+                room.dehighlight(genLab.getColor());
+            }
+        }
+    }//GEN-LAST:event_genLabLayerRadioMouseClicked
+
+    private void navLayerRadioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navLayerRadioMouseClicked
+        // Activate and deactivate navigation layer
+        
+        Layer nav = Map.getLayer("Navigation");
+        
+        if ( navLayerRadio.isSelected()) {
+            for (Room room : nav.getRooms(curFloor)) {
+                room.highlight(nav.getColor());
+            }
+        }
+        else {
+            for (Room room : nav.getRooms(curFloor)) {
+                room.dehighlight(nav.getColor());
+            }
+        }
+    }//GEN-LAST:event_navLayerRadioMouseClicked
+
+    private void navLayerRadioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_navLayerRadioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_navLayerRadioActionPerformed
+
+    private void restLayerRadioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_restLayerRadioMouseClicked
+        // Activate and deactivate restaurant layer
+        
+        Layer restaurant = Map.getLayer("Restaurants");
+        
+        if ( restLayerRadio.isSelected()) {
+            for (Room room : restaurant.getRooms(curFloor)) {
+                room.highlight(restaurant.getColor());
+            }
+        }
+        else {
+            for (Room room : restaurant.getRooms(curFloor)) {
+                room.dehighlight(restaurant.getColor());
+            }
+        }
+    }//GEN-LAST:event_restLayerRadioMouseClicked
 
     /**
      * @param args the command line arguments
@@ -1675,19 +1816,19 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JLabel filterIcon;
     private javax.swing.JPanel filterPanel;
     private javax.swing.JLabel filterText;
+    private javax.swing.JRadioButton genLabLayerRadio;
     private javax.swing.JButton helpButton;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JToggleButton layerListButton;
     private javax.swing.JPanel layerListDisplay;
     private javax.swing.JLayeredPane layerPanel;
     private javax.swing.JMenuItem mcMenu;
+    private javax.swing.JRadioButton navLayerRadio;
     private javax.swing.JButton nextFloorButton;
     private javax.swing.JButton onSearch;
     private javax.swing.JMenuItem pabMenu;
     private javax.swing.JButton prevFloorButton;
+    private javax.swing.JRadioButton restLayerRadio;
     private javax.swing.JPanel resultContainer;
     private javax.swing.JPanel resultPanel;
     private javax.swing.JScrollPane resultScroll;
