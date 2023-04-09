@@ -209,7 +209,7 @@ public class POIListPopup extends javax.swing.JPanel {
         }
         //
         
-        if (!MainWindow.curUser.isAdmin())
+        if (MainWindow.curUser == null || !MainWindow.curUser.isAdmin())
         {
             
             DeleteButton.setVisible(false);
